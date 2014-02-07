@@ -6,7 +6,9 @@ thesis*.pdf
 *.acr
 *.alg
 *.aux
+*.auxlock
 *.bbl
+*.bcf
 *.blg
 *.dvi
 *.fdb_latexmk
