@@ -1,5 +1,16 @@
 \chapter{Software}
-\label{ch:hisparc-experiment}
+\label{ch:software}
+
+\section{\github}
+
+Our code has transitioned from bazaar to \git. A more powerful svn with
+advantages ... The source code of our software has been open sourced
+through \github. Easier access, better collaboration.
+
+Conforming to coding styles, PEP8.
+
+Documentation through \github Pages.
+
 
 \section{\hisparc Public Database}
 
@@ -7,17 +18,26 @@
 
 Access to metadata
 
-Functions have been added to both \sapphire and \jsparc to access the \api.
-These take care of constructing the urls, converting the json to a sensible format for the the given language.
+Functions have been added to both \sapphire and \jsparc to access the
+\api. These take care of constructing the urls, converting the json to a
+sensible format for the the given language.
+
+
+\subsection{Event Summary Database}
+
+Derived database with certain analyses applied, as explained later. Also
+coincidences already found, next; automated reconstructions
+
 
 \section{\jsparc}
 
 Javascript library.
 
+
 \subsection{Data retrieval tool}
 
 Data analysis in any modern browser (IE9+, Firefox, Chrome, Safari)
-
+Interpolation between different datasets. Can even make histograms.
 
 \section{\sapphire}
 
@@ -28,7 +48,23 @@ Data analysis in any modern browser (IE9+, Firefox, Chrome, Safari)
 Package Index (\pypi).
 
 
+\subsection{Clusters}
+
+Using the \api \sapphire has access to the \gps coordinates of all
+stations. And for those stations that have submitted their detector
+positions, those as well. This makes it easy to setup a cluster with any
+selection of \hisparc stations. This can be used for simulations.
+Imaginary stations can be added to plan future station locations.
+
 \subsection{\corsika}
 
 Reading \corsika output, convert to \hdf and use for simulations.
+
+
+\subsection{Refactored simulations}
+
+The simulation section of \sapphire has been completely rewritten
+working together with dr. David Fokkema and Hans Montanus. Works with
+\corsika data, more consistent output that can eb analysed the same way
+as real \hisparc data (except that the input is also known).
 
