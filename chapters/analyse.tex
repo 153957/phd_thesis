@@ -2,7 +2,58 @@
 \label{ch:analyse}
 
 
+\section{Measured data}
+
+Traces
+GPS trigger time
+GPS position
+Detector positions
+Configuration
+
+
 \section{Reconstruction chain}
+
+Raw data is received by the frome server and stored in the \hisparc
+datastore. This is done by the datastore software. Multiple listeners
+receive data from stations and place that data in a temporary storage
+location. A single writer process checks the temporary storage for new
+data and writes it to the raw datastorage.
+
+Every night all data from the previous day is processed by the pique
+server and stored in the Event Summary Data. This data processing
+consists of several steps.
+
+First all events are sorted by their timestamp.
+
+Then the duplicate events are removed. A station number and
+extended timestamp (timestamp in nanoseconds) should be a unique
+combination. Due to server crashes and errors in uploading duplicate
+events may exist.
+
+Next the MPV of the MIP peak for each detector is determined by fitting
+the pulse integral histogram. Using this the number of MIPs in each
+event is derived by dividing the pulse integral by the MPV. The MPV can
+change when the voltages on the PMTs change or when the temperature of
+the PMT changes. Higher (voltage/temp) -> higher (MPV)
+
+After that the traces of each event are analysed to determine the moment
+of the trigger and the arrival time (first pulse) in each detector.
+
+In the ESD the sorted events with duplicates removed and MPV determined,
+MIP derived, trigger reconstructed and arrival times determined data is
+stored.
+
+Station data is stored with the same structure as the raw storage.
+
+When data for all stations is processed the next step is to see if links
+exist between events. So coincidences between all stations are searched.
+A coincidence is more than one event detected in a small time window by
+multiple stations.
+
+speed of light, distance, coincidence window, clusters, up time..
+
+After this some histograms are made from the data and made available on
+\url{http://data.hisparc.nl} to get an overview of the data.
 
 Diagram different steps in reconstruction/checks.
 
@@ -11,13 +62,28 @@ Diagram different steps in reconstruction/checks.
 
 
 Why low quality? technical and/or software issues, or ..?
+- Determine from number of events
+- MIP peak location
+- Expected number of coincidences
+- Correctness of configuration
+- Changes in configuration
+etc...
 
 
 \section{Data cuts}
 
+Known detector positions..
+
+
+\section{Direction reconstruction}
+
+Before core reconstruction.
+3 detection points can be solved analytical for flat front
+More than 3 can be done with fit/regression..
 
 
 \section{Core reconstruction}
+
 
 
 
