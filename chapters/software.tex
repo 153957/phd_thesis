@@ -3,27 +3,110 @@
 
 \section{\github}
 
-Our code has transitioned from bazaar to \git. A more powerful svn with
-advantages ... The source code of our software has been open sourced
-through \github. Easier access, better collaboration.
+Our code has transitioned from bazaar to \git, a different distributed
+version control system. This made it possible to use the service \github
+to host our projects. \github provides a web-interface to manage
+projects, keep track of issues and pull requests.
 
-Conforming to coding styles, PEP8.
+When we were using bazaar our repositories were hosted on a Nikhef
+server, this made it difficult for others to participate and contribute.
+On \github the software has been open sourced and can be downloaded with
+a single click, on any system.
 
-Inventory
-Flowcharts
+\github also provides webpage hosting of static pages for repositories,
+called \github Pages. We use it to host software documentation and
+compiled version of the teaching materials, for which the sources are
+also on \github.
 
-Documentation through \github Pages.
+
+\section{Structure}
+
+Since the code can now be easily accessed by anyone we cleaned up the
+code to be more consistent and conform to a coding style. For \python we
+try to conform to Python Enhancement Proposal (PEP) 8 - Style Guide for
+Python Code.
+
+
+\section{Repositories}
+
+This is a list of the different repositories.
+
+\begin{verbatim}
+Data analysis/presentation
+sapphire - SAPPHiRE, a framework for HiSPARC
+pysparc - HiSPARC DAQ implemented in Python
+publicdb - The HiSPARC Public Database
+jsparc - Javascript library and coincidences analysis
+gz-sim - Gerasimova-Zatsepin effect simulation
+framework - (deprecated) HiSPARC tools
+correlation - Data correlation analysis
+interaction-position - Calculate possible interaction positions from detection timestamps
+practica - project by Niek?
+data-quality - Data quality checks
+topaz PRIVATE - Scripts for small analyses with HiSPARC data
+tijdtest PRIVATE - Analysis for the time calibration of HiSPARC boxes
+
+Detection
+datastore - Data storage solution
+station-software - Software running on HiSPARC station pc's
+hisparcdaq - DAQ software
+weather - Weather DAQ software
+lightning - Lightning DAQ software
+vhdl - FPGA source
+muonlab - Muon experiments
+
+Teaching Material
+infopakket - Teaching materials
+routenet - High-school course material
+
+Papers
+2014_experiment PRIVATE - Paper about the HiSPARC experimental setup
+2014_direction PRIVATE - Paper about HiSPARC direction reconstruction chain
+
+Webpages
+hisparc.github.io - HiSPARC GitHub Pages
+logo - HiSPARC logo's
+servers - Contains details on how the HiSPARC servers are setup
+maintenance - HiSPARC station maintenance information
+\end{verbatim}
+
+Add some flowcharts
 
 
 \section{\hisparc Public Database}
 
 \subsection{\api}
 
-Access to metadata
+In order to make interactive applications (see \jsparc) we needed to make
+access to all kinds of data easy. To facilitate this an \api has been
+added to the Public Database. The \api consists of a number of urls that
+return data in the form of a JSON (Javscript Object Notation). For
+example a list of \hisparc stations can be retrieved via
+\url{http://data.hisparc.nl/api/stations/}, the result is:
+
+\begin{verbatim}
+[
+    {"name": "St. Nicolaaslyceum",
+     "number": 2},
+    {"name": "Het Amsterdams Lyceum",
+     "number": 3},
+    {"name": "Chr. Sch. Gem. Buitenveldert",
+     "number": 5},
+    {"name": "Bern. Nieuwetijt Coll. (Damstede)",
+     "number": 6},
+    {"name": "Joke Smit College (ROC)",
+     "number": 7},
+    ...
+    {"name": "Karlsruher Institut für Technologie",
+     "number": 70001}
+]
+\end{verbatim}
+
+A list of all possible urls can be found at \url{http://data.hisparc.nl/api/}.
 
 Functions have been added to both \sapphire and \jsparc to access the
-\api. These take care of constructing the urls, converting the json to a
-sensible format for the the given language.
+\api. These take care of constructing the urls and converting the json to a
+sensible format for the programming language language.
 
 
 \subsection{Event Summary Database}
