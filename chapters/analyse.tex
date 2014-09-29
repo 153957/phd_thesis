@@ -4,11 +4,31 @@
 
 \section{Measured data}
 
-Traces
-GPS trigger time
-GPS position
-Detector positions
-Configuration
+Raw data consists of events with traces. An event is when the trigger
+conditions are met in the \hisparc box of a station. A trigger requires
+2 low signals in a 2-detector station or 2 high or 3 low signals in a
+4-detector station. When a trigger occurs all \pmt channels of that
+station are read-out, even if they do not have significant signals.
+These traces are then processed by the \hisparcdaq/\pysparc. Derived
+values, such as the baseline, standard deviation, number of peaks,
+pulseheight and pulseintegral are determined for each trace. The traces
+are also reduced by cutting parts from the front and end until the first
+significant signal in any detector, with some buffer room?
+
+During the trigger the \gps and \SI{400}{\mega\hertz} clock are used to
+determine the \gps timestamp of the event. Besides this event data there
+is also static data.
+
+When a station is deployed, moved or changed a \gps self-survey is run,
+this accurately determines the position of the \gps antenna. The
+detector positions relative to the \gps antenna are also measured. If
+they are moved the positions are again measured.
+
+Finally the settings, e.g. \pmt voltages, trigger settings and other
+settings, of a station are stored. Currently only when they change and
+the button is pressed... To be sent every hour..
+
+Config should be used for esd....
 
 
 \section{Reconstruction chain}
