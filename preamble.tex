@@ -5,7 +5,7 @@
 \usepackage[dutch,english]{babel}
 \usepackage{fouriernc}
 %\usepackage{tgschola}
-\usepackage{xcolor}
+\usepackage[svgnames]{xcolor}
 \usepackage[libertine]{quotchap}
 \usepackage[font={small,sf},labelfont={bf},labelsep=endash]{caption}
 %\newcommand{\captitle}[1]{\textsmaller{\MakeUppercase{#1}}}
@@ -21,6 +21,7 @@
 \fancyhead[LO]{\nouppercase\rightmark}
 
 \setcounter{tocdepth}{1}
+\renewcommand{\headheight}{14pt}
 \renewcommand{\topfraction}{.85}
 \renewcommand{\textfraction}{.15}
 \renewcommand{\floatpagefraction}{.7}
@@ -68,13 +69,13 @@
 
 %\usepackage{shape-datastore}
 
-
 % Projects
 \newcommand{\hisparc}{\textsmaller{HiSPARC}\xspace}
 \newcommand{\kascade}{\textsmaller{KASCADE}\xspace}
 
 % Software
 \newcommand{\sapphire}{\textsmaller{SAPPHiRE}\xspace}
+\newcommand{\pysparc}{\textsmaller{PySPARC}\xspace}
 \newcommand{\jsparc}{\textsmaller{jSparc}\xspace}
 \newcommand{\api}{\textsmaller{API}\xspace}
 \newcommand{\daq}{\textsmaller{DAQ}\xspace}

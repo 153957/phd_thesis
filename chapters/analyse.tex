@@ -9,7 +9,7 @@ conditions are met in the \hisparc box of a station. A trigger requires
 2 low signals in a 2-detector station or 2 high or 3 low signals in a
 4-detector station. When a trigger occurs all \pmt channels of that
 station are read-out, even if they do not have significant signals.
-These traces are then processed by the \hisparcdaq/\pysparc. Derived
+These traces are then processed by the \daq or \pysparc. Derived
 values, such as the baseline, standard deviation, number of peaks,
 pulseheight and pulseintegral are determined for each trace. The traces
 are also reduced by cutting parts from the front and end until the first
@@ -43,32 +43,26 @@ Every night all data from the previous day is processed by the pique
 server and stored in the Event Summary Data. This data processing
 consists of several steps.
 
-First all events are sorted by their timestamp.
-
-Then the duplicate events are removed. A station number and
-extended timestamp (timestamp in nanoseconds) should be a unique
-combination. Due to server crashes and errors in uploading duplicate
-events may exist.
+First all events are sorted by their timestamp. Then the duplicate
+events are removed. A station number and extended timestamp (timestamp
+in nanoseconds) should be a unique combination. Due to server crashes
+and errors in uploading duplicate events may exist.
 
 Next the MPV of the MIP peak for each detector is determined by fitting
 the pulse integral histogram. Using this the number of MIPs in each
 event is derived by dividing the pulse integral by the MPV. The MPV can
 change when the voltages on the PMTs change or when the temperature of
-the PMT changes. Higher (voltage/temp) -> higher (MPV)
-
-After that the traces of each event are analysed to determine the moment
-of the trigger and the arrival time (first pulse) in each detector.
+the PMT changes. Higher (voltage/temp) -> higher (MPV). After that the
+traces of each event are analysed to determine the moment of the trigger
+and the arrival time (first pulse) in each detector.
 
 In the ESD the sorted events with duplicates removed and MPV determined,
 MIP derived, trigger reconstructed and arrival times determined data is
-stored.
-
-Station data is stored with the same structure as the raw storage.
-
-When data for all stations is processed the next step is to see if links
-exist between events. So coincidences between all stations are searched.
-A coincidence is more than one event detected in a small time window by
-multiple stations.
+stored. Station data is stored with the same structure as the raw
+storage. When data for all stations is processed the next step is to see
+if links exist between events. So coincidences between all stations are
+searched. A coincidence is more than one event detected in a small time
+window by multiple stations.
 
 speed of light, distance, coincidence window, clusters, up time..
 
@@ -80,32 +74,89 @@ Diagram different steps in reconstruction/checks.
 
 \section{Quality assurance}
 
+When doing reconstructions it is important to know if the data that is
+being used is actually good data. If for instance a \gps is not properly
+configured the larger timing uncertainty due to the misconfiguration
+needs to be taken into account. Additionally the uptime of
+stations/detectors is important. A station that is working but does not
+make a detection needs to be considered differently from a station that
+have no data because it is offline.
 
-Why low quality? technical and/or software issues, or ..?
+Several parameters are considered for data quality, namely;
+
 - Determine from number of events
 - MIP peak location
 - Expected number of coincidences
 - Correctness of configuration
 - Changes in configuration
-etc...
+- \gps settings/location accuracy
+- ...
+
+Why can data be low quality?
+
+Technical issues:
+- power supply issues
+- electronics
+- ...
+
+Software issues:
+- firewall
+- software stability
+- self-healing/self-help
+- ...
 
 
 \section{Data cuts}
 
-Known detector positions..
+Good data quality.
+Known detector positions.
+
+
+\section{Event reconstruction}
+
+Event reconstruction consists of several steps. We are interested in the
+shower direction, core location and primary particle energy. Knowledge
+of one  parameter can improve the reconstruction of another paramater.
+So the reconstruction is an iterative process in which each type of
+reconstruction is performed multiple times. Each time better knowledge
+about other paramaters is known.
 
 
 \section{Direction reconstruction}
 
-Before core reconstruction.
-3 detection points can be solved analytical for flat front
-More than 3 can be done with fit/regression..
+\subsection{Algorithms}
+
+3 detection points can be solved analytical for flat front.
+More than 3 can be done with regression.
+
+\subsection{Single station}
+
+\begin{figure}
+    \centering
+    \input{plots/reconstructions/discrete_directions}
+    \caption{\captitle{Discrete direction reconstructions.} The possible
+             direction reconstructions for a station with 3 detectors in
+             a \SI{10}{\meter} equilateral triangle. The discrete
+             solutions are due to the \SI{2.5}{\nano\second} sampling
+             rate of the \adcs.}
+    \label{fig:discrete_directions}
+\end{figure}
+
+
+
+\subsection{Order}
+
+When only data is available a simply flat-shower from is fitted to the
+data. Core information can be used when constructing a curved front,
+because the center is known. Energy information can be used to get an
+idea of the front curvature.
 
 
 \section{Core reconstruction}
 
-
+Once direction is reconstructed we can do core reconstruction..
 
 
 \section{Energy reconstructions}
 
+Reconstructions using LDF.. etc..
