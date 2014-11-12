@@ -1,0 +1,254 @@
+\chapter{Detector response}
+
+\section{Signal response}
+
+A particle is detected if it passes through our detector and leaves some
+energy behind. These detection end up as a digitized list of numbers
+with a timestamp. However, before the particle detection ends up in its
+digital form it has been through some detector effects[? response].
+These effects, which prevent the detector to have perfect timing and
+particle counting will be outlined. These also serve as probability distributions that are used in detector simulations.
+
+
+\subsection{Energy/density distribution in front}
+
+... LDF
+
+
+\subsection{Energy loss}
+
+Particles loose energy in the detector because of interactions with the
+polyvinyltoluene in the scintillator. Ionization and Bremsstrahlung and
+the main sources of energy loss for energetic charged particles
+(electrons, muons). The scintillator is \SI{2}{\centi\meter} thick, if
+particles enter de detector they may have a longer path in the detector.
+It can also be shorter if the particle passes through one of the edges
+of the scintillator, however, due to the large area of the detector the
+chance of that happening is relatively low. The amount of energy
+deposited by the particle going through the detector is described by the
+Bethe-Bloch formula. This formula gives the stopping power, the amount
+of energy lost by the particle per \SI{}{\gram\centi\meter\square} of
+the material it passes through. However, the interactions in which the
+particles loose energy is a statistical process, so the energy loss is
+not a fixed number but a distribution. (fig...)
+
+Energetic photons can also deposit energy in the scintillator due to
+Compton scattering and pair creation. However, the cross sections for
+these interactions is very low. A \SI{1}{\mega\electronvolt} photon  has
+a mean free path greater than \SI{10}{\centi\meter}, which increases
+further for higher energy photons, see fig [By Jos/Tom]. Despite the low
+detection chance, the large number of photons in an air shower makes
+them statistically relevant.
+
+
+\subsection{Light transmission}
+
+Because of the geometry of the detector the position of the scintillator
+that the particle goes through is significant. The light emitted along
+the path of the particle is transmitted in random directions. Depending
+on the angle at which the emitted photons hit the outer edges of the
+scintillator there is a chance that they will be reflected back or leave
+the scintillator. The entire detector is wrapped in aluminium foil in
+order to reflect those photons back into the scintillator. In order to
+detect the photons they need to hit the windows of \pmt. To get to the
+\pmt they need to pass from the scintillator through a layer of optical
+glue, the light guide, another layer of optical glue, a small piece of
+light guide, and finally a layer of optical tape to reach the \pmt.
+During this many photons will be reflected a number of times. For
+\SI{1}{\mip} approximately 30000 photons [check.] are emitted, most will
+not make it to the \pmt.
+
+A 2D simulation performed by Jos Steijger which tracked photons from
+emission until they either reach the \pmt or leave the detector
+(ignoring the aluminium foil).
+
+Coincidence tests with a small (\SI[product-units = repeat]{1 x
+1}{\centi\meter}) scintillator and \pmt and a normal \hisparc detector
+also provide information about the transmission efficiency. By moving
+the tiny detector over the large detector they will also trigger on
+single muons passing through both detectors. This makes it possible to
+check the efficiency at a specific point of the detector.
+
+In the simulations we use the Bethe Bloch + efficiency modelled by Jos
+as distribution which can be scaled by cosine of angle of incidence.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/response/signal_efficiency.pdf}
+    \caption{\captitle{Signal for a particle.} This distribution gives
+             the signal from a single particles passing straight through
+             a random location of the scintillator. The distribution
+             scales with $\cos{\theta}^{-1}$.}
+    \label{fig:signal_efficiency}
+\end{figure}
+
+
+Fokkema Fig 2.7, *2.8*, 2.9, 2.10.
+
+Low efficiency: around ~2 \% across the detector, but not 0 \%!
+
+
+\subsection{\pmt linearity}
+
+Ideally the output of the \pmt grows is linear with the number of particles in the detector. This is less important for a large number of particles because the error on the number of particles also grows with $\sqrt{n}$..
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/response/ph_vs_pi.pdf}
+    \caption{\captitle{Pulseheight versus number of particles.}
+             Indication of linearity of the \pmt.}
+    \label{fig:transport_time}
+\end{figure}
+
+
+\subsection{\adcs}
+
+The signal is sampled by two \adcs. In order to get good data and
+triggering the \adcs need to be calibrated to have the same baseline and
+response (gain). The \adcs normally have a range of
+\SIrange{-1}{1}{\volt} translated into a 12-bit value. The \pmt outputs
+negative pulses, so an electric circuit in the \hisparc electronics
+modifies the incoming signal to make the effective \adc range
+\SIrange{-2}{0.1}{\volt}. The baseline of the signals is calibrated to
+be \SI{0}{\volt} at \SI{200}{\adc} and .. V at .. \Adcs to result in a
+conversion factor of \SI{-0.57}{\milli\volt\per\adc}. In a 2-detector
+station the \hisparc electronics triggers when both detectors cross the
+low threshold of \SI{30}{\milli\volt} within the trigger window. 30 mV /
+.57 = 53 above baseline. So the low threshold is set to a value of
+\SI{253}{\adc}. Either of the two \adcs can be the one to cross this
+threshold, so proper \adc alignments is necessary to ensure they treat
+the signals equally.
+
+\adcs are stable and accurate when they have a constant temperature. When \hisparc electronics are first connected the temperature of the \adcs will be below operating temperature. When calibration is performed immediately it will drift from proper calibration as it continues to operate. So calibration needs to be performed again.. (how much drift?)
+
+
+\section{Timing}
+
+
+\subsection{Front thickness and curvature}
+
+The shower front is often approximated as a flat surface  of particles
+perpendicular to the shower axis moving at nearly the speed of light
+along the shower axis. However, this is not correct, the shower front is
+not flat, it has a time distribution with a certain thickness and
+curvature. The time distribution of particles in the shower front of an
+air shower is the result of the different paths the particles take, and
+the distance to the first interaction. Particles away from the shower
+axis fall behind because they travel further. The thickness of the
+shower front is also because ..
+
+
+\subsection{Fluorescence}
+
+deexcitation fast/slow process
+
+
+
+\subsection{Light transport and \pmt efficiency}
+
+Similar to the model that predicts the signal transport efficiency in
+the scintillator a models that calculates the transport time of these
+photons has been made. Quantum efficiency of the \pmt causes not every
+photon reaching the \pmt to produce a photoelectron. Multiple photons
+are required for the \pmt to produce a significant signal that the
+\hisparc electronics triggers. The model tracks the time at which the
+15th photon producing a photoelectron reaches the \pmt. 15
+photoelectrons are required for a signal of \SI{70}{\milli\volt} (high
+threshold).
+
+In the simulations for each particle within the bounds of the
+scintillator a number is taken from this distribution simulate the
+transport time of each particle.
+
+\begin{figure}
+    \centering
+    \input{plots/response/transport_time}
+    \caption{\captitle{Signal transport time.} Time transport
+             distribution in the detector.}
+    \label{fig:transport_time}
+\end{figure}
+
+
+\subsection{\pmt transport, cable length}
+
+The time it takes for the kaskade in the \pmt to go from the front
+window to the anode is dependent on .. high voltage of pmt, position
+electron hits, etc?
+
+The signal from the \pmt is transported over a \SI{30}{\meter} long
+coaxial cable to the \hisparc electronics before it is digitized. In
+order to keep the detectors in sync the cables are precisely cut to the
+same length. The signal in the cables propagates at 2/3 the speed of
+light or \SI{.2}{\meter\per\nano\second}. Every \SI{.2}{\meter}
+difference in cable length increases the offset by a nanosecond. Kinks
+and twists in the cable can also increase the propagation time.
+
+The offset between detectors can change over time due to aging of the
+\pmt, changes in the high voltage and modifications to the cables.
+
+Offsets are determined by looking at the arrival time differences
+between two detectors over many events. All events in which a signal was
+detected in the reference detector (usually detector 2, because of its
+central location in 4-detector stations) and in another detector are
+used. Multiple events are needed to even out time differences due to the
+arrival direction of the showers, transport time and the shower front.
+The time difference distribution between two detectors includes a
+background of accidental coincidences.
+
+To determine the distribution of the mean offsets the distributions for
+a day of data for all stations have been fit by Gaussians, the found
+averages are then the distribution of the offsets. These have also been
+fit by a Gaussian \figref{fig:detector_offset_distribution}. In
+simulations a detector offset is drawn from this distribution and then
+fixed for that detector for the entire simulation.
+
+[relative to detector 2.. different sigma if offset also given to detector 2?]
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/response/detector_offset_distribution_20140101_d2.pdf}
+    \caption{\captitle{Detector offset distribution.} In black the mean
+             detector offsets for all detectors relative to detector 2
+             in each station are plotted. The gray line is a fit
+             Gaussian. The mean of the offset distribution is
+             \SI{0}{\nano\second} and the sigma is
+             \SI{2.7}{\nano\second}.}
+    \label{fig:detector_offset_distribution}
+\end{figure}
+
+
+\subsection{\adc sampling}
+
+The \pmt signals are sampled every \SI{2.5}{\nano\second} by one of the
+two \adcs. So the exact start of the signal is not known, can perhaps be
+derived from fit to the rising flank. At least it is simulated. sampling
+is sync in a station, not between stations, hence the \gps.
+
+
+\subsection{\gps timestamp, electronics}
+
+When considering coincidences between stations the accuracy of the
+timing is crucial. Similar to the offsets between detectors in a
+station, offsets between stations have been found. These can be caused
+by different detector cable lengths, \gps antennae cable length, and
+possibly something in the electronics of the \hisparc box.
+
+Determining the station offset requires many coincidences. The number of
+coincidences between stations is inversely correlated to the the
+distance between them. Just as the time difference distribution between
+detectors the station time difference is dominated by time differences
+due to the arrival direction of the showers. This time difference
+increases with distance $\Delta t = r * \sin{\theta}$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/response/station_offsets_501_502.pdf}
+    \caption{\captitle{Coincidence time difference distribution.} The
+             time difference between events in coincidence detected by
+             station 501 and 502 in the period 2010-2014. The width ..
+             due to distance between stations and showers under angles.
+             The mean is \SI{-26.6}{\nano\second}.}
+    \label{fig:station_offsets_501_502}
+\end{figure}
+
