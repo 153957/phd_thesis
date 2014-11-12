@@ -17,6 +17,7 @@ generator, but with light. Not much control over the intensity and
 during of the pulse, but pulses are short (\SI{20}{\nano\second}) and
 have a reasonable strength and width, making them comparable to real
 signals. Signal strength fluctuations..
+Intensity?
 
 Using multiple fibers for one \pmt to increase signal strength...
 Checking linearity of light input versus signal from \pmt.
@@ -44,7 +45,7 @@ t}$ remains within GPS specifications ($\sigma_{\Delta t} <
 \SI{4.5}{\nano\second}$).
 
 
-\subsection{Making of timestamps}
+\subsection{Making timestamps}
 \label{sub:gps_timestamps}
 
 %\citep{Verkooijen:2008tq}
@@ -68,6 +69,9 @@ Where $E_{Quan}$ is the Quantization Error, $E_{Sync}$ is the
 Synchronization Error, $T_{Event}$ are the count of ticks till the event
 and $T_{PPS}$ are the count of ticks between the PPS before and after
 the event.
+
+FIX - Explain 3 one second messages are needed to make timestamp.
+Messages Structures HiSPARC p.2
 
 
 \subsection{Test setup}
