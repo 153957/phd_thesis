@@ -8,3 +8,7 @@ latexmk -pdf -pv thesis.tex
 for i in *.{out,log,aux,toc,bbl,dvi,blg,synctex.gz,fdb_latexmk,bcf,fls};
     do chflags hidden $i;
 done
+
+for i in */*.aux;
+    do chflags hidden $i;
+done
