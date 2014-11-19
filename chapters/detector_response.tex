@@ -7,12 +7,8 @@ energy behind. These detection end up as a digitized list of numbers
 with a timestamp. However, before the particle detection ends up in its
 digital form it has been through some detector effects[? response].
 These effects, which prevent the detector to have perfect timing and
-particle counting will be outlined. These also serve as probability distributions that are used in detector simulations.
-
-
-\subsection{Energy/density distribution in front}
-
-... LDF
+particle counting will be outlined. These also serve as probability
+distributions that are used in detector simulations.
 
 
 \subsection{Energy loss}
@@ -40,6 +36,11 @@ further for higher energy photons, see fig [By Jos/Tom]. Despite the low
 detection chance, the large number of photons in an air shower makes
 them statistically relevant.
 
+Temperature dependence, According to specifications the amount of light
+produced should be constant between \SI{-60}{\degreeCelsius} and
+\SI{20}{\degreeCelsius}. At \SI{60}{\degreeCelsius} the light output is
+decreased by \SI{5}{\percent} relative to the output at
+\SI{20}{\degreeCelsius}.
 
 \subsection{Light transmission}
 
@@ -90,8 +91,10 @@ Low efficiency: around ~2 \% across the detector, but not 0 \%!
 
 \subsection{\pmt linearity}
 
-Ideally the output of the \pmt grows is linear with the number of particles in the detector. This is less important for a large number of particles because the error on the number of particles also grows with $\sqrt{n}$..
-
+Ideally the output of the \pmt grows is linear with the number of
+particles in the detector. This is less important for a large number of
+particles because the error on the number of particles also grows with
+$\sqrt{n}$. Linearity is [currently] assumed in the analysis.
 
 \begin{figure}
     \centering
@@ -120,29 +123,39 @@ low threshold of \SI{30}{\milli\volt} within the trigger window. 30 mV /
 threshold, so proper \adc alignments is necessary to ensure they treat
 the signals equally.
 
-\adcs are stable and accurate when they have a constant temperature. When \hisparc electronics are first connected the temperature of the \adcs will be below operating temperature. When calibration is performed immediately it will drift from proper calibration as it continues to operate. So calibration needs to be performed again.. (how much drift?)
+\adcs are stable and accurate when they have a constant temperature.
+When \hisparc electronics are first connected the temperature of the
+\adcs will be below operating temperature. When calibration is performed
+immediately it will drift from proper calibration as it continues to
+operate. So calibration needs to be performed again.. (how much drift?)
+
+
+\subsection{\mip/MPV}
+
+The number of particles in a detector are determined by the pulse
+integral, the integrated signal of the \pmt recorded by the \adc. When
+making a histogram of all pulsintegrals this will not show discrete
+values for the number of particles in each detection but a continuous
+distribution. There is overlap in the pulse integrals from one particle
+and the pulse integrals from two particles. The pulse integral histogram
+does peak at a certain value, this is the most probable value for the
+pulse for one particle, since it dominates the histogram. The value at
+which this peak occurs is called the Most Probable Value (MPV).
+
+A linear anti-correlation of several \SI{1}{\adc\per\kelvin} was found
+between the MPV and the temperature of the \pmt (Bartels, Loran). Also
+noted in the specifications as \SI{±.5}{\percent\per\degreeCelcius}. The
+temperature of the \pmt can be determined from the measured temperature
+outside and the solar radiation. Best to determine the MPV in a period
+of constant temperature, but with enough events for a good fit.
 
 
 \section{Timing}
 
 
-\subsection{Front thickness and curvature}
-
-The shower front is often approximated as a flat surface  of particles
-perpendicular to the shower axis moving at nearly the speed of light
-along the shower axis. However, this is not correct, the shower front is
-not flat, it has a time distribution with a certain thickness and
-curvature. The time distribution of particles in the shower front of an
-air shower is the result of the different paths the particles take, and
-the distance to the first interaction. Particles away from the shower
-axis fall behind because they travel further. The thickness of the
-shower front is also because ..
-
-
 \subsection{Fluorescence}
 
 deexcitation fast/slow process
-
 
 
 \subsection{Light transport and \pmt efficiency}
@@ -174,7 +187,8 @@ transport time of each particle.
 
 The time it takes for the kaskade in the \pmt to go from the front
 window to the anode is dependent on .. high voltage of pmt, position
-electron hits, etc?
+electron hits, etc? Possible second pulse from ionization of atoms in
+tube.
 
 The signal from the \pmt is transported over a \SI{30}{\meter} long
 coaxial cable to the \hisparc electronics before it is digitized. In
@@ -224,31 +238,3 @@ The \pmt signals are sampled every \SI{2.5}{\nano\second} by one of the
 two \adcs. So the exact start of the signal is not known, can perhaps be
 derived from fit to the rising flank. At least it is simulated. sampling
 is sync in a station, not between stations, hence the \gps.
-
-
-\subsection{\gps timestamp, electronics}
-
-When considering coincidences between stations the accuracy of the
-timing is crucial. Similar to the offsets between detectors in a
-station, offsets between stations have been found. These can be caused
-by different detector cable lengths, \gps antennae cable length, and
-possibly something in the electronics of the \hisparc box.
-
-Determining the station offset requires many coincidences. The number of
-coincidences between stations is inversely correlated to the the
-distance between them. Just as the time difference distribution between
-detectors the station time difference is dominated by time differences
-due to the arrival direction of the showers. This time difference
-increases with distance $\Delta t = r * \sin{\theta}$.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{plots/response/station_offsets_501_502.pdf}
-    \caption{\captitle{Coincidence time difference distribution.} The
-             time difference between events in coincidence detected by
-             station 501 and 502 in the period 2010-2014. The width ..
-             due to distance between stations and showers under angles.
-             The mean is \SI{-26.6}{\nano\second}.}
-    \label{fig:station_offsets_501_502}
-\end{figure}
-

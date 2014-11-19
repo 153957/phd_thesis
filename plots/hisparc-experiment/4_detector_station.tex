@@ -23,12 +23,16 @@
     ]
     \foreach \col / \sx / \sy / \angle in {ForestGreen/-5/0/90, DodgerBlue/5/0/-90, Crimson/0/2.89/0, black/0/8.66/0} {
         \begin{scope}[hisparc, shift={(\sx,\sy)}, rotate=\angle]
+            % Skibox
             \draw[fill=white,rounded corners=2.25pt]
                 (-.4, .7) .. controls (0, .75) ..  (.4, .7) -- 
                 (.35, -1.7) ..  controls(0, -1.72) ..  (-.35, -1.7) --
                 cycle;
+            % Scintillator
             \draw[fill=\col] (-.25, .5) rectangle (.25, -.5);
+            % Light guide
             \draw (-.25, -.5) -- (-.02, -1) --(.02, -1) -- (.25, -.5);
+            % PMT
             \fill (-.02, -1) rectangle (.02, -1.2);
         \end{scope}
     }
