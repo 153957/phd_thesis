@@ -3,12 +3,13 @@
 \section{Signal response}
 
 A particle is detected if it passes through our detector and leaves some
-energy behind. These detection end up as a digitized list of numbers
-with a timestamp. However, before the particle detection ends up in its
-digital form it has been through some detector effects[? response].
-These effects, which prevent the detector to have perfect timing and
-particle counting will be outlined. These also serve as probability
-distributions that are used in detector simulations.
+energy behind. These detections end up as a digitized list of numbers
+with a timestamp. However, before a particle signal ends up in its
+digital form it passes through the various parts of the detector. Not
+all parts perfectly transport the particle signal. These effects, which
+prevent the detector from having perfect timing and particle counting
+will be outlined. These also serve as probability distributions that are
+used in detector simulations.
 
 
 \subsection{Energy loss}
@@ -36,11 +37,20 @@ further for higher energy photons, see fig [By Jos/Tom]. Despite the low
 detection chance, the large number of photons in an air shower makes
 them statistically relevant.
 
-Temperature dependence, According to specifications the amount of light
-produced should be constant between \SI{-60}{\degreeCelsius} and
-\SI{20}{\degreeCelsius}. At \SI{60}{\degreeCelsius} the light output is
-decreased by \SI{5}{\percent} relative to the output at
-\SI{20}{\degreeCelsius}.
+According to the specifications the amount of light produced in a
+scintillator as a function of temperature should be constant between
+\SI{-60}{\degreeCelsius} and \SI{20}{\degreeCelsius}. At
+\SI{60}{\degreeCelsius} the light output is decreased by
+\SI{5}{\percent} relative to the output at \SI{20}{\degreeCelsius}.
+Temperature in a skibox can rise above the local outside temperature
+when the sun shines upon it. Temperature loggers have measured
+differences of over \SI{10}{\degreeCelsius} above the local outside
+temperature. Rarely but sometimes the temperature in the Netherlands can
+reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency fo
+the scintillator might be \SI{3.75}{\percent} below nominal. Given the
+rare occurrence of such extremely high temperatures and the small effect
+this is ignored in the simulations.
+
 
 \subsection{Light transmission}
 
@@ -59,30 +69,31 @@ During this many photons will be reflected a number of times. For
 \SI{1}{\mip} approximately 30000 photons [check.] are emitted, most will
 not make it to the \pmt.
 
-A 2D simulation performed by Jos Steijger which tracked photons from
-emission until they either reach the \pmt or leave the detector
-(ignoring the aluminium foil).
+A 2D Monte Carlo simulation performed by Jos Steijger which tracked
+photons from emission until they either reach the \pmt or leave the
+detector (ignoring the aluminium foil) gives transmission efficiency
+information at any location in the scintillator.
 
-Coincidence tests with a small (\SI[product-units = repeat]{1 x
-1}{\centi\meter}) scintillator and \pmt and a normal \hisparc detector
-also provide information about the transmission efficiency. By moving
-the tiny detector over the large detector they will also trigger on
-single muons passing through both detectors. This makes it possible to
-check the efficiency at a specific point of the detector.
+Coincidence tests using a small (\SI[product-units = repeat]{1 x
+1}{\centi\meter}) scintillator with a \pmt and a normal \hisparc
+detector provided verification of this simulation. By moving the small
+detector over the large scintillator they will also trigger on single
+muons passing through both detectors. This makes it possible to check
+the efficiency at a specific point of the detector.
 
-In the simulations we use the Bethe Bloch + efficiency modelled by Jos
-as distribution which can be scaled by cosine of angle of incidence.
+In the simulations we use the Bethe Bloch, energy straggling, Landau
+distribution convoluted with the efficiency modelled by Jos as
+distribution which can be scaled by cosine of angle of incidence.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{plots/response/signal_efficiency.pdf}
+    \input{plots/response/signal_efficiency}
     \caption{\captitle{Signal for a particle.} This distribution gives
              the signal from a single particles passing straight through
              a random location of the scintillator. The distribution
              scales with $\cos{\theta}^{-1}$.}
     \label{fig:signal_efficiency}
 \end{figure}
-
 
 Fokkema Fig 2.7, *2.8*, 2.9, 2.10.
 
@@ -156,7 +167,7 @@ temperature, but with enough events for a good fit.
 
 \subsection{Fluorescence}
 
-deexcitation fast/slow process
+\todo{deexcitation fast/slow process}
 
 
 \subsection{Light transport and \pmt efficiency}
@@ -186,10 +197,10 @@ transport time of each particle.
 
 \subsection{\pmt transport, cable length}
 
-The time it takes for the kaskade in the \pmt to go from the front
-window to the anode is dependent on .. high voltage of pmt, position
-electron hits, etc? Possible second pulse from ionization of atoms in
-tube.
+The time it takes for the electron kaskade in the \pmt to go from the
+front window to the anode is dependent on .. the high voltage of pmt,
+position electron hits, etc? Possible second pulse from ionization of
+atoms in tube.
 
 The signal from the \pmt is transported over a \SI{30}{\meter} long
 coaxial cable to the \hisparc electronics before it is digitized. In
@@ -218,11 +229,13 @@ fit by a Gaussian \figref{fig:detector_offset_distribution}. In
 simulations a detector offset is drawn from this distribution and then
 fixed for that detector for the entire simulation.
 
-[relative to detector 2.. different sigma if offset also given to detector 2?]
+\todo{relative to detector 2.. different sigma if offset also given to
+      detector 2?}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{plots/response/detector_offset_distribution_20140101_d2.pdf}
+    \includegraphics[width=0.6\textwidth]{
+        plots/response/detector_offset_distribution_20140101_d2.pdf}
     \caption{\captitle{Detector offset distribution.} In black the mean
              detector offsets for all detectors relative to detector 2
              in each station are plotted. The gray line is a fit

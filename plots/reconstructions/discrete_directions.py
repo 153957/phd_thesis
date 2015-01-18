@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     station = SingleStation().stations[0]
 
-    graph = PolarPlot()
+    graph = PolarPlot(use_radians=True)
 
     ids = [0, 2, 3]
     times = generate_discrete_times(station, detector_ids=ids)
@@ -58,9 +58,9 @@ if __name__ == '__main__':
     theta, phi = itertools.izip(*(dirrec.reconstruct_common((0,) + t, x, y, z)
                                   for t in times))
 
-    thetaa = np.degrees(np.array([t for t in theta if not np.isnan(t)]))
-    phia = np.degrees(np.array([p for p in phi if not np.isnan(p)]))
-    graph.plot(phia, thetaa, mark='*', linestyle=None, markstyle='mark size=.75pt')
+    thetaa = [t for t in theta if not np.isnan(t)]
+    phia = [p for p in phi if not np.isnan(p)]
+    graph.scatter(phia, thetaa, markstyle='mark size=.5pt')
 
     # Add curved lines where detector 0 and 2 have fixed but different times
     # and a straight line where detector 0 and 2 have equal times
@@ -69,13 +69,15 @@ if __name__ == '__main__':
     for dt in (0, 10, 22.5):
         theta, phi = itertools.izip(*(dirrec.reconstruct_common((0, dt) + (t, ), x, y, z)
                                       for t in times))
-        thetaa = np.degrees(np.array([t for t in theta if not np.isnan(t)]))
-        phia = np.degrees(np.array([p for p in phi if not np.isnan(p)]))
+        thetaa = [t for t in theta if not np.isnan(t)]
+        phia = [p for p in phi if not np.isnan(p)]
         graph.plot(phia, thetaa, mark=None, linestyle='blue,solid')
 
-    graph.set_ylimits(0, 90)
-
-    graph.set_ylabel('Zenith (degrees)')
-    graph.set_xlabel('Azimuth (degrees)')
+    graph.set_ylimits(0, np.pi / 2)
+    graph.set_yticks([0, np.pi / 6, np.pi / 3, np.pi / 2])
+    graph.set_ytick_labels([r'$0$', r'$\frac{1}{6}\pi$',
+                           r'$\frac{2}{6}\pi$', r'$\frac{1}{2}\pi$',])
+    graph.set_ylabel('Zenith [rad]')
+    graph.set_xlabel('Azimuth [rad]')
     graph.save_as_pdf('discrete_directions')
     graph.save('discrete_directions')

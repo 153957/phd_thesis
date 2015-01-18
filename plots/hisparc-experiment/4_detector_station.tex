@@ -21,7 +21,8 @@
       hisparc/.style={draw},
       >=stealth',
     ]
-    \foreach \col / \sx / \sy / \angle in {ForestGreen/-5/0/90, DodgerBlue/5/0/-90, Crimson/0/2.89/0, black/0/8.66/0} {
+    \foreach \col / \sx / \sy / \angle in {ForestGreen/-5/0/90, DodgerBlue/5/0/-90,
+                                           Crimson/0/2.89/0, black/0/8.66/0} {
         \begin{scope}[hisparc, shift={(\sx,\sy)}, rotate=\angle]
             % Skibox
             \draw[fill=white,rounded corners=2.25pt]

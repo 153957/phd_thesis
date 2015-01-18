@@ -4,8 +4,8 @@
 \section{\pmt}
 \label{sec:pmt}
 
-Pulseheight/integral
-Number of particles, leptons and gammas, separate?
+\todo{Pulseheight/integral, Number of particles. Leptons and gammas,
+      separate?}
 
 
 \subsection{LED calibration}
@@ -19,30 +19,29 @@ have a reasonable strength and width, making them comparable to real
 signals. Signal strength fluctuations..
 Intensity?
 
-Using multiple fibers for one \pmt to increase signal strength...
-Checking linearity of light input versus signal from \pmt.
+\todo{Using multiple fibers for one \pmt to increase signal strength...
+      Checking linearity of light input versus signal from \pmt.}
+
+\todo{Using ND-filters to weaken the signal, to check for walk
+      (arrival time determination).}
 
 
 \section{\gps accuracy}
 \label{sec:gps_accuracy}
 
-This described time difference calibration measurements performed on
-HiSPARC II and III electronic boxes. This started after Dr. David
+Time difference calibration measurements have been performed on
+HiSPARC II and III electronic boxes. This started after dr. David
 Fokkema discovered an unexpected time offset between timestamps of
 events in a test where two HiSPARC stations (501 and 502) were triggered
-with the same pulse generator. Since these stations are very close
-($\sim\SI{100}{\meter}$) a minimal time offset was expected, any offset
-or large standard deviation was expected to be the result of errors in
-\gps accuracy and position. However, a large offset ($\Delta t
-\sim\SI{18}{\nano\second}$) was found. Further tests with other \hisparc
-electronics and various setups were performed. Both the \hisparc
-electronics and \gps antennas were found to have varying offsets
-contributing to time differences in the resulting time measurements. The
-offsets in the \hisparc electronics can be as high as $|\Delta t| =
-\SI{50}{\nano\second}$ and in the \gps $|\Delta t| \approx
-\SI{8}{\nano\second}$ [not a lot of samples]. While the $\sigma_{\Delta
-t}$ remains within GPS specifications ($\sigma_{\Delta t} <
-\SI{4.5}{\nano\second}$).
+with the same pulse generator (Fokkema 2012 p47). Since these stations
+are very close ($\sim\SI{100}{\meter}$) a minimal time offset was
+expected, any offset or large standard deviation was expected to be the
+result of errors in \gps accuracy and position. However, a large offset
+($\Delta t \sim\SI{18}{\nano\second}$) was found. Further tests have
+been performed to determine the cause of the offset, these tests are
+described in this section. Both the \hisparc electronics and \gps
+antennas were found to have varying offsets contributing to time
+differences in the resulting time measurements.
 
 
 \subsection{Making timestamps}
@@ -62,8 +61,9 @@ $\SI{5}{\nano\second}$) the clock is also read on the negative side of
 the clock, making the system clock an effective
 $\SI{400}{\mega\hertz}$ clock.
 
-$Event time = E_{Sync} + E_{Quan1} + (\frac{T_{Event}}{T_{PPS}}) (1e^9 -
-E_{Quan1} + E_{Quan2})$
+$Event time = E_{Sync} + E_{Quan1} +
+\left(\frac{T_{Event}}{T_{PPS}}\right) \left(1e^9 - E_{Quan1} +
+E_{Quan2}\right)$
 
 Where $E_{Quan}$ is the Quantization Error, $E_{Sync}$ is the
 Synchronization Error, $T_{Event}$ are the count of ticks till the event
@@ -101,7 +101,7 @@ also switched around.
 \begin{figure}
     \centering
     \input{figures/gps_test_setup}
-    \caption{This image shows the setup of the test, two PCs (Eee Box)
+    \caption{This image shows the setup of the test, two HiSPARC PCs
              with HiSPARC Masters (Reference and Swap), both connected
              to the same pulse generator. Each is also connected to a
              \gps, some tests used separate \gps antennas (a) and in
@@ -110,23 +110,37 @@ also switched around.
 \end{figure}
 
 
-\subsection{Calibration}
-\label{sub:gps_calibration}
-
-[tijdtest]
-One reference, compared to another \hisparc electronics box.
-Each connected to a/same gps, triggered by same pulse generator.
-\gps timestamps compared.
-
-
 \subsection{Offsets between \hisparc electronics}
 \label{sub:gps_offsets}
+
+Tests to determine the offset distribution between \hisparc electronics
+have been performed using a \gps splitter to ensure they see the same
+\gps signal.
 
 Found different offsets between each \hisparc electronics unit.
 Constant over time. Can be corrected.
 
-Importance of 24 hour self-survey.
+Importance of 24 hour self-survey. - Do many 1 hour tests
 
 Tested again year later, same difference??
 
-['box-plot' like image showing the mean offsets and errors]
+The offsets in the \hisparc electronics can be as high as $|\Delta t| =
+\SI{50}{\nano\second}$ and in the \gps $|\Delta t| \approx
+\SI{8}{\nano\second}$ [not a lot of samples]. While the $\sigma_{\Delta
+t}$ remains within GPS specifications ($\sigma_{\Delta t} <
+\SI{4.5}{\nano\second}$).
+
+
+
+\subsection{Corrections}
+
+The offset can be determined from real data. For any combination of two
+stations the expected mean time difference of all coincident events is,
+because of mirror symmetry, \SI{0}{\nano\second}. However the spread
+around the mean is very dependent on the distance between the stations,
+because showers at an angle will create larger time differences if the
+stations are further apart. Moreover, the increased distance means that
+less events will be detected simultaneously by both stations because
+showers of higher energy and larger footprints occur less often. To
+determine the offset between stations that are further apart more data
+is required.
