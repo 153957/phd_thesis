@@ -12,11 +12,11 @@
 
 Setup where we can use an optical fiber pointed at the windows of the
 \pmt to send bursts of photons at the \pmt. Similar to a pulse
-generator, but with light. Not much control over the intensity and
-during of the pulse, but pulses are short (\SI{20}{\nano\second}) and
-have a reasonable strength and width, making them comparable to real
-signals. The pulse intensity or efficiency fluctuates \todo{upto 50\%?}.
-Each optical fiber has been tested for efficiency.
+generator, but with light. A single fiber does not provide much control
+over the intensity and duration of the pulses. The pulses are short
+(\SI{20}{\nano\second}) and have an intensity which is comparable to one
+\mip in a detector, making them comparable to real signals. The pulse
+intensity or efficiency fluctuates \todo{upto 50\%? due to LED or PMT?}.
 
 Since April 2014 each \pmt that is going to be used is first tested in
 the LED setup to ensure it responds properly to light and that there is
@@ -28,28 +28,33 @@ to the normal operational voltage of \pmts on a \hisparc detector.
 
 \subsection{Linearity}
 
-The setup shown in \todo{add nice photo/schematic of setup} has been
-adapted to support the input of multiple optical fibers to one \pmt.
-Each fiber is tested separately and then different combinations of
-multiple fibers are used as input. The expectation is that the separate
-signals of the fibers are simply added together. However, a \pmt might
-become saturated or less efficient for larger signals, being unable to
-supply the current quickly enough. There are several types of \pmt being
-used in the \hisparc experiment. Most established stations used \pmts
-that were fully created by outside manufacturers; Electron Tubes,
-SensTech, Hamamatsu... \todo{Check which tubes we have}. However,
-several batches have been encountered where the foot/power supply/.. of
-the \pmt failed, while the tubes were still working fine. The costs to
-replace the poer supply were to excessive. The \nikhef Electronic
-department that also developed the 'hisparc electronics has been working
-on \pmt power supplies for the \pmts of the KM3Net neutrino telescope. A
-new design has been based of that design for KM3Net to be suitable for
-\hisparc. The KM3Net \pmts have other requirements than those use for
-\hisparc so modifications were required. The first iteration of the
-\hisparc \pmt using a .. tube was not very
-beautiful, after some of those a second iteration was created where the
-circuit board was printed... Multiple \pmts of each of these versions
-has been tested.
+In an EAS many more than one particle may pass through a detector. The
+response of the \pmt to higher signals needs to be investigated to
+determine the accuracy with which multiple particles can be
+reconstructed. The intensity of a fiber can be lowered using neutral
+density filters or defocussing material. However, to increase the
+intensity multiple fibers need to be combined. The setup shown in
+\todo{add nice photo/schematic of setup} has been adapted to support the
+input of multiple optical fibers to one \pmt. Each fiber is tested
+separately to determine its mean intensity, then different combinations
+of multiple fibers are used as input. The expectation is that the
+separate signals of the fibers are simply added together. However, a
+\pmt might become saturated or less efficient for larger signals, being
+unable to supply the current quickly enough. There are several types of
+\pmt being used in the \hisparc experiment. Most established stations
+used \pmts that were fully created by outside manufacturers; Electron
+Tubes, SensTech, Hamamatsu... \todo[inline]{Check which tubes we have}.
+However, several batches have been encountered where the foot/power
+supply/.. of the \pmt failed, while the tubes were still working fine.
+The costs to replace the poer supply were to excessive. The \nikhef
+Electronic department that also developed the 'hisparc electronics has
+been working on \pmt power supplies for the \pmts of the KM3Net neutrino
+telescope. A new design has been based of that design for KM3Net to be
+suitable for \hisparc. The KM3Net \pmts have other requirements than
+those used for \hisparc so modifications were required. There have been
+a couple of iteration of the \hisparc \pmts. Multiple \pmts of each of
+these versions have been tested.
+
 
 
 \todo{Using multiple fibers for one \pmt to increase signal strength...
