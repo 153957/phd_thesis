@@ -7,7 +7,6 @@
 \todo{Pulseheight/integral, Number of particles. Leptons and gammas,
       separate?}
 
-
 \subsection{LED calibration}
 \label{sub:led_calibration}
 
@@ -99,7 +98,7 @@ the clock, making the system clock an effective
 $\SI{400}{\mega\hertz}$ clock.
 
 \begin{equation}
-    Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right) 
+    Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right)
                  \left(1e^9 - E_{Quan1} + E_{Quan2}\right)
 \end{equation}
 
@@ -163,7 +162,7 @@ The offsets in the \hisparc electronics can be as high as $|\Delta t| =
 \SI{15}{\nano\second}$. While the $\sigma_{\Delta t}$ remains within GPS
 specifications ($\sigma_{\Delta t} < \SI{4.5}{\nano\second}$).
 
-\todo{Offset by gps}
+\todo{Time offset caused by \gps, 501-510 example, \gps swapped}
 
 \gps cable twists affect signal speed?
 
@@ -189,4 +188,3 @@ less events will be detected simultaneously by both stations because
 showers of higher energy and larger footprints occur less often. To
 determine the offset between stations that are further apart more data
 is required.
-

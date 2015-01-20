@@ -11,7 +11,7 @@ conditions are met in the \hisparc box of a station. A trigger requires
 station are read-out, even if they do not have significant signals.
 These traces are then processed by the \daq or \pysparc. Derived
 values, such as the baseline, standard deviation, number of peaks,
-pulseheight and pulseintegral are determined for each trace. The traces
+pulseheight, and pulseintegral are determined for each trace. The traces
 are also reduced by cutting parts from the front and end until the first
 significant signal in any detector, with some buffer room?
 
@@ -19,16 +19,15 @@ During the trigger the \gps and \SI{400}{\mega\hertz} clock are used to
 determine the \gps timestamp of the event. Besides this event data there
 is also static data.
 
-When a station is deployed, moved or changed a \gps self-survey is run,
+When a station is deployed, moved, or changed a \gps self-survey is run,
 this accurately determines the position of the \gps antenna. The
-detector positions relative to the \gps antenna are also measured. If
-they are moved the positions are again measured.
+detector positions relative to the \gps antenna are also measured.
 
-Finally the settings, e.g. \pmt voltages, trigger settings and other
+Finally the settings, e.g. \pmt voltages, trigger settings, and other
 settings, of a station are stored. Currently only when they change and
 the button is pressed... To be sent every hour..
 
-Config should be used for esd....
+\todo{If config is always sent it should be used for esd/timings....}
 
 
 \section{Reconstruction chain}
@@ -108,8 +107,9 @@ Software issues:
 
 \section{Data cuts}
 
-Good data quality.
-Known detector positions.
+\todo{Good data quality, determinable MPV, good event rate, no light leak}
+
+\todo{Only use stations with known detector positions.}
 
 
 \section{Event reconstruction}
@@ -142,6 +142,9 @@ More than 3 can be done with regression.
     \label{fig:discrete_directions}
 \end{figure}
 
+When results of the direction reconstruction is combined with the \gps
+location and timestamp the corresponding celestial coordinates can be
+computed. See appendix for detailed instructions.
 
 
 \subsection{Order}
@@ -154,9 +157,9 @@ idea of the front curvature.
 
 \section{Core reconstruction}
 
-Once direction is reconstructed we can do core reconstruction..
+\todo{Once direction is reconstructed we can do core reconstruction..}
 
 
 \section{Energy reconstructions}
 
-Reconstructions using LDF.. etc..
+\todo{Reconstructions using LDF.. etc..}
