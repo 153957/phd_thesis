@@ -7,7 +7,7 @@ In late 2013 a new effort was started to provide Dutch high-school
 physics teachers with easy to use course materials including assignments
 and practical assignments.
 
-The first edition contained xx documents, for various categories.
+Testing by various interested teachers in 2015.
 
 
 \section{Data access}
@@ -23,25 +23,31 @@ access.
 With the addition of the ESD to the Public Database it has become easier
 to provide a web based download form to allow downloading data as csv.
 This lowers the threshold for data access from requiring \python skills
-to just opening a csv file.
+to just opening a csv file. Not only \hisparc event data is offered for
+download, also data from \hisparc weather stations and \knmi lightning
+detections can be downloaded.
 
 
 \subsection{Coincidences}
 
 To improve insight in the contributions of individual stations to the
 \hisparc network we have added views that show the number of
-coincidences between \hisparc stations in a day. If more stations are
-online, more coincidence will occur. Unfortunately this partly due to
-accidental coincidences, two unrelated events. However, when stations
-are relatively close together the likelihood increases that the events
-in the coincidences are from the same air shower.
-
-
+coincidences between all \hisparc stations in a day. If more stations
+are online, more coincidence will occur. Unfortunately this is partly
+due to accidental coincidences, two unrelated events. However, when
+stations are relatively close together the likelihood increases that the
+events in the coincidences are from the same air shower. The time window
+that is used to define when events are in coincidence has to be
+carefully chosen to prevent to many accidental coincidences. This data
+can also be downloaded as csv.
 
 
 \section{\jsparc}
 
-Javascript library.
+To provide more tools for student a JavaScript library has been
+developed that can access and interpret the Public Database API and the
+data download. Several websites have been developed around this library
+to provide an interface to the data access.
 
 
 \subsection{Data retrieval tool}
@@ -49,4 +55,11 @@ Javascript library.
 Data analysis in any modern browser (IE9+, Firefox, Chrome, Safari)
 Interpolation between different datasets. Can even make histograms.
 
-What is it used for.
+Recognizes all csv files from the Public Database.
+
+
+\subsection{Other tools}
+
+Other tools include; API interface to explore the options of the API,
+Trigger simulation to simulate random triggers, and Station distances to
+easily find the distance between any two stations.

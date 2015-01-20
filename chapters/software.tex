@@ -150,6 +150,43 @@ as real \hisparc data (except that the input is also known).
 \todo{Write code to determine data quality.}
 
 
-\subsection{Code testing}
+\section{Code testing}
 
-Travis CI, Coveralls
+Tests have been written to ensure that programming code does what is
+expected, even when it is modified later. Code tests can be very
+specific and check precise output given some inputs, check how often
+another function is called, and ensure that the correct errors are
+thrown given invalid input. Less specific tests that merely check the
+type of the output or validate the style are sometimes used.
+
+These tests can be run locally while developing code. However,
+developers still might forget to run tests or do not want to spend time
+testing. To ensure that new code is always tested the \sapphire and
+\jsparc repositories have the Travis CI service added. After new commits
+are pushed to those repository Travis CI starts a Virtual Machine that
+will download the repository and any requirements we have defined and
+run the tests.
+
+
+\subsection{Coverage}
+
+Having some tests does not guarantee that every bit of code is tested.
+To check which parts of the code are tests Coveralls have been added.
+While Travis CI runs tests is keeps track of which lines of code in
+\sapphire are run. At the end of the tests a report is sent to Coveralls
+that shows overviews of which lines have been tested and which have not.
+
+
+\subsection{Vagrant}
+
+The Public Database is more complex than \sapphire and \jsparc. It
+requires the Django package, a database and raw data to be fully tested.
+These tests can be very time consuming. When developing code for the
+Public Database, it is best to test it in en environment similar to the
+live server. To accomplish this we use a virtual machine that is
+provisioned by scripts to install the required packages and setup some
+configurations. These scripts for provisioning a test machine can also
+be used to setup the live server, this ensures that the test and live
+server are almost identical.
+
+\todo{Testing publicdb}
