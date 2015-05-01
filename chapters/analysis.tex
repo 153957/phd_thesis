@@ -74,12 +74,12 @@ Diagram different steps in reconstruction/checks.
 \section{Quality assurance}
 
 When doing reconstructions it is important to know if the data that is
-being used is actually good data. If for instance a \gps is not properly
+being used is good data. If for instance a \gps is not properly
 configured the larger timing uncertainty due to the misconfiguration
-needs to be taken into account. Additionally the uptime of
-stations/detectors is important. A station that is working but does not
-make a detection needs to be considered differently from a station that
-have no data because it is offline.
+needs to be taken into account. Additionally the uptime of stations and
+individual detectors is important. A station that is working but does
+not make a detection needs to be considered differently from a station
+that has no data because it is offline.
 
 Several parameters are considered for data quality, namely;
 
@@ -89,7 +89,9 @@ Several parameters are considered for data quality, namely;
 - Correctness of configuration
 - Changes in configuration
 - \gps settings/location accuracy
+    Possibly accurate location but bad view of sky.
 - ...
+
 
 Why can data be low quality?
 

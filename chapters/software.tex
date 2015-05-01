@@ -1,6 +1,9 @@
 \chapter{Software}
 \label{ch:software}
 
+\section{Structure}
+
+
 \section{\github}
 
 Our code has transitioned from bazaar to \git, a different distributed
@@ -19,14 +22,6 @@ compiled version of the teaching materials, for which the sources are
 also on \github.
 
 
-\section{Structure}
-
-Since the code can now be easily accessed by anyone we cleaned up the
-code to be more consistent and conform to a coding style. For \python we
-try to conform to Python Enhancement Proposal (PEP) 8 - Style Guide for
-Python Code.
-
-
 \section{Repositories}
 
 This is a list of the different repositories.
@@ -37,12 +32,6 @@ sapphire - SAPPHiRE, a framework for HiSPARC
 pysparc - HiSPARC DAQ implemented in Python
 publicdb - The HiSPARC Public Database
 jsparc - Javascript library and coincidences analysis
-gz-sim - Gerasimova-Zatsepin effect simulation
-framework - (deprecated) HiSPARC tools
-correlation - Data correlation analysis
-interaction-position - Calculate possible interaction positions from detection timestamps
-practica - project by Niek?
-data-quality - Data quality checks
 topaz PRIVATE - Scripts for small analyses with HiSPARC data
 tijdtest PRIVATE - Analysis for the time calibration of HiSPARC boxes
 
@@ -52,15 +41,14 @@ station-software - Software running on HiSPARC station pc's
 hisparcdaq - DAQ software
 weather - Weather DAQ software
 lightning - Lightning DAQ software
-vhdl - FPGA source
-muonlab - Muon experiments
+firmware - FPGA source
 
 Teaching Material
 infopakket - Teaching materials
 routenet - High-school course material
 
 Papers
-2014_experiment PRIVATE - Paper about the HiSPARC experimental setup
+experiment PRIVATE - Paper about the HiSPARC experimental setup
 2014_direction PRIVATE - Paper about HiSPARC direction reconstruction chain
 
 Webpages
@@ -68,6 +56,7 @@ hisparc.github.io - HiSPARC GitHub Pages
 logo - HiSPARC logo's
 servers - Contains details on how the HiSPARC servers are setup
 maintenance - HiSPARC station maintenance information
+Some code repositories have their documentation in a gh-pages branch
 \end{verbatim}
 
 Add some flowcharts
@@ -117,11 +106,19 @@ coincidences already found, next; automated reconstructions
 
 \section{\sapphire}
 
-
 \subsection{\pypi}
 
-\sapphire has been made available for easy installation via the Python
-Package Index (\pypi).
+\sapphire is available via the Python Package Index (\pypi). This allows
+package managers such as pip to easily find it, pip will also install
+other packages which are required for \sapphire. However, some of these
+packages require other (non-Python) libraries, such as hdf5, to be
+installed, which pip will not do. It might be easier to install the
+requirements before installing \sapphire itself. \sapphire can be
+installed using this command:
+
+\begin{verbatim}
+$ pip install hisparc-sapphire
+\end{verbatim}
 
 
 \subsection{Clusters}
@@ -132,20 +129,32 @@ those are available as well. This makes it easy to setup a cluster with
 any selection of \hisparc stations. This can be used for simulations.
 Imaginary stations can be added to plan future station locations.
 
+
 \subsection{\corsika}
 
 Reading \corsika output, convert to \hdf and use for simulations.
 
 
-\subsection{Refactored simulations}
+\subsection{Simulations}
 
-The simulation section of \sapphire has been completely rewritten
-working together with dr. David Fokkema and Hans Montanus. Works with
-\corsika data, more consistent output that can eb analysed the same way
-as real \hisparc data (except that the input is also known).
+The simulations accept input from \corsika ground particle data, LDFs
+(density), or shower front models (timing). Detector and station simulations based on experiments and models provide realistic output data. The data can
+be analysed the same way as real \hisparc data (except that the input is
+also known).
+
+\begin{figure}
+    \centering
+    \input{plots/software/sapphire-flow}
+    \caption{\captitle{\sapphire data chain.} The flow from
+             creating/detecting data to reconstructed data.}
+    \label{fig:sapphire-flow}
+\end{figure}
 
 
 \subsection{Data quality}
+
+This code flags bad data and ensures that the data going into the
+reconstruction is good data.
 
 \todo{Write code to determine data quality.}
 
@@ -154,39 +163,45 @@ as real \hisparc data (except that the input is also known).
 
 Tests have been written to ensure that programming code does what is
 expected, even when it is modified later. Code tests can be very
-specific and check precise output given some inputs, check how often
-another function is called, and ensure that the correct errors are
-thrown given invalid input. Less specific tests that merely check the
-type of the output or validate the style are sometimes used.
+specific and precisely check the output given some inputs, check how
+often another function is called, and ensure that the correct errors are
+thrown when given invalid input. More general tests are also used to
+validate code validity and coding style. A lot of effort has been put
+into ensuring that all \python code adheres to the same coding style,
+the Python Enhancement Proposal (PEP) 8 - Style Guide for Python Code.
+Using a consistent style makes code easier to read and makes it easier
+to see bugs. Moreover, the code can now be easily accessed by anyone via
+\github.
 
 These tests can be run locally while developing code. However,
-developers still might forget to run tests or do not want to spend time
+developers might forget to run tests or do not want to spend time
 testing. To ensure that new code is always tested the \sapphire and
-\jsparc repositories have the Travis CI service added. After new commits
-are pushed to those repository Travis CI starts a Virtual Machine that
-will download the repository and any requirements we have defined and
-run the tests.
+\jsparc repositories have the \travis service \cite{travis} added. After
+new commits are pushed to those repository \travis starts a Virtual
+Machine that will download the repository and any requirements we have
+defined and run the tests. The results are then displayed on the
+repository page, and the person that pushed the code will get an e-mail
+if the tests fail.
 
-
-\subsection{Coverage}
-
-Having some tests does not guarantee that every bit of code is tested.
-To check which parts of the code are tests Coveralls have been added.
-While Travis CI runs tests is keeps track of which lines of code in
-\sapphire are run. At the end of the tests a report is sent to Coveralls
-that shows overviews of which lines have been tested and which have not.
+Having a test for a function does not guarantee that every bit of code
+is tested. To check which parts of the code are tested we use a code
+coverage tool. While \travis runs tests it keeps track of which lines of
+code in \sapphire are run. At the end of the tests a report is sent to
+\coveralls \cite{coveralls} which then shows overviews of which lines
+have been tested and which have not. A common scenario is that only one
+part of an if-else clause is checked.
 
 
 \subsection{Vagrant}
 
 The Public Database is more complex than \sapphire and \jsparc. It
-requires the Django package, a database and raw data to be fully tested.
-These tests can be very time consuming. When developing code for the
-Public Database, it is best to test it in en environment similar to the
-live server. To accomplish this we use a virtual machine that is
-provisioned by scripts to install the required packages and setup some
-configurations. These scripts for provisioning a test machine can also
-be used to setup the live server, this ensures that the test and live
-server are almost identical.
+requires the Django package \cite{django}, a database and raw data to be
+fully tested. These tests can be very time consuming. When developing
+code for the Public Database, it is best to test it in en environment
+similar to the live server. To accomplish this we use a local virtual
+machine that is provisioned by scripts to install the required packages
+and setup some configurations. These scripts for provisioning a test
+machine can also be used to setup the live server, this ensures that the
+test and live server are almost identical.
 
 \todo{Testing publicdb}

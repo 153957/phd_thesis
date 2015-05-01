@@ -9,13 +9,15 @@ Two \gps antennae separated by \SI{2}{\meter} are used by station 501
 and station 510. Each station performed a self-survey with its own \gps
 and one with the \gps of the other station to test the accuracy.
  
+\begin{verbatim}
 GPS s510
-s510  1412347130	52.3558955473	4.95098636604	54.5890849568
-s501  1414406502	52.355899096	4.95098802631	57.646343655
+s510  1412347130	52.3558955	4.9509864	54.59
+s501  1414406502	52.3558990	4.9509880	57.65
 
 GPS s501
-s501  1412347557	52.355880072	4.95100645695	55.4043086618
-s510  1414406952	52.3558859189	4.95100828296	57.3941961704
+s501  1412347557	52.3558800	4.9510065	55.40
+s510  1414406952	52.3558859	4.9510083	57.39
+\end{verbatim}
 
 Difference of \SI{1.}{\centi\meter}.
 
@@ -39,12 +41,24 @@ increases with distance $\Delta t = r * \sin{\theta}$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]
-        {plots/response/station_offsets_501_502.pdf}
+    \input{plots/response/station_offsets_501_502}
     \caption{\captitle{Coincidence time difference distribution.} The
              time difference between events in coincidence detected by
-             station 501 and 502 in the period 2010-2014. The width ..
-             due to distance between stations and showers under angles.
-             The mean is \SI{-26.6}{\nano\second}.}
+             station 501 and 502 in a three week period in 2010. The
+             width of the distribution is caused by the distance between
+             stations and showers under angles.}
     \label{fig:station_offsets_501_502}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{plots/response/station_offsets_501_510}
+    \caption{\captitle{Coincidence time difference distribution.} The
+             time difference between events in coincidence detected by
+             station 501 and 510 in a three week period in 2014. The
+             width of the distribution here is caused by \gps accuracy.
+             The reason for two distributions is that at some point in
+             the period the \gps antennas were switched between the two
+             stations.}
+    \label{fig:station_offsets_501_510}
 \end{figure}
