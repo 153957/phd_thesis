@@ -1,0 +1,55 @@
+\section{Station performance}
+
+
+\subsection{\adcs}
+
+The signal is sampled by two \adcs. To get good data and
+triggering the \adcs need to be calibrated to have the same baseline and
+response (gain). The \adcs normally have a range of
+\SIrange{-1}{1}{\volt} translated into a 12-bit value. The \pmt outputs
+negative pulses, so an electric circuit in the \hisparc electronics
+modifies the incoming signal to make the effective \adc range
+\SIrange{-2}{0.1}{\volt}. The baseline of the signals is calibrated to
+be \SI{0}{\volt} at \SI{200}{\adc} and .. V at .. \Adcs to result in a
+conversion factor of \SI{-0.57}{\milli\volt\per\adc}. In a 2-detector
+station the \hisparc electronics triggers when both detectors cross the
+low threshold of \SI{30}{\milli\volt} within the trigger window. 30 mV /
+.57 = 53 above baseline. So the low threshold is set to a value of
+\SI{253}{\adc}. Either of the two \adcs can be the one to cross this
+threshold, so proper \adc alignments is necessary to ensure they treat
+the signals equally.
+
+\adcs are stable and accurate when they have a constant temperature.
+When \hisparc electronics are first connected the temperature of the
+\adcs will be below operating temperature. When calibration is performed
+immediately it will drift from proper calibration as it continues to
+operate. So calibration needs to be performed again.. (how much drift?)
+
+
+\subsection{\mip/MPV}
+
+The number of particles in a detector are determined by the pulse
+integral, the integrated signal of the \pmt recorded by the \adc. When
+making a histogram of all pulsintegrals this will not show discrete
+values for the number of particles in each detection but a continuous
+distribution. There is overlap in the pulse integrals from one particle
+and the pulse integrals from two particles. The pulse integral histogram
+does peak at a certain value, this is the most probable value for the
+pulse for one particle, since it dominates the histogram. The value at
+which this peak occurs is called the Most Probable Value (MPV).
+
+A linear anti-correlation of several \SI{1}{\adc\per\kelvin} was found
+between the MPV and the temperature of the \pmt (Bartels, Loran). Also
+noted in the specifications as $\pm$
+\SI{.5}{\percent\per\degreeCelsius}. The temperature of the \pmt can be
+determined from the measured temperature outside and the solar
+radiation. Best to determine the MPV in a period of constant
+temperature, but with enough events for a good fit.
+
+
+\subsection{\adc sampling}
+
+The \pmt signals are sampled every \SI{2.5}{\nano\second} by one of the
+two \adcs. So the exact start of the signal is not known, can perhaps be
+derived from fit to the rising flank. At least it is simulated. sampling
+is sync in a station, not between stations, hence the \gps.
