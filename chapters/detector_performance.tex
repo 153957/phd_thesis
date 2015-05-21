@@ -208,3 +208,131 @@ fixed for that detector for the entire simulation.
     \label{fig:detector_offset_distribution}
 \end{figure}
 
+
+
+
+\section{\pmt}
+\label{sec:pmt}
+
+\todo{Pulseheight/integral, Number of particles. Leptons and gammas,
+      separate?}
+
+\subsection{PMT calibration}
+\label{sub:pmt_calibration}
+
+We created a setup where an optical fiber is connected to a cap which
+directs the light at the window of a \pmt to send bursts of photons at
+it. This is similar to a pulse generator, but with light. The pulses are
+created by LEDs and produce short (\SI{20}{\nano\second}) pulses with an
+intensity comparable to one or two \mip in a detector, making them
+similar to real scintillator signals. The pulse intensity or efficiency
+fluctuates \todo[inline]{upto 50\%? due to LED or PMT?}. However,
+averaged over 100 samples the pulse is very consistent
+\todo{size of fluctuations on averaged signal? small..}. A single fiber,
+does not provide much control over the mean intensity and duration of
+the pulses.
+
+The setup provides 24 optical fibers, each with its own LED and slightly
+different intensity. There are two caps that can be placed on a \pmt.
+One cap allows for a single fiber to be connected while another contains
+a bundle of many fibers allowing all, or a subset of, 24 fibers to be
+used simultaneously. When using the bundle of fibers each fiber looses about
+\SI{25}{\percent} signal strength due to the fiber-to-fiber connection.
+Signals of over \SI{5}{\volt} are possible with the bundle of fibers.
+
+Since April 2014 each \pmt that is going to be used for a \hisparc
+detector is first tested in the LED setup suing a single fiber to ensure
+it responds properly to light and that there is no significant
+background noise. The test tries to find the voltage at which the pulses
+have a pulse height around \SI{340}{\milli\volt}. This pulse height
+value requires a voltage close to the normal operational voltage of
+\pmts on a \hisparc detector.
+
+
+\subsection{Linearity}
+
+In an EAS many more than one particle may pass through a detector. The
+response of the \pmt to higher signals needs to be investigated to
+determine the accuracy with which multiple particles can be
+reconstructed. To increase the intensity multiple fibers can be combined
+using the bundle of fibers. The setup is shown in \todo{add nice
+photo/schematic of setup}. Each fiber is tested separately to determine
+its mean intensity, then different combinations of multiple fibers are
+combined as input. The expectation is that the individual intensities of
+the fibers are simply added together. However, a \pmt might become
+saturated or less efficient for larger signals, being unable to supply
+enough current.
+
+There are several types of \pmt being used in the \hisparc experiment.
+Most established stations used \pmts that were fully created by outside
+manufacturers. However, several batches have been encountered where the
+failure rate of the \pmt power supplies was high, the tubes were still
+working fine. The costs to have the power supply replaced were
+excessive. The \nikhef Electronics department, which also developed the
+\hisparc electronics, have worked on \pmt power supplies for the \kmnet
+neutrino telescope experiment. The \kmnet \pmts have other requirements
+than those used for \hisparc so some modifications were required. The
+\kmnet design has been modified to be suitable for \hisparc. There have
+been a couple of iteration of the \hisparc \pmts. Multiple \pmts of each
+of these versions have been tested.
+
+The tests show that the new \nikhef produced \pmt power supply can
+supply enough current to saturate the \hisparc electronics. Moreover
+they have a lineair response curve. The output corresponds to the sum of
+the inputs. The old power supplies are lineair up to \SI{1}{\volt}
+(depending on voltage). At higher signals they start showing diminishing
+returns, barely reaching \SI{2.2}{\volt}. This effect can also be seen
+for some \hisparc stations because the pulse height histogram does not
+reach the maximum \adc value (minus the baseline). The following figure
+shows the test for a SensTech \pmt with its original power supply. Along
+the x-axis are the expected pulse heights, determined from the sums of
+individual fiber tests. The y-axis is the measured pulse height for
+certain combinations of fibers.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/calibration/linearity_senstech_ph}
+    \caption{Measurements of the pulse height linearity. Using a
+             SensTech \pmt.}
+    \label{fig:linearity_senstech_ph}
+\end{figure}
+
+The data is fit with the following function, as described in
+\cite{icecube:pmt}.
+
+\begin{equation}
+    \ln V_{\mathrm{in}} = \ln V +
+                          \frac{p_0 \left(\frac{V}{p_1}\right)^{p_2}}
+                               {\left(1 - \frac{V}{p_1}\right)^{\frac{1}{4}}}
+\end{equation}
+
+The parameters have no physical meaning.
+
+
+From the detector data can already see non-linearity by plotting the
+measured pulse heights against the pulse integrals for the same events
+\todo[inline]{figure showing the ph v pi}. For the old \pmts this
+already showed that the pulse height is not lineair. However, it does
+not show if the pulse integral is lineair or not. By measuring the pulse
+heights and integrals using the setup we can see show non-lineair they
+both are.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/calibration/linearity_senstech_ph_pi}
+    \caption{Measurements of the pulse height versus pulse integral.}
+    \label{fig:linearity_senstech_ph_pi}
+\end{figure}
+
+The \adcs in the \hisparc electronics are designed and calibrated to
+make the range \SIrange{200}{4096}{\adc} correspond to the range
+\SIrange{0}{-2}{\volt}. Signals greater than \SI{-2}{\volt} are clipped,
+preventing the pulse height to provide an accurate measure of signal
+strength. The clipping also affects the pulse integral, however,
+non-saturated parts of the signal still grow bigger, so the integral
+continues to grow.
+
+\todo{Using ND-filters to weaken the signal, to check for walk
+      (arrival time determination).}
+
+

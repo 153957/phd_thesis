@@ -59,3 +59,132 @@ increases with distance $\Delta t = r * \sin{\theta}$.
              stations.}
     \label{fig:station_offsets_501_510}
 \end{figure}
+
+
+\section{\gps accuracy}
+\label{sec:gps_accuracy}
+
+Time difference calibration measurements have been performed on
+HiSPARC II and III electronic boxes. This started after dr. David
+Fokkema discovered an unexpected time offset between timestamps of
+events in a test where two HiSPARC stations (501 and 502) were triggered
+with the same pulse generator (Fokkema 2012 p47). Since these stations
+are very close ($\sim\SI{100}{\meter}$) a minimal time offset was
+expected, any offset or large standard deviation was expected to be the
+result of errors in \gps accuracy and position. However, a large offset
+($\Delta t \sim\SI{18}{\nano\second}$) was found. Further tests have
+been performed to determine the cause of the offset, these tests are
+described in this section. Both the \hisparc electronics and \gps
+antennas were found to have varying offsets contributing to time
+differences in the resulting time measurements.
+
+
+\subsection{Making timestamps}
+\label{sub:gps_timestamps}
+
+Every second the \gps receiver sends a signal (a Pulse Per Second) to
+the \hisparc electronics to indicate the start of a second
+\cite{messages}. The \hisparc box uses a $\SI{200}{\mega\hertz}$ clock
+to determine the time within this second. Since the crystal in this
+clock does not work at exactly $\SI{200}{\mega\hertz}$ the counter
+(reset at the arrival of a PPS) is read at the moment of an event and
+then when the next PPS arrives. Giving information about at what
+fraction of that second the event occured. For higher accuracy (more
+than $\SI{5}{\nano\second}$) the clock is also read on the negative side
+of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with
+$\SI{2.5}{\nano\second}$ accuracy. Events are sent from the \hisparc
+electronics to the PC as soon as they are readout, the events then
+contain the trace data, timestamp, CTD... The extended timestamp is
+determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp.
+
+
+\begin{equation}
+    Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right)
+                 \left(1e^9 - E_{Quan1} + E_{Quan2}\right)
+\end{equation}
+
+Where $E_{Quan}$ is the Quantization Error, $E_{Sync}$ is the
+Synchronization Error, $T_{Event}$ are the count of ticks till the event
+and $T_{PPS}$ are the count of ticks between the PPS before and after
+the event.
+
+
+\subsection{Test setup}
+\label{sub:gps_test_setup}
+
+In the setup one \hisparc II Master (hardware serial: 62) is used as the
+main reference point for the entire test. All other \hisparc boxes were
+tested against this reference one at a time to measure the offset. Two
+\gps antennas ('501' and 'test') and a \gps splitter were used. With
+these it was possible to perform tests in which both \hisparc boxes used
+the same \gps antenna, removing the offset caused by using different
+\gps antennas.
+
+Each \hisparc box was connected to a \gps antenna and a PC, each running
+the current version of the \hisparc Software; \hisparc DAQ II v3.0.4.
+When the \hisparc III boxes needed to be tested the DAQ was upgraded to
+the beta version of the new DAQ; \hisparc DAQ III v1.0.0.
+
+A \SI{100}{\mega\hertz} Pulse Generator (as reference: Tabor Electronics
+Model 8600), with two short equal-length signal cables and a signal
+splitter was used to trigger the \hisparc electronics. Each box was
+connected to the same pulse generator through either of the PMT input
+channels. To ensure the generated signals arrived at the same time at
+the input both cables from the pulse generator were connected to the
+same \hisparc electronics and also switched around.
+
+\begin{figure}
+    \centering
+    \input{figures/gps_test_setup}
+    \caption{This image shows the setup of the test, two HiSPARC PCs
+             with HiSPARC Masters (Reference and Swap), both connected
+             to the same pulse generator. Each is also connected to a
+             \gps, some tests used separate \gps antennas (a) and in
+             some tests the same \gps was used by both (b).}
+    \label{fig:setup}
+\end{figure}
+
+
+\subsection{Offsets between \hisparc electronics}
+\label{sub:gps_offsets}
+
+Tests to determine the offset distribution between \hisparc electronics
+have been performed using a \gps splitter to ensure they see the same
+\gps signal.
+
+Found slightly varying offsets between each \hisparc electronics unit.
+Constant over time. Can be corrected with enough statistics.
+Importance of 24 hour self-survey. - Do many 1 hour tests
+
+\todo{Test again year later, same difference??}
+
+The offsets in the \hisparc electronics can be as high as $|\Delta t| =
+\SI{15}{\nano\second}$. While the $\sigma_{\Delta t}$ remains within GPS
+specifications ($\sigma_{\Delta t} < \SI{4.5}{\nano\second}$).
+
+\todo{Time offset caused by \gps, 501-510 example, \gps swapped}
+
+\gps cable twists affect signal speed?
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/calibration/hisparc_offsets}
+    \caption{Time offsets relative to a reference box. Circles are the
+             mean offsets, the error bars the standard deviation and the
+             points indicate the minimum and maximum of the test.}
+    \label{fig:hisparc_offsets}
+\end{figure}
+
+
+\subsection{Corrections}
+
+The offset can be determined from real data. For any combination of two
+stations the expected mean time difference of all coincident events is,
+because of mirror symmetry, \SI{0}{\nano\second}. However the spread
+around the mean is very dependent on the distance between the stations,
+because showers at an angle will create larger time differences if the
+stations are further apart. Moreover, the increased distance means that
+less events will be detected simultaneously by both stations because
+showers of higher energy and larger footprints occur less often. To
+determine the offset between stations that are further apart more data
+is required.

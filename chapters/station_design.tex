@@ -1,2 +1,24 @@
 \section{Station design}
 
+\subsection{HiSPARC electronics}
+
+Readout electronics. Two channels, each with two ADCs which readout a
+signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts
+range). Each ADC is sampled at 200 Mhz, using two ADCs per channel gives
+400 Mhz (2.5 ns) per channel. Nikhef designed. Some (derivatives) used
+in other experiments.
+
+Multiple versions, Latest version \hisparciii. New software needed,
+remote firmware updates.
+
+GPS receiver module \cite{ref:trimble}
+
+Multiple detectors connected to \hisparc electronics makes a station.
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/4_detector_station}
+    \caption{\captitle{Standard 4-detector station layout.} The colored
+             rectangles represent the scintillator detectors.}
+    \label{fig:4_detector_station}
+\end{figure}
