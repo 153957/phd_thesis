@@ -2,6 +2,54 @@
 
 \subsection{HiSPARC electronics}
 
+The \hisparc hardware (versions II and III) combine \pmt control, signal
+readout/daq, triggering logic, and the \gps receiver into one unit. The
+unit can be controlled and readout from a PC connected via USB
+\cite{messages}. The original version of the \hisparc hardware did not
+include the \daq and \gps receiver, those were separate modules and it
+could not be controlled via USB. Since that original version is no
+longer used by any station in the network it is ignored in the following
+discussion.
+
+Master/Slave - 4 channels
+
+PMT control
+
+Readout pos/neg
+
+Triggering logic
+
+Master and Slave contain the same firmware, each should be configured
+with the same settings. The boxes are connected with two
+\SI{0.3}{\meter} UTP cables that facilitate the communication between
+the two units. The Master sends its PPS data to the Slave, this allows
+the Slave to keep track of its own CTP (clock ticks between PPS) values.
+Both units send One Second Messages to the PC, each with their own CTP
+values. All \adc values are checked against the thresholds at each clock
+tick (\SI{200}{\mega\hertz}). Each channel has two ADCs, one checks the
+signal on the positive flank of the clock, the other on the negative.
+The results of the comparison to the thresholds is also communicated
+between the Master and Slave, because they need to know what the
+conditions in all four channels is to determine if a trigger occurred.
+When a unit determines a trigger takes place it will latch the number of
+clock ticks since the last CTP, this is called the CTD. The event will
+also contain the timestamp of the last PPS. Then each unit will send
+their own measured data message to the pc. The PC will need to figure
+out which Master and Slave events belong together. Using CTP value from
+the one second message at the end of the second in which the event
+occurred. This is used to determine at what fraction of the second the
+event occurred. Further corrected by taking the Quantization errors into
+account. The quantization error for each PPS is in the following One
+second message. So the One second message at the end of the second after
+the event is also required for the quantization error of the end value
+of the event second.
+
+
+PPS/Events
+
+
+
+
 Readout electronics. Two channels, each with two ADCs which readout a
 signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts
 range). Each ADC is sampled at 200 Mhz, using two ADCs per channel gives

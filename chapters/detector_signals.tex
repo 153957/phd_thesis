@@ -1,4 +1,4 @@
-\section{Performance of a detector}
+\section{Signal performance of a detector}
 
 
 \subsection{Signal response}
@@ -13,30 +13,26 @@ will be outlined. These also serve as probability distributions that are
 used in detector simulations.
 
 
-\subsection{Energy loss}
+\subsection{Energy loss and light production}
 
 Particles loose energy in the detector because of interactions with the
 polyvinyltoluene in the scintillator. Ionization and Bremsstrahlung and
 the main sources of energy loss for energetic charged particles
-(electrons, muons). The scintillator is \SI{2}{\centi\meter} thick, if
-particles enter de detector they may have a longer path in the detector.
-It can also be shorter if the particle passes through one of the edges
-of the scintillator, however, due to the large area of the detector the
-chance of that happening is relatively low. The amount of energy
-deposited by the particle going through the detector is described by the
-Bethe-Bloch formula. This formula gives the stopping power, the amount
-of energy lost by the particle per \SI{}{\gram\centi\meter\square} of
-the material it passes through. However, the interactions in which the
-particles loose energy is a statistical process, so the energy loss is
-not a fixed number but a distribution. (figure...)
+(electrons, muons). The energy is transferred to anthracene molecules which emit light that
 
-Energetic photons can also deposit energy in the scintillator due to
-Compton scattering and pair creation. However, the cross sections for
-these interactions is very low. A \SI{1}{\mega\electronvolt} photon  has
-a mean free path greater than \SI{10}{\centi\meter}, which increases
-further for higher energy photons, see fig [By Jos/Tom]. Despite the low
-detection chance, the large number of photons in an air shower makes
-them statistically relevant.
+This formula gives the stopping power, the amount of energy
+lost by the particle per \SI{}{\gram\centi\meter\square} of the material
+it passes through. However, the interactions in which the particles
+loose energy is a statistical process, so the energy loss is not a fixed
+number but a distribution. (figure...)
+
+The scintillator is \SI{2}{\centi\meter} thick, however, most particles
+have a longer path through the detector because they enter it at an
+angle. The path can be shorter if the particle passes through one of the
+edges of the scintillator, but due to the large area of the detector
+relative to its thickness the chance of that happening is low. The
+amount of energy deposited by the particle going through the detector is
+described by the Bethe-Bloch formula. 
 
 According to the specifications the amount of light produced in a
 scintillator as a function of temperature should be constant between
@@ -47,10 +43,23 @@ Temperature in a skibox can rise above the local outside temperature
 when the sun shines upon it. Temperature loggers have measured
 differences of over \SI{10}{\degreeCelsius} above the local outside
 temperature. Rarely but sometimes the temperature in the Netherlands can
-reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency fo
+reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency of
 the scintillator might be \SI{3.75}{\percent} below nominal. Given the
 rare occurrence of such extremely high temperatures and the small effect
-this is ignored in the simulations.
+this is ignored in the analysis and simulations.
+
+
+\subsubsection{Gammas}
+
+\todo{Signals in detector from gammas}
+
+Energetic photons can also deposit energy in the scintillator due to
+Compton scattering and pair creation. However, the cross sections for
+these interactions is very low. A \SI{1}{\mega\electronvolt} photon  has
+a mean free path greater than \SI{10}{\centi\meter}, which increases
+further for higher energy photons, see fig [By Jos/Tom]. Despite the low
+detection chance, the large number of photons in an air shower makes
+them statistically relevant.
 
 
 \subsection{Light transmission}
@@ -101,6 +110,7 @@ Fokkema Fig 2.7, *2.8*, 2.9, 2.10.
 Low efficiency: around ~2 \% across the detector, but not 0 \%!
 
 
+
 \subsection{\pmt linearity}
 
 Ideally the output of the \pmt grows is linear with the number of
@@ -116,106 +126,6 @@ $\sqrt{n}$. Linearity is [currently] assumed in the analysis.
     \label{fig:transport_time}
 \end{figure}
 
-
-
-\subsection{Gammas}
-
-\todo{Signals in detector from gammas}
-
-
-\section{Timing}
-
-
-\subsection{Fluorescence}
-
-rise time - 0.9 ns, decay time - 2.1 ns, pulse width 2.5 ns.
-
-\todo{deexcitation fast (2.1 ns), slow phosphorescence
-      (14.2 ns), ratio?}
-
-
-\subsection{Light transport and \pmt efficiency}
-
-Similar to the model that predicts the signal transport efficiency in
-the scintillator a models that calculates the transport time of these
-photons has been made. Quantum efficiency of the \pmt causes not every
-photon reaching the \pmt to produce a photoelectron. Multiple photons
-are required for the \pmt to produce a significant signal that the
-\hisparc electronics triggers. The model tracks the time at which the
-15th photon producing a photoelectron reaches the \pmt. 15
-photoelectrons are required for a signal of \SI{70}{\milli\volt} (high
-threshold).
-
-In the simulations for each particle within the bounds of the
-scintillator a number is taken from this distribution simulate the
-transport time of each particle.
-
-\begin{figure}
-    \centering
-    \input{plots/response/transport_time}
-    \caption{\captitle{Signal transport time.} Time transport
-             distribution in the detector.}
-    \label{fig:transport_time}
-\end{figure}
-
-
-\subsection{\pmt transport, cable length}
-
-The time it takes for the electron kaskade in the \pmt to go from the
-front window to the anode is dependent on .. the high voltage of pmt,
-position electron hits, etc? Possible second pulse from ionization of
-atoms in tube.
-
-The signal from the \pmt is transported over a \SI{30}{\meter} long
-coaxial cable to the \hisparc electronics before it is digitized. To
-keep the detectors in sync the cables are precisely cut to the
-same length. The signal in the cables propagates at 2/3 the speed of
-light or \SI{.2}{\meter\per\nano\second}. Every \SI{.2}{\meter}
-difference in cable length increases the offset by a nanosecond. Kinks
-and twists in the cable can also increase the propagation time.
-
-The offset between detectors can change over time due to aging of the
-\pmt, changes in the high voltage and modifications to the cables.
-
-Offsets are determined by looking at the arrival time differences
-between two detectors over many events. All events in which a signal was
-detected in the reference detector (usually detector 2, because of its
-central location in 4-detector stations) and in another detector are
-used. Multiple events are needed to even out time differences due to the
-arrival direction of the showers, transport time and the shower front.
-The time difference distribution between two detectors includes a
-background of accidental coincidences.
-
-To determine the distribution of the mean offsets the distributions for
-a day of data for all stations have been fit by Gaussians, the found
-averages are then the distribution of the offsets. These have also been
-fit by a Gaussian \figref{fig:detector_offset_distribution}. In
-simulations a detector offset is drawn from this distribution and then
-fixed for that detector for the entire simulation.
-
-\todo{relative to detector 2.. different sigma if offset also given to
-      detector 2?}
-
-\begin{figure}
-    \centering
-    \input{plots/response/detector_offset_distribution}
-    \caption{\captitle{Detector offset distribution.} In black the mean
-             detector offsets for all detectors relative to detector 2
-             in each station are plotted. The gray line is a fit
-             Gaussian. The mean of the offset distribution is
-             \SI{0}{\nano\second} and the sigma is
-             \SI{2.7}{\nano\second}.}
-    \label{fig:detector_offset_distribution}
-\end{figure}
-
-
-
-
-\section{\pmt}
-\label{sec:pmt}
-
-\todo{Pulseheight/integral, Number of particles. Leptons and gammas,
-      separate?}
 
 \subsection{PMT calibration}
 \label{sub:pmt_calibration}
@@ -249,7 +159,7 @@ value requires a voltage close to the normal operational voltage of
 \pmts on a \hisparc detector.
 
 
-\subsection{Linearity}
+\subsection{Measured linearity}
 
 In an EAS many more than one particle may pass through a detector. The
 response of the \pmt to higher signals needs to be investigated to
@@ -334,5 +244,3 @@ continues to grow.
 
 \todo{Using ND-filters to weaken the signal, to check for walk
       (arrival time determination).}
-
-

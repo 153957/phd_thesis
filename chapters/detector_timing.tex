@@ -1,0 +1,87 @@
+\section{Timing}
+
+\subsection{Fluorescence}
+
+rise time - 0.9 ns, decay time - 2.1 ns, pulse width 2.5 ns.
+
+\todo{deexcitation fast (2.1 ns), slow phosphorescence
+      (14.2 ns), ratio?}
+
+
+\subsection{Light transport and \pmt efficiency}
+
+Similar to the model that predicts the signal transport efficiency in
+the scintillator a models that calculates the transport time of these
+photons has been made. Quantum efficiency of the \pmt causes not every
+photon reaching the \pmt to produce a photoelectron. Multiple photons
+are required for the \pmt to produce a significant signal that the
+\hisparc electronics triggers. The model tracks the time at which the
+15th photon producing a photoelectron reaches the \pmt. 15
+photoelectrons are required for a signal of \SI{70}{\milli\volt} (high
+threshold).
+
+In the simulations for each particle within the bounds of the
+scintillator a number is taken from this distribution simulate the
+transport time of each particle.
+
+\begin{figure}
+    \centering
+    \input{plots/response/transport_time}
+    \caption{\captitle{Signal transport time.} Time transport
+             distribution in the detector.}
+    \label{fig:transport_time}
+\end{figure}
+
+
+\subsection{\pmt transport, cable length}
+
+The time it takes for the electron kaskade in the \pmt to go from the
+front window to the anode is dependent on .. the high voltage of pmt,
+position electron hits, etc? Possible second pulse from ionization of
+atoms in tube.
+
+The signal from the \pmt is transported over a \SI{30}{\meter} long
+coaxial cable to the \hisparc electronics before it is digitized. To
+keep the detectors in sync the cables are precisely cut to the
+same length. The signal in the cables propagates at 2/3 the speed of
+light or \SI{.2}{\meter\per\nano\second}. Every \SI{.2}{\meter}
+difference in cable length increases the offset by a nanosecond. Kinks
+and twists in the cable can also increase the propagation time.
+
+The offset between detectors can change over time due to aging of the
+\pmt, changes in the high voltage and modifications to the cables.
+
+Offsets are determined by looking at the arrival time differences
+between two detectors over many events. All events in which a signal was
+detected in the reference detector (usually detector 2, because of its
+central location in 4-detector stations) and in another detector are
+used. Multiple events are needed to even out time differences due to the
+arrival direction of the showers, transport time and the shower front.
+The time difference distribution between two detectors includes a
+background of accidental coincidences.
+
+To determine the distribution of the mean offsets the distributions for
+a day of data for all stations have been fit by Gaussians, the found
+averages are then the distribution of the offsets. These have also been
+fit by a Gaussian \figref{fig:detector_offset_distribution}. In
+simulations a detector offset is drawn from this distribution and then
+fixed for that detector for the entire simulation.
+
+\todo{relative to detector 2.. different sigma if offset also given to
+      detector 2?}
+
+\begin{figure}
+    \centering
+    \input{plots/response/detector_offset_distribution}
+    \caption{\captitle{Detector offset distribution.} In black the mean
+             detector offsets for all detectors relative to detector 2
+             in each station are plotted. The gray line is a fit
+             Gaussian. The mean of the offset distribution is
+             \SI{0}{\nano\second} and the sigma is
+             \SI{2.7}{\nano\second}.}
+    \label{fig:detector_offset_distribution}
+\end{figure}
+
+
+\todo{Pulseheight/integral, Number of particles. Leptons and gammas,
+      separate?}
