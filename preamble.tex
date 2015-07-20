@@ -49,8 +49,8 @@
 \pgfplotsset{compat=1.3}
 \usepgfplotslibrary{polar}
 
-%\usetikzlibrary{external}
-%\tikzexternalize[prefix=tikz/]
+\tikzexternalize
+\tikzsetexternalprefix{tikz/}
 
 \usepackage[detect-all,load-configurations=binary,separate-uncertainty=true]{siunitx}
 \usepackage{amsmath}
