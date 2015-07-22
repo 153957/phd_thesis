@@ -42,6 +42,9 @@ thesis*.pdf
 *.fls
 *.run.xml
 
+# minted
+_minted*
+
 # VIM
 *.swp
 
