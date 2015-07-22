@@ -11,13 +11,31 @@ could not be controlled via USB. Since that original version is no
 longer used by any station in the network it is ignored in the following
 discussion.
 
-Master/Slave - 4 channels
 
-PMT control
+\subsubsection{\pmt control}
 
-Readout pos/neg
 
-Triggering logic
+\subsubsection{Signal readout}
+
+Readout electronics. Two channels, each with two ADCs which readout a
+signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts
+range). Each ADC is sampled at 200 Mhz, using two ADCs per channel gives
+400 Mhz (2.5 ns) per channel. Nikhef designed. Some (derivatives) used
+in other experiments.
+
+
+\subsubsection{Triggering logic}
+
+Multiple detectors connected to \hisparc electronics makes a station.
+
+
+\subsubsection{Timing}
+
+PPS/Events
+GPS receiver module \cite{ref:trimble}
+
+
+\subsubsection{Master and Slave}
 
 Master and Slave contain the same firmware, each should be configured
 with the same settings. The boxes are connected with two
@@ -43,25 +61,6 @@ account. The quantization error for each PPS is in the following One
 second message. So the One second message at the end of the second after
 the event is also required for the quantization error of the end value
 of the event second.
-
-
-PPS/Events
-
-
-
-
-Readout electronics. Two channels, each with two ADCs which readout a
-signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts
-range). Each ADC is sampled at 200 Mhz, using two ADCs per channel gives
-400 Mhz (2.5 ns) per channel. Nikhef designed. Some (derivatives) used
-in other experiments.
-
-Multiple versions, Latest version \hisparciii. New software needed,
-remote firmware updates.
-
-GPS receiver module \cite{ref:trimble}
-
-Multiple detectors connected to \hisparc electronics makes a station.
 
 \begin{figure}
     \centering

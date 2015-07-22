@@ -22,8 +22,15 @@ the signals equally.
 \adcs are stable and accurate when they have a constant temperature.
 When \hisparc electronics are first connected the temperature of the
 \adcs will be below operating temperature. When calibration is performed
-immediately it will drift from proper calibration as it continues to
-operate. So calibration needs to be performed again.. (how much drift?)
+immediately after powering the electronics it is likely to drift from
+proper calibration as it continues to operate. Calibration may need to
+be performed again.. (how much drift?).
+
+
+\subsection{\adc sampling}
+
+The \pmt signals are sampled every \SI{2.5}{\nano\second} by one of the
+two \adcs.
 
 
 \subsection{\mip/MPV}
@@ -46,10 +53,3 @@ determined from the measured temperature outside and the solar
 radiation. Best to determine the MPV in a period of constant
 temperature, but with enough events for a good fit.
 
-
-\subsection{\adc sampling}
-
-The \pmt signals are sampled every \SI{2.5}{\nano\second} by one of the
-two \adcs. So the exact start of the signal is not known, can perhaps be
-derived from fit to the rising flank. At least it is simulated. sampling
-is sync in a station, not between stations, hence the \gps.
