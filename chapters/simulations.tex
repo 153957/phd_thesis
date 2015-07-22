@@ -7,18 +7,82 @@ Simulations are used to check if the data we see is what we expected.
 
 
 
-\section{Extensive air shower models}
+\section{Monte Carlo extensive air shower simulation}
 
-Aires, CORSIKA or ...
-Why was \corsika chosen.
+For the simulation of air showers there are several programs available;
+\corsika, AIRES, and ... \corsika was chosen because it is still being
+actively worked on, unlike AIRES which received its last update in 2006.
+\corsika also includes updated models based on recent LHC data.
+Moreover, \corsika is also used by most other cosmic-ray experiments.
+\corsika v74000 is used, which includes models updated based on LHC data.
 
-It is based on various models for high/low energy hardon/electoweak
-interactions; QGSJET/gheisha etc... Updated for LHC..
+\corsika provides the choice from many models for various interactions.
+For high energy hadronic interactions; DPMJET 2.55, EPOS LHC, NEXUS
+3.97, QGSJET 01C (enlarged commons), QGSJETII-04
+[http://inspirehep.net/record/1242711/files/epjconf_isvh2012_02001.pdf],
+SIBYLL 2.1, and VENUS 4.12 are available. For hadrons with energies
+below \SI{80}{\giga\electronvolt} GHEISHA 2002d (double precision),
+FLUKA, or URQMD 1.3cr can be selected. Electromagnetic interactions can
+be treated by EGS4 [http://rcwww.kek.jp/research/egs/] code or by NKG
+formulas.
+
+QGSJETII, GHEISHA and EGS4 were chosen. One configuration of \corsika
+was compiled and all showers were run using that executable.
+
+The simulations are steered by an input file, many parameters can be set
+here. The default options were used whenever applicable and trusting in
+sensibly chosen defaults. The seeds for the random number generators
+(first for the hadron shower, second for EGS4) are different for each
+run. The seed values are (by us) also used as identifiers for the
+simulations, so each combination of two seeds is unique in dataset of
+simulations. Only one shower is simulated per run. Each run is for a
+specific particle with a specified energy between
+\SIrange{$10^{12}$,$10^{18}$}{\electronvolt} in steps of $\log E = .5$.
+The zenith angle is also set for each run and can be varied from
+\SIrange{0,60}{\degree} in steps of \SI{7.5}{\degree}. The azimuthal
+angle is usually set to \SI{0}{\degree} (\hisparc coordinate system). 
+The magnetic field values have been modified to values for Amsterdam [ref].
+
+Energy cuts \SI{300}{\mega\electronvolt} for hadrons and muons, and
+\SI{3}{\mega\electronvolt} for electrons and photons. Below these
+energies the particles are quickly stopped/slowed by the atmosphere
+decay [ref PDG]. The observation level for all runs is set to
+\SI{10}{\meter} above sea level, which is relevant for the Science Park
+where ground level is \SI{3.7}{\meter} below sea level, and the detector
+are on the roofs of buildings.
 
 
 \subsection{Simulations catalogue}
 
-Show in tables how many showers of each energy/primary/zenith we have.
+Using Stoomboot a collection of over \num{70000} simulated showers has
+been created. This data is stored on the \hisparc data server (trave)
+which has \SI{37}{\tera\byte} space. This space is shared with the raw
+\hisparc data, \knmi lightning data, and some analysis files from
+various \hisparc collaborators.
+
+For easy use with the \sapphire framework the \corsika simulations are
+converted from the binary/fortran data format to \hdf format. This is
+done using a modified version of the the Python \corsika Reader by J.
+Gonzalez from Auger. After the initial conversion further optimisation
+is performed by sorting and indexing the 'x' coordinate column for the
+particles. In the detector simulation particles are queried from the
+\corsika data file using x and y coordinates. With the index it is very
+easy for the software to know which part of the data it needs, since the
+data is sorted (on disk) only a small part of the data needs to be read
+into memory, if the data was not sorted more chunks of the file would
+need to be read into memory. In some cases the sorting speeds up
+simulations by a factor of 50.
+
+Given the high abundance of protons as primary particles and iron with a
+relative high abundance for heavier nuclei we have mostly focused on
+those two particles for the simulations. However, some other primaries
+have also been used. For protons (and iron??) all possible combinations
+of energy and zenith have been simulated at least x times. More showers
+are available at lower zenith angles and around
+\SI{$10^{15}$}{\electronvolt}. Larger showers take up much more disk
+space and time to compute. In \ref{fig:simulations_proton_energy_zenith}
+the number of simulations for each combination of parameters can be seen.
+(at time of writing..)
 
 \todo{Update plot with intermediate energies, and 'color bar'}
 
