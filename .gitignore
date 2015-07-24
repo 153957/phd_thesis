@@ -44,6 +44,7 @@ thesis*.pdf
 
 # minted
 _minted*
+*.pyg
 
 # VIM
 *.swp
