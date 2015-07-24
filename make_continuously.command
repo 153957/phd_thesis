@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 BASEDIR=$(dirname $0)
 cd $BASEDIR
 
-latexmk -pdf -pvc -quiet thesis.tex
+export max_print_line=200
+latexmk -pdf -pvc --shell-escape -quiet thesis.tex
