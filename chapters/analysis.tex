@@ -37,7 +37,7 @@ Raw data is received by the frome server and stored in the \hisparc
 datastore. This is done by the datastore software. Multiple listeners
 receive data from stations and place that data in a temporary storage
 location. A single writer process checks the temporary storage for new
-data and writes it to the raw datastorage.
+data and writes the events to the raw datastorage.
 
 Every night all data from the previous day is processed by the pique
 server and stored in the Event Summary Data. This data processing

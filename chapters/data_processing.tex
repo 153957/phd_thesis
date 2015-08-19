@@ -15,11 +15,11 @@
 % traces
 % event_rate 
 
-When the \hisparc electronics trigger the detected signal traces and timing information is send to the controlling PC. First the PC determines the /gps timestamp for the event. The PC then analyses each trace individually to determine its properties. There is a high probability (how high?) that the start of the traces (the pre-trigger window) do not contain significant signals, this is used to determine the baseline of the trace. After the baseline is known other properties can be determined.
+When the \hisparc electronics trigger the detected signal traces and timing information is send to the controlling PC. First the PC determines the /gps timestamp for the event. The PC then analyses each trace individually to determine the event properties. There is a high probability (how high?) that the start of the traces (the pre-trigger window) do not contain significant signals, this is used to determine the baseline of the trace. After the baseline is known other properties can be determined.
 
 The pulseheight is the value of the highest signal in the trace, relative to the baseline. The pulse integral is the sum of the signals that are at least \SI{20}{\adc} (baselineThreshold) above the baseline. This threshold filters signal noise and small peaks.
 
-For the number of peaks a different[?] threshold is set. As soon as the values rise above the threshold a peak is counted, when the signal reached its highest point and then drops down again it needs to drop at least the value of the threshold before a new peak can start, for which it needs to rise at least the threshold value again, above the new local minimum.
+For the number of peaks a different[?] threshold is set. As soon as the values rise above the threshold a peak is counted, when the signal reached its highest point and then drops down again the value needs to drop at least the value of the threshold before a new peak can start, for which the value needs to rise at least the threshold value again, above the new local minimum.
 
 Standard deviation.
 
@@ -50,7 +50,7 @@ figure of raw -> filtered traces
 
 \subsection{Trigger pattern}
 
-The \hisparc events contain a trigger pattern which indicates which trigger thresholds were active during the trigger window, this does not mean that those active thresholds actually contributed to the trigger. For instance 2 simultaneous high signals in channels 1 and 2 caused a trigger, then some nano seconds later (still in the trigger window) a signal appears in channel 3, it will be marked as active, even though it did not contribute to the trigger. Additionally the trigger pattern indicates which of the comparators were triggered, and the prescense of a slave. Unfortunately due to an error in the software the trigger pattern was bit shifted wrongly, thereby loosing most information.
+The \hisparc events contain a trigger pattern which indicates which trigger thresholds were active during the trigger window, this does not mean that those active thresholds actually contributed to the trigger. For instance 2 simultaneous high signals in channels 1 and 2 caused a trigger, then some nano seconds later (still in the trigger window) a signal appears in channel 3, the channel will be marked as active, even though that channel did not actively contribute to the trigger. The trigger pattern indicates which of the comparators were triggered, and the prescense of a slave. Unfortunately due to an error in the software the trigger pattern was bit shifted wrongly, thereby loosing most information.
 
 
 \section{Offline processing}
@@ -65,7 +65,7 @@ Every morning (in the wee small hours) data from the previous day is processed t
 \subsection{Number of particles}
 %MPV
 
-First data is sorted, and duplicate events are removed. Then the Most Probable Value (MPV) for the pulse integrals for each channel is determined by fitting [a gauss? check FindMPV.. class]. This provides an estimate for the signal corresponding to a single particle for that detector.
+First data is sorted by timestamp and duplicate events are removed. Then the Most Probable Value (MPV) for the pulse integrals for each channel is determined by fitting [a gauss? check FindMPV.. class]. This provides an estimate for the signal corresponding to a single particle for that detector.
 
 figure of pulse integral histogram
 
