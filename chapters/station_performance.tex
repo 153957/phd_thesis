@@ -1,23 +1,25 @@
 \section{Station performance}
 
 
-\subsection{\adcs}
+\subsection{Signal digitization}
 
-The signal is sampled by two \adcs. To get good data and
-triggering the \adcs need to be calibrated to have the same baseline and
-response (gain). The \adcs normally have a range of
-\SIrange{-1}{1}{\volt} translated into a 12-bit value. The \pmt outputs
-negative pulses, so an electric circuit in the \hisparc electronics
-modifies the incoming signal to make the effective \adc range
+The signal is sampled by two \adcs. To get good data and triggering the
+\adcs need to be calibrated to have the same baseline and response
+(gain). The \adcs normally have a range of \SIrange{-1}{1}{\volt}
+translated into a 12-bit value. The \pmt outputs negative pulses, the
+positive pulses are less important, but can be used to detect
+reflections. An electric circuit in the \hisparc electronics modifies
+the incoming signal to make the effective \adc range
 \SIrange{-2}{0.1}{\volt}. The baseline of the signals is calibrated to
-be \SI{0}{\volt} at \SI{200}{\adc} and .. V at .. \Adcs to result in a
-conversion factor of \SI{-0.57}{\milli\volt\per\adc}. In a 2-detector
-station the \hisparc electronics triggers when both detectors cross the
-low threshold of \SI{30}{\milli\volt} within the trigger window. 30 mV /
-.57 = 53 above baseline. So the low threshold is set to a value of
-\SI{253}{\adc}. Either of the two \adcs can be the one to cross this
-threshold, so proper \adc alignments is necessary to ensure they treat
-the signals equally.
+make an input of \SI{0}{\volt} correspond to \SI{200}{\adc} (30 in
+HiSPARC iii). The gain is such to get a conversion factor of
+\SI{-0.57}{\milli\volt\per\adc}. In a 2-detector station the \hisparc
+electronics triggers when both detectors cross the low threshold of
+\SI{30}{\milli\volt} within the trigger window. 30 mV / .57 = 53 above
+baseline. So the low threshold is set to a value of \SI{253}{\adc}.
+Either of the two \adcs can be the one to cross this threshold, so
+proper \adc alignments is necessary to ensure they treat the signals
+equally.
 
 \adcs are stable and accurate when they have a constant temperature.
 When \hisparc electronics are first connected the temperature of the
