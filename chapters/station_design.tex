@@ -62,6 +62,11 @@ second message. So the One second message at the end of the second after
 the event is also required for the quantization error of the end value
 of the event second.
 
+
+\subsection{Layout of the detectors}
+
+Multiple detectors are used to exclude single muons from triggering the station. The layout of a  typical 4-detector station is shown in \figref{fig:4_detector_station}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\nano\second} is shown in \figref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to for a new equilateral triangle with one of the sides. More reconstructable events?
+
 \begin{figure}
     \centering
     \input{plots/hisparc-experiment/4_detector_station}
@@ -69,3 +74,16 @@ of the event second.
              rectangles represent the scintillator detectors.}
     \label{fig:4_detector_station}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/discrete_directions}
+    \caption{\captitle{Discrete direction reconstructions.} The possible
+             direction reconstructions for a station with 3 detectors in
+             a \SI{10}{\meter} equilateral triangle. The discrete
+             solutions are due to the \SI{2.5}{\nano\second} sampling
+             rate of the \adcs.}
+    \label{fig:discrete_directions}
+\end{figure}
+
+The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as we do know where the detectors are. In order to get the absolute position of the detectors their positions are measured relative to the \gps, whose position is know (see next chapter?). For this a distance measuring device (rolmaat) and a compass are required. The position of each detector is recorded relative to the \gps, its distance and the angle between (True?) North and the detector. Additionally the rotation of the detector itsself around its center can be recorded, though this is less important. The coordinate system is also described in [ref appendix coordinates compass]. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important, though (full) direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).

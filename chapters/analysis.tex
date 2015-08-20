@@ -26,7 +26,7 @@ detector positions relative to the \gps antenna are also measured.
 Finally the settings, e.g. \pmt voltages, trigger settings, and other settings,
 of a station are stored. Currently only when they change and the button is
 pressed. To be sent whenever DAQ mode starts, either through presseing DAQ Mode
-or through automatic start up in DAQ mode. 
+or through automatic start up in DAQ mode.
 
 \todo{If config is always sent it should be used for esd/timings....}
 
@@ -133,17 +133,6 @@ about other paramaters is known.
 More than 3 can be done with regression.
 
 \subsection{Single station}
-
-\begin{figure}
-    \centering
-    \input{plots/reconstructions/discrete_directions}
-    \caption{\captitle{Discrete direction reconstructions.} The possible
-             direction reconstructions for a station with 3 detectors in
-             a \SI{10}{\meter} equilateral triangle. The discrete
-             solutions are due to the \SI{2.5}{\nano\second} sampling
-             rate of the \adcs.}
-    \label{fig:discrete_directions}
-\end{figure}
 
 When results of the direction reconstruction is combined with the \gps
 location and timestamp the corresponding celestial coordinates can be
