@@ -8,7 +8,10 @@
 
 \input{preamble}
 
-\tikzexternalize
+% Hide todos
+\usepackage{xkeyval}
+\usepackage[disable]{todonotes}
+
 % Only enable this for the final output output (it is really slow).  First
 % run a few times without microtype and create all TikZ figures.
 %\usepackage[babel]{microtype}
