@@ -14,19 +14,28 @@ discussion.
 
 \subsubsection{\pmt control}
 
+The \pmts are connected to the \hisparc electronics which provide it with power. The control voltage can be chosen between \SIRange{.3}{1.5}{\volt} which the \pmt will amplify to a high voltage of \SIRange{300}{1500}{\volt}. As feedback the current of the \pmt can be readout. Deviations from the expected values can indicate failing \pmts, i.e. a higher current. Nominal high voltage operating range for \pmts in \hisparc is \SI{870\pm120}{\volt}, which matches the expected range from the \pmt specifications.
+
 
 \subsubsection{Signal readout}
 
 Readout electronics. Two channels, each with two ADCs which readout a
 signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts
-range). Each ADC is sampled at 200 Mhz, using two ADCs per channel gives
+range). Each ADC is sampled at 200 MHz, using two ADCs per channel gives
 400 Mhz (2.5 ns) per channel. Nikhef designed. Some (derivatives) used
 in other experiments.
 
 
 \subsubsection{Triggering logic}
 
-Multiple detectors connected to \hisparc electronics makes a station.
+Multiple detectors connected to \hisparc electronics makes a station. Multiple detectors are required to determine the presence of an air shower instead of single muons (small showers) or background radiations (Hz?). The \hisparc electronics continually readout the signal and compare the \adc values to two thresholds; the low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, i.e. at \SI{-30}{\milli\volt} and \SI{-70}{\milli\volt} [mention corresponding ADC counts]. When a channel crosses a threshold a counter is started for that channel and threshold. This counter will run for the length of the trigger window. After which it can be activated again if a signal again crosses the threshold (from below to above the threshold).
+
+Every clock the FPGA determines if the required thresholds for a trigger are active. If trigger conditions are met an event is created.
+
+A station with 2 detectors only has a Master box which has two input channels. In such a station there are 4 threshold counters, two per channel, to keep track of. The electronics can be configured to trigger on a combination of low and high signals. For example '1 high AND 1 low'. Because a high signal implies also a low signal this means one channel high AND another channel low, or in the logic of the FPGA: one high and two low. These trigger threshold requirements can not be set per channel (clever threshold settings?).
+
+For a Master-Slave combination the possible trigger combinations are x low and y high where x >= y or x low or y high where xand y in 0, 1, 2, 3, 4 . Additionally an external trigger is available
+
 
 
 \subsubsection{Timing}
@@ -36,6 +45,7 @@ GPS receiver module \cite{trimble}
 
 
 \subsubsection{Master and Slave}
+\label{sub:masterslave}
 
 Master and Slave contain the same firmware, each should be configured
 with the same settings. The boxes are connected with two
