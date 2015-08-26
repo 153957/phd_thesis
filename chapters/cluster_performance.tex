@@ -2,10 +2,12 @@
 
 \subsection{\gps Self-Survey}
 
+To get a fix on the position of a stationary \gps antenna the \gps can perform a self-survey. During the self-survey the \gps will continuously determine its location, at the end of the survey the center of the clouds of positions will be taken as the correct location. \gps satellites orbit the Earth every \SI{12}{\hour}, taking in account the rotation of the Earth the \gps satellites will be above the same location of the Earth every \SI{24}{\hour}. The positions of the \gps satellites has an effect on the accuracy of the \gps, this is shown in ...(bad position -> periodic offsets). By using a self-survey of \SI{86400}{\second} (i.e. \SI{24}{\hour}) a good average is determined, which should minimize the time error. Normally this self-survey needs to be performed only once, if the \gps remains fixed in its place. In order to guess the accuracy of the self-survey it has been performed mulitple times for some stations to see the spread in the results.
+
 Two \gps antennae separated by \SI{2}{\meter} are used by station 501
 and station 510. Each station performed a self-survey with its own \gps
 and one with the \gps of the other station to test the accuracy.
- 
+
 \begin{verbatim}
 GPS s510
 s510  1412347130	52.3558955	4.9509864	54.59
@@ -16,7 +18,7 @@ s501  1412347557	52.3558800	4.9510065	55.40
 s510  1414406952	52.3558859	4.9510083	57.39
 \end{verbatim}
 
-Difference of \SI{1.}{\centi\meter}.
+Difference of \SI{1.}{\centi\meter}, but \SI{2}{\meter} in altitude.
 
 
 \section{Timing}
@@ -24,17 +26,14 @@ Difference of \SI{1.}{\centi\meter}.
 \subsection{\gps timestamp, electronics}
 
 When considering coincidences between stations the accuracy of the
-timing is crucial. Similar to the offsets between detectors in a
-station, offsets between stations have been found. These can be caused
+timing is crucial, both for correctly identifying coincidences and for the reconstruction. Similar to the offsets between detectors in a
+station, offsets between stations have been found. These may be caused
 by different detector cable lengths, \gps antennae cable length, and
 possibly something in the electronics of the \hisparc box.
 
 Determining the station offset requires many coincidences. The number of
 coincidences between stations is inversely correlated to the the
-distance between them. Just as the time difference distribution between
-detectors the station time difference is dominated by time differences
-due to the arrival direction of the showers. This time difference
-increases with distance $\Delta t = r * \sin{\theta}$.
+distance between them. Moreover the width of the $\Delta t$ distribution between stations is dominated by time differences due to the arrival direction of the showers. This time difference increases with distance, if the azimuth direction is along the line between the stations then $\Delta t = r \sin{\theta}$. The distance between stations negatively affects the number of coincidences and increases the width of the $\Delta t$ distribution, making it harder to precisely determine the average offset. However, when distances become very large the accuracy of the offset will be less important, because it will have a smaller effect on the direction of the shower.
 
 \begin{figure}
     \centering
@@ -61,7 +60,7 @@ increases with distance $\Delta t = r * \sin{\theta}$.
 \end{figure}
 
 
-\section{\gps accuracy}
+\section{\gps timing accuracy}
 \label{sec:gps_accuracy}
 
 Time difference calibration measurements have been performed on
@@ -93,10 +92,14 @@ fraction of that second the event occured. For higher accuracy (more
 than $\SI{5}{\nano\second}$) the clock is also read on the negative side
 of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with
 $\SI{2.5}{\nano\second}$ accuracy. Events are sent from the \hisparc
-electronics to the PC as soon as they are readout, the events then
-contain the trace data, timestamp, CTD... The extended timestamp is
+electronics to the PC as soon as they are readout, the events contain the trace data, timestamp, CTD... The extended timestamp is
 determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp.
 
+ by taking the Quantization errors into
+account. The quantization error for each PPS is in the following One
+second message. So the One second message at the end of the second after
+the event is also required for the quantization error of the end value
+of the event second.
 
 \begin{equation}
     Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right)
