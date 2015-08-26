@@ -53,14 +53,10 @@ When a unit determines a trigger takes place it will latch the number of
 clock ticks since the last CTP, this is called the CTD. The event will
 also contain the timestamp of the last PPS. Then each unit will send
 their own measured data message to the pc. The PC will need to figure
-out which Master and Slave events belong together. Using CTP value from
+out which Master and Slave events belong together. The CTP value from
 the one second message at the end of the second in which the event
-occurred. This is used to determine at what fraction of the second the
-event occurred. Further corrected by taking the Quantization errors into
-account. The quantization error for each PPS is in the following One
-second message. So the One second message at the end of the second after
-the event is also required for the quantization error of the end value
-of the event second.
+occurred is used to determine at what fraction of the second the
+event occurred. This timestamp is further corrected for more accuracy, the method of determining the \gps timestamp is described in section Cluster performance - Timing.
 
 
 \subsection{Layout of the detectors}

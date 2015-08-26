@@ -26,10 +26,11 @@ GHEISHA\cite{fesefeldt1985}, FLUKA, or URQMD can be selected.
 Electromagnetic interactions can be treated by EGS4\cite{egs4} code or
 by NKG formulas.
 
-From these options QGSJETII, GHEISHA and EGS4 were chosen. Because
-little difference between QGSJETII and EPOS, both are not perfect (see
-ICRC2015 talks), QGSJETII easier to setup. One configuration of \corsika
-was compiled and all showers were run using that executable.
+From these options QGSJETII, GHEISHA and EGS4 were chosen. QGSJETII was chosen
+because it has been tuned with LHC data, and performs similar to EPOS, though
+both are not perfect (see ICRC2015 talks). Moreover, QGSJETII is easier to
+setup and faster than EPOS. One configuration of \corsika was compiled and all
+showers were run using that executable.
 
 % From CORSIKA manual:
 %
@@ -61,6 +62,9 @@ angle is usually set to \SI{0}{\degree} (\hisparc coordinate system),
 but can be varied in steps of \SI{45}{\degree}. The magnetic field
 values have been modified to values for Amsterdam [ref].
 
+
+\subsubsection{Primary particle}
+
 Given the high abundance of protons as primary particles and iron with a
 relative high abundance for heavier nuclei we have mostly focused on
 those two particles for the simulations. However, small datasets with
@@ -71,6 +75,9 @@ Most showers are available at \SI{22.5}{\degree} zenith angle and
 time to compute. In \ref{fig:simulations_proton_energy_zenith} the
 number of simulations for each combination of parameters for proton
 primaries can be seen. (at time of writing..)
+
+
+\subsubsection{Energy cuts}
 
 Energy cuts \SI{300}{\mega\electronvolt} for hadrons and muons, and
 \SI{3}{\mega\electronvolt} for electrons and photons. Below these
@@ -205,9 +212,7 @@ The detector simulation requires a cluster of stations as input, upon
 which the showers will be thrown. The same type of cluster object is
 used in reconstructions. Depending on the type of simulation a \corsika
 data file may also be required as input. Finally a sensible maximum core
-distance and number of iterations can be chosen.
-
-For each iteration:
+distance and number of iterations can be chosen. For each iteration the following steps are taken.
 
 Generate shower parameters; core position, azimuth angle, and timestamp
 A random position within a given radius around the cluster origin is
@@ -217,13 +222,12 @@ Instead of shifting and rotating the particles in the \corsika file the
 cluster and detector positions are shifted. Performing computations on
 the \corsika data prevents queries from using the table indexes.
 
-Then for each station each detector is simulated
+Then for each station each detector is simulated.
 
-For each detector we check which particles pass through it, and then
-determine the detector response (total signal strength and time of first
+For each detector the particles which pass through it are selected, then the detector response is determined (i.e. total signal strength and time of first
 particle). Though the orientation of the individual detectors on Science
-Park is known this information is not used in the default simulation.
-Instead a square with \SI{.5}{\meter\square} is used for a simpler query
+Park is known, this information is not used in the default simulation.
+Instead a square with \SI{.5}{\meter\square} area is used for a simpler query
 which simply checks for all leptons (and gamma?) where the x and y are
 within .. of he detector center. If the oriëntation of detectors is also
 used the boundary lines have to be computed and a more complicated query
@@ -232,7 +236,7 @@ larger bounding square in which the whole detector is contained
 regardles of oriëntation. This approximation means that at most
 \SI{29.2}{\percent} of the detector surface is not in its actual
 location, but still connected to the detector. However, other source for
-error: Poisson, GPS, detector measurement .
+error: Poisson, GPS, detector measurement.
 
 Then it is determined if the station triggered or not. This uses the
 same trigger logic as the \hisparc stations. For 4-detector stations
