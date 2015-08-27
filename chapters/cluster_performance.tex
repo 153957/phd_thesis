@@ -2,7 +2,7 @@
 
 \subsection{\gps Self-Survey}
 
-To get a fix on the position of a stationary \gps antenna the \gps can perform a self-survey. During the self-survey the \gps will continuously determine its location, at the end of the survey the center of the clouds of positions will be taken as the correct location. \gps satellites orbit the Earth every \SI{12}{\hour}, taking in account the rotation of the Earth the \gps satellites will be above the same location of the Earth every \SI{24}{\hour}. The positions of the \gps satellites has an effect on the accuracy of the \gps, this is shown in ...(bad position -> periodic offsets). By using a self-survey of \SI{86400}{\second} (i.e. \SI{24}{\hour}) a good average is determined, which should minimize the time error. Normally this self-survey needs to be performed only once, if the \gps remains fixed in its place. In order to guess the accuracy of the self-survey it has been performed mulitple times for some stations to see the spread in the results.
+To get a fix on the position of a stationary \gps antenna the \gps can perform a self-survey. During the self-survey the \gps will continuously determine its location, at the end of the survey the center of the clouds of positions will be taken as the correct location. \gps satellites orbit the Earth every \SI{12}{\hour}, taking in account the rotation of the Earth the \gps satellites will be above the same location of the Earth every \SI{24}{\hour}. The positions of the \gps satellites has an effect on the accuracy of the \gps, this is shown in ...(bad position -> periodic offsets). By using a self-survey of \SI{86400}{\second} (i.e. \SI{24}{\hour}) a good average is determined, which should minimize the time error. Normally this self-survey needs to be performed only once, if the \gps remains fixed in its place. In order to guess the accuracy of the self-survey it has been performed multiple times for some stations to see the spread in the results.
 
 Two \gps antennae separated by \SI{2}{\meter} are used by station 501
 and station 510. Each station performed a self-survey with its own \gps
@@ -19,6 +19,8 @@ s510  1414406952	52.3558859	4.9510083	57.39
 \end{verbatim}
 
 Difference of \SI{1.}{\centi\meter}, but \SI{2}{\meter} in altitude.
+
+Looking at the available gps positions see a spread of 2 meters, but possibly contaminated by short surveys.
 
 
 \section{Timing}
@@ -88,20 +90,15 @@ to determine the time within this second. Since the crystal in this
 clock does not work at exactly $\SI{200}{\mega\hertz}$ the counter
 (reset at the arrival of a PPS) is read at the moment of an event and
 then when the next PPS arrives. Giving information about at what
-fraction of that second the event occured. For higher accuracy (more
+fraction of that second the event occurred. For higher accuracy (more
 than $\SI{5}{\nano\second}$) the clock is also read on the negative side
 of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with
 $\SI{2.5}{\nano\second}$ accuracy. Events are sent from the \hisparc
 electronics to the PC as soon as they are readout, the events contain the trace data, timestamp, CTD... The extended timestamp is
-determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp.
-
- by taking the Quantization errors into
-account. The quantization error for each PPS is in the following One
-second message. So the One second message at the end of the second after
-the event is also required for the quantization error of the end value
-of the event second.
+determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp. Determination of the extended timestamp is done with \eqref{eq:timestamp}.
 
 \begin{equation}
+\label{eq:timestamp}
     Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right)
                  \left(1e^9 - E_{Quan1} + E_{Quan2}\right)
 \end{equation}
@@ -110,6 +107,12 @@ Where $E_{Quan}$ is the Quantization Error, $E_{Sync}$ is the
 Synchronization Error, $T_{Event}$ are the count of ticks till the event
 and $T_{PPS}$ are the count of ticks between the PPS before and after
 the event.
+Here the accuracy of the timestamp is improved by taking the Quantization errors into account. The quantization error for each PPS is in the following One
+second message. The One second message at the end of the second after
+the event is also required for the quantization error of the end value
+of the event second. The Synchronization Error corrects for the error made by the misalignment of the PPS and the FPGA clock.
+
+The same procedure is done for the Master and Slave events, each using their own One second messages.
 
 
 \subsection{Test setup}
@@ -151,6 +154,8 @@ same \hisparc electronics and also switched around.
 \subsection{Offsets between \hisparc electronics}
 \label{sub:gps_offsets}
 
+Similar to the offsets between detector pairs within a single stations (see section detector_timing) an offset .
+
 Tests to determine the offset distribution between \hisparc electronics
 have been performed using a \gps splitter to ensure they see the same
 \gps signal.
@@ -179,7 +184,7 @@ specifications ($\sigma_{\Delta t} < \SI{4.5}{\nano\second}$).
 \end{figure}
 
 
-\subsection{Corrections}
+\subsection{Compensating for the offset}
 
 The offset can be determined from real data. For any combination of two
 stations the expected mean time difference of all coincident events is,

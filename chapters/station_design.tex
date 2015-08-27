@@ -34,15 +34,17 @@ Every clock the FPGA determines if the required thresholds for a trigger are act
 
 A station with 2 detectors only has a Master box which has two input channels. In such a station there are 4 threshold counters, two per channel, to keep track of. The electronics can be configured to trigger on a combination of low and high signals. For example '1 high AND 1 low'. Because a high signal implies also a low signal this means one channel high AND another channel low, or in the logic of the FPGA: one high and two low. These trigger threshold requirements can not be set per channel (clever threshold settings?).
 
-For a Master-Slave combination the possible trigger combinations are x low and y high where x >= y or x low or y high where xand y in 0, 1, 2, 3, 4 . Additionally an external trigger is available
+For a Master-Slave combination the possible trigger combinations are x low and y high where x >= y or x low or y high where xand y in 0, 1, 2, 3, 4 . Additionally an external trigger is available to independetly trigger the electronics.
 
 
 
 \subsubsection{Timing}
 
+Pulse per second is received, synchronization error.
 PPS/Events
 GPS receiver module \cite{trimble}
-
+The externel trigger has an offset of \SI{125}{\nano\second} relative to a normal trigger.
+ 
 
 \subsubsection{Master and Slave}
 \label{sub:masterslave}
