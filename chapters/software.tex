@@ -4,74 +4,40 @@
 \section{Structure}
 
 
-\section{\github}
+\section{Distributed version control}
 
-Our code has transitioned from bazaar to \git, a different distributed
-version control system. This made it possible to use the service \github
-to host our projects. \github provides a web-interface to manage
-projects, keep track of issues, and manage pull requests.
+Our code has transitioned from Bazaar \cite{bazaar} to \git \cite{git} as 
+distributed version control systems (DVCS). \git was chosen for its compatibility with \github \cite{github}. When Bazaar was still used the code repositories were hosted on a Nikhef server, this made it difficult for others to access the code and thereby harder to participate or contribute. On \github the software has been open sourced and can be downloaded with a single click, on any system. \github is now used to host all code repositories. \github provides a web-interface to manage projects, keep track of issues, and handle pull requests. \github provides a Graphical User Interface (GUI) for Mac and Windows called GitHub Desktop (cite github desktop), making it easy for those unfamiliar with the command line to use \git. Moreover, \git has a much larger userbase than other DVCS (cite DVCS statistics), which often makes it easier to find solutions to problems, because it is more likely that someone else has experienced the same problem.
 
-When we were using Bazaar our repositories were hosted on a Nikhef
-server, this made it difficult for others to participate and contribute.
-On \github the software has been open sourced and can be downloaded with
-a single click, on any system.
+\github also provides webpage hosting of static pages for repositories, called \github Pages. This feature is used to host software documentation and the compiled version of the teaching materials, for which the sources are also on \github.
 
-\github also provides webpage hosting of static pages for repositories,
-called \github Pages. We use it to host software documentation and
-compiled version of the teaching materials, for which the sources are
-also on \github.
+For each project with \github Pages a Makefile exists to automatically update these from the latest commit in the master branch. In some cases the Makefile also runs some commands to generate documents. For code repositories Sphinx (cite Sphinx) is used to make code documentation. For the LaTeX repositories, those with teaching materials, the LaTeX files are compiled to the common Portable Document Format (PDF) using the latest version of TeXLive.
 
 
-\section{Repositories}
+\section{Programming language}
 
-This is a list of the different repositories.
+Given the outreach and open source character of \hisparc, programming languages were chosen that are relatively simple to learn, commonly used, easy to install, and readability of the code.
 
-\begin{verbatim}
-Data analysis/presentation
-sapphire - SAPPHiRE, a framework for HiSPARC
-pysparc - HiSPARC DAQ implemented in Python
-publicdb - The HiSPARC Public Database
-jsparc - Javascript library and coincidences analysis
-topaz PRIVATE - Scripts for small analyses with HiSPARC data
-tijdtest PRIVATE - Analysis for the time calibration of HiSPARC boxes
+Most code repositories use \python as main language.
+\sapphire, station-software, publicdb, datastore.
 
-Detection
-datastore - Data storage solution
-station-software - Software running on HiSPARC station pc's
-hisparcdaq - DAQ software
-weather - Weather DAQ software
-lightning - Lightning DAQ software
-firmware - FPGA source
+The web-based programs use \javascript. Which is the commonly used to make dynamic websites.
 
-Teaching Material
-infopakket - Teaching materials
-routenet - High-school course material
+The proprietary programming language \labview (also VHDL?) is used for the  \daq software which runs on the detection stations. \labview is not version control friendly. Moreover, its files require paid software to read and compile, and the readability is lacking. These limitations makes it difficult to test the code, collaborate and switch maintainer of the code.
 
-Papers
-experiment PRIVATE - Paper about the HiSPARC experimental setup
-2014_direction PRIVATE - Paper about HiSPARC direction reconstruction chain
 
-Webpages
-hisparc.github.io - HiSPARC GitHub Pages
-logo - HiSPARC logo's
-servers - Contains details on how the HiSPARC servers are setup
-maintenance - HiSPARC station maintenance information
-Some code repositories have their documentation in a gh-pages branch
-\end{verbatim}
-
-Add some flowcharts
+\todo{Add some flowcharts}
 
 
 \section{\hisparc Public Database}
 
 \subsection{\api}
 
-To make interactive applications (see \jsparc) we needed to make
-access to all kinds of data easy. To facilitate this an \api has been
-added to the Public Database. The \api consists of a number of urls that
-return data in the form of a JSON (Javscript Object Notation). For
-example a list of \hisparc stations can be retrieved via
-\url{http://data.hisparc.nl/api/stations/}, the result is:
+When making interactive applications (see \jsparc) there was a need for easy access all kinds of data and metadata in the Public Database. To facilitate this an \api has been added to the Public Database. The \api consists of a number of urls that return data in the form of a JavaScript Object Notation (\json) \cite{rfc7159}. A \json is a simple data format for the exchange of data. It is plain text which has been formatted to define objects, array, strings, numbers, booleans, and more. These are common data types in most programming languages and can therefore be interpreted by most languages and converted to a built-in data type.
+
+The \api provides up-to-date access to the organizational structure of the \hisparc network of stations, and for individual stations data like the \gps location, detector placement, configurations, event traces, pulseheight fits, and event counts can be retrieved.
+
+A list of all possible urls can be found at \url{http://data.hisparc.nl/api/}. For example a list (array) of \hisparc stations, where each element contains the name and number of a station in a dictionary (object), can be retrieved via \url{http://data.hisparc.nl/api/stations/}, the result is:
 
 \begin{minted}{json}
 [
@@ -85,23 +51,23 @@ example a list of \hisparc stations can be retrieved via
      "number": 6},
     {"name": "Joke Smit College (ROC)",
      "number": 7},
-    ...
+    …
     {"name": "Karlsruher Institut für Technologie",
      "number": 70001}
 ]
 \end{minted}
 
-A list of all possible urls can be found at \url{http://data.hisparc.nl/api/}.
-
-Functions have been added to both \sapphire and \jsparc to access the
-\api. These take care of constructing the urls and converting the json to a
-sensible format for the programming language language.
+Functions have been added to \sapphire and \jsparc to access the \api. These take care of constructing the urls, retrieving the result and converting the \json to a sensible format for \python and \javascript respectively.
 
 
 \subsection{Event Summary Database}
 
-Derived database with certain analyses applied, as explained later. Also
-coincidences already found, next; automated reconstructions
+Each morning at 4:00 UTC the Public database server starts to process new data, what processing entails is described in (secref other section). It looks for all raw data files that have been changed since the last processing. After processing the raw data the results are stored in the Event Summary Database (ESD). The ESD contains processed event and weather data, and coincidence data for the events. The ESD is then used to generate daily overviews per station and for coincidences.
+
+
+\subsection{Data downloads}
+
+The Public Database also provides access to the data in the ESD. This can be downloaded in the comma separated values format (CSV) \cite{rfc4180}. There is no official CSV specification, but there are generally agreed upon rules. The data is in plain text where each row is a seperate record. The values of each record are separated by a delimiter, which is commonly a comma (,). However, because most of the \hisparc participants are in the Netherlands where the comma is the common decimal delimiter, instead of the comma a tab is used as delimiter between the data values. Note that though a tab separated values (with .tsv extension) format exists, this is (is it still?!) not as well supported as a CSV with a tab as delimiter. There are separate urls for downloading events, weather, and coincidences. The Public Database has web forms to easily download specific data. Both \sapphire and \jsparc have functions to access this data. \sapphire will automatically store the data in the \hdf format, which is also used by other parts of \sapphire.
 
 
 \section{\sapphire}
@@ -109,16 +75,13 @@ coincidences already found, next; automated reconstructions
 \subsection{\pypi}
 
 \sapphire is available via the Python Package Index (\pypi). This allows
-package managers such as pip to easily find it, pip will also install
-other packages which are required for \sapphire. However, some of these
-packages require other (non-Python) libraries, such as hdf5, to be
-installed, which pip will not do. It might be easier to install the
-requirements before installing \sapphire itself. \sapphire can be
-installed using this command:
+package managers such as pip to easily find it. Ideally this means that installing \sapphire is as simple as running the following command:
 
 \begin{verbatim}
 $ pip install hisparc-sapphire
 \end{verbatim}
+
+During the installation pip will also try to install other packages which are required for \sapphire. However, some of these packages require non-\python libraries, such as \hdf which is required for PyTables, pip can not install this because it is not a Python package. It might be easier to install the requirements before installing \sapphire itself.
 
 
 \subsection{Clusters}
@@ -132,14 +95,15 @@ Imaginary stations can be added to plan future station locations.
 
 \subsection{\corsika}
 
-Reading \corsika output, convert to \hdf and use for simulations.
+\sapphire contains a module specifically for handling \corsika. This includes running the \corsika simulations, converting the results to \hdf, and creating an overview of the existing \corsika simulated showers.
+
+The class to read the \corsika \fortran formatted files was originally created by Carlos? from the Auger Collaboration. It has been adapted for use in \hisparc. The files are converted to \hdf, because it is more easily queried to retrieve specific particles from the file. The \hdf files are optimized by creating a completely sorted index for the particle x coordinates. After this the data in the file is sorted on disk using this index. PyTables reads data in chunks, if data is sorted less chunks need to be read to get particles which fall in a specific range of coordinates. Moreover, the chunks are likely grouped together on disk, making it quicker to read them.
 
 
 \subsection{Simulations}
 
 The simulations accept input from \corsika ground particle data, LDFs
-(density), or shower front models (timing). Detector and station simulations based on experiments and models provide realistic output data. The data can
-be analysed the same way as real \hisparc data (except that the input is
+(density), or shower front models (timing). Detector and station simulations based on experiments and models provide realistic output data. The data can be analysed the same way as real \hisparc data (except that the input is
 also known).
 
 \begin{figure}
@@ -154,7 +118,7 @@ also known).
 \subsection{Data quality}
 
 This code flags bad data and ensures that the data going into the
-reconstruction is good data.
+reconstruction is good data. 
 
 \todo{Write code to determine data quality.}
 
@@ -168,28 +132,25 @@ often another function is called, and ensure that the correct errors are
 thrown when given invalid input. More general tests are also used to
 validate code validity and coding style. A lot of effort has been put
 into ensuring that all \python code adheres to the same coding style,
-the Python Enhancement Proposal (PEP) 8 - Style Guide for Python Code.
-Using a consistent style makes code easier to read and makes it easier
-to see bugs. Moreover, the code can now be easily accessed by anyone via
-\github.
+the Python Enhancement Proposal (PEP) 8 - Style Guide for Python Code. Using a consistent style makes code easier to read and makes it easier to find bugs.
 
 These tests can be run locally while developing code. However,
 developers might forget to run tests or do not want to spend time
 testing. To ensure that new code is always tested the \sapphire and
 \jsparc repositories have the \travis service \cite{travis} added. After
 new commits are pushed to those repository \travis starts a Virtual
-Machine that will download the repository and any requirements we have
-defined and run the tests. The results are then displayed on the
+Machine that will download the repository and install any requirements we have defined and run the tests. The results are then displayed on the
 repository page, and the person that pushed the code will get an e-mail
-if the tests fail.
+if the tests fail. For \sapphire commits must pass the tests before they can be pushed to the master branch.
+
+
+\subsection{Code coverage}
 
 Having a test for a function does not guarantee that every bit of code
 is tested. To check which parts of the code are tested we use a code
 coverage tool. While \travis runs tests it keeps track of which lines of
 code in \sapphire are run. At the end of the tests a report is sent to
-\coveralls \cite{coveralls} which then shows overviews of which lines
-have been tested and which have not. A common scenario is that only one
-part of an if-else clause is checked.
+\coveralls \cite{coveralls} and \codecov \cite{codecov} which then shows overviews of which lines have been tested and which have not. However, testing each line once does not ensure proper coverage. A common scenario is that only one path through an if statement is checked, and since else is optional in \python it is not always obvious that the alternative is not tested. \codecov takes this into account and reports on missed execution branches.
 
 
 \subsection{Vagrant}
@@ -205,3 +166,13 @@ machine can also be used to setup the live server, this ensures that the
 test and live server are almost identical.
 
 \todo{Testing publicdb}
+
+
+\section{Servers}
+
+
+neckar - to be removed? if we host a website on GitHub
+pique - public database, vagrant
+frome - datastore
+tietar - vpn nagios - needs attention
+trave - storage
