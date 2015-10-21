@@ -1,116 +1,120 @@
 \chapter{Cosmic rays}
 \label{ch:cosmic-rays}
 
-Cosmic rays are highly energetic particles from extraterrestrial sources.
-This can be any kind of particle.
+\section{History of cosmic-ray research}
+
+Cosmic rays were `discovered' in 1835, i.e.\ their effects were detected. An electroscope was seen to discharge at unexpected rates.
+
+The effects of low-energy solar cosmic rays were seen much earlier, namely in the form of the aurora borealis and aurora australis (named such in the 17th century, but many ancient folk tales about this phenomena exist). An example of the aurora can be seen in \figref{fig:aurora}. The aurora is caused by disturbances in Earths' magnetosphere, often due to solar winds, which cause charged particles to follow the magnetic field lines into the atmosphere where they will excite and ionize oxygen and nitrogen atoms. When these deexcite or recombine the observed colors are produced.
+
+The cause of the effect detected in the electroscope was long thought to be of other origins. In .. the discovery of X-rays presented a good candidate, and the existence of  spotaneous radioactivity solidified this as the likely cause being a terrestial source. The term cosmic ray implies that these are cosmic photons. However, experiments showed a dependence on latitude for the flux of the cosmic rays, which indicate that these rays had a charge, as ... terra model.. showed that the magnetic field of Earth deflected these particles to the poles. Experiments that took to the sky showed that higher densities of these ionizations were to be found at high altitudes. The discovery of extensive air showers (EAS) by Auger and Rossi simultaneously/independently ignited the cosmic-ray research field. New possibilities for studing cosmic rays were found.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/cosmic-rays/aurora.png}
+    \caption{The aurora borealis as seen in Rovanemi, Finland on 17 March 2015, St. Patricks day. The large aurora activity on that day was due to a G4 geomagnetic storm on the sun on the 15th.}
+    \label{fig:aurora}
+\end{figure}
 
 
-\section{Current state}
+\subsection{Balloon experiments}
 
-Possible anisotropies at very high energies. High energy spectrum
-getting more data, but not completely in agreement (due to hotspots,
-models or calibrations?). Work is being done to better identify the
-contributions to the spectrum from the different kinds of particles.
-Very model dependent analyses.
+Other experiments also took to the sky because that is where the cosmic rays could be detected before they underwent collisions with particles in the atmosphere. Ground based experiments only see the remnants of the EAS. Being able to directly detect the particle has many advantages. Such as better energy and direction resolution, and easier identification of the particle. The main downside is the flux of cosmic rays decreases steeply when looking at higher energy cosmic rays. Ideally you would have a large detector surface with a very long exposure time. Unfortunately a detector that has be flown at the top of the atmosphere or in space can only be so big before it costs to much. And balloon experiments are short runs where the balloon only stays up ... days/months? So the high-energy limit for these experiments is limited by their size and operational length.
 
+- List evolution of balloon experiments.
+- List major contributions by some experiments.
 
-\section{Experiments}
+There have been many such experiments, all together providing a very detailed picture of the low energy cosmic-ray spectrum. The per-nucleus spectrum of such experiments is shown in \figref{fig:low_e_spectrum}.
 
-There are several very large experiments currently in operation that are
-working on the frontier of cosmic-ray research.
-
-The Pierre Auger Observatory (http://www.auger.org)
-\cite{auger:prototype}, located in Argentina, is a large ground-based
-detector using multiple detection methods in conjunction. Cherenkov
-water tanks are used to detect charged particles (leptons) as they pass
-through the detector. Fluorescence telescopes are used to look for
-ultra-violet light in the atmosphere. Fluorescence occurs in atmospheric
-nitrogen which is exited by the extensive air shower. Finally radio
-antennae are used to detect the radio signal produced when the
-positively and negatively charged particles in the air shower are
-separated by the magnetic field. A similar project exists in the
-Northern hemisphere called the Telescope Array.
-
-IceCube (http://icecube.wisc.edu), located in Antarctica, is a neutrino
-telescope. Neutrinos pass through most matter because of their low
-interaction cross sections. To detect the neutrinos IceCube
-uses Earth as a detector. IceCube uses \pmts buried \SI{2}{\kilo\meter}
-deep in the ice of Antarctica to detect the Cherenkov light caused by
-muons that are created by neutrinos passing through the Earth.
-Additionally a part called IceTop sits on top of the ice ... detect
-atmospheric muons etc.. A similar project called \kmnet is currently
-being deployed/build in the Northern hemisphere.
-
-Large area detectors are required to detect the rare very-high-energy
-cosmic rays. In figure (spectrum) the flux of primary cosmic rays of
-specific energies can be seen.
-
-The Auger Observatory (and others?) has been operating for over
-\SI{10}{\year}. Cosmic rays with energies exceeding
-\SI{57}{\exa\electronvolt} have been detected. Why do they use 57 EeV?
-Sources/escape velocity/random/models/detector/hot spot?
-
-Challenges
-Spectrum
-GZK
-GZ
-
-Energy reconstruction
-CR Sources
-Populations
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/PDG_28_1_fluxes_per_nucleus}
+    \caption{Per nucleus spectrum of cosmic-rays from the PDG.}
+    \label{fig:low_e_spectrum}
+\end{figure}
 
 
-\section{Air showers}
+\subsection{Ground-based experiments}
 
-Cosmic rays induce extensive air showers when they enter interact with particles in the atmosphere.
+As explained in the previous section direct measurements of high energetic (>.. eV) is difficult, but the nature of the EAS means that other their showers are detectable over large distances on the ground. It is cheaper to operate such an experiment over a large period of time. Different experiments have focused on different aspects of air showers. Some looking for the highest energies, others for filling in the intermediate range. Some try to sample the shower front as accurately as possible. Some experiments look at the shower development in the atmosphere by looking at the fluorescence created by the shower. In recent years radio detection of air showers has been developed. These look for a signature signal created in radio, caused by the magneticfield moving the electrons and positrons in opposite directions.
 
+Some detector arrays are situated high up, closer to Xmax, this has the advantage that less extinction and scattering has occured in the EAS. After Xmax particle extinction becomes dominated, versus new particle creation. 
 
-\subsection{Energy/density distribution in front}
+This also means that the particle density for lower energy showers is higher, however, using coincidence triggering with detectors sufficiently spaced these should be easily separated from the desired signals.
 
-Number of detected events correlates to atmospheric pressure.
-Air shower grows and dies out due to interaction of the particles in the air shower. When there is
-... LDF
+Notable ground-based experiments are ....
 
+AGASA, KASCADE-Grande, Auger Observatory, TA, Tibet, Fly's Eye, Havanah Park, Volcano Ranch, HiRes, IceTop, CASA-MIA, Tien-Shan, Ahemo, MGU, Grigorov
 
-\subsection{Front thickness and curvature}
-
-The shower front is often approximated as a flat surface  of particles
-perpendicular to the shower axis moving at nearly the speed of light
-along the shower axis. However, this is not correct, the shower front is
-not flat, it has a time distribution with a certain thickness and
-curvature. The time distribution of particles in the shower front of an
-air shower is the result of the different paths the particles take, and
-the distance to the first interaction. Particles away from the shower
-axis fall behind because they travel further. The thickness of the
-shower front is also because ..
+Rossi/Zatsepin and other early experiments..
 
 
-\section{\hisparc}
-
-The \hisparc project aims to contribute to cosmic ray research by
-creating a large network of detectors. Currently the largest distance
-between two stations is \SI{1000}{\kilo\meter}.
-
-Sensitive to high and low energies...
-
-\cite{fokkema2012}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/PDG_28_8_all_particle_spectrum}
+    \caption{The all particle spectrum of cosmic-rays from the PDG.}
+    \label{fig:spectrum}
+\end{figure}
 
 
-Size of network
-Acceptance -> $10^{14} eV < E_{rec} < \inf$
 
-Detector calibration
-Energy calibration
-Composition
+\section{Air-shower physics}
 
-Outline thesis
+Main proccess, production channels. hadronic, electromagnetic, muons..
 
-    Different types of analyses
-    Time structure of showers
-    Particles kinds and counts
-    Various results..
 
-Experiment contributions..
-Open questions..
+\section{Air-shower simulations}
 
-(then on to our contributions..)
+Collider contributions to cross sections.
+
+LHC approaches interesting energy range, unfortunately only p-p, Pb-p, and Pb-Pb. For cosmic rays the interessting collisions would be p-O, p-N, and p-C. Because these are more common elements in the atmosphere and likely part of the first interaction. Also the forward region (low/high rapidity region, low pt) in these collisions are the interessting reagions for cosmic ray physics. Unfortunately the design of these colliders does not allow for detectors close to the beam and close to the collision.
+
+
+\section{\hisparc for outreach and research}
+
+The \textbf{Hi}gh \textbf{S}chool \textbf{P}roject on \textbf{A}strophysics \textbf{R}esearch and \textbf{C}osmics (\hisparc) is a ground-based detector experiment. It is not soley intended as a cosmic-ray research experiment, but also as an outreach project which engadges high-school students. Most of the \hisparc detectors are situated at high schools, and have been built by groups of students from those schools. Students taking physics classes are also encouraged to do their research project on \hisparc. In Dutch this project is called a `profielwerkstuk' which is mandetory and has to be performed during their final year and should be related to a subject in the subject profile which they have chosen. In order to make it simple for students t as low as possible all data recorded by \hisparc is available for use, moreover, tools are provided to assist in data analysis.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/ADL_100352}
+    \caption{High-school students work on finishing a detector.}
+    \label{fig:detector-bouw}
+\end{figure}
+
+
+\section{The work presented in this thesis}
+
+The goal of the research presented in this thesis is the reconstruction of EAS detected with multiple detector stations from the \hisparc network. For reconstructions an understanding of the individual detectors and detector stations is required. Experiments and simulations have been performed to determine the accuracy and response of the various components.
+
+
+\subsection{The \hisparc experiment (Chapters 2-5)}
+
+In the next chapter the overall project is described, including summaries of layered structured of \hisparc is explained. First at the overall project is described. The start and growth of the project are discussed and the organization structure explained.
+
+Then the design an performance of the different scales is discussed. This starts with the individual detectors, the scintillators which detect the passing EAS particles. The construction of the detector has to be practicle enough to be performed by high-school students. There are many interesting aspects concerning the signal strength and timing response of the detectors which is discussed in this part. As explained before/above a single detector is not enough to identify EAS, so multiple detectors are combined to create a detector station which can pick out EAS from the background signals. The readout, trigger logic, and timing of detector stations is explained. A single detector station is small enough to fit on a roof. Multiple detector stations are deployed in the \hisparc project. To combine the data accurate absolute timing is 
+
+- main goal
+- per chapter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
