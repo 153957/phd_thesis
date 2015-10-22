@@ -41,7 +41,7 @@ For a Master-Slave combination the possible trigger combinations are x low and y
 Pulse per second is received, synchronization error.
 PPS/Events
 GPS receiver module \cite{trimble}
-The externel trigger has an offset of \SI{125}{\nano\second} relative to a normal trigger.
+The externel trigger has an offset of \SI{125}{\ns} relative to a normal trigger.
 
 
 \subsubsection{Master and Slave}
@@ -71,7 +71,7 @@ event occurred. This timestamp is further corrected for more accuracy, the metho
 
 \subsection{Layout of the detectors}
 
-Multiple detectors are used to exclude single muons from triggering the station. The layout of a  typical 4-detector station is shown in \cref{fig:4_detector_station}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\nano\second} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to for a new equilateral triangle with one of the sides. More reconstructable events?
+Multiple detectors are used to exclude single muons from triggering the station. The layout of a  typical 4-detector station is shown in \cref{fig:4_detector_station}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to for a new equilateral triangle with one of the sides. More reconstructable events?
 
 \begin{figure}
     \centering
@@ -87,7 +87,7 @@ Multiple detectors are used to exclude single muons from triggering the station.
     \caption{\captitle{Discrete direction reconstructions.} The possible
              direction reconstructions for a station with 3 detectors in
              a \SI{10}{\meter} equilateral triangle. The discrete
-             solutions are due to the \SI{2.5}{\nano\second} sampling
+             solutions are due to the \SI{2.5}{\ns} sampling
              rate of the \adcs.}
     \label{fig:discrete_directions}
 \end{figure}

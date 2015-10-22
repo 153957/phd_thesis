@@ -73,7 +73,7 @@ with the same pulse generator (Fokkema 2012 p47). Since these stations
 are very close ($\sim\SI{100}{\meter}$) a minimal time offset was
 expected, any offset or large standard deviation was expected to be the
 result of errors in \gps accuracy and position. However, a large offset
-($\Delta t \sim\SI{18}{\nano\second}$) was found. Further tests have
+($\Delta t \sim\SI{18}{\ns}$) was found. Further tests have
 been performed to determine the cause of the offset, these tests are
 described in this section. Both the \hisparc electronics and \gps
 antennas were found to have varying offsets contributing to time
@@ -83,7 +83,7 @@ differences in the resulting time measurements.
 \subsection{Making event timestamps}
 \label{sub:gps_timestamps}
 
-Every second the \gps receiver sends a signal (a Pulse Per Second) to the \hisparc electronics to indicate the start of a second \cite{messages}. The \hisparc box uses a $\SI{200}{\mega\hertz}$ clock to determine the time within this second. Since the crystal in this clock does not work at exactly $\SI{200}{\mega\hertz}$ the counter (reset at the arrival of a PPS) is read at the moment of an event and then when the next PPS arrives. Giving information about at what fraction of that second the event occurred. For higher accuracy (more than $\SI{5}{\nano\second}$) the clock is also read on the negative side of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with $\SI{2.5}{\nano\second}$ accuracy. Events are sent from the \hisparc electronics to the PC as soon as they are readout, the events contain the trace data, timestamp, CTD... The extended timestamp is determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp. Determination of the extended timestamp is done with \cref{eq:timestamp}.
+Every second the \gps receiver sends a signal (a Pulse Per Second) to the \hisparc electronics to indicate the start of a second \cite{messages}. The \hisparc box uses a $\SI{200}{\mega\hertz}$ clock to determine the time within this second. Since the crystal in this clock does not work at exactly $\SI{200}{\mega\hertz}$ the counter (reset at the arrival of a PPS) is read at the moment of an event and then when the next PPS arrives. Giving information about at what fraction of that second the event occurred. For higher accuracy (more than $\SI{5}{\ns}$) the clock is also read on the negative side of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with $\SI{2.5}{\ns}$ accuracy. Events are sent from the \hisparc electronics to the PC as soon as they are readout, the events contain the trace data, timestamp, CTD... The extended timestamp is determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp. Determination of the extended timestamp is done with \cref{eq:timestamp}.
 
 \begin{equation}
 \label{eq:timestamp}
@@ -152,8 +152,8 @@ Importance of 24 hour self-survey. - Do many 1 hour tests
 \todo{Test again year later, same difference??}
 
 The offsets in the \hisparc electronics can be as high as $|\Delta t| =
-\SI{15}{\nano\second}$. While the $\sigma_{\Delta t}$ remains within GPS
-specifications ($\sigma_{\Delta t} < \SI{4.5}{\nano\second}$).
+\SI{15}{\ns}$. While the $\sigma_{\Delta t}$ remains within GPS
+specifications ($\sigma_{\Delta t} < \SI{4.5}{\ns}$).
 
 \todo{Time offset caused by \gps, 501-510 example, \gps swapped}
 
@@ -173,7 +173,7 @@ specifications ($\sigma_{\Delta t} < \SI{4.5}{\nano\second}$).
 
 The offset can be determined from real data. For any combination of two
 stations the expected mean time difference of all coincident events is,
-because of mirror symmetry, \SI{0}{\nano\second}. However the spread
+because of mirror symmetry, \SI{0}{\ns}. However the spread
 around the mean is very dependent on the distance between the stations,
 because showers at an angle will create larger time differences if the
 stations are further apart. Moreover, the increased distance means that

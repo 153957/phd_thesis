@@ -30,7 +30,7 @@ The trigger rate (Hz) as measured by the \daq over the last 90 seconds is added 
 
 \cite{oostenbrugge2014}
 
-For all traces (for each channel) in an event the part which contains all significant pulses is calculated. A bit of padding is added to allow verification of the baseline in the offline analysis. The rest of the traces is cut away. On average (median) this leads to traces with \SI{150}{\nano\second} length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples), so overall only \SI{2.5}{\percent} of the measured data is kept. This reduces the size of data to be transfered to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
+For all traces (for each channel) in an event the part which contains all significant pulses is calculated. A bit of padding is added to allow verification of the baseline in the offline analysis. The rest of the traces is cut away. On average (median) this leads to traces with \SI{150}{\ns} length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples), so overall only \SI{2.5}{\percent} of the measured data is kept. This reduces the size of data to be transfered to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
 
 % Scipt to determine some values, to be determined for larger dataset:
 % lengths = [zlib.decompress(s.blobs[i]).count(',') for i in range(0, s.blobs.nrows, 4)]
@@ -73,12 +73,12 @@ figure showing  relative trace time (sample)  in relation to GPS time.
 
 \subsection{Detector offsets}
 
-Time offsets are observed between detectors, these need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within one station. All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\nano\second}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station. 
+Time offsets are observed between detectors, these need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within one station. All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station. 
 
 
 \subsection{Coincidences}
 
-Finally all processed events from one day are taken into one long list and coincidences are found. A coincidence is a group of least two events whos (extended) timestamps are within \SI{2000}{\nano\second}. The coincidence window of \SI{2000}{\nano\second} is chosen because it is the length of the Science Park cluster in time for light. 
+Finally all processed events from one day are taken into one long list and coincidences are found. A coincidence is a group of least two events whos (extended) timestamps are within \SI{2000}{\ns}. The coincidence window of \SI{2000}{\ns} is chosen because it is the length of the Science Park cluster in time for light. 
 
 
 \subsection{Station offsets}
