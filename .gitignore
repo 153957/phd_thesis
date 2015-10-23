@@ -1,6 +1,9 @@
 # Specific
 thanks.md
-articles/
+articles/**.pdf
+articles/fokkema_references
+!articles/*.bib
+!articles/*/*.bib
 
 # Compiled
 thesis*.pdf
