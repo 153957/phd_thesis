@@ -1,0 +1,217 @@
+\chapter{Design of the \hisparc experiment}
+\label{ch:experiment}
+
+
+\section{A layered setup}
+
+The \hisparc experiment detects cosmic-ray induced air showers by sampling the shower front as it reaches ground level. Detection with multiple detectors is needed to rule out background radiation. The time and place correlation of particles belonging to the same EAS makes it possible to distinguish them from the background radiation. Background radiation includes low energy showers which produce only a couple muons at ground level, to few to effectively detect to properly reconstruct the shower. So there is a certain lower energy threshold where the probability of detecting the shower is very loe.
+
+\subsection{Layers of the experiment}
+
+It is important to make distinctions between different layers of the experiment. The detectors sample parts of the EAS, detecting particles as they pass through the detector. Multiple detectors connected to readout and trigger logic create a station. All stations form the \hisparc network. Subsets of stations (same geographical region) are referred to as clusters.
+
+\missingfigure{Photo of station on roof. Either cluster photo or with students.}
+
+
+\section{Detector design}
+
+\missingfigure{Timing scintillator.}
+
+The scintillator detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (PMT) which converts the scintillation photons into an electric signal. The size of detectors affects the probability of detecting a particle given a particle density.
+
+The scintillator is a cuboid of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material was chosen for its good timing properties and light output for charged particles.
+
+The Photomultiplier tube (\cite{et:pmt}, also ref hamamatsu?) is a small
+\SI{29}{\milli\meter} diameter PMT.
+
+Besides these the detector construction consists of several other components. An isosceles triangle light guide, which is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light tight black pond foil to keep light out and protect the aluminium foil from outside influences.
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/ADL_115651}
+    \caption{Detector in the process of being assembled. Scintillator with the lightguide attached laying on the Aluminium foil and pond foil in which it will be wrapped.}
+    \label{fig:scintillator}
+\end{figure}
+
+
+
+\subsection{Photo multiplier}
+
+The PMT is used to convert the optical signal from the scintillator to an analog/electrical signal. The PMT must amplify the signal to be much higher than the noise level in the readout electronics. A PMT
+
+n photons
+QE
+gain
+gain vs time
+
+An alternative for PMTs might be Silicon based sensors (pixels/chips). However, silicon pixels these are not as thermally stable as PMTs. The temperature in a \hisparc skibox can fluctuate over \SI{30}{\degreeCelsius} in a day. The voltage on such (avalanche) chips needs to be controlled carefully to keep them performing optimally. Multi-pixel photon counters (MPPC) have been tested and compared to PMTs \cite[Chapter~3.4]{lio2011} and \cite[Chapter~3.6]{lio2010}. The MPPC have a smaller collection area, smaller temperature range (require cooling?), and increased complexity when using multiple (for increased area/reduced dark counts) MPPC. The conclusion is that at that time the MPPC are not yet ready for use in \hisparc.
+
+The PMTs are attached to the detector with optical tape, allowing them to be replaced easily.
+
+Nikhef designed high-voltage voltage-divier circuit.
+Cockcroft-Walton voltage multiplier circuit.
+High linearity?
+
+
+
+
+\subsection{Signal response}
+
+A particle is detected if it passes through our detector and leaves some energy behind. These detections end up as a digitized list of numbers with a timestamp. However, before a particle signal ends up in its digital form it passes through the various parts of the detector. Not all parts perfectly transport the particle signal. These effects, which prevent the detector from having perfect timing and particle counting will be outlined. These also serve as probability distributions that are used in detector simulations.
+
+
+\subsection{Energy loss and light production}
+
+Particles loose energy in the detector because of interactions with the polyvinyltoluene in the scintillator. Ionization and Bremsstrahlung and the main sources of energy loss for energetic charged particles (electrons, muons). The energy is transferred to anthracene molecules which emit light that
+
+This formula gives the stopping power, the amount of energy lost by the particle per \SI{}{\gram\centi\meter\square} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, so the energy loss is not a fixed number but a distribution. (figure...)
+
+The scintillator is \SI{2}{\centi\meter} thick, however, most particles have a longer path through the detector because they enter it at an angle. The path can be shorter if the particle passes through one of the edges of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low. The amount of energy deposited by the particle going through the detector is described by the Bethe-Bloch formula.
+
+According to the specifications the amount of light produced in a scintillator as a function of temperature should be constant between \SI{-60}{\degreeCelsius} and \SI{20}{\degreeCelsius}. At \SI{60}{\degreeCelsius} the light output is decreased by \SI{5}{\percent} relative to the output at \SI{20}{\degreeCelsius}. Temperature in a skibox can rise above the local outside temperature when the sun shines upon it. Temperature loggers have measured differences of over \SI{10}{\degreeCelsius} above the local outside temperature. Rarely but sometimes the temperature in the Netherlands can reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency of the scintillator might be \SI{3.75}{\percent} below nominal. Given the rare occurrence of such extremely high temperatures and the small effect this is ignored in the analysis and simulations.
+
+
+\subsubsection{Gammas}
+
+\todo{Signals in detector from gammas}
+
+Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{1}{\MeV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+
+
+
+\subsection{Fluorescence}
+
+rise time - 0.9 ns, decay time - 2.1 ns, pulse width 2.5 ns.
+
+\todo{deexcitation fast (2.1 ns), slow phosphorescence
+      (14.2 ns), ratio?}
+
+\section{Station design}
+
+\subsection{HiSPARC electronics}
+
+The \hisparc hardware (versions II and III) combine \pmt control, signal readout/daq, triggering logic, and the \gps receiver into one unit. The unit can be controlled and readout from a PC connected via USB \cite{messages}. The original version of the \hisparc hardware did not include the \daq and \gps receiver, those were separate modules and it could not be controlled via USB. Since that original version is no longer used by any station in the network it is ignored in the following discussion.
+
+
+\subsubsection{\pmt control}
+
+The \pmts are connected to the \hisparc electronics which provide it with power. The control voltage can be chosen between \SIrange{.3}{1.5}{\volt} which the \pmt will amplify to a high voltage of \SIrange{300}{1500}{\volt}. As feedback the current of the \pmt can be readout. Deviations from the expected values can indicate failing \pmts, i.e. a higher current. Nominal high voltage operating range for \pmts in \hisparc is \SI{870\pm120}{\volt}, which matches the expected range from the \pmt specifications.
+
+
+\subsubsection{Signal readout}
+
+Readout electronics. Two channels, each with two ADCs which readout a signal up to \SI{-2}{\volt}. And return a 12-bit value (4096 ADCcounts range). Each ADC is sampled at 200 MHz, using two ADCs per channel gives 400 Mhz (2.5 ns) per channel. Nikhef designed. Some (derivatives) used in other experiments.
+
+
+\subsubsection{Triggering logic}
+
+%
+%
+%\subsection{Triggering}
+%
+%Exact desription of trigger.
+%\missingfigure{Traces showing trigger.}
+%Describe possible problems/overlap/dead time with trigger.
+%\missingfigure{Traces showing event overlap.}
+%Trigger efficiency.
+
+
+Multiple detectors connected to \hisparc electronics makes a station. Multiple detectors are required to determine the presence of an air shower instead of single muons (small showers) or background radiations (Hz?). The \hisparc electronics continually readout the signal and compare the \adc values to two thresholds; the low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, i.e. at \SI{-30}{\milli\volt} and \SI{-70}{\milli\volt} [mention corresponding ADC counts]. When a channel crosses a threshold a counter is started for that channel and threshold. This counter will run for the length of the trigger window. After which it can be activated again if a signal again crosses the threshold (from below to above the threshold).
+
+Every clock the FPGA determines if the required thresholds for a trigger are active. If trigger conditions are met an event is created.
+
+A station with 2 detectors only has a Master box which has two input channels. In such a station there are 4 threshold counters, two per channel, to keep track of. The electronics can be configured to trigger on a combination of low and high signals. For example '1 high AND 1 low'. Because a high signal implies also a low signal this means one channel high AND another channel low, or in the logic of the FPGA: one high and two low. These trigger threshold requirements can not be set per channel (clever threshold settings?).
+
+For a Master-Slave combination the possible trigger combinations are x low and y high where x >= y or x low or y high where xand y in 0, 1, 2, 3, 4 . Additionally an external trigger is available to independetly trigger the electronics.
+
+\subsubsection{Timing}
+
+Pulse per second is received, synchronization error.
+PPS/Events
+GPS receiver module \cite{trimble}
+The externel trigger has an offset of \SI{125}{\ns} relative to a normal trigger.
+
+
+\subsubsection{Master and Slave}
+\label{sub:masterslave}
+
+Master and Slave contain the same firmware, each should be configured with the same settings. The boxes are connected with two \SI{0.3}{\meter} UTP cables that facilitate the communication between the two units. The Master sends its PPS data to the Slave, this allows the Slave to keep track of its own CTP (clock ticks between PPS) values. Both units send One Second Messages to the PC, each with their own CTP values. All \adc values are checked against the thresholds at each clock tick (\SI{200}{\mega\hertz}). Each channel has two ADCs, one checks the signal on the positive flank of the clock, the other on the negative. The results of the comparison to the thresholds is also communicated between the Master and Slave, because they need to know what the conditions in all four channels is to determine if a trigger occurred. When a unit determines a trigger takes place it will latch the number of clock ticks since the last CTP, this is called the CTD. The event will also contain the timestamp of the last PPS. Then each unit will send their own measured data message to the pc. The PC will need to figure out which Master and Slave events belong together. The CTP value from the one second message at the end of the second in which the event occurred is used to determine at what fraction of the second the event occurred. This timestamp is further corrected for more accuracy, the method of determining the \gps timestamp is described in section Cluster performance - Timing.
+
+
+\subsection{Layout of the detectors}
+
+Multiple detectors are used to exclude single muons from triggering the station. The layout of a  typical 4-detector station is shown in \cref{fig:4_detector_station}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to for a new equilateral triangle with one of the sides. More reconstructable events?
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/4_detector_star}
+    \caption{\captitle{Standard 4-detector station layout.} The colored
+             rectangles represent the scintillator detectors.}
+    \label{fig:4_detector_star}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/4_detector_diamond}
+    \caption{\captitle{New 4-detector station layout.} The colored              rectangles represent the scintillator detectors. The central detector is placed such to create a second equilateral triangle.}
+    \label{fig:4_detector_diamond}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{plots/hisparc-experiment/discrete_directions}
+    \caption{\captitle{Discrete direction reconstructions.} The possible
+             direction reconstructions for a station with 3 detectors in
+             a \SI{10}{\meter} equilateral triangle. The discrete
+             solutions are due to the \SI{2.5}{\ns} sampling
+             rate of the \adcs.}
+    \label{fig:discrete_directions}
+\end{figure}
+
+The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as we do know where the detectors are. In order to get the absolute position of the detectors their positions are measured relative to the \gps, whose position is know (see next chapter?). For this a distance measuring device (rolmaat) and a compass are required. The position of each detector is recorded relative to the \gps, its distance and the angle between (True?) North and the detector. Additionally the rotation of the detector itsself around its center can be recorded, though this is less important. The coordinate system is also described in [ref appendix coordinates compass]. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important, though (full) direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).
+
+
+\subsection{Performance}
+
+Single station performance versus KASCADE
+\missingfigure{Resolution versus KASCADE.}
+
+% Lower energy sensitivity, minimum shower size in station to detect.
+
+
+\section{Network}
+
+
+- station data needs to be combined
+- data sent over internet to Nikhef
+    - per station data processed
+    - coincidences between stations determined
+- reason for GPS
+    - station position
+    - gps timestamps
+
+
+\missingfigure{Dataflow infrastructure.}
+\missingfigure{Map of the \hisparc network (Netherlands/England/Denmark).}
+\missingfigure{Distances between (all) station pairs.}
+\missingfigure{Luminostity and number of stations versus date.}
+
+
+\subsection{Coincidences}
+
+Accuracy of timestamps and effect of coincidence window
+\missingfigure{GPS resolution/offsets.}
+\missingfigure{Coincidence rate.}
+
+
+\subsection{International}
+
+Locations of \hisparc stations are not limited to the Netherlands.
+
+In Germany one of our stations (70001) was placed inside the \kascade experiment in Karlsruhe on July 1, 2008. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE \cite{kascade:grande} experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for some test setups, including our detection station. The \kascade experiment \cite{kascade:experiment} triggered the \hisparc station when it detected a shower. It was triggered more than \num{9e7} (in publicdb, more on external hdd? and in `/databases/kascade`?) times in this period. The detectors used for the \kascade station have been repurposed and are now part of station 508 on the Science Park.
+
+Since 2007 there has been a \hisparc station in Denmark. There are currently 3 operational stations at the Aarhus University. These stations are managed by Uffe Amelung Fredens. Fredens is writing student materials for Danish high school students.
+
+In Bristol, United Kingdom a new cluster started to form in March 2012. This was initiated by Dr. Jaap Velthuis who is the cluster coordinator for the Bristol cluster. Since then schools around Bristol have joined the network. More on the way..
+
+In 2014? a second cluster has started in the United Kingdom around Birmingham. The Birmingham cluster is coordinated by Cristina Lazzeroni.

@@ -1,67 +1,6 @@
 \section{Signal performance of a detector}
 
 
-\subsection{Signal response}
-
-A particle is detected if it passes through our detector and leaves some
-energy behind. These detections end up as a digitized list of numbers
-with a timestamp. However, before a particle signal ends up in its
-digital form it passes through the various parts of the detector. Not
-all parts perfectly transport the particle signal. These effects, which
-prevent the detector from having perfect timing and particle counting
-will be outlined. These also serve as probability distributions that are
-used in detector simulations.
-
-
-\subsection{Energy loss and light production}
-
-Particles loose energy in the detector because of interactions with the
-polyvinyltoluene in the scintillator. Ionization and Bremsstrahlung and
-the main sources of energy loss for energetic charged particles
-(electrons, muons). The energy is transferred to anthracene molecules which emit light that
-
-This formula gives the stopping power, the amount of energy
-lost by the particle per \SI{}{\gram\centi\meter\square} of the material
-it passes through. However, the interactions in which the particles
-loose energy is a statistical process, so the energy loss is not a fixed
-number but a distribution. (figure...)
-
-The scintillator is \SI{2}{\centi\meter} thick, however, most particles
-have a longer path through the detector because they enter it at an
-angle. The path can be shorter if the particle passes through one of the
-edges of the scintillator, but due to the large area of the detector
-relative to its thickness the chance of that happening is low. The
-amount of energy deposited by the particle going through the detector is
-described by the Bethe-Bloch formula. 
-
-According to the specifications the amount of light produced in a
-scintillator as a function of temperature should be constant between
-\SI{-60}{\degreeCelsius} and \SI{20}{\degreeCelsius}. At
-\SI{60}{\degreeCelsius} the light output is decreased by
-\SI{5}{\percent} relative to the output at \SI{20}{\degreeCelsius}.
-Temperature in a skibox can rise above the local outside temperature
-when the sun shines upon it. Temperature loggers have measured
-differences of over \SI{10}{\degreeCelsius} above the local outside
-temperature. Rarely but sometimes the temperature in the Netherlands can
-reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency of
-the scintillator might be \SI{3.75}{\percent} below nominal. Given the
-rare occurrence of such extremely high temperatures and the small effect
-this is ignored in the analysis and simulations.
-
-
-\subsubsection{Gammas}
-
-\todo{Signals in detector from gammas}
-
-Energetic photons can also deposit energy in the scintillator due to
-Compton scattering and pair creation. However, the cross sections for
-these interactions is very low. A \SI{1}{\MeV} photon  has
-a mean free path greater than \SI{10}{\centi\meter}, which increases
-further for higher energy photons, see fig [By Jos/Tom]. Despite the low
-detection chance, the large number of photons in an air shower makes
-them statistically relevant.
-
-
 \subsection{Light transmission}
 
 Because of the geometry of the detector the position of the scintillator
@@ -69,7 +8,7 @@ that the particle goes through is significant. The light emitted along
 the path of the particle is transmitted in random directions. Depending
 on the angle at which the emitted photons hit the outer edges of the
 scintillator there is a chance that they will be reflected back or leave
-the scintillator. The entire detector is wrapped in aluminium foil 
+the scintillator. The entire detector is wrapped in aluminium foil
 to reflect those photons back into the scintillator. To
 detect the photons they need to hit the windows of \pmt. To get to the
 \pmt they need to pass from the scintillator through a layer of optical
