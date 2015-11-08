@@ -4,9 +4,7 @@ import numpy as np
 from artist import Plot, PolarPlot
 
 from sapphire.clusters import SingleStation
-from sapphire.analysis.direction_reconstruction import \
-    (DirectAlgorithm, DirectAlgorithmCartesian3D, DirectAlgorithmCartesian2D,
-     FitAlgorithm)
+from sapphire.analysis.direction_reconstruction import DirectAlgorithmCartesian2D
 
 
 TIME_RESOLUTION = 2.5  # nanoseconds
@@ -44,7 +42,7 @@ def ceil_in_base(value, base):
 
 if __name__ == '__main__':
 
-    dirrec = DirectAlgorithmCartesian3D()
+    dirrec = DirectAlgorithmCartesian2D()
 
     station = SingleStation().stations[0]
 
@@ -61,16 +59,6 @@ if __name__ == '__main__':
     thetaa = [t for t in theta if not np.isnan(t)]
     phia = [p for p in phi if not np.isnan(p)]
     graph.scatter(phia, thetaa, markstyle='mark size=.5pt')
-
-    # Add curved lines where detector 0 and 2 have fixed but different times
-    # and a straight line where detector 0 and 2 have equal times
-#     times = np.arange(-35, 35, TIME_RESOLUTION)
-#     for dt in (0, 10, 22.5):
-#         theta, phi = itertools.izip(*(dirrec.reconstruct_common((0, dt) + (t, ), x, y, z)
-#                                       for t in times))
-#         thetaa = [t for t in theta if not np.isnan(t)]
-#         phia = [p for p in phi if not np.isnan(p)]
-#         graph.plot(phia, thetaa, mark=None, linestyle='blue,solid')
 
     graph.set_ylimits(0, np.pi / 2)
     graph.set_yticks([0, np.pi / 6, np.pi / 3, np.pi / 2])

@@ -1,58 +1,73 @@
 \chapter{Design of the \hisparc experiment}
 \label{ch:experiment}
 
+\subsection{Design criteria}
 
-\section{A layered setup}
+In \cref{sec:air-shower-physics} the development of EAS is explained. The definition of the shower front is given and its characteristics. Showers produce a high density of particles near the shower core. The density steeply decreases with increasing distance to the core. Showers of higher energy produce an overal higher density. Given an expected particle density the probability of detecting a certain number of particles is given by the Poisson distribution [Pk]. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density [P0]. Which gives the probability of detecting at least one particle [1-P0].
 
-The \hisparc experiment detects cosmic-ray induced air showers by sampling the shower front as it reaches ground level. Detection with multiple detectors is needed to rule out background radiation. The time and place correlation of particles belonging to the same EAS makes it possible to distinguish them from the background radiation. Background radiation includes low energy showers which produce only a couple muons at ground level, to few to effectively detect to properly reconstruct the shower. So there is a certain lower energy threshold where the probability of detecting the shower is very loe.
+Background radiation includes low energy showers which produce only a couple muons at ground level, to few to effectively detect in multiple detectors. At least two detectors need to detect the shower to distinguish it from the background. This makes the probability of detecting at least a particles in both detectors simultaneously [square of P], assuming the core distance is equal for both detectors. There is a lower energy threshold where the probability of detecting the shower becomes very low. This will depend on the size of and distance between the detectors.
 
-\subsection{Layers of the experiment}
+To be able to fully reconstruct the direction of an air shower at least three detection points are required. This can either be achieved by a single station with more than three detectors (short distances), or by combining detections from multiple stations (larger distances). The distance between the detection points is one of the variables that determines the accuracy of the direction resolution. The other variable is the accuracy of the time difference between the detections. For direction reconstruction within a station the distances between the detectors will be small, which means that the timing resolution needs to be good.
 
-It is important to make distinctions between different layers of the experiment. The detectors sample parts of the EAS, detecting particles as they pass through the detector. Multiple detectors connected to readout and trigger logic create a station. All stations form the \hisparc network. Subsets of stations (same geographical region) are referred to as clusters.
+Making detectors larger makes them more likely to detect particles. The downside is that the detector becomes less easy to handle, more expensive, efficiency uniformity may decrease, and saturation might occur sooner. A good balance needs to be determined. The experiment is meant to be accessible for high schools, the detectors need to be fairly easy to handle. If the detectors would be placed inside schools the floor/roof material might affect the detections. In order to have enough space to place the detectors the most obvious location would be on the roof. If the detectors are outside proper protection from weather effects need to be considered.
 
-\missingfigure{Photo of station on roof. Either cluster photo or with students.}
+
+\section{The \hisparc experiment}
+
+The \hisparc experiment detects cosmic-ray induced air showers by sampling the shower front as it reaches ground level. It is important to make distinctions between different layers of the experiment. Each `layer' will be described thoroughly in the next sections.
+
+Scintillator detectors sample parts of the EAS, detecting charged particles as they pass through the detector. The detectors are described in \cref{sec:detector-design}.
+
+The time and place correlation of particles belonging to the same EAS makes it possible to distinguish them from the background radiation. The particle density gives indications to the size of and distance to the shower. The readout electronics records the strength and arrival time of the signals in the detectors. Detection with multiple detectors is needed to veto the background. Multiple detectors can be connected to the readout electronics which also contain a coincidence trigger. A simple station to detect air showers requires two detectors. Using more than two detectors allows for the reconstruction of some properties of the air shower. Two different station setups have been devised, one with two detectors and one with four. The four detector station is more expensive, but allows for the reconstruction of more shower parameters by itself. The readout and trigger electronics that make the station are described in \cref{sec:station-design}.
+
+By combining the measurements of multiple stations more accurate reconstructions can be made, because more detection points are then used. The time synchronization is done via \gps. Together all stations form the \hisparc network, which is described in \cref{sec:network-design}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/ADL_151373_151429_layers}
+    \caption{The Science Park cluster. The blue ellipse indicates a single detector. The pink region indicates a single detector stations. The green region encompasses multiple stations (not the entire \hisparc network).}
+    \label{fig:sciencepark-layers}
+\end{figure}
 
 
 \section{Detector design}
+\label{sec:detector-design}
 
-\missingfigure{Timing scintillator.}
+Scintillators have been chosen as detection material. This is a relatively cheap material with high reliability and good efficiency. The size is chosen such that the number of background particles does not become to high, which maintaining handleability. The size also works well with the choice for the outer case, namely, roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather.
 
 The scintillator detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (PMT) which converts the scintillation photons into an electric signal. The size of detectors affects the probability of detecting a particle given a particle density.
 
 The scintillator is a cuboid of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material was chosen for its good timing properties and light output for charged particles.
 
-The Photomultiplier tube (\cite{et:pmt}, also ref hamamatsu?) is a small
-\SI{29}{\milli\meter} diameter PMT.
+The photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} diameter PMT.
 
 Besides these the detector construction consists of several other components. An isosceles triangle light guide, which is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
 \begin{figure}
     \centering
-    \input{plots/hisparc-experiment/ADL_115651}
+    \includegraphics[width=.6\textwidth]{plots/experiment/ADL_115651}
     \caption{Detector in the process of being assembled. Scintillator with the lightguide attached laying on the Aluminium foil and pond foil in which it will be wrapped.}
     \label{fig:scintillator}
 \end{figure}
 
 
+- Add figure; timing scintillator
+
 
 \subsection{Photo multiplier}
 
-The PMT is used to convert the optical signal from the scintillator to an analog/electrical signal. The PMT must amplify the signal to be much higher than the noise level in the readout electronics. A PMT
+The PMT is used to convert the optical signal from the scintillator to an analog/electrical signal. The PMT must amplify the signal to be much higher than the noise level in the readout electronics.
 
-n photons
-QE
-gain
-gain vs time
+typical n photons per particle, Quantum efficiency, gain, gain vs time
 
 An alternative for PMTs might be Silicon based sensors (pixels/chips). However, silicon pixels these are not as thermally stable as PMTs. The temperature in a \hisparc skibox can fluctuate over \SI{30}{\degreeCelsius} in a day. The voltage on such (avalanche) chips needs to be controlled carefully to keep them performing optimally. Multi-pixel photon counters (MPPC) have been tested and compared to PMTs \cite[Chapter~3.4]{lio2011} and \cite[Chapter~3.6]{lio2010}. The MPPC have a smaller collection area, smaller temperature range (require cooling?), and increased complexity when using multiple (for increased area/reduced dark counts) MPPC. The conclusion is that at that time the MPPC are not yet ready for use in \hisparc.
 
-The PMTs are attached to the detector with optical tape, allowing them to be replaced easily.
+The PMTs are attached to the detector with optical tape, allowing them to be replaced easily. breaking index?
 
 Nikhef designed high-voltage voltage-divier circuit.
 Cockcroft-Walton voltage multiplier circuit.
 High linearity?
-
-
 
 
 \subsection{Signal response}
@@ -86,7 +101,9 @@ rise time - 0.9 ns, decay time - 2.1 ns, pulse width 2.5 ns.
 \todo{deexcitation fast (2.1 ns), slow phosphorescence
       (14.2 ns), ratio?}
 
+
 \section{Station design}
+\label{sec:station-design}
 
 \subsection{HiSPARC electronics}
 
@@ -144,7 +161,7 @@ Multiple detectors are used to exclude single muons from triggering the station.
 
 \begin{figure}
     \centering
-    \input{plots/hisparc-experiment/4_detector_star}
+    \input{plots/experiment/4_detector_star}
     \caption{\captitle{Standard 4-detector station layout.} The colored
              rectangles represent the scintillator detectors.}
     \label{fig:4_detector_star}
@@ -152,14 +169,14 @@ Multiple detectors are used to exclude single muons from triggering the station.
 
 \begin{figure}
     \centering
-    \input{plots/hisparc-experiment/4_detector_diamond}
+    \input{plots/experiment/4_detector_diamond}
     \caption{\captitle{New 4-detector station layout.} The colored              rectangles represent the scintillator detectors. The central detector is placed such to create a second equilateral triangle.}
     \label{fig:4_detector_diamond}
 \end{figure}
 
 \begin{figure}
     \centering
-    \input{plots/hisparc-experiment/discrete_directions}
+    \input{plots/experiment/discrete_directions}
     \caption{\captitle{Discrete direction reconstructions.} The possible
              direction reconstructions for a station with 3 detectors in
              a \SI{10}{\meter} equilateral triangle. The discrete
@@ -174,14 +191,21 @@ The layout of each station is not always precisely according to the suggested la
 \subsection{Performance}
 
 Single station performance versus KASCADE
-\missingfigure{Resolution versus KASCADE.}
+Show both azimuth and zenith side-by-side
 
-% Lower energy sensitivity, minimum shower size in station to detect.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]
+                    {plots/experiment/azimuth_kascade_minn1}
+    \caption{Angle reconstruction compared to KASCADE.}
+    \label{fig:azimuth_kascade}
+\end{figure}
 
 
 \section{Network}
+\label{sec:network-design}
 
-
+- subsets of stations (same geographical region) are referred to as clusters.
 - station data needs to be combined
 - data sent over internet to Nikhef
     - per station data processed
@@ -192,8 +216,22 @@ Single station performance versus KASCADE
 
 
 \missingfigure{Dataflow infrastructure.}
-\missingfigure{Map of the \hisparc network (Netherlands/England/Denmark).}
-\missingfigure{Distances between (all) station pairs.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{plots/experiment/network}
+    \caption{Map of station locations in the entire \hisparc network (Netherlands/England/Denmark).}
+    \label{fig:network-map}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/network_station_distances}
+    \caption{Distribution of distances between all station pairs.}
+    \label{fig:network-distances}
+\end{figure}
+
 \missingfigure{Luminostity and number of stations versus date.}
 
 
@@ -201,7 +239,14 @@ Single station performance versus KASCADE
 
 Accuracy of timestamps and effect of coincidence window
 \missingfigure{GPS resolution/offsets.}
-\missingfigure{Coincidence rate.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/distance_v_coincidence_rate}
+    \caption{Coincidence rate between station pairs as a function of their distance, the different symbols indicate the number of detectors in the combination. The square indicates two 4-detector stations, triangle for a 4- and 2-detector station, and the circle two 2-detector stations. The horizontal lines indicate the expected background rates.}
+    \label{fig:network-distances}
+\end{figure}
 
 
 \subsection{International}
