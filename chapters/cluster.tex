@@ -2,6 +2,137 @@
 \label{ch:cluster}
 
 
-\input{chapters/cluster_design}
+%    - [figure] number of stations active vs total number of stations (here or with luminosity?)
+%    - [figure] luminosity, cumulative number of events.
 
-\input{chapters/cluster_performance}
+
+\section{Positions}
+
+\subsection{\gps Self-Survey}
+
+To get a fix on the position of a stationary \gps antenna the \gps can perform a self-survey. During the self-survey the \gps will continuously determine its location, at the end of the survey the center of the clouds of positions will be taken as the correct location. \gps satellites orbit the Earth every \SI{12}{\hour}, taking in account the rotation of the Earth the \gps satellites will be above the same location of the Earth every \SI{24}{\hour}. The positions of the \gps satellites has an effect on the accuracy of the \gps, this is shown in ...(bad position -> periodic offsets). By using a self-survey of \SI{86400}{\second} (i.e. \SI{24}{\hour}) a good average is determined, which should minimize the time error. Normally this self-survey needs to be performed only once, if the \gps remains fixed in its place. In order to guess the accuracy of the self-survey it has been performed multiple times for some stations to see the spread in the results.
+
+Two \gps antennae separated by \SI{2}{\meter} are used by station 501 and station 510. Each station performed a self-survey with its own \gps and one with the \gps of the other station to test the accuracy.
+
+\begin{verbatim}
+GPS s510
+s510  1412347130	52.3558955	4.9509864	54.59
+s501  1414406502	52.3558990	4.9509880	57.65
+
+GPS s501
+s501  1412347557	52.3558800	4.9510065	55.40
+s510  1414406952	52.3558859	4.9510083	57.39
+\end{verbatim}
+
+Difference of \SI{1.}{\centi\meter}, but \SI{2}{\meter} in altitude.
+
+Looking at the available gps positions see a spread of 2 meters, but possibly contaminated by short surveys.
+
+
+\section{Timing}
+
+\subsection{\gps timestamp, electronics}
+
+When considering coincidences between stations the accuracy of the timing is crucial, both for correctly identifying coincidences and for the reconstruction. Similar to the offsets between detectors in a station, offsets between stations have been found. These may be caused by different detector cable lengths, \gps antennae cable length, and possibly something in the electronics of the \hisparc box.
+
+Determining the station offset requires many coincidences. The number of coincidences between stations is inversely correlated to the the distance between them. Moreover the width of the $\Delta t$ distribution between stations is dominated by time differences due to the arrival direction of the showers. This time difference increases with distance, if the azimuth direction is along the line between the stations then $\Delta t = r \sin{\theta}$. The distance between stations negatively affects the number of coincidences and increases the width of the $\Delta t$ distribution, making it harder to precisely determine the average offset. However, when distances become very large the accuracy of the offset will be less important, because it will have a smaller effect on the direction of the shower.
+
+\begin{figure}
+    \centering
+    \input{plots/response/station_offsets_501_502}
+    \caption{\captitle{Coincidence time difference distribution.} The
+             time difference between events in coincidence detected by
+             station 501 and 502 in a three week period in 2010. The
+             width of the distribution is caused by the distance between
+             stations and showers under angles.}
+    \label{fig:station_offsets_501_502}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{plots/response/station_offsets_501_510}
+    \caption{\captitle{Coincidence time difference distribution.} The
+             time difference between events in coincidence detected by
+             station 501 and 510 in a three week period in 2014. The
+             width of the distribution here is caused by \gps accuracy.
+             The reason for two distributions is that at some point in
+             the period the \gps antennas were switched between the two
+             stations.}
+    \label{fig:station_offsets_501_510}
+\end{figure}
+
+
+\section{\gps timing accuracy}
+\label{sec:gps_accuracy}
+
+Time difference calibration measurements have been performed on HiSPARC II and III electronic boxes. This started after dr. David Fokkema discovered an unexpected time offset between timestamps of events in a test where two HiSPARC stations (501 and 502) were triggered with the same pulse generator (Fokkema 2012 p47). Since these stations are very close ($\sim\SI{100}{\meter}$) a minimal time offset was expected, any offset or large standard deviation was expected to be the result of errors in \gps accuracy and position. However, a large offset ($\Delta t \sim\SI{18}{\ns}$) was found. Further tests have been performed to determine the cause of the offset, these tests are described in this section. Both the \hisparc electronics and \gps antennas were found to have varying offsets contributing to time differences in the resulting time measurements.
+
+
+\subsection{Making event timestamps}
+\label{sub:gps_timestamps}
+
+Every second the \gps receiver sends a signal (a Pulse Per Second) to the \hisparc electronics to indicate the start of a second \cite{messages}. The \hisparc box uses a $\SI{200}{\mega\hertz}$ clock to determine the time within this second. Since the crystal in this clock does not work at exactly $\SI{200}{\mega\hertz}$ the counter (reset at the arrival of a PPS) is read at the moment of an event and then when the next PPS arrives. Giving information about at what fraction of that second the event occurred. For higher accuracy (more than $\SI{5}{\ns}$) the clock is also read on the negative side of the clock, effectively making it a $\SI{400}{\mega\hertz}$ clock with $\SI{2.5}{\ns}$ accuracy. Events are sent from the \hisparc electronics to the PC as soon as they are readout, the events contain the trace data, timestamp, CTD... The extended timestamp is determined on the PC, because 3 One second messages from the electronics are required to accurately determine the extended timestamp. Determination of the extended timestamp is done with \cref{eq:timestamp}.
+
+\begin{equation}
+\label{eq:timestamp}
+    Timestamp = E_{Sync} + E_{Quan1} + \left(\frac{T_{Event}}{T_{PPS}}\right)
+                 \left(1e^9 - E_{Quan1} + E_{Quan2}\right)
+\end{equation}
+
+Where $E_{Quan}$ is the Quantization Error, $E_{Sync}$ is the Synchronization Error, $T_{Event}$ are the count of ticks till the event and $T_{PPS}$ are the count of ticks between the PPS before and after the event. Here the accuracy of the timestamp is improved by taking the Quantization errors into account. The quantization error for each PPS is in the following One second message. The One second message at the end of the second after the event is also required for the quantization error of the end value of the event second. The Resolution T GPS Embedded Board User Guide in correctly states this value is in seconds, it is in nanoseconds. The Synchronization Error corrects for the error made by the misalignment of the PPS and the FPGA clock.
+
+The same procedure is done for the Master and Slave events, each using their own One second messages.
+
+
+\subsection{Test setup}
+\label{sub:gps_test_setup}
+
+In the setup one \hisparc II Master (hardware serial: 62) is used as the main reference point for the entire test. All other \hisparc boxes were tested against this reference one at a time to measure the offset. Two \gps antennas ('501' and 'test') and a \gps splitter were used. With the splitter was possible to perform tests in which both \hisparc boxes used the same \gps antenna, removing the offset caused by using different \gps antennas.
+
+Each \hisparc box was connected to a \gps antenna and a PC, each running the current version of the \hisparc Software; \hisparc DAQ II v3.0.4. When the \hisparc III boxes needed to be tested the DAQ was upgraded to the beta version of the new DAQ; \hisparc DAQ III v1.0.0.
+
+A \SI{100}{\mega\hertz} Pulse Generator (as reference: Tabor Electronics Model 8600), with two short equal-length signal cables and a signal splitter was used to trigger the \hisparc electronics. Each box was connected to the same pulse generator through either of the PMT input channels. To ensure the generated signals arrived at the same time at the input both cables from the pulse generator were connected to the same \hisparc electronics and also switched around.
+
+\begin{figure}
+    \centering
+    \input{figures/gps_test_setup}
+    \caption{This image shows the setup of the test, two HiSPARC PCs
+             with HiSPARC Masters (Reference and Swap), both connected
+             to the same pulse generator. Each is also connected to a
+             \gps, some tests used separate \gps antennas (a) and in
+             some tests the same \gps was used by both (b).}
+    \label{fig:setup}
+\end{figure}
+
+
+\subsection{Offsets between \hisparc electronics}
+\label{sub:gps_offsets}
+
+Similar to the offsets between detector pairs within a single stations (see section detector timing) an offset .
+
+Tests to determine the offset distribution between \hisparc electronics have been performed using a \gps splitter to ensure they see the same \gps signal.
+
+Found slightly varying offsets between each \hisparc electronics unit. Constant over time. Can be corrected with enough statistics. Importance of 24 hour self-survey. - Do many 1 hour tests
+
+\todo{Test again year later, same difference??}
+
+The offsets in the \hisparc electronics can be as high as $|\Delta t| = \SI{15}{\ns}$. While the $\sigma_{\Delta t}$ remains within GPS specifications ($\sigma_{\Delta t} < \SI{4.5}{\ns}$).
+
+\todo{Time offset caused by \gps, 501-510 example, \gps swapped}
+
+\gps cable twists affect signal speed?
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/calibration/hisparc_offsets}
+    \caption{Time offsets relative to a reference box. Circles are the
+             mean offsets, the error bars the standard deviation and the
+             points indicate the minimum and maximum of the test.}
+    \label{fig:hisparc_offsets}
+\end{figure}
+
+
+\subsection{Compensating for the offset}
+
+The offset can be determined from real data. For any combination of two stations the expected mean time difference of all coincident events is, because of mirror symmetry, \SI{0}{\ns}. However the spread around the mean is very dependent on the distance between the stations, because showers at an angle will create larger time differences if the stations are further apart. Moreover, the increased distance means that less events will be detected simultaneously by both stations because showers of higher energy and larger footprints occur less often. To determine the offset between stations that are further apart more data is required.
+
