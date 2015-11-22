@@ -1,6 +1,7 @@
 # Specific
 thanks.md
 TODO
+outlines/
 articles/**.pdf
 articles/fokkema_references
 !articles/*.bib
