@@ -17,6 +17,7 @@ thesis*.pdf
 *.auxlock
 *.bbl
 *.bcf
+*_bibertool.bib
 *.blg
 *.dvi
 *.fdb_latexmk
