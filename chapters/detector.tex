@@ -1,6 +1,112 @@
 \chapter{Scintillator detector}
 \label{ch:detector}
 
-\input{chapters/detector_signals}
 
-\input{chapters/detector_timing}
+\section{Signal performance of a detector}
+\label{sec:detector-signal}
+
+\subsection{Scintillator uniformity}
+
+The Monte Carlo simulation predicts a non-uniform signal transmission for particles passing through different positions of the detector. This is experimentally confirmed by coincidence tests using a \SI[product-units = repeat]{1 x 1}{\centi\meter} scintillator connected to a \pmt and the standard detector. The small detector was then placed on various location on top of the large detector. Particles passing through both detectors are selected using a coincidence trigger. This way the position of the particle in the large detector is known and the efficiency at specific points can be determined.
+
+
+
+\begin{figure}
+    \centering
+    \input{plots/response/signal_efficiency}
+    \caption{\captitle{Signal for a particle.} This distribution gives
+             the signal from a single particles passing straight through
+             a random location of the scintillator. The distribution
+             scales with $\cos{\theta}^{-1}$.}
+    \label{fig:signal_efficiency}
+\end{figure}
+
+Fokkema Fig 2.7, *2.8*, 2.9, 2.10.
+
+Low efficiency: around ~2 \% across the detector, but not 0 \%!
+
+
+
+In the simulations we use the Bethe Bloch, energy straggling, Landau
+distribution convoluted with the efficiency modelled by Jos as
+distribution which can be scaled by cosine of angle of incidence.
+
+
+
+\subsection{\pmt linearity}
+
+Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt capable of saturating the \adc are expected to occur dozens of times a day. However, in the data we find that some (non-Nikhef) \pmts never produce signals that saturate the \adc. Calibration tests have been performed on \pmts to test their output given a known input signal.
+
+
+\subsection{PMT calibration}
+\label{sub:pmt_calibration}
+
+A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the window of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a detector. The pulse-to-pulse intensity typically fluctuates by \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
+
+The mean intensity of the individual fibers is not equal, so for each \pmt the mean intensity of each individual fiber is determined by disconnecting the other fibers and performing a measurement. This makes it possible to determine the input signal when multiple fibers are connected. Any subset of the 24 fibers can be used simultaneously. Signals resulting in a \pmt output pulse over \SI{5}{\volt} are possible with the full bundle of fibers.
+
+An oscilloscope is used to readout the \pmt signal. This allows for easy averaging of multiple signals and to readout signals larger than \SI{2}{\volt}. The oscilloscope measures the signal's pulse height and integral.
+
+
+\subsection{Measured linearity}
+
+In an EAS many more than one particle may pass through a detector. The response of the \pmt to higher signals needs to be investigated to determine the accuracy with which multiple particles can be reconstructed. To increase the intensity multiple fibers can be combined using the bundle of fibers. The setup is shown in \todo{add nice photo/schematic of setup}. Each fiber is tested separately to determine its mean intensity, then different combinations of multiple fibers are combined as input. The expectation is that the individual intensities of the fibers are simply added together. However, a \pmt might become saturated or less efficient for larger signals, being unable to supply enough current.
+
+There are several types of \pmt being used in the \hisparc experiment. Most established stations used \pmts that were fully created by outside manufacturers. However, several batches have been encountered where the failure rate of the \pmt power supplies was high, the tubes were still working fine. The costs to have the power supply replaced were excessive. The \nikhef Electronics department, which also developed the \hisparc electronics, have worked on \pmt power supplies for the \kmnet neutrino telescope experiment. The \kmnet \pmts have other requirements than those used for \hisparc so some modifications were required. The \kmnet design has been modified to be suitable for \hisparc. There have been a couple of iteration of the \hisparc \pmts. Multiple \pmts of each of these versions have been tested.
+
+The tests show that the new \nikhef produced \pmt power supply can supply enough current to saturate the \hisparc electronics. Moreover they have a lineair response curve. The output corresponds to the sum of the inputs. The old power supplies are lineair up to \SI{1}{\volt} (depending on voltage). At higher signals they start showing diminishing returns, barely reaching \SI{2.2}{\volt}. This effect can also be seen for some \hisparc stations because the pulse height histogram does not reach the maximum \adc value (minus the baseline). The following figure shows the test for a SensTech \pmt with its original power supply. Along the x-axis are the expected pulse heights, determined from the sums of individual fiber tests. The y-axis is the measured pulse height for certain combinations of fibers.
+
+\begin{figure}
+    \centering
+    \input{plots/calibration/linearity_compared}
+    \caption{Measurements of the pulse height linearity.}
+    \label{fig:linearity_senstech_ph}
+\end{figure}
+
+The data is fit with the following function, as described in
+\cite{icecube:pmt}.
+
+\begin{equation}
+    \ln V_{\mathrm{in}} = \ln V +
+                          \frac{p_0 \left(\frac{V}{p_1}\right)^{p_2}}
+                               {\left(1 - \frac{V}{p_1}\right)^{\frac{1}{4}}}
+\end{equation}
+
+The parameters have no physical meaning.
+
+
+From the detector data can already see non-linearity by plotting the measured pulse heights against the pulse integrals for the same events \todo[inline]{figure showing the ph v pi}. For the old \pmts this already showed that the pulse height is not lineair. However, it does not show if the pulse integral is lineair or not. By measuring the pulse heights and integrals using the setup we can see show non-lineair they both are.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/calibration/linearity_senstech_ph_pi}
+    \caption{Measurements of the pulse height versus pulse integral.}
+    \label{fig:linearity_senstech_ph_pi}
+\end{figure}
+
+The \adcs in the \hisparc electronics are designed and calibrated to make the range \SIrange{200}{4096}{\adc} correspond to the range \SIrange{0}{-2}{\volt}. Signals greater than \SI{-2}{\volt} are clipped, preventing the pulse height to provide an accurate measure of signal strength. The clipping also affects the pulse integral, however, non-saturated parts of the signal still grow bigger, so the integral continues to grow.
+
+\todo{Using ND-filters to weaken the signal, to check for walk
+      (arrival time determination).}
+
+Since April 2014 each \pmt that is going to be used for a \hisparc detector is first tested in the LED setup suing a single fiber to ensure it responds properly to light and that there is no significant background noise. The test tries to find the voltage at which the pulses have a pulse height around \SI{340}{\milli\volt}. This pulse height value requires a voltage close to the normal operational voltage of \pmts on a \hisparc detector.
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/response/ph_vs_pi.png}
+    \caption{\captitle{Pulse height versus number of particles.}
+             Indication of linearity of the \pmt.}
+    \label{fig:pmt_ph_pi}
+\end{figure}
+
+
+\section{Environmental conditions}
+\label{sec:detector-environmental}
+
+
+
+\section{Durability}
+\label{sec:detector-durability}
+

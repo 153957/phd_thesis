@@ -3,11 +3,11 @@
 
 \subsection{Design criteria}
 
-In \cref{sec:air-shower-physics} the development of EAS is explained. The definition of the shower front is given and its characteristics. Showers produce a high density of particles near the shower core. The density steeply decreases with increasing distance to the core. Showers of higher energy produce an overal higher density. Given an expected particle density the probability of detecting a certain number of particles is given by the Poisson distribution [Pk]. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density [P0]. Which gives the probability of detecting at least one particle [1-P0].
+In \cref{sec:air-shower-physics} the development of EAS is explained. The definition of the shower front is given and its characteristics. Showers produce a high density of particles near the shower core. The density steeply decreases with increasing distance to the core. Showers of higher energy produce an overal higher density. Given an expected particle density the probability of detecting a certain number of particles is given by the Poisson distribution [$P_k$]. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density [$P_0$]. Which gives the probability of detecting at least one particle [$1-P_0$].
 
-Background radiation includes low energy showers which produce only a couple muons at ground level, to few to effectively detect in multiple detectors. At least two detectors need to detect the shower to distinguish it from the background. This makes the probability of detecting at least a particles in both detectors simultaneously [square of P], assuming the core distance is equal for both detectors. There is a lower energy threshold where the probability of detecting the shower becomes very low. This will depend on the size of and distance between the detectors.
+Background radiation includes low energy showers which produce only a couple muons at ground level, to few to effectively detect in multiple detectors. At least two detectors need to detect the shower to distinguish it from the background. This makes the probability of detecting at least a particles in both detectors simultaneously [$P^2$], assuming the core distance is equal for both detectors. There is a lower energy threshold where the probability of detecting the shower becomes very low. This will depend on the size of and distance between the detectors.
 
-To be able to fully reconstruct the direction of an air shower at least three detection points are required. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). The distance between the detection points is one of the variables that determines the accuracy of the direction resolution. The other variable is the accuracy of the time differences between the detections. For direction reconstruction within a station the distances between the detectors will be small, which means that the timing resolution needs to be good. Using a 3-detector station the probability of detecting at least one particle in each becomes [cube of P], a for a n-detector station this becomes [sum_{k=3}^{n} (n over k) P^k P0^{n-k}].
+To be able to fully reconstruct the direction of an air shower at least three detection points are required. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). The distance between the detection points is one of the variables that determines the accuracy of the direction resolution. The other variable is the accuracy of the time differences between the detections. For direction reconstruction within a station the distances between the detectors will be small, which means that the timing resolution needs to be good. Using a 3-detector station the probability of detecting at least one particle in each becomes [$P^2$], a for a n-detector station this becomes [$\sum_{k=3}^{n} (^n_k) P^k P_0^{n-k}$].
 
 Making detectors larger makes them more likely to detect particles. The downside is that the detector becomes less easy to handle, more expensive, efficiency uniformity may decrease, and saturation might occur sooner. A good balance needs to be determined. The experiment is meant to be accessible for high schools, the detectors need to be fairly easy to handle. If the detectors would be placed inside schools the floor/roof material might affect the detections. In order to have enough space to place the detectors the most obvious location would be on the roof. If the detectors are outside proper protection from weather effects need to be considered.
 
@@ -38,7 +38,7 @@ Scintillators have been chosen as detection material. This is a relatively cheap
 
 The scintillator detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (PMT) which converts the scintillation photons into an electric signal. The size of detectors affects the probability of detecting a particle given a particle density.
 
-The scintillator is a cuboid of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material was chosen for its good timing properties and light output for charged particles.
+The scintillator is a parallelepiped/sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material was chosen for its good timing properties and light output for charged particles.
 
 The photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} diameter PMT. The photomultiplier tube has a front window with a photocathode, when this is hit by a photon an electron can be knocked free. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential, here again more electrons will be released. A typical PMT has 13 dynodes. At the end the electrons fall on the anode which is connected to the readout.
 
@@ -79,11 +79,37 @@ A particle is detected if it passes through our detector and leaves some energy 
 
 Particles loose energy in the detector because of interactions with the polyvinyltoluene in the scintillator. Ionization and Bremsstrahlung and the main sources of energy loss for energetic charged particles (electrons, muons). The energy is transferred to anthracene molecules which emit light that
 
-This formula gives the stopping power, the amount of energy lost by the particle per \SI{}{\gram\centi\meter\square} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, so the energy loss is not a fixed number but a distribution. (figure...)
+This formula gives the stopping power, the amount of energy lost by the particle per \si{\gram\centi\meter\square} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, so the energy loss is not a fixed number but a distribution.
+
+(figure of energy loss in scintillator)
 
 The scintillator is \SI{2}{\centi\meter} thick, however, most particles have a longer path through the detector because they enter it at an angle. The path can be shorter if the particle passes through one of the edges of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low. The amount of energy deposited by the particle going through the detector is described by the Bethe-Bloch formula.
 
+
+The light emitted along
+the path of the particle is transmitted in random directions. Depending
+on the angle at which the emitted photons hit the outer edges of the
+scintillator there is a chance that they will be reflected back or leave
+the scintillator. The entire detector is wrapped in aluminium foil
+to reflect those photons back into the scintillator. To
+detect the photons they need to hit the windows of \pmt. To get to the
+\pmt they need to pass from the scintillator through a layer of optical
+glue, the light guide, another layer of optical glue, a small piece of
+light guide, and finally a layer of optical tape to reach the \pmt.
+During this many photons will be reflected a number of times. For
+\SI{1}{\mip} approximately 30000 photons [check.] are emitted, most will
+not make it to the \pmt.
+
+
+A 2D Monte Carlo simulation performed by Jos Steijger which tracked
+photons from emission until they either reach the \pmt or leave the
+detector (ignoring the aluminium foil) gives transmission efficiency
+information at any location in the scintillator.
+
+
+
 According to the specifications the amount of light produced in a scintillator as a function of temperature should be constant between \SI{-60}{\degreeCelsius} and \SI{20}{\degreeCelsius}. At \SI{60}{\degreeCelsius} the light output is decreased by \SI{5}{\percent} relative to the output at \SI{20}{\degreeCelsius}. Temperature in a skibox can rise above the local outside temperature when the sun shines upon it. Temperature loggers have measured differences of over \SI{10}{\degreeCelsius} above the local outside temperature. Rarely but sometimes the temperature in the Netherlands can reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency of the scintillator might be \SI{3.75}{\percent} below nominal. Given the rare occurrence of such extremely high temperatures and the small effect this is ignored in the analysis and simulations.
+
 
 
 \subsubsection{Gammas}
@@ -100,6 +126,88 @@ rise time - 0.9 ns, decay time - 2.1 ns, pulse width 2.5 ns.
 
 \todo{deexcitation fast (2.1 ns), slow phosphorescence
       (14.2 ns), ratio?}
+
+
+\section{Detector timing}
+
+
+\subsection{Light transport and \pmt efficiency}
+
+Similar to the model that predicts the signal transport efficiency in
+the scintillator a models that calculates the transport time of these
+photons has been made. Quantum efficiency of the \pmt causes not every
+photon reaching the \pmt to produce a photoelectron. Multiple photons
+are required for the \pmt to produce a significant signal that the
+\hisparc electronics triggers. The model tracks the time at which the
+15th photon producing a photoelectron reaches the \pmt. 15
+photoelectrons are required for a signal of \SI{70}{\milli\volt} (high
+threshold).
+
+In the simulations for each particle within the bounds of the
+scintillator a number is taken from this distribution simulate the
+transport time of each particle.
+
+\begin{figure}
+    \centering
+    \input{plots/response/transport_time}
+    \caption{\captitle{Signal transport time.} Time transport
+             distribution in the detector.}
+    \label{fig:transport_time}
+\end{figure}
+
+
+\subsection{\pmt transport, cable length}
+
+The time it takes for the electron cascade in the \pmt to go from the
+front window to the anode is dependent on .. the high voltage of pmt,
+position electron hits, etc? Possible second pulse from ionization of
+atoms in tube.
+
+The signal from the \pmt is transported over a \SI{30}{\meter} long
+coaxial cable to the \hisparc electronics before it is digitized. To
+keep the detectors in sync the cables are precisely cut to the
+same length. The signal in the cables propagates at 2/3 the speed of
+light or \SI{.2}{\meter\per\ns}. Every \SI{.2}{\meter}
+difference in cable length increases the offset by a nanosecond. Kinks
+and twists in the cable can also increase the propagation time.
+
+The offset between detectors can change over time due to aging of the
+\pmt, changes in the high voltage and modifications to the cables.
+
+Offsets are determined by looking at the arrival time differences
+between two detectors over many events. All events in which a signal was
+detected in the reference detector (usually detector 2, because of its
+central location in 4-detector stations) and in another detector are
+used. Multiple events are needed to even out time differences due to the
+arrival direction of the showers, transport time and the shower front.
+The time difference distribution between two detectors includes a
+background of accidental coincidences.
+
+To determine the distribution of the mean offsets the distributions for
+a day of data for all stations have been fit by Gaussians, the found
+averages are then the distribution of the offsets. These have also been
+fit by a Gaussian \cref{fig:detector_offset_distribution}. In
+simulations a detector offset is drawn from this distribution and then
+fixed for that detector for the entire simulation.
+
+\todo{relative to detector 2.. different sigma if offset also given to
+      detector 2?}
+
+\begin{figure}
+    \centering
+    \input{plots/response/detector_offset_distribution}
+    \caption{\captitle{Detector offset distribution.} In black the mean
+             detector offsets for all detectors relative to detector 2
+             in each station are plotted. The gray line is a fit
+             Gaussian. The mean of the offset distribution is
+             \SI{0}{\ns} and the sigma is
+             \SI{2.7}{\ns}.}
+    \label{fig:detector_offset_distribution}
+\end{figure}
+
+
+\todo{Pulse height/integral, Number of particles. Leptons and gammas,
+      separate?}
 
 
 \section{Station design}
@@ -122,8 +230,7 @@ Readout electronics. Two channels, each with two ADCs which readout a signal up 
 
 \subsubsection{Triggering logic}
 
-%
-%
+
 %\subsection{Triggering}
 %
 %Exact desription of trigger.
@@ -133,13 +240,20 @@ Readout electronics. Two channels, each with two ADCs which readout a signal up 
 %Trigger efficiency.
 
 
-Multiple detectors connected to \hisparc electronics makes a station. Multiple detectors are required to determine the presence of an air shower instead of single muons (small showers) or background radiations (Hz?). The \hisparc electronics continually readout the signal and compare the \adc values to two thresholds; the low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, i.e. at \SI{-30}{\milli\volt} and \SI{-70}{\milli\volt} [mention corresponding ADC counts]. When a channel crosses a threshold a counter is started for that channel and threshold. This counter will run for the length of the trigger window. After which it can be activated again if a signal again crosses the threshold (from below to above the threshold).
+Multiple detectors connected to \hisparc electronics makes a station. Multiple detectors are required to determine the presence of an air shower instead of single muons (small showers) or background radiations (Hz?). The \hisparc electronics continually readout the signal and compare the \adc values to two thresholds; the low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, i.e. at \SI{-30}{\milli\volt} and \SI{-70}{\milli\volt} [mention corresponding ADC counts].
 
-Every clock the FPGA determines if the required thresholds for a trigger are active. If trigger conditions are met an event is created.
+The process of determining if the trigger conditions are met will be outlined here. There are several flags and counters in the firmware which keep track of what is happening. When a channel crosses a threshold (from below to above the trheshold) a flag is set and a counter is started for that channel and threshold combination. This counter will run for the length of the trigger window. At the end of the trigger window the corresponding flag will be unset. If the signal again crosses the threshold the flag will be set again and the counter start anew. If the threshold is crosses again while the counter is running it will simply continue, the counter is not reset. Every clock the FPGA determines if the required flags for a trigger are active. If trigger conditions are met the event is latched. This means that the traces of each channel are saved as well as the time of the event.
 
-A station with 2 detectors only has a Master box which has two input channels. In such a station there are 4 threshold counters, two per channel, to keep track of. The electronics can be configured to trigger on a combination of low and high signals. For example '1 high AND 1 low'. Because a high signal implies also a low signal this means one channel high AND another channel low, or in the logic of the FPGA: one high and two low. These trigger threshold requirements can not be set per channel (clever threshold settings?).
+A next trigger can occur after the end of the post-trigger time of a previous event. New coincidences are blocked until the trigger and post-trigger windows have passed.
 
-For a Master-Slave combination the possible trigger combinations are x low and y high where x >= y or x low or y high where xand y in 0, 1, 2, 3, 4 . Additionally an external trigger is available to independetly trigger the electronics.
+[new trigger conditions?]
+
+A station with 2 detectors only has a Master box which has two input channels. In such a station there are 4 threshold counters, two per channel. For a Master-Slave combination, i.e. a station with 4 detectors, there are additional counters for the other 2 channels.
+
+The electronics can be configured to trigger on a combination of low and high signals. For example '1 high AND 1 low'. Because a high signal implies also a low signal this means one channel high AND an other channel low, or in the logic of the FPGA: one high and two low. The trigger threshold requirements can not be set per channel but only as global requirements. However, by cleverly setting the thresholds complex trigger conditions can be created. In general the trigger settings for all stations are set the same way.
+
+Possible trigger combinations (in firmware logic) are `x low and y high' where x >= y, or `x low or y high' where  x > y and x and y can be 0, 1, 2, 3, or 4. Additionally external triggers are available to independently trigger the electronics. During the ADC calibration mode the electronics will self-trigger every \SI{.84}{\second} irrespective of other input signals.
+
 
 \subsubsection{Timing}
 
@@ -244,7 +358,7 @@ Accuracy of timestamps and effect of coincidence window
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/experiment/distance_v_coincidence_rate}
-    \caption{Coincidence rate between station pairs as a function of their distance, the different symbols indicate the number of detectors in the combination. The square indicates two 4-detector stations, triangle for a 4- and 2-detector station, and the circle two 2-detector stations. The horizontal lines indicate the expected background rates.}
+    \caption{Coincidence rate between station pairs as a function of their distance, the different symbols indicate the number of detectors in the combination. The square indicates two 4-detector stations, triangle for a 4- and 2-detector station, and the circle two 2-detector stations. The dashed lines indicate the expected background rates. The solid lines the expected rates for the different combinations.}
     \label{fig:network-distances}
 \end{figure}
 

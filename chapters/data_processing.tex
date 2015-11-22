@@ -13,11 +13,11 @@
 % pulseheigts
 % integrals
 % traces
-% event_rate 
+% event_rate
 
 When the \hisparc electronics trigger the detected signal traces and timing information is send to the controlling PC. First the PC determines the /gps timestamp for the event. The PC then analyses each trace individually to determine the event properties. There is a high probability (how high?) that the start of the traces (the pre-trigger window) do not contain significant signals, this is used to determine the baseline of the trace. After the baseline is known other properties can be determined.
 
-The pulseheight is the value of the highest signal in the trace, relative to the baseline. The pulse integral is the sum of the signals that are at least \SI{20}{\adc} (baselineThreshold) above the baseline. This threshold filters signal noise and small peaks.
+The pulse height is the value of the highest signal in the trace, relative to the baseline. The pulse integral is the sum of the signals that are at least \SI{20}{\adc} (baselineThreshold) above the baseline. This threshold filters signal noise and small peaks.
 
 For the number of peaks a different[?] threshold is set. As soon as the values rise above the threshold a peak is counted, when the signal reached its highest point and then drops down again the value needs to drop at least the value of the threshold before a new peak can start, for which the value needs to rise at least the threshold value again, above the new local minimum.
 
@@ -66,19 +66,19 @@ figure of pulse integral histogram
 
 \subsection{Trigger time}
 
-Then the trigger time for each event and the first particle in each channel is determined. We already have the \gps timestamp (upto nanoseconds) and a trace, but the timestamp is determined at the moment the trigger conditions are met. 
+Then the trigger time for each event and the first particle in each channel is determined. We already have the \gps timestamp (upto nanoseconds) and a trace, but the timestamp is determined at the moment the trigger conditions are met.
 
 figure showing  relative trace time (sample)  in relation to GPS time.
 
 
 \subsection{Detector offsets}
 
-Time offsets are observed between detectors, these need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within one station. All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station. 
+Time offsets are observed between detectors, these need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within one station. All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station.
 
 
 \subsection{Coincidences}
 
-Finally all processed events from one day are taken into one long list and coincidences are found. A coincidence is a group of least two events whos (extended) timestamps are within \SI{2000}{\ns}. The coincidence window of \SI{2000}{\ns} is chosen because it is the length of the Science Park cluster in time for light. 
+Finally all processed events from one day are taken into one long list and coincidences are found. A coincidence is a group of least two events whos (extended) timestamps are within \SI{2000}{\ns}. The coincidence window of \SI{2000}{\ns} is chosen because it is the length of the Science Park cluster in time for light.
 
 
 \subsection{Station offsets}
