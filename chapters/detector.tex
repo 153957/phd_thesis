@@ -48,7 +48,7 @@ The mean intensity of the individual fibers is not equal. For each \pmt the mean
 
 An oscilloscope is used to readout the \pmt signal. This allows for easy averaging of multiple signals and to readout signals larger than \SI{2}{\volt}. The oscilloscope measures the signal's pulse height and integral.
 
-In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The SensTech \pmt already start to be non-linear before the pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. The tests confirm that the \nikhef produced \pmt power supplies can supply enough current to saturate the \hisparc electronics. Larger input signals were not possible with the used setup, so it remains unclear at what point it will be unable to keep up. The non-linear curve can be fitted by the following equation, as described in \cite{icecube2010pmt}.
+In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The \senstech \pmt already start to be non-linear before the pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. The tests confirm that the \nikhef produced \pmt power supplies can supply enough current to saturate the \hisparc electronics. Larger input signals were not possible with the used setup, so it remains unclear at what point it will be unable to keep up. The non-linear curve can be fitted by the following equation, as described in \cite{icecube2010pmt}.
 
 \begin{equation}
     \ln V_{\mathrm{in}} = \ln V +
@@ -61,7 +61,7 @@ Where $V$ is the measured output signal and $V_{in}$ the input. The parameters (
 \begin{figure}
     \centering
     \input{plots/detector/linearity_compared}
-    \caption{Measurements of the pulse height linearity of \pmts. The dependence of the pulse height output on the input light intensity is shown. The input on the horizontal axis is in arbitrary units. The data points show the results from tests with the SensTech \pmt (closed circles) and the \nikhef \pmt (open circles). The black line are fits to the data.}
+    \caption{Measurements of the pulse height linearity of \pmts. The dependence of the pulse height output on the input light intensity is shown. The input on the horizontal axis is in arbitrary units. The data points show the results from tests with the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The black line are fits to the data.}
     \label{fig:linearity_pmts}
 \end{figure}
 
@@ -71,22 +71,22 @@ The pulse height and pulse integral were both measured during the tests. The rel
     \centering
     \includegraphics[width=.7\linewidth]
                     {plots/detector/ph_pi_compared_nikhef_senstech}
-    \caption{Measurements of the pulse height versus pulse integral. The data points show the results for the SensTech \pmt (closed circles) and the \nikhef \pmt (open circles). The last data point for the \nikhef \pmt has an unexplained offset, possibly due to a bad measurement.}
+    \caption{Measurements of the pulse height versus pulse integral. The data points show the results for the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The last data point for the \nikhef \pmt has an unexplained offset, possibly due to a bad measurement.}
     \label{fig:ph_pi_compared_nikhef_senstech}
 \end{figure}
 
-In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing a \nikhef and SensTech \pmt used in a single station. The SensTech \pmt clearly does not saturate the \adcs, while the other does. The pulse integral does continue to grow for the \nikhef \pmt while its pulse height is saturated. This is explained by the pulse becoming wider at its base. The pulse integral grows slower when some of the samples in the pulse are saturated. The difference seen in this relation for the types of \pmts can be used to identify the \pmt.
+In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing a \nikhef and \senstech \pmt used in a single station. The \senstech \pmt clearly does not saturate the \adcs, while the other does. The pulse integral does continue to grow for the \nikhef \pmt while its pulse height is saturated. This is explained by the pulse becoming wider at its base. The pulse integral grows slower when some of the samples in the pulse are saturated. The difference seen in this relation for the types of \pmts can be used to identify the \pmt.
 
 \begin{figure}
     \centering
     \includegraphics[width=.7\textwidth]{plots/detector/ph_pi_503.png}
-    \caption{Measured pulse height versus pulse integral from real detector data. The data is from detector 1 and 2 from station 503. Detector 1 (black) uses a SensTech \pmt, detector 2 (red) uses a \nikhef \pmt.}
+    \caption{Measured pulse height versus pulse integral from real detector data. The data is from detector 1 and 2 from station 503. Detector 1 (black) uses a \senstech \pmt, detector 2 (red) uses a \nikhef \pmt.}
     \label{fig:ph_pi_503}
 \end{figure}
 
-As can be seen in both the test and cosmic data, the SensTech \pmt is a bit steeper at low pulse integrals. This means that the pulses are less wide. [different number of dynodes?, different voltage?]
+As can be seen in both the test and cosmic data, the \senstech \pmt is a bit steeper at low pulse integrals. This means that the pulses are less wide. [different number of dynodes?, different voltage?]
 
-For each SensTech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. Measured cosmic data does provide some insight into the non linearity, however, the pulse height and integral are not independent measurements.
+For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. Measured cosmic data does provide some insight into the non linearity, however, the pulse height and integral are not independent measurements.
 
 The \adcs in the \hisparc electronics are designed and calibrated to make the range \SIrange{200}{4096}{\adc} correspond to the range \SIrange{0}{-2}{\volt}. Signals greater than \SI{-2}{\volt} are clipped, preventing the pulse height to provide an accurate measure of signal strength. The pulse height clipping also affects the pulse integral. For larger signals the non-saturated parts of the signal also grow bigger, so the integral continues to increase.
 
