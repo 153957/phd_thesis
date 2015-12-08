@@ -88,31 +88,16 @@ This formula gives the stopping power, the amount of energy lost by the particle
 
 The scintillator is \SI{2}{\centi\meter} thick, however, most particles have a longer path through the detector because they enter it at an angle. The path can be shorter if the particle passes through one of the edges of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low. The amount of energy deposited by the particle going through the detector is described by the Bethe-Bloch formula.
 
+The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to reflect those photons back into the scintillator. To detect the photons they need to hit the windows of \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and finally a layer of optical tape to reach the \pmt. During this many photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, most will not make it to the \pmt.
 
-The light emitted along
-the path of the particle is transmitted in random directions. Depending
-on the angle at which the emitted photons hit the outer edges of the
-scintillator there is a chance that they will be reflected back or leave
-the scintillator. The entire detector is wrapped in aluminium foil
-to reflect those photons back into the scintillator. To
-detect the photons they need to hit the windows of \pmt. To get to the
-\pmt they need to pass from the scintillator through a layer of optical
-glue, the light guide, another layer of optical glue, a small piece of
-light guide, and finally a layer of optical tape to reach the \pmt.
-During this many photons will be reflected a number of times. For
-\SI{1}{\mip} approximately 30000 photons [check.] are emitted, most will
-not make it to the \pmt.
-
-
-A 2D Monte Carlo simulation performed by Jos Steijger which tracked
-photons from emission until they either reach the \pmt or leave the
-detector (ignoring the aluminium foil) gives transmission efficiency
-information at any location in the scintillator.
-
-
+A 2D Monte Carlo simulation performed by Jos Steijger which tracked photons from emission until they either reach the \pmt or leave the detector (ignoring the aluminium foil) gives transmission efficiency information at any location in the scintillator.
 
 According to the specifications the amount of light produced in a scintillator as a function of temperature should be constant between \SI{-60}{\degreeCelsius} and \SI{20}{\degreeCelsius}. At \SI{60}{\degreeCelsius} the light output is decreased by \SI{5}{\percent} relative to the output at \SI{20}{\degreeCelsius}. Temperature in a skibox can rise above the local outside temperature when the sun shines upon it. Temperature loggers have measured differences of over \SI{10}{\degreeCelsius} above the local outside temperature. Rarely but sometimes the temperature in the Netherlands can reach \SI{40}{\degreeCelsius}, so on such occasions the efficiency of the scintillator might be \SI{3.75}{\percent} below nominal. Given the rare occurrence of such extremely high temperatures and the small effect this is ignored in the analysis and simulations.
 
+
+\subsection{\mip/MPV}
+
+The number of particles in a detector are determined by the pulse integral, the integrated signal of the \pmt recorded by the \adc. When making a histogram of all pulsintegrals this will not show discrete values for the number of particles in each detection but a continuous distribution. There is overlap in the pulse integrals from one particle and the pulse integrals from two particles. The pulse integral histogram does peak at a certain value, this is the most probable value for the pulse for one particle, since it dominates the histogram. The value at which this peak occurs is called the Most Probable Value (MPV).
 
 
 \subsubsection{Gammas}
