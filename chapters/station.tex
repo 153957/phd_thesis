@@ -51,8 +51,7 @@ The misalignment of the \adcs also affects the arrival time reconstruction. Howe
   Detector offsets can be determined with a day of data (accuracy?). Arrival
   time differences give an almost Guassian distribution.
 
-
-- [figure] timeline of changes in detector offsets in a station
+The offsets between detectors in a station can be very stable over time. Changes to the station hardware and configuration can distrupt this. In \cref{fig:detector_offset_drift_month_501} the detector offsets for station 501 are shown. The jumps in offsets are explained by the change to \hisparciii electronics.
 
 \begin{figure}
     \centering
@@ -61,11 +60,7 @@ The misalignment of the \adcs also affects the arrival time reconstruction. Howe
     \label{fig:detector_offset_drift_month_501}
 \end{figure}
 
-  Changes in the offsets can be caused by changing the voltages of the PMT, or
-  replacing part of the detector, or hisparc electronics. If no changes are
-  made the offsets are very stable.
-- [figure] distribution of detector offsets between Master detectors
-
+These detector offsets are automatically determined each day for each station. In \cref{fig:detector_offset_distribution} the distribution of the offset between the two detectors connected to the Master electronics is shown. The mean offset is $0.02 \pm 0.30 \si{\ns}$ and the width of the distribution is $2.31 \pm 0.24 \si{\ns}$. The distribution between Master and Slave is more offset with a mean of $1.00 \pm 0.60 \si{\ns}$ with approximately the same width $2.25 \pm 0.84 \si{\ns}$.
 
 \begin{figure}
     \centering
@@ -74,8 +69,7 @@ The misalignment of the \adcs also affects the arrival time reconstruction. Howe
     \label{fig:detector_offset_distribution}
 \end{figure}
 
-  Often small offsets, with some outliers. The outliers also remain stable
-  over time, so not simply a day of bad data.
+Clearly the offsets are often very small, with some outliers.
 
 - [figure] distribution of detector offsets between master and slave
   [figure] time delta distribution (depends on trigger slave/master?)
@@ -124,12 +118,27 @@ The detection efficiency is defined as the probability of a detection given a ce
     \label{fig:effiency_501_510}
 \end{figure}
 
-At a particle density of approximately \SI{3.5}{\per\square\meter} in one station the coincidence probability for the other station becomes \SI{50}{\percent}. At approximately \SI{2.2}{\per\square\meter} the detection probability becomes \SI{25}{\percent} (i.e. \SI{$50^2$}{\percent}).
+At a particle density of approximately \SI{3.5}{\per\square\meter} in one station the coincidence probability for the other station becomes \SI{50}{\percent}. At approximately \SI{2.2}{\per\square\meter} the detection probability becomes \SI{25}{\percent}.
+
+[todo P{501+510}, P{501+!510}, P{!501+510}, P{!501+!510}]
+
+For the events in coincidence we can compare how well the two stations sampled the shower, and how well the detections can be reconstructed. In \cref{fig:density_501_510} the density correlation between the possible combinations of detectors is shown. The pairs of adjacent detectors form the diagonal. A stronger correlation can be seen for the detectors which are close together. Detectors 1 and 3 are furthest appart, resulting in the wider distribution.
+
+[todo width explained by Poisson/signal transport distribution]
+
+The effects of \pmt linearity can be seen. Station 510 uses \nikhef \pmts. Consequently, for higher particle densities the average pulse integral for 510 will be higher. This is why the histograms are not more symertrical around $x = y$.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/station/n_minn16_501_510_bins}
+    \caption{Particle density correlation in detectors for events in coincidence between 501 and 510.}
+    \label{fig:density_501_510}
+\end{figure}
 
 
 \subsection{Reconstruction accuracy}
 
-For events in coincidence the direction reconstructions can be compared to see the distance between the reconstructions. For events with higher particle counts the direction reconstruction accuracy increases. This is because of several reasons. First, the probability of detecting a particle from the front of the shower front increases. Secondly, increased probability that a particle hits the detector close to the \pmt, reducing the transport time. Thirdly, the rise time of the signal decreases. Fourthly, the increased particle density increases the probability of being close to the shower core, where the shower front is more flat, which is assumed in the reconstruction.
+For events in coincidence the direction reconstructions (arrival time gradients?) can be compared to see the distance between the reconstructions. For events with higher particle counts the direction reconstruction accuracy increases. This is because of several reasons. First, the probability of detecting a particle from the front of the shower front increases. Secondly, increased probability that a particle hits the detector close to the \pmt, reducing the transport time. Thirdly, the rise time of the signal decreases. Fourthly, the increased particle density increases the probability of being close to the shower core, where the shower front is more flat, which is the assumed shower front shape in the reconstruction.
 
 \begin{figure}
     \centering
@@ -137,7 +146,3 @@ For events in coincidence the direction reconstructions can be compared to see t
     \caption{Angle between the direction reconstruction in coincident events between station 501 and 510.}
     \label{fig:angle_between_501_510}
 \end{figure}
-
-
-
-- eis beide buitenste detector veel deeltjes. in vergelijking aantal deeltjes in coincidenties
