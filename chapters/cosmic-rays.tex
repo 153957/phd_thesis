@@ -2,240 +2,328 @@
 \label{ch:cosmic-rays}
 
 
-\section{History of cosmic-ray research}
+\section{A brief history of cosmic-ray research}
 
-Cosmic rays were not discovered over night, the discovery extends over a century. In 1785 their effects were detected by de Coulomb \cite{coulomb1785electroscope} [alternative, in english] with an electroscope. An electroscope measures the amount of electrical charge in a test object. De Coulomb saw it unexpectedly discharge in the air, even though it was properly insulated.
+% Observed effects of cosmic rays without special instruments, e.g. aurora.
 
-In fact the effects of low-energy solar cosmic rays were seen much earlier, in the form of the aurora borealis and aurora australis. Named such in the 17th century. Several ancient written recordings of the phenomenon \cite{stephenson2004aurora} have been found, moreover, many folk tales about this phenomenon exist. The aurora is caused by disturbances in the magnetosphere of the Earth. The disturbances are generally caused by solar winds. The disturbances cause charged particles to be accelerated along the magnetic field lines into the atmosphere. There the particles will excite and ionize oxygen and nitrogen atoms. When these de-excite or recombine the observed colors are produced. An example of the aurora can be seen in \cref{fig:aurora}.
+The effects of low-energy solar cosmic rays were already seen in ancient times. This was in the form of the aurora borealis and aurora australis. Several ancient written recordings of the phenomenon \cite{stephenson2004aurora} have been found, moreover, many folk tales about this phenomenon exist. The cause of the aurora's was not known then. In 1600 Gilbert created a terrela, a sphere with a magnetic field resembling that of the Earth \cite{gilbert1893terrela}. In 1896 Birkeland \cite{birkeland1896aurora} showed that electron beams fired at a terrela were bent along the field lines to form circular regions around the magnetic poles like the aurora. The aurora appears to be caused by disturbances in the magnetosphere of the Earth. The disturbances are generally caused by solar winds. Magnetic reconnection occurs and causes charged particles to be accelerated into the atmosphere \cite{angelopoulos2008reconnection}. There the particles will excite and ionize oxygen and nitrogen atoms. When these de-excite or recombine the auroral colors are produced. An example of the aurora can be seen in \cref{fig:aurora}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{plots/cosmic-rays/aurora.png}
-    \caption{The aurora borealis as seen in Rovanemi, Finland on 17 March 2015, St. Patricks day. The large aurora activity on that day was due to a G4 geomagnetic storm on the sun on the 15th.}
+    \caption{Aurora borealis as seen in Rovanemi, Finland on 17 March 2015, St. Patricks day. The large aurora activity on that day was due to a G4 geomagnetic storm on the sun two days earlier. The interactions between the incoming electrons and the atoms in the atmosphere creates the fluorescence. In this case the red and green colors are caused by different excitation energies in the atomic oxygen.}
     \label{fig:aurora}
 \end{figure}
 
-In 1895 the discovery of X-rays and their capability to ionize air \cite{roentgen1895radiation,flakus1981radiation} presented a good candidate for the discharge of the electroscope. However, a source of the X-rays had not yet been identified. In 1896 Becquerel discovered the existence of radioactivity. he also found that the radiation from radioactive material couple cause an electroscope to discharge. In 1600 Gilbert created a terrela, a sphere with a magnetic field resembling that of the Earth \cite{gilbert1893terrela}. In 1896 Birkeland \cite{birkeland1896aurora} showed that electron beams fired at a terrela were bent along the field lines to form circular regions around the magnetic poles like the aurora. Further experiments with the electroscopes were performed to assertain the source of the ionizing radiation. Experiments went over seas, underwater, underground, and far above ground (Eiffel Tower), but no conclusive evidence for cosmic rays was found until Hess performed balloon flights in 1911 and 1912 which accurately determined the amount of radiation at various altitudes. It showed a clear increase at very high altitudes, indicating an extra-terrestial source for the radiation. Clay found that the intensity of the ionization depended on latitude. This latitudinal dependency could be caused by the magnatic field of the Earth. Begin affected by magnetic fields indicates that the particles were charged particles. The indepent discovery of extensive air showers (EAS) by Auger (1939) \cite{auger1939eas} and Rossi (1934) ignited the cosmic-ray research field. New possibilities for studying cosmic rays were found.
+% Briefly talk about the discovery of the background radiation (caused by cosmic rays) and the discovery of where they come from (i.e. not radiation from Earth).
+% How it was discovered that cosmic rays were charged particles.
+% How this all lead to cosmic-ray research and the discovery of extensive air showers.
+
+\subsection{Discovery of cosmic rays}
+
+In 1785 the effects of cosmic rays were detected by de Coulomb \cite{coulomb1785electroscope} [alternative, in english] with an electroscope. An electroscope measures the amount of electrical charge in a test object. De Coulomb saw it unexpectedly discharge in the air, even though it was properly insulated. In 1895 the discovery of X-rays and their capability to ionize air \cite{roentgen1895radiation,flakus1981radiation} presented a good candidate for why the electroscope discharged. However, a source of the X-rays had not yet been identified. In 1896 Becquerel discovered the existence of radioactivity. he also found that the radiation from radioactive material could cause an electroscope to discharge. Further experiments with the electroscopes were performed to assertain the source of the ionizing radiation. Experiments went over seas, underwater \cite{pacini2011sea}, underground, and far above ground (Eiffel Tower [Wulf1909]), but no conclusive evidence for cosmic rays was found until Hess performed balloon flights in 1911 and 1912 which accurately determined the amount of radiation at various altitudes. It showed a clear increase at very high altitudes, indicating an extra-terrestial source for the radiation. Clay [Clay1927] found that the intensity of the ionization depended on latitude. This latitudinal dependency could be caused by the magnatic field of the Earth. Being affected by magnetic fields indicates that the particles were charged particles. The indepent discovery of extensive air showers (EAS) in the atmosphere by Auger (1939) \cite{auger1939eas} and Rossi (1934) ignited the cosmic-ray research field.
 
 
-\section{Cosmic-ray experiments}
+\section{Cosmic ray source and their journey}
 
-Cosmic-ray experiments can be categorized in many ways. One of the primary distinctions can be experiments that directly detect primary cosmic rays and those that detect the air showers. Direct detection requires a detector high (above \SI{25}{\kilo\meter}) in the atmosphere or in space. Below this altitude most cosmic rays will have undergone interactions with the atmosphere. Indirect detection is performed by ground-based detectors. Most ground-based detectors use particle detectors to measure the air shower. However, some look at the fluorescence, cherenkov radiation, or radio emission created by the air shower. The goals and contributions from these different experiments will be explored.
+Cosmic rays are very energetic particles moving through space. Some impact Earth's atmosphere causing cascades of particles. Most commonly cosmic rays are protons, heavier atomic nuclei are the next most common component. A small fraction of the cosmic ray flux are electrons and gamma rays. Anti-particle cosmic rays have also been observed.
 
+% What (some of) the expected origins/sources of cosmic-rays are.
+The cosmic rays reaching Earth have energies anywhere from \SIrange{e9}{e20}{\eV}. Objects in space where these particles are accelerated have not yet been unequivocally identified. A strong contributing suspect are Supernova Remnants (SNR). A SNR consists of shockwaves of particles ejected by supernovae. A shockwave occurs when particles are moving faster than the local speed of sound. SNRs pass through the Interstellar Medium (ISM), the region between stars in the galaxy, picking up particles and possibly accelerating them. The Fermi Large Area Telescope (LAT) discovered evidence for \Pgpz-decay in SNRs \cite{ackermann2013snr}, which is an indicator for energetic protons, because neutral pions can be created in proton-proton collisions. Models predict that SNRs can contribute a significant fraction of the cosmic-ray flux up to \SI{e15}{\eV} [CaprioliICRC2015]. Models predicting the creation of the very high energetic cosmic rays (VHECR) in Active Galactic Nuclei (AGN) and pulsars exist, but evidence for these processes has not yet been discovered.
 
-\subsection{Direct detection experiments}
+% The acceleration mechanisms that come into play.
+[Fermi, CaprioliICRC2015]
 
-Being able to directly detect the particle has the advantage of easy particle identification. The main downside is the flux of cosmic-rays decreases steeply when looking at higher-energy cosmic rays. Ideally the detector has a large detection area and a very long exposure time. Unfortunately a detector that has to be flown to the top of the atmosphere or in space can only be so big before it costs too much to launch. Balloon experiments are often short runs where the balloon carrying the detector stays up for about a week. The JACEE \cite{asakimori1998jacee} and RUNJOB \cite{hareyama2011runjob} experiments flew multiple times. Each experiment reached a total fly time of \SI{60}{\day}. Notable space-based missions are PAMELA \cite{adriani2014pamela}, in orbit on the Resurs DK1 sattelite since 2006, and the AMS-02 \cite{casaus2014ams} experiment attached to the ISS since 2011. These space-based experiments have been operating for many years. The measurements provide good resolution on the composition of cosmic rays at energies upto the knee \cite{kulikov1958knee}.
+\subsection{Cosmic voyage}
 
-The longest running space-based cosmic-ray experiments are the Voyager spacecrafts. The Pioneer probes, carrying a cosmic-ray detector, were launched about 4 years earlier, but contact with them was lost over a decade ago. The Voyager spacecrafts were launched in 1977 to use the planetary alignment to accellerate with several gravity assists [ref Stone, ICRC]. In August 2011 Voyager I seems to have reached the heliopause of the solar system, at \SI{121}{\astronomicalunit} distance to the Sun. Here the detection rate of particles caused by the solar wind (>\SI{0.5}{\MeV}) decreased steeply and the rate of cosmic-ray particles from outside the solar system (>\SI{70}{\MeV}) increased significantly (see figure/ref). Cosmic rays of these energies are thought to originate from supernovae in this galaxy.
+% What the cosmic rays encounter along the way.
+Cosmic rays do not travel through a perfect vacuum. The ISM is filled with particles, radiation and magnetic fields. The interstellar matter consists mainly of atomic hydrogen. With an average density of \SI{1}{particle\per\centi\meter\cubed} or \SI{e-23}{\gram\per\centi\meter\cubed}. Imagine a proton travelling the diameter of the Milky Way (\SI{40}{\kilo\parsec}, or \SI{1.2e23}{\cm}) before reaching Earth. This particle will have passed through a column depth of \SI{1.2}{\gram\square\centi\meter}. This is very small relative to the thickness of Earth's atmosphere.
 
-There have been many more of experiments of this type, all together providing a very detailed picture of the low energy cosmic-ray spectrum. The per-nucleus spectrum of such experiments is shown in \cref{fig:low_e_spectrum}.
+% Explantation for the GZK cutoff/limit.
+Radiation fields can in some cases affect the cosmic rays. With energies above \SI{5e19}{\eV} proton cosmic rays can interact with photons from the cosmic microwave background (CMB). In these collisions pions can be produced (via \PDelta) and the primary cosmic ray may loose up to \SI{20}{\percent} of its energy. The density of the CMB photons is \SI{410}{\per\centi\meter\cubed}. With a cross section of ... For a \SI{e20}{\eV} proton this gives a mean free path of \SI{8}{\mega\parsec}. This upper limit of cosmic-rays is known as the Greisen Zatsepin Kuzmin (GZK) limit [ref to GZK]. If a source of extremely energetic cosmic rays is close enough they may make it without undergoing these energy loss interactions.
+
+% How the direction of cosmic rays no longer points to their origin, gyro radius.
+Cosmic rays do not simply travel in a straight line from their source to Earth. Moving charged particles are affects by magnetic fields. The Lorentz force may change the direction of the particle. The strength of this depends on the angle between the direction of motion and magnetic field lines. [Lorentz force].
+The strength of all magnetic fields in the universe is not known. The overal field strength and distribution of random fields for the Milky Way are being determined from experiments. The average magnetic field strengths are \SI{~.3}{\nano\tesla} [grigat2011, fix number add fluctuations]. The radius of curvature for relativistic particles in magnetic fields is called the Larmor radius (or gyro radius). This is given by
+
+\begin{equation}
+    R = \SI{108}{\kilo\parsec}
+        \frac{E_{\si{\exa\eV}}}{Z B_{\si{\nano\tesla}}}
+\end{equation}
+
+where $R$ is the radius of curvature, $Z$ the atomic number of the particle, which is equal to the charge because atomic cosmic rays are fully ionised, $B$ is the magnetic field strength, and $E$ the energy of the particle [jansson2010magnetic]. In \cref{fig:gyroradius} the gyroradius of a proton cosmic ray is shown for various energies of the cosmic ray and various strengths of the magnetic field.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/cosmic-rays/PDG_28_1_fluxes_per_nucleus}
-    \caption{Per nucleus spectrum of cosmic-rays, reproduced from \cite{olive2014pdg}.}
-    \label{fig:low_e_spectrum}
+                    {plots/cosmic-rays/gyroradius}
+    \caption{[Gyro radius versus energy and magnetic field]
+The gyro radius of primary proton cosmic rays as a function of their energy for different magnetic field strengths. The amount of deflection greatly depends on the actual average magnetic field strength in the Milky Way, which is not precisely known. Indicated are sizes of important astronomical objects.}
+    \label{fig:gyroradius}
+\end{figure}
+
+% This leads to isotropy at low energies, and possibly anisotropy at very high energies.
+If the energy of a cosmic ray is low enough it may be captured by a galaxy. This can happen if the gyro radius is significantly smaller than the object. For the Milky Way this transition is around \SIrange{e16}{e18}{\eV}. For particles at and below these energies the paths though the ISM will not be straight. The deflections will cause the directions of the particles at Earth to be randomised, i.e. isotropically distributed. A low enough energies the particles are also affected by the solar wind and then anisotropy may occur. Above these energies, the particle paths will be straighter. Unless it encounters strong local fluctuations in the magnetic field. For cosmic rays of high enough energy anisotropy may be expected if there are clearly defined sources on the sky.
+
+Heavy particles have smaller gyro radii and are therefore more easily contained. Consequently, heavy particles may be accelerated to higher energies at their source, being contained until accelerated to high enough energies to escape. The cosmic rays of energies above this transition can escape from the Milky Way. Similarly cosmic rays in other galaxies can escape if they have enough energy. From observations the average magnetic field strength in other visible galaxies is on average \SI{.4}{\nano\tesla} [jansson2010magnetic]. In the intergalactic medium (IGM) the particle density is approximately \SI{1}{particle\per\meter\cubed}. The expected average magnetic field in the IGM is \SI{.003}{\nano\tesla} [get correct number].
+
+Knowledge about the exact distribution, strength and change over time of the magnetic fields in the universe are not at out disposal. This makes it difficult/impossible to fully reconstruct the path of cosmic rays.
+
+\subsection{Final destination}
+
+% Explain what cosmic rays are seen at Earth, as observed by experiments.
+% How various models explain the spectrum; different compositions, galactic, extra-galactic.
+At Earth cosmic rays arrive from all directions. On average the flux as a function of different energies is constant. In \cref{fig:spectrum} the measured differential flux of cosmic rays at the top of the atmosphere is shown. At low energies the flux varies over time due to solar modulation. The solar cycle of \SI{11}{\year} affects the flux in this energy region of cosmic rays. The top axis shows the equivalent center of mass collision energies. This can be used to relate the energy in the cosmic ray collision to the collision energies reported for particle colliders on Earth. At the 'end' of the spectrum, around \SI{e20}{\eV} the spectrum steepens and seems to end. No cosmic rays above $E = \SI{e21}{\eV}$ have yet been detected. The reasons for this is probably the GZK limit explained earlier. But may also be explained by the lack of sources being able to produce such highly energetic particles.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{plots/cosmic-rays/spectrum.pdf}
+    \caption{Differential flux of primary cosmic rays versus the kinetic energy per particle. The spectral index of the spectrum is approximately $\gamma = 2.7$. Around $E = \SI{e15}{\eV}$ is the transition from directly (lower energies) to indirectly (higher energies) detected cosmic rays. At low energies the flux is indicated by a band because it changes over time due to solar modulation. Less low energy cosmic rays are observed during high solar activity. [Todo:] Equivalent center of mass collision energies as top x-axis. Marked are the achieved p-p (and p-Pb) collision energies in colliders. The transition from Galactic and extra-Galactic is determined from the expected gyro radii in the Milky Way. Also shown are likely source contributions at some energies (SNR).}
+    \label{fig:spectrum}
 \end{figure}
 
 
-\subsection{Indirect detection experiments}
+% Explain the possibilities of direct detection of cosmic rays: Low energy, balloon, space.
+Cosmic rays can be detected in multiple ways. Either by detecting them directly or indirectly. In order to directly detect cosmic rays the detector needs to be above or high in the Earth's atmosphere (above \SI{25}{\kilo\meter}). This is typically done by balloon-borne experiments or space-based missions. Due to the low flux of high energy cosmic rays these methods are mainly aimed at the lower energies ($E < \SI{e15}{\eV}$). For cosmic rays of higher energies the particle cascades they create in the atmosphere are used. These cascades can be detected from the ground. The physics and characteristics of these particle showers are discussed further in \cref{sec:cr:eas}.
 
-The nature of EAS, a cascade of particle collisions, means that they are detectable over large distances on the ground. It is cheaper to build and operate a ground-based experiment over a large period of time than a space-based experiment. Most detect EAS by detecting the leptons that arrive on the ground. Some were designed to detect the highest energy showers, others for filling in the intermediate range (around the knee). Others try to sample shower fronts as accurately as possible by tightly spacing the detectors. Several experiments look at the shower development in the atmosphere by looking at the fluorescence or Cherenkov radiation created by the shower. In recent years radio detection of air showers has been developed. These look for a signature signal created in radio, caused by Earth's magneticfield directing the electrons and positrons in opposite directions.
+\subsection{Direct detection}
 
-Some detector arrays are situated high above sea-level with less atmosphere above the detectors and thereby closer to Xmax. This has the advantage that less extinction and scattering has occurred in the EAS, providing a cleaner look at the air shower. After Xmax particle extinction becomes dominant versus new particle creation.
+% What is learned from direct detection experiments: Composition, Solar modulation, van Allen belt, heliosphere, particle-antiparticle fraction, isotropy.
+Being able to directly detect the particle has the advantage of easy particle identification. The main downside is the flux of cosmic-rays decreases steeply when looking at higher-energy cosmic rays. Ideally the detector has a large detection area and a very long exposure time. Unfortunately a detector that has to be flown to the top of the atmosphere or in space can only be so big before it costs too much to launch. Balloon experiments are often short runs where the balloon carrying the detector stays up for about a week. The JACEE \cite{asakimori1998jacee} and RUNJOB \cite{hareyama2011runjob} experiments flew multiple times. Each experiment reached a total fly time of \SI{60}{\day}. Notable space-based missions are PAMELA \cite{adriani2014pamela}, in orbit on the Resurs DK1 sattelite since 2006, and the AMS-02 \cite{casaus2014ams} experiment attached to the ISS since 2011. These space-based experiments have been operating for many years. The measurements provide good resolution on the composition of cosmic rays at energies upto the knee \cite{kulikov1958knee}.
 
-Notable ground-based experiments are AGASA, KASCADE-Grande, Auger Observatory, TA, Tibet, Fly's Eye, Havanah Park, Volcano Ranch, HiRes, IceTop, CASA-MIA, Tien-Shan, Ahemo, MGU, Grigorov, Rossi/Zatsepin and other early experiments..
+These experiments are able to measure the modulation of the low-energy cosmic-ray flux due to the solar activity. During high solar activity (many sunspots) the flux of galactic cosmic rays at Earth is reduced \cite{adriani2013modulation}. This is the reason for the band seen at low flux in \cref{fig:spectrum}. Also the ratio of normal and anti-particles has be determined [PAMELA/AMS/BESS ICRC]. For electrons about \SI{15}{\percent} of the particles around \SI{e11}{\eV} are positrons. \SI{2e-4}{\percent}. No anisotropy has been found in the arrival directions of e+e- cosmic rays detected by these experiments [PAMELA ICRC]
 
-- state of the art
+Together these direct detection experiments provide a very detailed picture of the low energy cosmic-ray spectrum. The per-nucleus spectrum of such experiments is shown in \cref{fig:low_e_spectrum}.
 
-The two biggest experiments at this moment are the Auger Observatory in Argentina and the Telescope Array in Utah. Both are looking for anisotropies in the cosmic-ray flux at very high energies.
 
-- sources of cosmic-rays
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/PDG_28_1_fluxes_per_nucleus.pdf}
+    \caption{Decomposed differential flux of primary cosmic rays. Balloon and space experiments directly detecting cosmic-rays provide composition data for the cosmic-rays.}
+    \label{fig:PDG_28_1_fluxes_per_nucleus}
+\end{figure}
 
-List possible CR accelerators/mechanisms. The multimessenger approach to identifying sources.
+The longest running space-based cosmic-ray experiments are the Voyager spacecrafts. The Pioneer probes, also carrying a cosmic-ray detector, were launched about 4 years earlier, but contact with them was lost over a decade ago. The Voyager spacecrafts were launched in 1977 to use the planetary alignment to accelerate with several gravity assists [ref Stone, ICRC]. In August 2011 Voyager I seems to have reached the heliopause of the solar system, at \SI{121}{\astronomicalunit} distance to the Sun. Here the detection rate of particles caused by the solar wind (>\SI{5e8}{\eV}) decreased steeply and the rate of cosmic-ray particles from outside the solar system (>\SI{7e10}{\eV}) increased significantly (see figure/ref). Cosmic rays of these energies are thought to originate from supernovae in this galaxy.
 
-- Galactic/Extra Galactic
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/voyager_heliosphere}
+    \caption{Extrasolar cosmic ray rate by Voyager 1, stone2015]
+Timeline of the cosmic ray rate measured by the Voyager 1 spaceprobe. The rate started to increase when it passed the termination shock. After passing the heliopause the rate has stabilized at 4 times the rate inside the heliosphere. This is a measure of the cosmic ray rate unaffected by solar winds.}
+    \label{fig:voyager_heliosphere}
+\end{figure}
 
-Explain about gyro radius..
 
-- anisotropy
+\subsection{Indirect detection}
 
-[figure of expected angular deviation for CR of various energies and distance to origin]
+% How high-energy cosmic rays may hold information about anisotropies and possible sources (hot spot).
 
-Magnetic fields, also affects high energy cosmic rays, if the size and strength of the magnetic field is high/large enough.
+Currently the two biggest ground-based cosmic-ray experiments are the Pierre Auger Observatory (Auger) in Argentina and the Telescope Array (TA) in Utah. Both use particle detectors and fluorescence detectors overlooking the particle detector area. Auger has been expanded with radio detectors. Because of their size (\SI{3000}{\square\kilo\meter} and \SI{700}{\square\kilo\meter} respectively). and separation between the particle detectors (\SI{1.5}{\kilo\meter} and \SI{1.2}{\kilo\meter}) these experiments are looking for cosmic-rays at the highest energies. The minimum energy threshold for both experiments, ignoring the smaller low energy extensions, is above \SI{e18}{\eV}. Several cosmic-rays of $E > \SI{e20}{\eV}$ have been detected by both epxeriments, settings limits on the high-energy cosmic ray spectrum and probing the GZK limit. At these high energies possibilities for anisotropy exist. In \cref{fig:skymap_ta_auger} a combined sky map of cosmic rays detected by both experiments shows a dipole moment deviations from isotropy. When considering only primaries with energies above $\SI{57e18}{\eV}$ the TA sees a slight preference for cosmic rays from a region on the sky, shown in \cref{fig:hotspot_ta}. However, with a significance of $3.4 \sigma$ more data is needed to verify the excess.
 
-[figure of anisotropy search results (upper limits for di/quadrupole moments) from combined Auger and TA datasets, dependence on energy (, note that TA region is similar to region observed by HiSPARC]
-\cite{augerta2014anisotropy}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/skymap_ta_auger}
+    \caption{[verzi2015] Anisotropy measurement for cosmic rays of $E > \SI{e19}{\eV}$ by the combined Pierre Auger Observatory and Telescope Array data. The overlapping regions are used to correct for sensitivity differences between the experiments. Only a dipole moment is seen, higher multipoles do not deviate from the expected fluctuations of an isotropic flux at \SI{99}{\percent} confidence level.}
+    \label{fig:skymap_ta_auger}
+\end{figure}
 
-[figure of hotspot result from TA for E 57 EeV (with update form 2015), not yet a discovery, but indications!]
-\cite{ta2014hotspot}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/hotspot_ta}
+    \caption{Hot spot by TA on mollweide plot, abasi2015]
+Anisotropy significance plot for the Telescope Array data for primary cosmic rays of $E > \SI{57e18}{\eV}$. Here a hot spot with a significance of $3.4 \sigma$ is observed. This may indicate a source, but more data is required for a more definite conclusion.}
+    \label{fig:hotspot_ta}
+\end{figure}
 
-- composition
-
-[figure of believed composition contributions to the cr spectrum at high energies]
-
-[figure of composition trend towards higher energies, dependence on models (effect of updates from new LHC data]
-
-- Auger upgrade for e/mu identification
-
-Discrepancy with model predictions, for better primary identification Auger wants separation of e/mu components.
-
-[photo of planed upgrade of scintillators on Cherenkov tanks (HiSPARC electronics used in tests, mention this later)]
-
-- GZK
-
-Explain interactions that cause the energy loss of the primary cosmic rays.
-This explains the cutoff at very high energies. Possible higher energies can be detected, if produced close enough.
+% Highlight some of the features of the high energy spectrum, and that there is some composition information known (light-heavy) but no exact fractions.
+In \cref{fig:PDG_28_8_all_particle_spectrum} the height of the spectrum is compressed by scaling the data by $E^{2.6}$. This way certain features are more easily seen. For instance the changes in the steepness of the power law (knees and ancles) are more visible. Composition measurements are less specific for indirect measurements. They do provide an indication for the overall lightness (mostly protons) or heaviness (more biased towards iron) of the composition. It appears that beyond $E = \SI{e18}{\eV}$ the composition becomes heavier. However, the model predictions upon which these measurements depend are not yet perfect. Improvements to the experiments are planned to increase the exposure and improve the sensitivity to the composition.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/PDG_28_8_all_particle_spectrum}
-    \caption{The all particle spectrum of cosmic-rays, reproduced from \cite{olive2014pdg}.}
-    \label{fig:spectrum}
+    \caption{Detailed spectrum at high energies]
+The differential flux of cosmic rays multiplied by $E^{2.6}$. This representation of the latest data from cosmic-ray experiments reveals more structure in the spectrum. Little data is available for the highest energy cosmic rays, but limits are set on the maximum rates. The composition of cosmic rays at these energies is not yet known.}
+    \label{fig:PDG_28_8_all_particle_spectrum}
 \end{figure}
 
 
-\section{Air-shower physics}
-\label{sec:air-shower-physics}
+\section{Extensive air showers}
+\label{sec:cr:eas}
 
-\subsection{Hadronic interactions}
+% Typical hadronic interactions of (hadronic) cosmic rays entering the atmosphere.
+% The cross section of such interactions, as known from colliders and cosmic ray experiments.
+% Colliders not yet upto highest energies, and different type of interactions.
+The first interaction target of incoming cosmic rays are the atoms in the upper atmosphere. The upper atmosphere consists mainly of nitrogen (\SI{78.09}{\percent}), oxygen (\SI{20.95}{\percent}), and argon (\SI{0.93}{\percent}) [fix composition for upper atmosphere]. Unfortunately collider experiments rarely use these nuclei as collision material. So the exact cross section of interactions between cosmic-rays (from protons to iron) and atomic nitrogen, oxygen, and argon is not known at high energies. However, from p-p collisions the p-Air cross sections can be extrapolated using Glauber theory. The LHC also performs p-Pb and Pb-Pb collisions..
 
-Describe here how the hadronic cascade works. Various interactions, many possible outcomes, but some main channels. Interactions can have varying multiplicities, producing many new particles. Energy will be (unevenly) divided to the new particles. Part of the new particles are charged and part neutral. Mostly pions, also some kaon which will decay to pions. First hard QCD interactions with jets.
+
+- Provide the model of the thickness of the atmosphere as a function of the height (as used in CORSIKA).
+- The combination of cross section and atmospheric depth gives a distribution for the likely first interaction altitudes.
+- Explain that these hadronic interactions can produce many secondaries (multiplicty).
+- Explain what particles are produced and what happens to them.
+- Explain how energy is transferred into the leptonic part of the shower.
+- Explain Heitler model for EM shower.
+- This results in a longitudinal profile.
+- Particle creation on one side with energy transfer from hadronic to EM
+- Particle decay and absorption cause reduction in number of shower particles.
+- The interactions also result in deflections, so the shower expands lateraly.
+- Shower shower profile (CORSIKA).
+- Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
+
+
+%\begin{equation}
+%\HepProcess{\Pproton + \Pproton \to magic \to \Pproton + \Pproton +
+%\Ppizero},
+%\end{equation}
+%
+%\begin{equation}
+%%\begin{split}
+%\HepProcess{\Ppiplus &\to \APmuon + \Pnum}, \\
+%\HepProcess{\Ppiminus &\to \Pmuon + \APnum}, \\
+%\HepProcess{\Ppizero &\to \Pphoton + \Pphoton}.
+%%\end{split}
+%\end{equation}
+%
+%\begin{equation}
+%%\begin{split}
+%\HepProcess{\Pmuon &\to \Pelectron + \APnue}, \\
+%\HepProcess{\APmuon &\to \Ppositron + \Pnue}.
+%%\end{split}
+%\end{equation}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{plots/cosmic-rays/multiplicity}
-    \caption{Multiplicity dependence on pp collision energy. Interactions at higher energies have higher mean charged multiplicity.}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/pair_crosssection}
+    \caption{Cross section p-Air vs energy, grieder2010]
+The measured proton-air cross section determined from cosmic ray measurements of the first interaction altitude. As the energy of the particles increases, so does the cross section. The measurements are within the predicted values from proton-proton cross sections measured in colliders when corrected with Glauber theory.}
+    \label{fig:pair_crosssection}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/atmospheric_depth}
+    \caption{Height vs atmospheric depth, corsika74000]
+The atmospheric depth as a function of altitude above ground for typical atmospheric conditions in the Netherlands (CORSIKA model?). The air becomes thinner higher above the ground.}
+    \label{fig:atmospheric_depth}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/first_interaction_altitude}
+    \caption{Distribution of first interaction altitude for showers of certain energy (penetration depth), corsika74000]
+Distribution of first interaction altitudes for primary proton cosmic-rays of $E = \SI{16}{\eV}$. From the cross sections a mean free path can be calculated for cosmic rays entering the atmosphere.}
+    \label{fig:first_interaction_altitude}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/multiplicity}
+    \caption{Multiplicity in hard hadron interaction versus energy, grieder2010]
+Average secondary particle multiplicty in p-p collisions as a function of the collision energy. The multiplicty increases with the energy of the collision. Results from collider data is shown along with models that try to predict the behavior at higher energies. Predictions vary widely from model to model.}
     \label{fig:multiplicity}
 \end{figure}
 
-Showers with a higher first interaction altitude will be smaller on ground for same energy. Showers at larger zenith angles will be slightly smaller due to the longer path and larger column depth the particles have passed through.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/schematic_shower}
+    \caption{Schematic shower representation (perhaps separate for hadronic/em), engel2011]
+Simple representation of the hadronic and electromagnetic cascades in an air shower. The high multiplicity causes many new charged and neutral particles to be created. The subsequent hadronic interactions are at lower energies and thus, on average, lower multiplicty. After ~6 interaction lengths the shower has reached ground level and most energy will have gone to the electromagnetic shower. For the electromagnetic cascade start when neutral pions or muons decay into gammas or electrons. Gamma's undergo pair creation and electrons (and positrons) emit gammas due to bremsstrahlung. At each radiation length the number of particles doubled, as long as enough energy is available.}
+    \label{fig:schematic_shower}
+\end{figure}
+
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/cosmic-rays/interaction_altitude_v_size}
-    \caption{First interaction altitudes for various shower sizes for 22.5 deg zenith angle showers.}
-    \label{fig:interaction_altitude_v_size}
+                    {plots/cosmic-rays/longitudinal_profile}
+    \caption{Longitudinal shower profile, with contributions by various particles, engel2011]
+The longitudinal shower profile showing the number of particles in the air shower as a function of the atmospheric depth. Different types of particles are shown separately. The depth at which the maximum number of particles exists is called Xmax.}
+    \label{fig:longitudinal_profile}
 \end{figure}
-
-
-[figure of interaction with high multiplicity breaking into new parts which interact after mean free path, with slightly lower multiplicty..]
-
-Number of hadronic interactions before all energy is into other subshowers.
-Number of hadronic interactions (generations) before ground, dependence on zenith.
-
-\cite{pierog2015hadronic}
-
-Models extrapolated from collider results, and pQCD theory.
-
-% Fokkema: For hadrons, the situation is more complicated because of the many possible types of interactions. Hadronic processes include nuclear fragmentation, creation of resonances, and multiparticle production. Furthermore, these processes are harder to calculate. At very high energies, QCD perturbation theory can be used to calculate cross sections. At lower energies, perturbation theory breaks down and effective theories must be used [55]. However, at these energies experimental data is available from (collider) experiments. Approximations are made by measuring many cross sections at different energies and the resulting models describe the data very well.
-
-
-\subsubsection{Pions}
-
-Pions are generated in the hadronic (Baryon) interactions, and also from kaon decays. Neutral pions will decay quickly (\SI{8.4e-8}{\ns}) into to two gamma's. Charged pions have a longer decay time (\SI{26}{\ns}). They mainly decay into muons. Muons have long mean free path, often reaching ground. If muons do decay (\SI{2.2}{\micro\second}) they decay into electrons, adding energy to the electromagnetic cascade.
-
-Energy transfer from hadronic to electromagnetic and muonic cascades.
-
-[figure of shower breaking into subshowers (primary -> hadronic (kaons, pions) -> muons and EM]
-
-
-
-\subsubsection{Collider data}
-
-The direct cosmic-ray measurement methods are only able to effectively measure cosmic-rays up to \SI{e14}{\eV}. Particle colliders like HERA, RHIC, and SPS [refs, or see figure] have been able to produce collisions in that energy region, with equivalent center mass energies of several hunderds \si{\GeV}. However, primary cosmic rays with less than \SI{e14}{\eV} produce few particles that reach the ground. With close enough detector spacing such showers can be detected.
-
-For ground-based detectors, the collider data has been essential for tuning models for the higher-energy collisions. Using extrapolations models can simulate the expected showers for cosmic-rays of the highest energies. The expected accuracy of the extrapolations becomes less the further they are from the collider data. These colliders provide important data about the hadron production processes in air showers, the cross-sections of the collisions, the multiplicity of secondary high-energy particles and the ratio of neutral to charged particles \cite{pierog2008lhc}.
-
-Fermilab's Tevatron was capable of proton collisions with center of mass energies of \SI{1.8}{\TeV} \cite{abe1994tevatron}, equivalent to collisions of cosmic protons with \SI{2e15}{\eV} against a fixed target. This is approximately the lower energy limit for the KASCADE experiment. However, KASCADE's upper limit was \SI{e17}{\eV}. The LHC is in an interesting energy range; \SI{7}{\TeV} and now upgraded to \SI{14}{\TeV}, equivalent to \SI{2e16}{\eV} and \SI{e17}{\eV} cosmic-ray energies respectively. These are the first time that we have access in colliders to collision energies above the knee in the cosmic-ray spectrum. This also covers the entire energy range of the KASCADE experiment (not KASCADE-Grande). It has been shown that the hadronic interaction models did not match the new LHC data at energies beyond the Tevatron. Mismatches at slightly higher energies become big errors at very high energy. The EPOS and QGSJETII models have been updated with LHC data from the \SI{7}{\TeV} run, which should provide more accurate results for higher energies. The \SI{14}{\TeV} run of the LHC has since started, but EAS simulations used for this thesis were performed before data from that run had been incorporated into the models.
-
-The TOTEM and LHCf experiments at the LHC are placed at the forward regions of the CMS and ATLAS interaction points respectively. These provide the most interessing data for cosmic-ray physics because the interesting products of collisions are those with high pseudorapidity. The LHC runs with p-p collisions most of the time, short periods are run with heavy ions collisions (p-Pb and Pb-Pb). However, for cosmic-ray physics collisions with low-mass ions that are commonly part of the interactions of EAS would be more interesting. Most first interactions are with oxygen, nitrogen, or argon atoms [ref, corsika?]. Collision data of such interactions would greatly benefit the cosmic-ray community.
-
-
-\subsection{Electromagnetic component}
-
-Gamma's produced in neutral pion decay undergo pair production (e+, e-). Energy is split across two particles. These create new gammas via Bremsstrahlung.
-The Heitler model describes these cascades.
-Many particles created, but also many interactions, EM-shower decays faster than muon shower. At sea level the hadronic, muon and electromagnetic showers have all reached their maximum numbers and decays/ionizations/absorptions (energy loss) have taken over and the shower starts to thin.
-
-[figure of EM subshower, simple Heitler model..]
-
-Simpler processes than the hadronic interactions, better described by models.
-
-
-\subsection{Shower front}
-
-The shower front is defined as the particle showers that pass a given surface. Particles will pass this at different distances to the shower axis (original trajectory of the primary particle). The distribution of the particles in the lateral direction is an important measure for the energy of the shower.
-
-Possibly some particles may be later than expected, being investigated by LiO's (Dorrit/Tom).
-
-[figure of a shower front]
-
-- \SI{e18}{\electronvolt} front (x, t at y=0)
-    - muons
-    - electrons
-    - gammas
-
-Show arrival times, density distributions, energy content, momentum vectors (point back to first interaction?).
-
-Arrival times versus core distances. Curvature of the front depends on the height fo the first interaction. The arrival time distribution of particles at a certain core distance. Important because you might miss the first particles. Density and arrival time distribution vary from shower to shower, attempt to get an 'average' shower representation.
-
-[figures of various relevant distributions of shower front at ground, arrival times vs core distance, LDF, front thickness]
-
-
-\section{\hisparc for research and outreach}
-
-The \textbf{Hi}gh \textbf{S}chool \textbf{P}roject on \textbf{A}strophysics \textbf{R}esearch and \textbf{C}osmics (\hisparc) is a ground-based detector experiment. It is large scale and low cost. Created to measure showers from relatively low energies (\SI{1e14}{\electronvolt}) to higher energies. Also looking for possible coincident showers at very large distances (GZ?). The low cost is achieved by not solely being an advanced cosmic-ray research experiment, but also as an outreach project. High-school students are engaged to participate in research. Most of the \hisparc detector stations are situated at high schools. The cost of the detector materials is paid by the school. Students from the school build the detectors. This takes several days and is done by groups students. Because some specialized equipment is required for the construction and to properly supervise the process this is performed at participating universities.
-
-On the first day they are introduced to cosmic-ray physics and assemble the scintillator and light-guide parts of the detector which involves glueing. This glue needs to dry for several days after which the students come again to wrap the detector to make it light tight, as can be seen in \cref{fig:detector-bouw}. Finally the photo multiplier is attached and the detector is tested in the lab before it is placed on the school roof.
-
-Students taking physics classes are also encouraged to do their research project on \hisparc. In Dutch this project is called `profielwerkstuk' which is a mandatory part of their final year in high school. This project should be related to a subject they have chosen as their set of subjects. In order to assist these students and others that want to work with on cosmic-ray research all data recorded by \hisparc is freely available (licensed under Creative Commons BY-SA 4.0) for use. Moreover, tools are provided to assist in data analysis. On several occasions a symposium was held in which students could present their profielwerkstuk and win a trip to Cern. The subject of their project had to be about a physics field relevant for cosmic rays.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/cosmic-rays/ADL_100352}
-    \caption{High-school students work on finishing a detector.}
-    \label{fig:detector-bouw}
+                    {plots/cosmic-rays/shower.png}
+    \caption{CORSIKA shower simulation to show spacial development, corsika74000]
+Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles.}
+    \label{fig:shower}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/shower_size_distribution}
+    \caption{Shower size distributions for showers of various energies, corsika74000]
+Number of leptons on ground distributions versus the energy of the primary particle. The variation from shower to shower means that showers will have a different number of particles reaching ground level, eventhough the primary energy was equal. The variations can be as high as a factor 10.}
+    \label{fig:shower_size_distribution}
 \end{figure}
 
 
-\section{The work presented in this thesis}
+\section{Shower front}
 
-The goal of the research presented in this thesis is the reconstruction of EAS detected with multiple detector stations from the \hisparc network. For reconstructions an understanding of the individual detectors and detector stations is required. Experiments and simulations have been performed to determine the accuracy and response of the various components.
+- What the shower looks like as it reaches ground, how this shape is a result of the various interactions.
+- The important distributions related to the shower front.
+- LDF for various components, and what influences it.
+- At various core distances the temporal profile.
+- The energy distribution of the particles in the front (see if they are high/low/close to decay).
+- Explain why muons are earlier than electron/gamma.
+- Explain why the front is curved and the thickness of the front varies.
+- The relation between the curvature/rise time to other shower properties.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/schematic_front}
+    \caption{schematic representation of shower front]
+A schematic representation of the shower front as it reached ground level. The dots represent shower particles. This is a snapshot in time, so all particles are moving with approximately $c$ to the ground. The particles on the front will reach the ground first followed by those behind. Near the core the density of particles in higher and they are closer to the front. Away from the core the front is curved away from a flat shower front plane. The thickness (rise time) of the front increases with core distance.}
+    \label{fig:schematic_front}
+\end{figure}
 
-\subsection{The \hisparc experiment
-            (\crefrange{ch:experiment}{ch:cluster})}
+\,
 
-In the next chapter the overall project is described, the layered structure of \hisparc is also explained. First at the overall project is described. The start and growth of the project are discussed and the organization structure explained.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/ldf}
+    \caption{Lateral density distribution]
+The particle density as a function of core distance for a shower of $E = \SI{e16}{\eV}$. The contribution from te different components is shown.}
+    \label{fig:ldf}
+\end{figure}
 
-Then the design an performance of the different scales is discussed. This starts with the individual detectors, the scintillators which detect the passing EAS particles. The construction of the detector has to be practical enough to be performed by high-school students. There are many interesting aspects concerning the signal strength and timing response of the detectors which is discussed in this part. As explained before/above a single detector is not enough to identify EAS from the background particles. Multiple detectors are combined to create a detector station which can pick out EAS from the background signals using a coincidence trigger. The readout, trigger logic, and timing of detector stations is explained. A single detector station is small enough to fit on a roof. Multiple detector stations are deployed in the \hisparc project. To combine the data accurate absolute timing and positioning is required for each station, a \gps module is used for this. Experiments to understand the accuracy of the \gps positioning and timing will be presented.
+[Lateral energy distribution, average energy per particle versus core distance]
+The (mean particle energy or energy density) as a function of core distance. Close to the code the particles have more energy?
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/temporal_profile}
+    \caption{Temporal structure of shower front, for various core distances]
+The temporal structure of the shower front at different core distances for different types of particles. $t = \SI{0}{\ns}$ is the time the first particle reaches ground. Muons arrive first, followed by the gammas and electrons. Each has a long tail of stragglers.}
+    \label{fig:temporal_profile}
+\end{figure}
 
-\subsection{Software infrastructure
-            (\cref{ch:software,ch:data_processing})}
+\,
 
-Without reliable software the \hisparc project could not exist. The detector stations are at locations which are sometimes far apart, each working autonomously. Though each stations has a person who is responsible for keeping that station working properly, they do not always have time to fix complex issues. Reliably working software is therefore important. The software that runs on the different \hisparc servers also needs to run without much maintenance. The analysis framework should also work as intended to prevent making each analysis a chore. A lot of effort has been put in extending the software while also increasing the reliability. In these chapters the different software packages are described, how they work together, and how the data flows through the different stages of the processing.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cosmic-rays/curvature_front}
+    \caption{Front curvature as function of size (or interaction altitude)]
+The mean shower front curvature as a function of the shower size. The interaction altitude of a shower affects the curvature of its shower front.}
+    \label{fig:curvature_front}
+\end{figure}
 
-
-\subsection{Data analysis
-            (\cref{ch:simulations,ch:analysis})}
-
-EAS simulations are used to better understand shower development. Having gained knowledge about the detector, station, and cluster responses using theory, simulations, and experiments analysis algorithms are devised to perform calibration, data quality checks, and reconstruction of the detections. The calibration corrects for non-linear signal responses and timing offsets between different components. Data-quality cuts select data of good quality for the analysis. The reconstructions are improved to use more knowledge about shower development and the results from simulations. With these, information about the shower-core axis position and direction, and the shower size can be reconstructed.
-
-
-\subsection{Science Park data analysis
-            (\cref{ch:network,ch:conclusions})}
-
-The analysis will be performed on a dataset of good data, selected from over \SI{10}{\year} of \hisparc data. The cuts that were done to end up with the final dataset are explained. The results will be compared to realistic simulations and other experiments. Finally the results are discussed.
-
-
-\subsection{Coordinate systems and outreach
-            (\cref{ch:coordinates,ch:outreach})}
-
-At the end a summary of the different coordinate systems and units used by \hisparc and other relevant sources is discussed. And a more in-depth look at the outreach by \hisparc is presented.
+[Front rise time as function of size (or interaction altitude)]
+The mean shower front rise time at various core distances as a function of the shower size. The combined rise time for muons and electrons is shown.
