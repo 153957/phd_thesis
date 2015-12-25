@@ -37,10 +37,10 @@ The cosmic rays reaching Earth have energies anywhere from \SIrange{e9}{e20}{\eV
 \subsection{Cosmic voyage}
 
 % What the cosmic rays encounter along the way.
-Cosmic rays do not travel through a perfect vacuum. The ISM is filled with particles, radiation and magnetic fields. The interstellar matter consists mainly of atomic hydrogen. With an average density of \SI{1}{particle\per\centi\meter\cubed} or \SI{e-23}{\gram\per\centi\meter\cubed}. Imagine a proton travelling the diameter of the Milky Way (\SI{40}{\kilo\parsec}, or \SI{1.2e23}{\cm}) before reaching Earth. This particle will have passed through a column depth of \SI{1.2}{\gram\square\centi\meter}. This is very small relative to the thickness of Earth's atmosphere.
+Cosmic rays do not travel through a perfect vacuum. The ISM is filled with particles, radiation and magnetic fields. The interstellar matter consists mainly of atomic hydrogen. With an average density of \SI{1}{particle\per\centi\meter\cubed} or \SI{e-23}{\gram\per\centi\meter\cubed}. Imagine a proton travelling the diameter of the Milky Way (\SI{40}{\kilo\parsec}, or \SI{1.2e23}{\cm}) before reaching Earth. This particle will have passed through a column depth of \SI{1.2}{\gram\centi\meter\squared}. This is very small relative to the thickness of Earth's atmosphere, described in the next section.
 
 % Explantation for the GZK cutoff/limit.
-Radiation fields can in some cases affect the cosmic rays. With energies above \SI{5e19}{\eV} proton cosmic rays can interact with photons from the cosmic microwave background (CMB). In these collisions pions can be produced (via \PDelta) and the primary cosmic ray may loose up to \SI{20}{\percent} of its energy. The density of the CMB photons is \SI{410}{\per\centi\meter\cubed}. With a cross section of ... For a \SI{e20}{\eV} proton this gives a mean free path of \SI{8}{\mega\parsec}. This upper limit of cosmic-rays is known as the Greisen Zatsepin Kuzmin (GZK) limit [ref to GZK]. If a source of extremely energetic cosmic rays is close enough they may make it without undergoing these energy loss interactions.
+Radiation fields can in some cases affect the cosmic rays. With energies above \SI{5e19}{\eV} proton cosmic rays can interact with photons from the cosmic microwave background (CMB). In these collisions pions can be produced (via \PDelta) and the primary cosmic ray may loose up to \SI{20}{\percent} of its energy. The density of the CMB photons is \SI{410}{\per\centi\meter\cubed}. With a cross section of ... For a \SI{e20}{\eV} proton this gives a mean free path of \SI{8}{\mega\parsec}. This upper limit of cosmic-rays is known as the Greisen Zatsepin Kuzmin (GZK) limit [ref to GZK].fzzzzz If a source of extremely energetic cosmic rays is close enough they may make it without undergoing these energy loss interactions.
 
 % How the direction of cosmic rays no longer points to their origin, gyro radius.
 Cosmic rays do not simply travel in a straight line from their source to Earth. Moving charged particles are affects by magnetic fields. The Lorentz force may change the direction of the particle. The strength of this depends on the angle between the direction of motion and magnetic field lines. [Lorentz force].
@@ -120,12 +120,12 @@ Timeline of the cosmic ray rate measured by the Voyager 1 spaceprobe. The rate s
 
 % How high-energy cosmic rays may hold information about anisotropies and possible sources (hot spot).
 
-Currently the two biggest ground-based cosmic-ray experiments are the Pierre Auger Observatory (Auger) in Argentina and the Telescope Array (TA) in Utah. Both use particle detectors and fluorescence detectors overlooking the particle detector area. Auger has been expanded with radio detectors. Because of their size (\SI{3000}{\square\kilo\meter} and \SI{700}{\square\kilo\meter} respectively). and separation between the particle detectors (\SI{1.5}{\kilo\meter} and \SI{1.2}{\kilo\meter}) these experiments are looking for cosmic-rays at the highest energies. The minimum energy threshold for both experiments, ignoring the smaller low energy extensions, is above \SI{e18}{\eV}. Several cosmic-rays of $E > \SI{e20}{\eV}$ have been detected by both epxeriments, settings limits on the high-energy cosmic ray spectrum and probing the GZK limit. At these high energies possibilities for anisotropy exist. In \cref{fig:skymap_ta_auger} a combined sky map of cosmic rays detected by both experiments shows a dipole moment deviations from isotropy. When considering only primaries with energies above $\SI{57e18}{\eV}$ the TA sees a slight preference for cosmic rays from a region on the sky, shown in \cref{fig:hotspot_ta}. However, with a significance of $3.4 \sigma$ more data is needed to verify the excess.
+Currently the two biggest ground-based cosmic-ray experiments are the Pierre Auger Observatory (Auger) in Argentina and the Telescope Array (TA) in Utah. Both use particle detectors and fluorescence detectors overlooking the particle detector area. Auger has been expanded with radio detectors. Because of their size (\SI{3000}{\kilo\meter\squared} and \SI{700}{\kilo\meter\squared} respectively). and separation between the particle detectors (\SI{1.5}{\kilo\meter} and \SI{1.2}{\kilo\meter}) these experiments are looking for cosmic-rays at the highest energies. The minimum energy threshold for both experiments, ignoring the smaller low energy extensions, is above \SI{e18}{\eV}. Several cosmic-rays of $E > \SI{e20}{\eV}$ have been detected by both epxeriments, settings limits on the high-energy cosmic ray spectrum and probing the GZK limit. At these high energies possibilities for anisotropy exist. In \cref{fig:skymap_ta_auger} a combined sky map of cosmic rays detected by both experiments shows a dipole moment deviations from isotropy. When considering only primaries with energies above $\SI{57e18}{\eV}$ the TA sees a slight preference for cosmic rays from a region on the sky, shown in \cref{fig:hotspot_ta}. However, with a significance of $3.4 \sigma$ more data is needed to verify the excess.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/cosmic-rays/skymap_ta_auger}
+                    {plots/cosmic-rays/skymap_ta_auger.jpg}
     \caption{[verzi2015] Anisotropy measurement for cosmic rays of $E > \SI{e19}{\eV}$ by the combined Pierre Auger Observatory and Telescope Array data. The overlapping regions are used to correct for sensitivity differences between the experiments. Only a dipole moment is seen, higher multipoles do not deviate from the expected fluctuations of an isotropic flux at \SI{99}{\percent} confidence level.}
     \label{fig:skymap_ta_auger}
 \end{figure}
@@ -158,42 +158,17 @@ The differential flux of cosmic rays multiplied by $E^{2.6}$. This representatio
 % Typical hadronic interactions of (hadronic) cosmic rays entering the atmosphere.
 % The cross section of such interactions, as known from colliders and cosmic ray experiments.
 % Colliders not yet upto highest energies, and different type of interactions.
-The first interaction target of incoming cosmic rays are the atoms in the upper atmosphere. The upper atmosphere consists mainly of nitrogen (\SI{78.09}{\percent}), oxygen (\SI{20.95}{\percent}), and argon (\SI{0.93}{\percent}) [fix composition for upper atmosphere]. Unfortunately collider experiments rarely use these nuclei as collision material. So the exact cross section of interactions between cosmic-rays (from protons to iron) and atomic nitrogen, oxygen, and argon is not known at high energies. However, from p-p collisions the p-Air cross sections can be extrapolated using Glauber theory. The LHC also performs p-Pb and Pb-Pb collisions..
+The first interaction target of incoming cosmic rays are the atoms in the upper atmosphere. The upper atmosphere consists mainly of nitrogen (\SI{78.09}{\percent}), oxygen (\SI{20.95}{\percent}), and argon (\SI{0.93}{\percent}) [fix composition for upper atmosphere, add reference]. Unfortunately collider experiments rarely use these nuclei as collision material. So the exact cross section of interactions between cosmic-rays (anythin between protons a iron) and atomic nitrogen, oxygen, and argon is not known at high energies.
 
+Particle colliders like HERA, RHIC, and SPS [refs, or see figure] have been able to produce collisions center mass energies of several hunderds \si{\GeV}, equivalent to cosmic rays of \SI{e14}{\eV} colliding with a fixed target.
 
-- Provide the model of the thickness of the atmosphere as a function of the height (as used in CORSIKA).
-- The combination of cross section and atmospheric depth gives a distribution for the likely first interaction altitudes.
-- Explain that these hadronic interactions can produce many secondaries (multiplicty).
-- Explain what particles are produced and what happens to them.
-- Explain how energy is transferred into the leptonic part of the shower.
-- Explain Heitler model for EM shower.
-- This results in a longitudinal profile.
-- Particle creation on one side with energy transfer from hadronic to EM
-- Particle decay and absorption cause reduction in number of shower particles.
-- The interactions also result in deflections, so the shower expands lateraly.
-- Shower shower profile (CORSIKA).
-- Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
+The collider data has been essential for tuning models simulating the interaction in the particle cascades. Using extrapolations models can simulate the expected showers for cosmic-rays of the highest energies. The expected accuracy of the extrapolations becomes less the further they are from the collider data. These colliders provide important data about the hadron production processes in air showers, the cross-sections of the collisions, the multiplicity of secondary high-energy particles and the ratio of neutral to charged particles \cite{pierog2008lhc}.
 
+Fermilab's Tevatron was capable of proton collisions with center of mass energies of \SI{1.8}{\TeV} \cite{abe1994tevatron}, equivalent to collisions of cosmic protons with \SI{2e15}{\eV} against a fixed target. This is approximately the lower energy limit for the KASCADE experiment. However, KASCADE's upper limit was \SI{e17}{\eV}. The LHC is in an interesting energy range; \SI{7}{\TeV} and now upgraded to \SI{14}{\TeV}, equivalent to \SI{2e16}{\eV} and \SI{e17}{\eV} cosmic-ray energies respectively. These are the first time that we have access in colliders to collision energies above the knee in the cosmic-ray spectrum. This also covers the entire energy range of the KASCADE experiment (not KASCADE-Grande). The hadronic interaction models from before the LHC did not properly predict the new LHC data at energies beyond the Tevatron. The EPOS and QGSJETII models have been updated using LHC data from the \SI{7}{\TeV} run. This should provide more accurate results for higher energies. Shower simulations used for this thesis were performed before data from the \SI{14}{\TeV} run had been incorporated into models.
 
-%\begin{equation}
-%\HepProcess{\Pproton + \Pproton \to magic \to \Pproton + \Pproton +
-%\Ppizero},
-%\end{equation}
-%
-%\begin{equation}
-%%\begin{split}
-%\HepProcess{\Ppiplus &\to \APmuon + \Pnum}, \\
-%\HepProcess{\Ppiminus &\to \Pmuon + \APnum}, \\
-%\HepProcess{\Ppizero &\to \Pphoton + \Pphoton}.
-%%\end{split}
-%\end{equation}
-%
-%\begin{equation}
-%%\begin{split}
-%\HepProcess{\Pmuon &\to \Pelectron + \APnue}, \\
-%\HepProcess{\APmuon &\to \Ppositron + \Pnue}.
-%%\end{split}
-%\end{equation}
+The TOTEM and LHCf experiments at the LHC are placed at the forward regions of the CMS and ATLAS interaction points respectively. These provide the most interessing data for cosmic-ray physics because the interesting products of collisions are those with high pseudorapidity. The LHC runs with p-p collisions most of the time, short periods are run with heavy ions collisions (p-Pb and Pb-Pb). However, for cosmic-ray physics collisions with low-mass ions (oxygen) that are commonly part of the interactions of EAS would be more interesting. Collision data of such interactions would greatly benefit cosmic-ray research.
+
+From p-p collisions the p-Air cross sections can be extrapolated using Glauber theory [reference]. In \cref{fig:pair_crosssection} the proton-Air inelastic collision (i.e. new particles are created) cross section is shown. Measurements by various experiments (points) and predictions by models (lines) are given. At higher energies the models deviate significantly from each other.
 
 \begin{figure}
     \centering
@@ -204,6 +179,15 @@ The measured proton-air cross section determined from cosmic ray measurements of
     \label{fig:pair_crosssection}
 \end{figure}
 
+% Provide the model of the thickness of the atmosphere as a function of the height (as used in CORSIKA).
+
+The density gradient of the atmosphere is the next important factor. The atoms in the atmosphere are the potential targets for the incomming cosmic ray. Earth's atmosphere has been extensively measured and parameterized. As the density increases, so does the probability of a collision. The common way to describe the atmosphere is by giving the column depth, i.e. the amount of material a particle will have passed since it entered Earth's atmosphere. The atmospheric depth is given by
+
+\begin{equation}
+    X = \int \rho(h) \diff h
+\end{equation}
+
+where $X$ is the atmospheric depth, $\rho$ is the density of the atmosphere as a function of height above ground ($h$). In \cref{fig:atmospheric_depth} the atmospheric depth is shown versus the height above sea level. At sea level the atmospheric depth is approximately \SI{1e3}{\gram\per\meter\squared}. This is the column depth for vertically incoming particles. However, cosmic rays also enter the atmosphere at angles. In this case the path through the atmosphere is longer by approximately $\cos^{-1} \theta$. The resulting column depth is called the slant depth.
 
 \begin{figure}
     \centering
@@ -214,6 +198,9 @@ The atmospheric depth as a function of altitude above ground for typical atmosph
     \label{fig:atmospheric_depth}
 \end{figure}
 
+% The combination of cross section and atmospheric depth gives a distribution for the likely first interaction altitudes.
+Monte Carlo simulations using the above described model of the atmosphere and the interaction model QGSJETII-04 give insight in the distribution of the first interaction altitude. In \cref{fig:first_interaction_altitude} the first interaction altitude is shown for vertically incomming proton primaries of $E = \SI{16}{\eV}$. On average the primaries interact interact around \SI{22}{\kilo\meter} above ground where the distribution has a FWHM ~\SI{15}{\kilo\meter}. Cosmic rays of higher energy have a higher mean interaction altitude, since the cross section increases with energy, as shown in \cref{fig:pair_crosssection}.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
@@ -223,6 +210,11 @@ Distribution of first interaction altitudes for primary proton cosmic-rays of $E
     \label{fig:first_interaction_altitude}
 \end{figure}
 
+For inclined cosmic rays higher column depths are reached at higher altitudes, increasing the mean height of the first interaction.
+
+% Explain that these hadronic interactions can produce many secondaries (multiplicty).
+
+The hadronic interaction between the primary hadron and the nuclei produce a number of new particles. The number of generated particles is energy dependend. The mean number of generated charged particles in a proton proton collision is shown in \cref{fig:multiplicity}. These hadronic interactions generate new particles until the energy of the particles falls below the threshold required to produce a pion. They may still undergo interactions at lower energies, but those are of no interest.
 
 \begin{figure}
     \centering
@@ -232,6 +224,40 @@ Distribution of first interaction altitudes for primary proton cosmic-rays of $E
 Average secondary particle multiplicty in p-p collisions as a function of the collision energy. The multiplicty increases with the energy of the collision. Results from collider data is shown along with models that try to predict the behavior at higher energies. Predictions vary widely from model to model.}
     \label{fig:multiplicity}
 \end{figure}
+
+% Explain what particles are produced and what happens to them.
+The most commonly produced particles in these hadron interactions are light mesons. Charged and neutral pions are most commonly generated. The neutral pions quickly decay ($\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time). The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a muon neutrino. The branching ratio for this is \SI{99.99}{\percent}, the second most probable decay reults in an electron and electron neutrino. Anti particles are created in case of positivly charged pions. The muons may decay if produced at high altiudes and with low enough energy. The mean lifetime of the muon is $\tau = \SI{2197}{\ns}$. Note that the quoted mean lifetimes are for the particle at rest. Given teh relativistic nature of the particles due to the high energies the mean lifetime may be longer in the lab frame.
+
+
+\begin{equation}
+\HepProcess{\Pproton + \Pproton \to \Pproton + x \Ppiplus + y \Ppiminus + z \Ppizero},
+\end{equation}
+
+\begin{equation}
+\HepProcess{\Ppiplus \to \APmuon + \Pnum}, \\
+\HepProcess{\Ppiminus \to \Pmuon + \APnum}, \\
+\HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
+\end{equation}
+
+\begin{equation}
+\HepProcess{\Pmuon \to \Pelectron + \APnue}, \\
+\HepProcess{\APmuon \to \Ppositron + \Pnue}.
+\end{equation}
+
+In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle continue towards the ground with a significant part of the energy.
+
+- Explain how energy is transferred into the leptonic part of the shower.
+- Explain Heitler model for EM shower.
+- This results in a longitudinal profile.
+- Particle creation on one side with energy transfer from hadronic to EM
+- Particle decay and absorption cause reduction in number of shower particles.
+- The interactions also result in deflections, so the shower expands lateraly.
+- Shower shower profile (CORSIKA).
+- Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
+
+
+
+
 
 \begin{figure}
     \centering
@@ -255,7 +281,7 @@ The longitudinal shower profile showing the number of particles in the air showe
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/cosmic-rays/shower.png}
+                    {plots/cosmic-rays/shower.jpg}
     \caption{CORSIKA shower simulation to show spacial development, corsika74000]
 Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles.}
     \label{fig:shower}
