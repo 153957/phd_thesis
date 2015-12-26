@@ -226,38 +226,49 @@ Average secondary particle multiplicty in p-p collisions as a function of the co
 \end{figure}
 
 % Explain what particles are produced and what happens to them.
-The most commonly produced particles in these hadron interactions are light mesons. Charged and neutral pions are most commonly generated. The neutral pions quickly decay ($\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time). The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a muon neutrino. The branching ratio for this is \SI{99.99}{\percent}, the second most probable decay reults in an electron and electron neutrino. Anti particles are created in case of positivly charged pions. The muons may decay if produced at high altiudes and with low enough energy. The mean lifetime of the muon is $\tau = \SI{2197}{\ns}$. Note that the quoted mean lifetimes are for the particle at rest. Given teh relativistic nature of the particles due to the high energies the mean lifetime may be longer in the lab frame.
-
+The most commonly produced particles in these hadronic interactions are light mesons. Neutral and charged pions are most commonly generated.
 
 \begin{equation}
 \HepProcess{\Pproton + \Pproton \to \Pproton + x \Ppiplus + y \Ppiminus + z \Ppizero},
 \end{equation}
 
+% Explain how energy is transferred into the leptonic part of the shower.
+The neutral pions quickly decay ($\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time).
+
 \begin{equation}
-\HepProcess{\Ppiplus \to \APmuon + \Pnum}, \\
-\HepProcess{\Ppiminus \to \Pmuon + \APnum}, \\
 \HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
 \end{equation}
+
+The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a muon neutrino.
+
+\begin{equation}
+\HepProcess{\Ppiplus \to \APmuon + \Pnum},
+\HepProcess{\Ppiminus \to \Pmuon + \APnum}.
+\end{equation}
+
+The branching ratio for this process is \SI{99.99}{\percent}, the second most probable decay reults in an electron and electron neutrino.
+
+Note that the quoted mean lifetimes are for the particle at rest. Given the relativistic nature of the particles due to the high energies the mean lifetime are longer in the lab frame.
+
+The mean lifetime of the muon is relatively long with $\tau = \SI{2197}{\ns}$. The muons can easily reach ground if they have enough energy because of time dilation and length contraction. Some muons do decay before reaching ground in which case the \Pmuon (\APmuon) produces a electron (positron) and positron neutrino (electron neutrino),
 
 \begin{equation}
 \HepProcess{\Pmuon \to \Pelectron + \APnue}, \\
 \HepProcess{\APmuon \to \Ppositron + \Pnue}.
 \end{equation}
 
-In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle continue towards the ground with a significant part of the energy.
+In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle (the surviving part of the incident particle) continue towards the ground with a significant part of the energy. It will undergo further interactions, but with lower energy, and thus lower multiplicity.
 
-- Explain how energy is transferred into the leptonic part of the shower.
-- Explain Heitler model for EM shower.
-- This results in a longitudinal profile.
-- Particle creation on one side with energy transfer from hadronic to EM
-- Particle decay and absorption cause reduction in number of shower particles.
-- The interactions also result in deflections, so the shower expands lateraly.
-- Shower shower profile (CORSIKA).
-- Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
+The dominant interaction for the high energy photons created by neutral pion decay is pair production. The photons must have more energy then the rest mass of the two produced particles, i.e. \SI{1022e6}{\eV} for an electron postitron pair.
 
+\begin{equation}
+\HepProcess{\Pgamma \to \Pelectron + \Ppositron}.
+\end{equation}
 
+Below this energy Compton scattering and absorption[?] begin to dominate. In Compton scattering the photon recoils of another particle, transfering energy to the other particle.
 
-
+% Explain Heitler model for EM shower.
+Electrons and positrons in the cascade will mainly loose energy via Coulomb bremsstrahlung. In this process the electrons will emit photons when passing close to the nucleus of particles where they are affected by the electric fields of the charges. The mean free path of this process is of the same order as that for the pair production. So on average after each radiation length (mean free path) the photons will undergo pair production while the electrons produce new photons via bremsstrahlung. The number of particles doubles at each stage and the energy is divided over the particles. This simple way of describing the electromagnetic cascade is called the Heitler model.
 
 \begin{figure}
     \centering
@@ -268,6 +279,17 @@ Simple representation of the hadronic and electromagnetic cascades in an air sho
     \label{fig:schematic_shower}
 \end{figure}
 
+A full air shower initiated by an incoming hadron will consist of an hadronic component with many electromagnetic subcascades. In the hadronic cascade many pions are produced at different stages. These decay to the muons and gammas. The gammas, and to some extent muons, produce electrons and initiate the electromagnetic cascades.
+
+\subsection{Other observables}
+
+The charged particles reaching ground level are often used to detect the air showers. However, other observables are also created in the shower. The motion of the shower electrons through Earths magnetic field causes them to be slightly deflected, with the positrons being deflected in the opposite direction. In this process radio pulses are created, which can be detected by antennas. Cherenkov radiation is emitted as the fast charged particles move through the atmosphere. The angle of the Cherenkov cone changes with the energy of the shower particles and the height in the atmosphere. Since Cherenkov radiation is emitted along the entire length of the shower information about the development of the shower can be probed. Fluorescence caused by the ionization and excitation of the air causes fluorescence to be emitted along the entire track of the shower. This can also be used to observe the development of the shower from different sides. The fluorescence and Cherenkov radiation is not very bright. Detectors wishing to detect those signals can only operate when there is little background light. That means only at night, no moon, no clouds, no dust in the air, and not to much light polution. These requirements make the duty cycle of these detectors less than \SI{20}{\percent}.
+
+
+\subsection{Longitudinal}
+
+% This results in a longitudinal profile.
+The balance between new particle creation and particle absorption changed as the average energy per particle changes during shower development. When the particles have a enough energy particle production dominates. As energy is spread thin among many particles the absorption will be come more important. Also the decay processed change the balance of hadrons, leptons and gammas. In \cref{fig:longitudinal_profile} the development of the shower as a function of depth is shown. A maximum number of particles in the shower is reached at some point, this is called $X_{max}$. The $X_{max}$ for the different particel types (hadrons, electrons, muons, gammas) are reached at slightly different altitudes.
 
 \begin{figure}
     \centering
@@ -278,12 +300,22 @@ The longitudinal shower profile showing the number of particles in the air showe
     \label{fig:longitudinal_profile}
 \end{figure}
 
+
+- Particle creation on one side with energy transfer from hadronic to EM
+- Particle decay and absorption cause reduction in number of shower particles.
+- The interactions also result in deflections, so the shower expands lateraly.
+
+% Shower shower profile (CORSIKA).
+% Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
+
+In \cref{fig:shower} all traces of the particles in an air shower are shown. The showers is shown from the side. This is the typical development of a shower. However, the discussed processes are all chance processes. Sometimes the first interaction will be higher, sometimes much later. The multiplicity also differs between collisions of the same energy. The first interactions greatly affect the development of the rest of the shower. In \cref{fig:shower_size_distribution} the total number of leptons reaching ground level (with energy above thresholds) is shown for simulated showers of different energies. All showers are from the zenith. As can be seen the final number of particles varies greatly, spanning about a decade. Showers with a lower point of first interaction will result in larger shower sizes. Note that  here ground level is approximately sea level, at $X = \SI{1080}{\gram\per\centi\meter\square}$, so the shower is diminishing. If the observation level would be around $X_{max}$ the shower sizes would be more consistent.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/shower.jpg}
     \caption{CORSIKA shower simulation to show spacial development, corsika74000]
-Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles.}
+Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles. Motion in the y-direction is ignored.}
     \label{fig:shower}
 \end{figure}
 
