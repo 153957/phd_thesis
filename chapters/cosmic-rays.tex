@@ -338,14 +338,9 @@ Number of leptons on ground distributions versus the energy of the primary parti
 
 \section{Shower front}
 
-- What the shower looks like as it reaches ground, how this shape is a result of the various interactions.
-- The important distributions related to the shower front.
-- LDF for various components, and what influences it.
-- At various core distances the temporal profile.
-- The energy distribution of the particles in the front (see if they are high/low/close to decay).
-- Explain why muons are earlier than electron/gamma.
-- Explain why the front is curved and the thickness of the front varies.
-- The relation between the curvature/rise time to other shower properties.
+% What the shower looks like as it reaches ground, how this shape is a result of the various interactions.
+
+Of interest to ground-based experiments is what the observables on the ground are. The focus will be on the leptons and high energy gamma rays which can be efficiently detected. The shower development in the air happens fast, many of the created particles have a lot of energy and move at relativistic speeds. And their direction of motion is approximately equal to the initial incident particle. If a snapshot were made during the development of the shower a 'front' would be seen. The shower front is the shell of particles moving towards ground. The highest density will be at the core of the shower axis, with a lower density towards the edges. The thickness of the shower front will increase at larged core distance because of the different path lengths the particles took to get there will vary more. The front of the shower front is not flat/tangent, at larger core distances the first particles will be delayed relative to the tangent plane of the first particle, again because that particles will have needed to travel a longer distance to get to the sides. Theoretically a causal front exists, a (semi-)sphere with the first interaction at its origin which moves with speed $c$. Since no particle is known to travel faster than light there should be no particle from the shower that reaches ground before the causal front. The expected curvature of the shower front is approximately a sphere. In \cref{fig:schematic_front} these discussed features are shown in a schematic representation of the shower front.
 
 \begin{figure}
     \centering
@@ -356,7 +351,15 @@ A schematic representation of the shower front as it reached ground level. The d
     \label{fig:schematic_front}
 \end{figure}
 
-\,
+The shower front can be defined in multiple ways, either as a snapshot in time or the front as is passes an observation level. In the first case the $z$ coordinates of particles is relavant, in the second it is replaced by the arrival time $t$. Since particle detectors are fixed at a certain altitude the second definition will be used when refering to the shower front.
+
+% The important distributions related to the shower front.
+% LDF for various components, and what influences it.
+The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (>\SI{3e9}{\eV}?) gamma rays, followed by electrons, then muons. The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, namely the NKG, KASCADE, AGASA... Some are specifically tuned to experiments, including the atmospheric depth of the experiment, and thus the aproximate shower age [definition?] when showers hit the detectors.
+
+On average the particle density increases with the energy of the primary particle.
+
+- Why this shape
 
 \begin{figure}
     \centering
@@ -367,8 +370,13 @@ The particle density as a function of core distance for a shower of $E = \SI{e16
     \label{fig:ldf}
 \end{figure}
 
-[Lateral energy distribution, average energy per particle versus core distance]
-The (mean particle energy or energy density) as a function of core distance. Close to the code the particles have more energy?
+
+\subsection{Temporal shower front}
+
+% At various core distances the temporal profile.
+The temporal structure of the shower front can be seen for various core distances in \cref{fig:temporal_profile}. Shortly after the first few particles most of the shower front crosses the obervation level, followed by a long tail of straggling particles. Further from the core the particle density is lower and the spread in arrival times increases.
+
+A hypothetical particle detector would detect many particles if close to the core. The probability is high that one of these particles would be close to the front. At larger distances the density becomes lower, so only a few particles are detected. Moreover, the temporal distribution is much wider so the probability that the particles is further delayed from the front is larger.
 
 \begin{figure}
     \centering
@@ -379,7 +387,21 @@ The temporal structure of the shower front at different core distances for diffe
     \label{fig:temporal_profile}
 \end{figure}
 
-\,
+
+- The energy distribution of the particles in the front (see if they are high/low/close to decay).
+
+The energy distributions of the particles on ground... electrons/muons speed...
+
+[Lateral energy distribution, average energy per particle versus core distance]
+The (mean particle energy or energy density) as a function of core distance. Close to the code the particles have more energy?
+
+% Explain why muons are earlier than electron/gamma.
+% Explain why the front is curved and the thickness of the front varies.
+In [add figure temporal per type] the temporal distribution for the various particle types is shown. The muons are typically first, muons are produced in the charged pion decays and then travel uninterrupted to ground. Electrons and gammas on the other hand undergo many interactions before reaching ground. In each of these interactions there is a possibility of gaining transverse momentum (scattering), this means the trace from the particle on the ground back to the initial interaction will be less of a straight line, more jagged. So on average the electrons arrive after the muons. Gammas...
+
+
+% The relation between the curvature/rise time to other shower properties.
+
 
 \begin{figure}
     \centering
