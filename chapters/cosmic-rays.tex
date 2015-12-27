@@ -226,38 +226,46 @@ Average secondary particle multiplicty in p-p collisions as a function of the co
 \end{figure}
 
 % Explain what particles are produced and what happens to them.
-The most commonly produced particles in these hadronic interactions are light mesons. Neutral and charged pions are most commonly generated.
+The most commonly produced particles in these hadronic interactions are light mesons. Neutral and charged pions are most commonly generated. In these hadronic interactions the Baryon number must be conserved. This means that the quark number must remain equal. Each (anti-)quark has a baryon number of $(-)\frac{1}{3}$. Mesons consist of a quark and anti-quark, so have a baryon number of 0. So mesons can 'freely' be added to the output of the interaction. As long as enough energy is available to produce the particles.
 
 \begin{equation}
 \HepProcess{\Pproton + \Pproton \to \Pproton + x \Ppiplus + y \Ppiminus + z \Ppizero},
 \end{equation}
 
+These reactions are not fully elastic, because new particles are created. However, the incident particle, or parts of it, generally survive and still carry a significant fraction of the energy.
+
 % Explain how energy is transferred into the leptonic part of the shower.
-The neutral pions quickly decay ($\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time).
+% Particle creation with energy transfer from hadronic to EM
+The neutral pions quickly decay (a mean life time of $\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time).
 
 \begin{equation}
 \HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
 \end{equation}
 
-The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a muon neutrino.
+Here the baryon number is conserved because leptons, neutrinos, and bosons have a baryon number of 0, equal to that of a meson. The gammas will initiate new electromagnetic cascades. Note that quoted mean lifetimes are for the particle at rest. Given the relativistic nature of the particles in showers, due to the high energies, the mean lifetime are longer in the lab/Earth frame.
+
+The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a (anti) muon neutrino.
 
 \begin{equation}
 \HepProcess{\Ppiplus \to \APmuon + \Pnum},
 \HepProcess{\Ppiminus \to \Pmuon + \APnum}.
 \end{equation}
 
-The branching ratio for this process is \SI{99.99}{\percent}, the second most probable decay reults in an electron and electron neutrino.
+The branching ratio for this process is \SI{99.99}{\percent}, the second most probable decay produces an electron and (anti) electron neutrino.
 
-Note that the quoted mean lifetimes are for the particle at rest. Given the relativistic nature of the particles due to the high energies the mean lifetime are longer in the lab frame.
+\begin{equation}
+\HepProcess{\Ppiplus \to \APelectron + \Pnue},
+\HepProcess{\Ppiminus \to \Pelectron + \APnue}.
+\end{equation}
 
 The mean lifetime of the muon is relatively long with $\tau = \SI{2197}{\ns}$. The muons can easily reach ground if they have enough energy because of time dilation and length contraction. Some muons do decay before reaching ground in which case the \Pmuon (\APmuon) produces a electron (positron) and positron neutrino (electron neutrino),
 
 \begin{equation}
-\HepProcess{\Pmuon \to \Pelectron + \APnue}, \\
-\HepProcess{\APmuon \to \Ppositron + \Pnue}.
+\HepProcess{\Pmuon \to \Pelectron + \APnue + \Pnum}, \\
+\HepProcess{\APmuon \to \Ppositron + \Pnue + \APnum}.
 \end{equation}
 
-In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle (the surviving part of the incident particle) continue towards the ground with a significant part of the energy. It will undergo further interactions, but with lower energy, and thus lower multiplicity.
+In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle (the surviving part of the incident particle) continues towards the ground with a significant part of the energy. It will undergo further interactions, but with lower energy, and thus lower multiplicity.
 
 The dominant interaction for the high energy photons created by neutral pion decay is pair production. The photons must have more energy then the rest mass of the two produced particles, i.e. \SI{1022e6}{\eV} for an electron postitron pair.
 
@@ -289,6 +297,7 @@ The charged particles reaching ground level are often used to detect the air sho
 \subsection{Longitudinal}
 
 % This results in a longitudinal profile.
+% Particle decay and absorption cause reduction in number of shower particles.
 The balance between new particle creation and particle absorption changed as the average energy per particle changes during shower development. When the particles have a enough energy particle production dominates. As energy is spread thin among many particles the absorption will be come more important. Also the decay processed change the balance of hadrons, leptons and gammas. In \cref{fig:longitudinal_profile} the development of the shower as a function of depth is shown. A maximum number of particles in the shower is reached at some point, this is called $X_{max}$. The $X_{max}$ for the different particel types (hadrons, electrons, muons, gammas) are reached at slightly different altitudes.
 
 \begin{figure}
@@ -300,10 +309,8 @@ The longitudinal shower profile showing the number of particles in the air showe
     \label{fig:longitudinal_profile}
 \end{figure}
 
-
-- Particle creation on one side with energy transfer from hadronic to EM
-- Particle decay and absorption cause reduction in number of shower particles.
-- The interactions also result in deflections, so the shower expands lateraly.
+% The interactions also result in deflections, so the shower expands lateraly.
+In the particle interactions and scattering processes the particles emerging from the interaction may have a different direction vector than the incident particle. The transverse momentum of the secondaries mean that the shower extends laterally. Most particles remain close to the shower axis, but low energy ...
 
 % Shower shower profile (CORSIKA).
 % Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
