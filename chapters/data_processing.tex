@@ -28,7 +28,7 @@ The trigger rate (Hz) as measured by the \daq over the last 90 seconds is added 
 
 \subsection{Data reduction}
 
-\cite{oostenbrugge2014}
+\cite{oostenbrugge2014daq}
 
 For all traces (for each channel) in an event the part which contains all significant pulses is calculated. A bit of padding is added to allow verification of the baseline in the offline analysis. The rest of the traces is cut away. On average (median) this leads to traces with \SI{150}{\ns} length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples), so overall only \SI{2.5}{\percent} of the measured data is kept. This reduces the size of data to be transfered to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
 
