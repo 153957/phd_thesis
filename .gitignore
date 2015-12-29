@@ -3,6 +3,8 @@ thanks.md
 TODO
 outlines/
 articles/**.pdf
+articles/**.txt
+articles/**.webarchive
 articles/fokkema_references
 !articles/*.bib
 !articles/*/*.bib
