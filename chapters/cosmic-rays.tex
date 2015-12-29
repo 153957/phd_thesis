@@ -171,8 +171,7 @@ From p-p collisions the p-Air cross sections can be extrapolated using the Glaub
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/pair_crosssection}
-    \caption{Cross section p-Air vs energy, grieder2010]
-The measured proton-air cross section determined from cosmic ray measurements of the first interaction altitude. As the energy of the particles increases, so does the cross section. The measurements are within the predicted values from proton-proton cross sections measured in colliders when corrected with Glauber theory.}
+    \caption{The measured inelastic proton-air cross section determined from cosmic ray measurements of the first interaction altitude. As the energy of the particles increases, so does the cross section. The measurements are within the predicted values from proton-proton cross sections measured in colliders when corrected with Glauber theory.}
     \label{fig:pair_crosssection}
 \end{figure}
 
@@ -201,8 +200,7 @@ Monte Carlo simulations using the above described model of the atmosphere and th
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/first_interaction_altitude}
-    \caption{Distribution of first interaction altitude for showers of certain energy (penetration depth), corsika74000]
-Distribution of first interaction altitudes for primary proton cosmic-rays of $E = \SI{16}{\eV}$. From the cross sections a mean free path can be calculated for cosmic rays entering the atmosphere.}
+    \caption{Distribution of first interaction altitudes for primary proton cosmic-rays of $E = \SI{16}{\eV}$. From the cross sections a mean free path can be calculated for cosmic rays entering the atmosphere. \cite{heck2013corsika}}
     \label{fig:first_interaction_altitude}
 \end{figure}
 
@@ -210,29 +208,28 @@ For inclined cosmic rays higher column depths are reached at higher altitudes, i
 
 % Explain that these hadronic interactions can produce many secondaries (multiplicty).
 
-The hadronic interaction between the primary hadron and the nuclei produce a number of new particles. The number of generated particles is energy dependend. The mean number of generated charged particles in a proton proton collision is shown in \cref{fig:multiplicity}. These hadronic interactions generate new particles until the energy of the particles falls below the threshold required to produce a pion. They may still undergo interactions at lower energies, but those are of no interest.
+The hadronic interaction between the primary hadron and the nuclei produce a number of new particles. The number of generated particles is energy dependend \cite{grieder2010eas}. The mean number of generated charged particles in a proton-proton collision is shown in \cref{fig:multiplicity}. In a shower multiple hadronic interactions occur, the initial has the highest energy. The interactions generate new particles until the energy of the colliding particles falls below the threshold required to produce a pion. They may still undergo interactions at lower energies, but those are of no interest to the shower development.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/multiplicity}
-    \caption{Multiplicity in hard hadron interaction versus energy, grieder2010]
-Average secondary particle multiplicty in p-p collisions as a function of the collision energy. The multiplicty increases with the energy of the collision. Results from collider data is shown along with models that try to predict the behavior at higher energies. Predictions vary widely from model to model.}
+    \caption{Average charged secondary particle multiplicty in p-p collisions as a function of the collision energy. The multiplicty increases with the energy of the collision. Results from collider data is shown along with models that try to predict the behavior at higher energies. Predictions vary widely from model to model.}
     \label{fig:multiplicity}
 \end{figure}
 
 % Explain what particles are produced and what happens to them.
-The most commonly produced particles in these hadronic interactions are light mesons. Neutral and charged pions are most commonly generated. In these hadronic interactions the Baryon number must be conserved. This means that the quark number must remain equal. Each (anti-)quark has a baryon number of $(-)\frac{1}{3}$. Mesons consist of a quark and anti-quark, so have a baryon number of 0. So mesons can 'freely' be added to the output of the interaction. As long as enough energy is available to produce the particles.
+The most commonly produced particles in the hadronic interactions are light mesons. Neutral and charged pions are most commonly generated. In these interactions conservation laws apply. This means the convervation of baryon and lepton number, energy, momentum, angular momentum, and charge. Each (anti-)quark has a baryon number of $(-)\frac{1}{3}$. Mesons consist of a quark and anti-quark, so have a baryon number of 0. So mesons can 'freely' be added to the output of the interaction. As long as enough energy is available to produce the particles. A typical collision can be
 
 \begin{equation}
-\HepProcess{\Pproton + \Pproton \to \Pproton + x \Ppiplus + y \Ppiminus + z \Ppizero},
+\HepProcess{\Pproton + \Pproton \to \Pproton + \Pproton + i \Ppiplus + i \Ppiminus + j \Ppizero},
 \end{equation}
 
-These reactions are not fully elastic, because new particles are created. However, the incident particle, or parts of it, generally survive and still carry a significant fraction of the energy.
+Here $i$ and $j$ can be any positive integer. These reactions are not fully elastic, because new particles are created. However, the incident particle, or parts of it, generally survive and still carry a significant fraction of the energy.
 
 % Explain how energy is transferred into the leptonic part of the shower.
 % Particle creation with energy transfer from hadronic to EM
-The neutral pions quickly decay (a mean life time of $\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time).
+The neutral pions quickly decay (a mean life time of $\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time) \cite{olive2014pdg}.
 
 \begin{equation}
 \HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
@@ -240,7 +237,7 @@ The neutral pions quickly decay (a mean life time of $\tau = \SI{8.4e-8}{\ns}$) 
 
 Here the baryon number is conserved because leptons, neutrinos, and bosons have a baryon number of 0, equal to that of a meson. The gammas will initiate new electromagnetic cascades. Note that quoted mean lifetimes are for the particle at rest. Given the relativistic nature of the particles in showers, due to the high energies, the mean lifetime are longer in the lab/Earth frame.
 
-The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a (anti) muon neutrino.
+The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a (anti) muon neutrino \cite{olive2014pdg}.
 
 \begin{equation}
 \HepProcess{\Ppiplus \to \APmuon + \Pnum},
@@ -254,7 +251,7 @@ The branching ratio for this process is \SI{99.99}{\percent}, the second most pr
 \HepProcess{\Ppiminus \to \Pelectron + \APnue}.
 \end{equation}
 
-The mean lifetime of the muon is relatively long with $\tau = \SI{2197}{\ns}$. The muons can easily reach ground if they have enough energy because of time dilation and length contraction. Some muons do decay before reaching ground in which case the \Pmuon (\APmuon) produces a electron (positron) and positron neutrino (electron neutrino),
+The mean lifetime of the muon is relatively long with $\tau = \SI{2197}{\ns}$ \cite{duclos1973muon}. The muons can easily reach ground if they have enough energy because of time dilation and length contraction. Some muons do decay before reaching ground in which case the \Pmuon (\APmuon) produces a electron (positron) and positron neutrino (electron neutrino),
 
 \begin{equation}
 \HepProcess{\Pmuon \to \Pelectron + \APnue + \Pnum}, \\
@@ -269,25 +266,25 @@ The dominant interaction for the high energy photons created by neutral pion dec
 \HepProcess{\Pgamma \to \Pelectron + \Ppositron}.
 \end{equation}
 
-Below this energy Compton scattering and absorption[?] begin to dominate. In Compton scattering the photon recoils of another particle, transfering energy to the other particle.
+Below this energy Compton scattering begins to dominate. In Compton scattering the photon recoils of another particle, transfering energy to the other particle.
 
 % Explain Heitler model for EM shower.
-Electrons and positrons in the cascade will mainly loose energy via Coulomb bremsstrahlung. In this process the electrons will emit photons when passing close to the nucleus of particles where they are affected by the electric fields of the charges. The mean free path of this process is of the same order as that for the pair production. So on average after each radiation length (mean free path) the photons will undergo pair production while the electrons produce new photons via bremsstrahlung. The number of particles doubles at each stage and the energy is divided over the particles. This simple way of describing the electromagnetic cascade is called the Heitler model.
+Electrons and positrons in the cascade will mainly loose energy via Coulomb bremsstrahlung. In this process the electrons will emit photons when passing close to the nucleus of particles where they are affected by the electric fields of the charges. The mean free path of this process is of the same order as that for the pair production. So on average after each radiation length (mean free path) the photons will undergo pair production while the electrons produce new photons via bremsstrahlung. The number of particles doubles at each stage and the energy is divided over the particles. This simple way of describing the electromagnetic cascade is called the Heitler model \cite{matthews2005heitler}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/schematic_shower}
-    \caption{Schematic shower representation (perhaps separate for hadronic/em), engel2011]
-Simple representation of the hadronic and electromagnetic cascades in an air shower. The high multiplicity causes many new charged and neutral particles to be created. The subsequent hadronic interactions are at lower energies and thus, on average, lower multiplicty. After ~6 interaction lengths the shower has reached ground level and most energy will have gone to the electromagnetic shower. For the electromagnetic cascade start when neutral pions or muons decay into gammas or electrons. Gamma's undergo pair creation and electrons (and positrons) emit gammas due to bremsstrahlung. At each radiation length the number of particles doubled, as long as enough energy is available.}
+    \caption{Simple representation of the hadronic and electromagnetic cascades in an air shower. The high multiplicity causes many new charged and neutral particles to be created. The subsequent hadronic interactions are at lower energies and thus, on average, lower multiplicty. After ~6 interaction lengths the shower has reached ground level and most energy will have gone to the electromagnetic shower. For the electromagnetic cascade start when neutral pions or muons decay into gammas or electrons. Gamma's undergo pair creation and electrons (and positrons) emit gammas due to bremsstrahlung. At each radiation length the number of particles doubled, as long as enough energy is available. \cite{engel2011eas}}
     \label{fig:schematic_shower}
 \end{figure}
 
 A full air shower initiated by an incoming hadron will consist of an hadronic component with many electromagnetic subcascades. In the hadronic cascade many pions are produced at different stages. These decay to the muons and gammas. The gammas, and to some extent muons, produce electrons and initiate the electromagnetic cascades.
 
+
 \subsection{Other observables}
 
-The charged particles reaching ground level are often used to detect the air showers. However, other observables are also created in the shower. The motion of the shower electrons through Earths magnetic field causes them to be slightly deflected, with the positrons being deflected in the opposite direction. In this process radio pulses are created, which can be detected by antennas. Cherenkov radiation is emitted as the fast charged particles move through the atmosphere. The angle of the Cherenkov cone changes with the energy of the shower particles and the height in the atmosphere. Since Cherenkov radiation is emitted along the entire length of the shower information about the development of the shower can be probed. Fluorescence caused by the ionization and excitation of the air causes fluorescence to be emitted along the entire track of the shower. This can also be used to observe the development of the shower from different sides. The fluorescence and Cherenkov radiation is not very bright. Detectors wishing to detect those signals can only operate when there is little background light. That means only at night, no moon, no clouds, no dust in the air, and not to much light polution. These requirements make the duty cycle of these detectors less than \SI{20}{\percent}.
+The charged particles reaching ground level are often used to detect the air showers. However, other observables are also created in the shower \cite{grieder2010eas}. The motion of the shower electrons through Earths magnetic field causes them to be slightly deflected, with the positrons being deflected in the opposite direction. In this process radio pulses are created, which can be detected by antennas. Cherenkov radiation is emitted as the fast charged particles move through the atmosphere. The angle of the Cherenkov cone changes with the energy of the shower particles and the height in the atmosphere. Since Cherenkov radiation is emitted along the entire length of the shower information about the development of the shower can be probed. Fluorescence caused by the ionization and excitation of the air causes fluorescence to be emitted along the entire track of the shower. This can also be used to observe the development of the shower from different sides. The fluorescence and Cherenkov radiation is not very bright. Detectors wishing to detect those signals can only operate when there is little background light. That means only at night, no moon, no clouds, no dust in the air, and not to much light polution. These requirements make the duty cycle of these detectors less than \SI{20}{\percent} \cite{abraham2004auger}.
 
 
 \subsection{Longitudinal}
@@ -300,25 +297,22 @@ The balance between new particle creation and particle absorption changed as the
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/longitudinal_profile}
-    \caption{Longitudinal shower profile, with contributions by various particles, engel2011]
-The longitudinal shower profile showing the number of particles in the air shower as a function of the atmospheric depth. Different types of particles are shown separately. The depth at which the maximum number of particles exists is called Xmax.}
+    \caption{The longitudinal shower profile showing the number of particles in the air shower as a function of the atmospheric depth. Different types of particles are shown separately. The depth at which the maximum number of particles exists is called Xmax. \cite{engel2011eas}}
     \label{fig:longitudinal_profile}
 \end{figure}
 
 % The interactions also result in deflections, so the shower expands lateraly.
-In the particle interactions and scattering processes the particles emerging from the interaction may have a different direction vector than the incident particle. The transverse momentum of the secondaries mean that the shower extends laterally. Most particles remain close to the shower axis, but low energy ...
+In the particle interactions and scattering processes the particles emerging from the interaction may have a different direction vector than the incident particle. The transverse momentum of the secondaries mean that the shower extends laterally, away from the shower axis.
 
 % Shower shower profile (CORSIKA).
 % Each shower with the same primary energy can develop very differently, chance processes. The size (number of particles) varies for cosmic rays of same energy.
-
-In \cref{fig:shower} all traces of the particles in an air shower are shown. The showers is shown from the side. This is the typical development of a shower. However, the discussed processes are all chance processes. Sometimes the first interaction will be higher, sometimes much later. The multiplicity also differs between collisions of the same energy. The first interactions greatly affect the development of the rest of the shower. In \cref{fig:shower_size_distribution} the total number of leptons reaching ground level (with energy above thresholds) is shown for simulated showers of different energies. All showers are from the zenith. As can be seen the final number of particles varies greatly, spanning about a decade. Showers with a lower point of first interaction will result in larger shower sizes. Note that  here ground level is approximately sea level, at $X = \SI{1080}{\gram\per\centi\meter\square}$, so the shower is diminishing. If the observation level would be around $X_{max}$ the shower sizes would be more consistent.
+In \cref{fig:shower} all traces of the particles in an air shower are shown. The showers is shown from the side. This is the typical development of a shower. However, the discussed processes are all chance processes. Sometimes the first interaction will be higher, sometimes much later. The multiplicity also differs between collisions of the same energy. The first interactions greatly affect the development of the rest of the shower. In \cref{fig:shower_size_distribution} the total number of leptons reaching ground level (with energy above thresholds) is shown for simulated showers of different energies. All showers are from the zenith. As can be seen the final number of particles varies greatly, spanning about a decade. Showers with a lower point of first interaction will result in larger shower sizes. Note that  here ground level is approximately sea level, at $X = \SI{1080}{\gram\per\centi\meter\square}$, so the shower is past Xmax. If the observation level would be around $X_{max}$ the shower sizes would be more consistent.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/shower.jpg}
-    \caption{CORSIKA shower simulation to show spacial development, corsika74000]
-Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles. Motion in the y-direction is ignored.}
+    \caption{Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$. The different types of particles are shown with different colors. This shows both the longitudinal and lateral distribution of particles. Motion in the y-direction is ignored. \cite{heck2013corsika}}
     \label{fig:shower}
 \end{figure}
 
@@ -326,8 +320,7 @@ Particle tracks of a simulated air shower from a proton with $E = \SI{e16}{\eV}$
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/shower_size_distribution}
-    \caption{Shower size distributions for showers of various energies, corsika74000]
-Number of leptons on ground distributions versus the energy of the primary particle. The variation from shower to shower means that showers will have a different number of particles reaching ground level, eventhough the primary energy was equal. The variations can be as high as a factor 10.}
+    \caption{Number of leptons on ground distributions versus the energy of the primary particle. The variation from shower to shower means that showers will have a different number of particles reaching ground level, eventhough the primary energy was equal. The variations can be as high as a factor 10.  \cite{heck2013corsika}}
     \label{fig:shower_size_distribution}
 \end{figure}
 
@@ -343,7 +336,7 @@ Of interest to ground-based experiments is what the observables on the ground ar
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/schematic_front}
     \caption{schematic representation of shower front]
-A schematic representation of the shower front as it reached ground level. The dots represent shower particles. This is a snapshot in time, so all particles are moving with approximately $c$ to the ground. The particles on the front will reach the ground first followed by those behind. Near the core the density of particles in higher and they are closer to the front. Away from the core the front is curved away from a flat shower front plane. The thickness (rise time) of the front increases with core distance.}
+A schematic representation of the shower front as it reached ground level. The dots represent shower particles. This is a snapshot in time, so all particles are moving with approximately $c$ to the ground. The particles on the front will reach the ground first followed by those behind. Near the core the density of particles in higher and they are closer to the front. Away from the core the front is curved away from a flat shower front plane. The thickness (rise time) of the front increases with core distance. \cite{grieder2010eas} to \cite{heck2013corsika}}
     \label{fig:schematic_front}
 \end{figure}
 
@@ -351,11 +344,7 @@ The shower front can be defined in multiple ways, either as a snapshot in time o
 
 % The important distributions related to the shower front.
 % LDF for various components, and what influences it.
-The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (>\SI{3e9}{\eV}?) gamma rays, followed by electrons, then muons. The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, namely the NKG, \kascade, AGASA... Some are specifically tuned to experiments, including the atmospheric depth of the experiment, and thus the aproximate shower age [definition?] when showers hit the detectors.
-
-On average the particle density increases with the energy of the primary particle.
-
-- Why this shape
+The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (>\SI{3e9}{\eV}?) gamma rays, followed by electrons, then muons. The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, most well known is the Nishimura-Kamata-Greisen (NKG) \cite{apel2006nkg}. Some are specifically tuned to experiments, including the atmospheric depth of the experiment, and thus the aproximate shower age [definition?] when showers hit the detectors. The overall particle density increases with the energy of the primary particle.
 
 \begin{figure}
     \centering
@@ -379,7 +368,7 @@ A hypothetical particle detector would detect many particles if close to the cor
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/temporal_profile}
     \caption{Temporal structure of shower front, for various core distances]
-The temporal structure of the shower front at different core distances for different types of particles. $t = \SI{0}{\ns}$ is the time the first particle reaches ground. Muons arrive first, followed by the gammas and electrons. Each has a long tail of stragglers.}
+The temporal structure of the shower front at different core distances for different types of particles. $t = \SI{0}{\ns}$ is the time the first particle reaches ground. Muons arrive first, followed by the gammas and electrons. Each has a long tail of stragglers. \cite{grieder2010eas} to \cite{heck2013corsika}}
     \label{fig:temporal_profile}
 \end{figure}
 
@@ -403,8 +392,7 @@ In [add figure temporal per type] the temporal distribution for the various part
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/curvature_front}
-    \caption{Front curvature as function of size (or interaction altitude)]
-The mean shower front curvature as a function of the shower size. The interaction altitude of a shower affects the curvature of its shower front.}
+    \caption{Mean shower front curvature as a function of the shower size. The interaction altitude of a shower affects the curvature of its shower front. \cite{grieder2010eas}}
     \label{fig:curvature_front}
 \end{figure}
 
