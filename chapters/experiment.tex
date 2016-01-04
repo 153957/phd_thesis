@@ -2,7 +2,6 @@
 
 \section{Design criteria (Physics)}
 
-
 % Explain why we want to detect cosmic rays; possibly identify sources (anisotropy), verifying GZ-effect, find features in the shower front, detect jets in air showers, investigate relations to lightning strikes, educate high-school students in research and physics.
 Many unanswered questions remain in cosmic rays research. The main problem is the origin of cosmic rays. In what objects and by which processes are cosmic rays accelerated. This is difficult to determine for low energy charged cosmic rays, because their directions change so drastically. However, direct observations of brehmsstrahlung, synchrotron radiation, and neutral pion decay at the sources may reveal their origin, but that is a different type of experiment. For the low energy cosmic rays isotropy is expected. High-energy cosmic rays travel in straighter paths and may be used to identify an origin. Verification of the  Gerasimova-Zatsepin (GZ) effect, where photo disintegration due to solar photons causes heavy neuclei to break into smaller part which both produce simultaneous but geographically separated air showers. This is a rare process and requires simultaneous detections at very large (\SIrange{1e2}{1e4}{\kilo\meter}) distances, with good direction reconsturction of each shower. Not all features in the shower front are understood. The shower front is the result of the interactions in the atmosphere. Understanding of the shower front provides better insight into what interactions happened in the shower development. For instance the existance of jets in the shower. Closely spaced detectors are required to finely sample the shower front. Theories exists about a possible connection between lightning storms and cosmic rays. When the conditions are right for a lightning storm a cosmic ray air shower may be the initiator. Cosmic rays may help with ionization of the atmosphere, providing a path for the lightning to strike. Finally cosmic rays can be used to educate high school students. Currently subjects like quantummechanics, relativity, electromagnetic fields, and particle physics are part of the Nieuwe Natuurkunde (NiNa) program for physics at high schools. Cosmic rays provide an excellent teaching subject for these topics.
 
@@ -51,7 +50,7 @@ Also important to consider is the likelihood of actually detecting a shower. For
     P_k(\lambda) = \frac{\lambda^k \mathrm{e}^{-\lambda}}{k!} \ ,
 \end{equation}
 
-where $lambda$ is the expected number of particles, i.e. $\lambda = \rho A$. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density $P_0(\lambda) = \mathrm{e}^{-\lambda}$. Which gives the probability of detecting at least one particle via
+where $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density $P_0(\lambda) = \mathrm{e}^{-\lambda}$. Which gives the probability of detecting at least one particle via
 
 \begin{equation}
     P_p(\lambda) = 1-P_0(\lambda) \ .
@@ -81,13 +80,20 @@ To be able to fully reconstruct the direction of an air shower at least three de
 where n is the total number of detectors.
 
 % Depending on size of coincidence window how much background remains. Reconstruction should identify bad/accidental events.
-The background is about \SI{400}{muons\per\meter\squared\per\second}. Using a time window of \SI{3.5}{\micro\second} the rate of fake coincidences is $R = 2 \tau f^2$, where $\tau$ is the time window, $f$ the flux. This gives a rate of ...
+Consider the 2-detector setup again in which both need to detect a particle within a short time window to make certain both are from the same shower. The rate of muons at ground level is about \SI{400}{\Pmump\per\meter\squared\per\second}. Most should have entirely uncorrelated arrival times, but since the distribution is random some might arrive simultaneously. The expected rate of coincidences in case all muons have random arrival times is given by
+
+\begin{equation}
+    R_{\mathrm{background}} = 2 \tau A^2 f^2 \ ,
+\end{equation}
+
+where $\tau$ is the time window, $A$ the detector area, and $f$ the flux. The time window should be at least the distance between the two detectors divided by the light speed. That should be the most extreme case for a shower to arrive horizontally in line with the detectors. Longer time differences are possible due to different transport time in the detector and the rise time and curvature of the shower front.
 
 - Where should the detectors be placed (relative to each other)
-    - For low energy (\SIrange{e14}{e15}{\eV}) showers the detectors need to be closely spaced (\SI{10}{\meter}) otherwise the density in the detectors becomes to low to effectively detect them.
-    - For high energy (\SIrange{e18}{e20}{\eV}) showers the detectors need to be placed further apart (\SI{>500}{\meter}) otherwise the area covered by the detectors is to small and only few high energy showers will be detected.
+  - For low energy (\SIrange{e14}{e15}{\eV}) showers the detectors need to be closely spaced (\SI{10}{\meter}) otherwise the density in the detectors becomes to low to effectively detect them.
+  - For high energy (\SIrange{e18}{e20}{\eV}) showers the detectors need to be placed further apart (\SI{>500}{\meter}) otherwise the area covered by the detectors is to small and only few high energy showers will be detected.
 
-- The detectors need to be reliable to prevent continuous maintenance tasks, and to last the length of the experiment, MoU expects ~5 years.
+% The detectors need to be reliable to prevent continuous maintenance tasks, and to last the length of the experiment, MoU expects ~5 years.
+Ideally the detectors operate without maintenance. But the components might have finite lifetimes or require recalibration after some time. If many detectors require frequent service and maintenance this will cost time that could otherwise be spent on data anlysis. Basically the costs of the experiment go up. Using tried-and-tests components that have been shown to be reliable for long periods are prefered.
 
 % Cost effective detectors so high-schools can participate in the project
 Making detectors larger makes them more likely to detect particles. The downside is that the detector becomes less easy to handle, more expensive, efficiency uniformity may worsen, and saturation might occur sooner. A good balance needs to be determined.
@@ -99,17 +105,19 @@ The experiment is meant to be accessible for high schools, the detectors need to
 
 \section{Detector}
 
+% Using scintillators with PMTs provide good particle detection efficiency, \SI{100}{\percent} of energetic leptons are detected, also some gammas are seen.
+The detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (\pmt) which converts the scintillation photons into an electric signal.
 
-- Using scintillators with PMTs provide good particle detection efficiency, \SI{100}{\percent} of energetic leptons are detected, also some gammas are seen.
-    - Signal strength is used for particle density, need to be able to distinguish between different number.
-    - Most shower muons/electrons are minimum ionizing particles (mips) and have similar energy loss in the detectors, given by Bethe-Bloch (spread on energy loss given by Landau).
-    - Signal transport efficiency not uniform for the detector due to geometry.
+% Scintillator size and material
+Scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material has good timing properties and light output for charged particles.
 
-- Fast ADC readout of the PMT provides accurate timing.
+% PMT size and type
+The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (effectively \SI{25}{\milli\meter}) diameter and \SI{~11}{\centi\meter} long \pmt. The quantum efficiency of the biakali photocathode is \SI{28}{\percent} [check this value] for the wavelength of the scintillation light. The \pmts have a number of dynodes The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply was also compatible with the previously used tubes, and can serve to replace a broken power supply.
 
-- Detector is protected by skibox from weather and is secured in place by weights.
+Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
-- Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
+% Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
+All components are readily available from suppliers and not specifically designed for \hisparc.
 
 \begin{figure}
     \centering
@@ -118,6 +126,39 @@ The experiment is meant to be accessible for high schools, the detectors need to
     \caption{Show a schematic/photo of detector, indicating the various components.}
     \label{fig:schematic_detector}
 \end{figure}
+
+% Detector is protected by skibox from weather and is secured in place by weights.
+The final detector dimensions (approximately \SI[product-units=power]{200 x 50 x 3}{\centi\meter} fit well in the chosen detector casing, namely, roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather. Access to the detector for maintenance is also easy. Also with maintenance in mind, the optical tape with which the \pmt is attached allows it to be easily replaced.
+
+
+\subsection{The scintillator}
+
+% How Scintillator works
+Charge particles loose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionization is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scinatillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
+
+% Most shower muons/electrons are minimum ionizing particles (mips) and have similar energy loss in the detectors, given by Bethe-Bloch (spread on energy loss given by Landau).
+The mean amount of energy deposited by the particle going through the detector is described by the Bethe-Bloch formula. This gives the amount of energy lost by the particles per \si{\gram\centi\meter\squared} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution. The ionization energy loss for
+
+The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path can also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
+
+% Signal transport efficiency not uniform for the detector due to geometry.
+The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted. A 2D Monte Carlo simulation of the detector [cite Jos Steijger] predicts the transmission efficiency from locations in the scintillator to the \pmt. The resulting transmission efficiency distribution is shown in [fig of tranmission efficiency].
+
+
+\subsubsection{Gammas in the scintillator}
+
+Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{1}{\MeV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+
+
+\subsection{\pmt}
+
+% How PMT works
+The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. The electrons impacting this dynode will each cause the release of more electrons, which are accelerated towards the next dynode. At the end the electrons fall on the anode which is connected to the readout. The used PMTs have 11? (SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the PMT. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}}$ electrons at the anode.
+
+% Signal strength is used for particle density, need to be able to distinguish between different number.
+Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles.
+
+- Fast ADC readout of the PMT provides accurate timing.
 
 
 \begin{figure}
@@ -139,7 +180,6 @@ The experiment is meant to be accessible for high schools, the detectors need to
 
 
 \section{Station}
-
 
 - Impractical to connect detectors over long distances for online/realtime triggering.
 
@@ -250,10 +290,10 @@ The experiment is meant to be accessible for high schools, the detectors need to
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/experiment/network}
-    \caption{}
+    \caption{Location of HiSPARC stations in Netherlands, United Kingdom, and Denmark.}
     \label{fig:network}
 \end{figure}
-Location of HiSPARC stations in Netherlands, United Kingdom, and Denmark.
+
 
 \begin{figure}
     \centering
