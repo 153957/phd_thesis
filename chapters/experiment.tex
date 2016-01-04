@@ -2,12 +2,25 @@
 
 \section{Design criteria (Physics)}
 
-% Explain why we want to detect cosmic rays; possibly identify sources (anisotropy), verifying GZ-effect, find features in the shower front, detect jets in air showers, investigate relations to lightning strikes, educate high-school students in research and physics.
-Many unanswered questions remain in cosmic rays research. The main problem is the origin of cosmic rays. In what objects and by which processes are cosmic rays accelerated. This is difficult to determine for low energy charged cosmic rays, because their directions change so drastically. However, direct observations of brehmsstrahlung, synchrotron radiation, and neutral pion decay at the sources may reveal their origin, but that is a different type of experiment. For the low energy cosmic rays isotropy is expected. High-energy cosmic rays travel in straighter paths and may be used to identify an origin. Verification of the  Gerasimova-Zatsepin (GZ) effect, where photo disintegration due to solar photons causes heavy neuclei to break into smaller part which both produce simultaneous but geographically separated air showers. This is a rare process and requires simultaneous detections at very large (\SIrange{1e2}{1e4}{\kilo\meter}) distances, with good direction reconsturction of each shower. Not all features in the shower front are understood. The shower front is the result of the interactions in the atmosphere. Understanding of the shower front provides better insight into what interactions happened in the shower development. For instance the existance of jets in the shower. Closely spaced detectors are required to finely sample the shower front. Theories exists about a possible connection between lightning storms and cosmic rays. When the conditions are right for a lightning storm a cosmic ray air shower may be the initiator. Cosmic rays may help with ionization of the atmosphere, providing a path for the lightning to strike. Finally cosmic rays can be used to educate high school students. Currently subjects like quantummechanics, relativity, electromagnetic fields, and particle physics are part of the Nieuwe Natuurkunde (NiNa) program for physics at high schools. Cosmic rays provide an excellent teaching subject for these topics.
+% Explain why we want to detect cosmic rays; possibly identify sources (anisotropy)
+Many unanswered questions remain in cosmic rays research. The main unresolved problem is the origin of cosmic rays. To find out which objects and by which processes are cosmic rays accelerated. This is difficult to determine for low energy charged cosmic rays, because their direction changes so drastically due to magnetic fields. However, direct observations of bremsstrahlung, synchrotron radiation, and neutral pion decay at the sources may reveal their origin, but that is out of the scope of this experiment. High-energy cosmic rays travel in straighter paths and may be used to backtrace to an origin.
+
+% verifying GZ-effect
+Composite cosmic rays may undergo spalation due to solar photons. In this process they break into smaller part which may produce simultaneous but geographically separated air showers. This is called the Gerasimova-Zatsepin (GZ) effect. This processes has not yet been conclusively detected. It is a rare process and requires simultaneous detections at very large (\SIrange{1e2}{1e4}{\kilo\meter}) distances, with good direction reconsturction of each shower.
+
+% find features in the shower front, detect jets in air showers, e/mu ratio, termporal/lateral
+The full shower development in the atmosphere is not fully understood. The shower front is the result of the interactions in the atmosphere. Understanding of the shower front provides better insight into what interactions happened in the shower development. For instance the existance of jets in the shower. Jets result in irregularities in the shower front at small scales. A fine grid of detectors is required to detect these irregularities. Also the temporal and lateral structure of the shower front require further investigation. By using high sampling frequencies the temporal structure may be unraveled.
+
+% investigate relations to lightning strikes
+Theories exists about a possible connection between lightning storms and cosmic rays. When the conditions are right for a lightning storm a cosmic ray air shower may be the initiator. Cosmic rays may help with ionization of the atmosphere, providing a path for the lightning to strike. [CWI, LOFAR, RU]
+
+% educate high-school students in research and physics.
+Finally cosmic rays can be used to educate high school students. Currently subjects like quantummechanics, relativity, electromagnetic fields, and particle physics are part of the `Nieuwe Natuurkunde' (NiNa) program for physics at high schools. `Natuur, Leven en Technologie' (NLT) is also a subject for students insteressed in physics. It consists of multiple domains from which students can choose, one of these is `Stellaire informatie en processen', which translates to Stellar information and processes. The data analysis also provides practical teaching material for informatics students. Cosmic rays provide an excellent teaching subject for these topics.
 
 % Which cosmic rays do we want to detect, energy range; large area for very energetic cosmic rays, but also detectors close together for efficiently detecting low energy cosmic rays.
-In order to efficienctly detect high energy cosmic rays a large detection area is required (or a very patient researcher), because of the low flux. Individual detectors need to be spaced such that enough of the shower front is sampled to allow reconstruction of properties of the shower and primary cosmic ray. For low energy cosmic rays the detectors need to be placed closer in order to sample the shower front, whos density rapidly deminished away from the core making detection more difficult. The flux of low energy cosmic rays is much higher, so much less total area is required to simply detect a low of them. For extremely low energy showers the density drops off to rapidly and direction reconstruction will be hard when detectors are to close and the time resolution can not keep the angular resolution high. The energy range of interest is from \SI{e14}{\eV} and up. The upper limit will be determined by the final size and duration of the project.
+In order to efficienctly detect high energy cosmic rays a large detection area is required (or a very patient researcher), because of the low flux. Individual detectors need to be spaced such that enough of the shower front is sampled to allow reconstruction of properties of the shower and primary cosmic ray. For low energy cosmic rays the detectors need to be placed closer in order to sample the shower front, whos density rapidly deminished away from the core making detection more difficult. The flux of low energy cosmic rays is much higher, so much less total area is required to simply detect a lot of them.
 
+For extremely low energy showers the density drops off to rapidly and direction reconstruction will be hard when detectors are to close and the time resolution can not keep the angular resolution high. The energy range of interest is from \SI{e14}{\eV} and up. The upper limit will be determined by the final size and duration of the project.
 
 \begin{figure}
     \centering
@@ -22,7 +35,7 @@ In order to efficienctly detect high energy cosmic rays a large detection area i
 By detecting the arrival time of particles from the same shower at various locations the shower front is sampled. This allows for the reconstruction of the shower. Using the arrival times the direction of the shower can be reconstructed. Using the density the core position and energy can be obtained. These reconstructions are not independent, knowledge about the core position improves direction reconstruction, and vice-versa shower axis direction makes the estimation of expected particle densities more accurate.
 
 % What are the possibilities of identifying a source
-The experiment will be based in the Netherlands, with possible extensions to other countries. From the Netherlands the Northern sky is observed. This provides a similar field of view to the TA experiment, which is at latitude \SI{39.3}{\degree}, while \nikhef is at \SI{52.3}{\degree}. The visible skymap, assuming a zenith acceptance of \SI{60}{\degree}, in equatorial coordinates is shown in \cref{fig:visible_sky_map}. The anisotropy measurement of cosmic rays at very high energies is difficult to achieve. The Auger and TA experiments have only a handful of detections above \SI{e20}{\eV}. Measurement of the isotropy at lower energies is also important.
+The experiment will be based in the Netherlands, with possible extensions to other countries. From the Netherlands the Northern sky is observed. This provides a similar field of view to the TA experiment, which is at latitude \SI{39.3}{\degree}, while \nikhef is at \SI{52.3}{\degree}. The visible skymap, assuming a zenith acceptance of \SI{60}{\degree}, in equatorial coordinates is shown in \cref{fig:visible_sky_map}. The anisotropy measurement of cosmic rays at very high energies is difficult to achieve. The Auger and TA experiments have only a handful of detections above \SI{e20}{\eV}. These experiments have exposures of \SI{7250}{\kilo\meter\squared\year\steradian} (TA) and \SI{48029}{\kilo\meter\squared\year\steradian}, which is a meaure of their area, angular acceptance, and run time. Measurement of the isotropy at lower energies is important for verification of the expectation.
 
 \begin{figure}
     \centering
@@ -42,15 +55,15 @@ In \cref{sec:other_observables} methods other than particles detectors for the o
 %  - Arrival time of the particles (leptons) and their number.
 %  - Accurate arrival time is needed for direction (using shower front shape).
 %  - Accurate particle count is needed for energy/core (using lateral density).
-As stated before the arrival time of particles and number of particles in a detector can be used to reconstruct the shower. The accuracy with which this needs to be measured depend on the properties of the shower and detectors. For increasing detector distance the required arrival time accuracy to achieve the same direction reconstruction accuracy becomes less. With increasing core distance the particle density decreases, while the rise time of the shower front increases. This makes it more likely that the few particles that are detected are further delayed from the causal front.
+As stated before the arrival time of particles and number of particles in a detector can be used to reconstruct the shower. The accuracy with which this needs to be measured depend on the properties of the shower and detectors. For increasing detector distance a lower arrival time accuracy is required to achieve the same direction reconstruction accuracy. With increasing core distance the particle density decreases, while the rise time of the shower front increases. This makes it more likely that the few particles that are detected are further delayed from the causal front. This increases the uncertainty in direction reconstruction.
 
-Also important to consider is the likelihood of actually detecting a shower. For a given particle density ($\rho$) the probability of detecting a certain number ($k$) of particles in a detector with a certain area ($A$) is given by the Poisson distribution,
+Also important to consider is the likelihood of actually detecting a shower. For a given particle density $\rho$ and a detector with area $A$ the probability of detecting exactly $k$ particles is given by the Poisson distribution. Here $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$ and $P_k$ the probability.
 
 \begin{equation}
-    P_k(\lambda) = \frac{\lambda^k \mathrm{e}^{-\lambda}}{k!} \ ,
+    P_k(\lambda) = \frac{\lambda^k \mathrm{e}^{-\lambda}}{k!} \ .
 \end{equation}
 
-where $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$. This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density $P_0(\lambda) = \mathrm{e}^{-\lambda}$. Which gives the probability of detecting at least one particle via
+This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density $P_0(\lambda) = \mathrm{e}^{-\lambda}$. Which gives the probability of detecting at least one particle via
 
 \begin{equation}
     P_p(\lambda) = 1-P_0(\lambda) \ .
@@ -80,7 +93,7 @@ To be able to fully reconstruct the direction of an air shower at least three de
 where n is the total number of detectors.
 
 % Depending on size of coincidence window how much background remains. Reconstruction should identify bad/accidental events.
-Consider the 2-detector setup again in which both need to detect a particle within a short time window to make certain both are from the same shower. The rate of muons at ground level is about \SI{400}{\Pmump\per\meter\squared\per\second}. Most should have entirely uncorrelated arrival times, but since the distribution is random some might arrive simultaneously. The expected rate of coincidences in case all muons have random arrival times is given by
+Consider the 2-detector setup again in which both need to detect a particle within a short time window to make certain both are from the same shower. The rate of muons at ground level is about \SI{~200}{\Pmump\per\meter\squared\per\second}. Most should have entirely uncorrelated arrival times, but since the distribution is random some might arrive simultaneously. The expected rate of coincidences in case all muons have random arrival times is given by
 
 \begin{equation}
     R_{\mathrm{background}} = 2 \tau A^2 f^2 \ ,
@@ -181,7 +194,8 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 
 \section{Station}
 
-- Impractical to connect detectors over long distances for online/realtime triggering.
+% Impractical to connect detectors over long distances for online/realtime triggering.
+By making each station consist of at least two detectors the station can perform triggering as a standalone unit.
 
 - Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
 
@@ -199,17 +213,8 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 
 - Trigger efficiency as function of core distance and shower energy, for the different triggers (2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector for reconstructable).
 
-- Standard layouts created to encourage uniformity, these are also chosen for good shower acceptance, reconstruction accuracy of station events, and practicality for the locations.
-
-- Shower core/energy determination impractical with single station.
-
-\subsection{Weather station}
-
-
-- Optional weather station to provide local weather data.
-
-- May not be required at each station, can use freely available KNMI data. However, in some cases closest KNMI station is far away.
-
+% Standard layouts created to encourage uniformity, these are also chosen for good shower acceptance, reconstruction accuracy of station events, and practicality for the locations.
+The layout of a typical 4-detector station is shown in \cref{fig:4_detector_layouts}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
 
 \begin{figure}
     \centering
@@ -218,9 +223,8 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
     \includegraphics[width=0.4\textwidth]
                     {plots/experiment/4_detector_star}
     \caption{4-detector station layouts. 4-detector stations are typically placed in the diamond or star formation. Both contain multiple triangles between sets of 3 detectors.}
-    \label{fig:4_detector_star}
+    \label{fig:4_detector_layouts}
 \end{figure}
-
 
 \begin{figure}
     \centering
@@ -229,6 +233,20 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
     \caption{Both 4-detector layouts result in the following distribution of possible shower directions given \SI{2.5}{\ns} arrival time sampling in the detectors. For the diamond layout more points can be made by more combinations, i.e. more possible solutions. Approximately \SI{5}{\degree} between adjacent points near Zenith.}
     \label{fig:discrete_directions}
 \end{figure}
+
+The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps, whose position is know. From the \gps the distance to and the angle between (True?) North and the detector (center of the scintillator) is measured. Additionally the rotation of the detector itself around its center can be recorded, though this is less important. The coordinate system is also described in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important, though (full) direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).
+
+
+- Shower core/energy determination impractical with single station.
+
+
+\subsection{Weather station}
+
+
+- Optional weather station to provide local weather data.
+
+- May not be required at each station, can use freely available KNMI data. However, in some cases closest KNMI station is far away.
+
 
 
 \begin{figure}
