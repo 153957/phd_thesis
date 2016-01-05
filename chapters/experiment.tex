@@ -76,7 +76,7 @@ Which gives the probability of detecting at least one particle via
 \end{equation}
 
 % Each particle detector will have a background from low energy showers, such showers are very abundant, but only few particles (mainly muons) reach ground level.
-Not each detected particle will be desired. A big component of the background comes from low energy showers (\SI{<e14}{\eV}) which produce only a couple muons at ground level. Such low energy cosmic rays are very abbundant. Instead of resulting in an instantaneous high density of particles these showers produce a random background of particles. These showers produce few particles to effectively detect in multiple detectors. In \cref{fig:particle_density} the total particle flux at various atmospheric depths is shown. At ground level the muon flux dominates. Showers of \SI{e13}{\eV} produce an approximately equal number of muons and electrons on ground, below this muons dominate. The high muon flux relative to electrons is dominated by showers below \SI{e13}{\eV}.
+Not all detected particles will be desired. A big component of the background comes from low energy showers (\SI{<e14}{\eV}) which produce only a couple muons at sea level, and even fewer electrons. Such low energy cosmic rays are very abbundant. Instead of resulting in an instantaneous high density of particles these showers produce a random background of particles. These showers produce to few particles to effectively detect in multiple detectors. In \cref{fig:particle_density} the total particle flux at various atmospheric depths is shown. At sea level the muon flux dominates. The high muon flux relative to electrons is dominated by low energy showers, for higher energy showers the electrons muon ratio favors the electrons.
 
 \begin{figure}
     \centering
@@ -114,7 +114,7 @@ $P_2$ is a function of $P_0$, which can be written as a function of the shower e
     P_0(E, r, A) = \mathrm{e}^{-A\rho(N_{\Pe}(E), r)} \\ .
 \end{equation}
 
-With this the expected detector efficiency for a detector setup can be estimated for various shower energies.
+With this the expected detector efficiency for a detector setup can be estimated for various shower energies. Inclined showers can also be investigated, incase of a flat detector the effective detection area is smaller by $\cos \theta$. The particle density is harder to estimate because different parts of the shower have different path lengths through the atmosphere. Also the effective distance between the detectors may change, depending on the azimuthal angle of the shower.
 
 % Why are for reconstruction multiple detection points needed.
 To be able to fully reconstruct the direction of an air shower at least three detection points are required. Having two detection points with arrival times provides one constraint on the shower axis, but a plane of possible axes remain, a third point constrains the shower axis. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). Using a 3-detector station the probability of detecting at least one particle in each is given by $P_p^3(\lambda)$. If the station had even more detectors but still required at least 3 in coincidence the probability of detection becomes
@@ -154,12 +154,12 @@ The detector consists of two main components which perform the detection. The sc
 Scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material has good timing properties and light output for charged particles.
 
 % PMT size and type
-The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (effectively \SI{25}{\milli\meter}) diameter and \SI{~11}{\centi\meter} long \pmt. The quantum efficiency of the biakali photocathode is \SI{28}{\percent} [check this value] for the wavelength of the scintillation light. The \pmts have a number of dynodes The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply was also compatible with the previously used tubes, and can serve to replace a broken power supply.
+The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (effectively \SI{25}{\milli\meter}) diameter and \SI{~11}{\centi\meter} long \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts have a number of dynodes The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply was also compatible with the previously used tubes, and can serve to replace a broken power supply.
 
 Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
 % Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
-All components are readily available from suppliers and not specifically designed for \hisparc.
+All components are readily available, off the shelf, from suppliers and not specifically designed for \hisparc.
 
 \begin{figure}
     \centering
@@ -202,7 +202,16 @@ The photomultiplier tube has a front window with a photocathode. When this is hi
 % Signal strength is used for particle density, need to be able to distinguish between different number.
 Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles.
 
-- Fast ADC readout of the PMT provides accurate timing.
+% Fast ADC readout of the PMT provides accurate timing.
+Each \pmt is readout with \adcs at a sample rate of \SI{2.5}{\ns}. An example of a readout is shown in \cref{fig:trace}. With this high sample rate the signal shape of individual particles is unraveled. Subsequent signals from particles later in the shower front can be distinguished, and the shower rise time can be examined. With \SI{2.5}{\ns} the timing resolution is close to timing the uncertainty caused by the shower front rise time and the detector transport time. An even higher sample rate would not achieve much better timing resolution.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/trace}
+    \caption{An example trace readout of the \pmt. The signal has the height of one \mip, so most likely one lepton was detected.}
+    \label{fig:trace}
+\end{figure}
 
 
 \begin{figure}
@@ -226,10 +235,27 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 \section{Station}
 
 % Impractical to connect detectors over long distances for online/realtime triggering.
-By making each station consist of at least two detectors the station can perform triggering as a standalone unit. Because each station performs its own triggering the stations do not need to be interconnected. For detectors separated by large distances this it more practical, since both wireless and wired communication are either to unreliable or to slow.
+By making each detection station consist of at least two detectors the station can perform triggering as a standalone unit. Each station performs its own triggering, therefore stations do not need to be interconnected. For detection stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger where the space between detectors is mostly empty wirelessly connecting detectors is an option. The \hisparc station consists of either 2 or 4 detectors connected to \hisparc electronics. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module, and a data connection for PCs.
+
+The \hisparc electronics continually readout the \pmt signal and compares the \adc values to two thresholds; a low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, and the default setting is \SI{-30}{\milli\volt} (low) and \SI{-70}{\milli\volt} (high).
+
+The \hisparc electronics (versions II and III) are able to readout two detectors simultaneously. However, as mentioned stations with four detectors exist, in those cases two boxes are connected to provide readout and triggering for four detectors. When connected the two boxes still work semi-independently, but exchange threshold and \gps information. Only one of the two (the Master) contains a \gps module, it provides the second box (Slave) with \gps timing information.
 
 % Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
-Each \pmt is readout with \adcs with a sample rate of \SI{2.5}{\ns}.
+For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}}$ the number of possible (physical) time differences between the two detectors is given by
+
+\begin{equation}
+    \begin{split}
+        t_{\mathrm{max}} &= \frac{d}{c} \\
+        n &= \left\lfloor \frac{t_{\mathrm{max}}}{t_{\mathrm{sample}}} \right\rfloor \\
+        \theta &= \arcsin \frac{k t_{\mathrm{sample}}}{t_{\mathrm{max}}} \\
+%        k                & \in \Z \\
+%        -n \leq          &k \leq n
+    \end{split}
+\end{equation}
+
+
+
 
 - An efficient trigger can be made for a certain (and higher) particle density.
 
