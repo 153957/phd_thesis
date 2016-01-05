@@ -1,6 +1,6 @@
 \chapter{The HiSPARC Experiment}
 
-\section{Design criteria (Physics)}
+\section{Design criteria}
 
 % Explain why we want to detect cosmic rays; possibly identify sources (anisotropy)
 Many unanswered questions remain in cosmic rays research. The main unresolved problem is the origin of cosmic rays. To find out which objects and by which processes are cosmic rays accelerated. This is difficult to determine for low energy charged cosmic rays, because their direction changes so drastically due to magnetic fields. However, direct observations of bremsstrahlung, synchrotron radiation, and neutral pion decay at the sources may reveal their origin, but that is out of the scope of this experiment. High-energy cosmic rays travel in straighter paths and may be used to backtrace to an origin.
@@ -18,9 +18,9 @@ Theories exists about a possible connection between lightning storms and cosmic 
 Finally cosmic rays can be used to educate high school students. Currently subjects like quantummechanics, relativity, electromagnetic fields, and particle physics are part of the `Nieuwe Natuurkunde' (NiNa) program for physics at high schools. `Natuur, Leven en Technologie' (NLT) is also a subject for students insteressed in physics. It consists of multiple domains from which students can choose, one of these is `Stellaire informatie en processen', which translates to Stellar information and processes. The data analysis also provides practical teaching material for informatics students. Cosmic rays provide an excellent teaching subject for these topics.
 
 % Which cosmic rays do we want to detect, energy range; large area for very energetic cosmic rays, but also detectors close together for efficiently detecting low energy cosmic rays.
-In order to efficienctly detect high energy cosmic rays a large detection area is required (or a very patient researcher), because of the low flux. Individual detectors need to be spaced such that enough of the shower front is sampled to allow reconstruction of properties of the shower and primary cosmic ray. For low energy cosmic rays the detectors need to be placed closer in order to sample the shower front, whos density rapidly deminished away from the core making detection more difficult. The flux of low energy cosmic rays is much higher, so much less total area is required to simply detect a lot of them.
+In order to efficiently detect high energy cosmic rays a large detection area is required (or a very patient researcher), because of the low flux. Individual detectors need to be spaced such that enough of the shower front is sampled to allow reconstruction of properties of the shower and primary cosmic ray. For low-energy cosmic rays the detectors need to be placed closer in order to sample the shower front. The flux of low energy cosmic rays is much higher, so much less total area is required to in a short time detect a lot of them.
 
-For extremely low energy showers the density drops off to rapidly and direction reconstruction will be hard when detectors are to close and the time resolution can not keep the angular resolution high. The energy range of interest is from \SI{e14}{\eV} and up. The upper limit will be determined by the final size and duration of the project.
+For low energy showers the density drops off to rapidly and direction reconstruction will be hard when detectors are to close and the time resolution can not keep the angular resolution high. The energy range of interest is from \SI{e14}{\eV} and up. The upper limit will be determined by the final size and duration of the project.
 
 \begin{figure}
     \centering
@@ -63,7 +63,13 @@ Also important to consider is the likelihood of actually detecting a shower. For
     P_k(\lambda) = \frac{\lambda^k \mathrm{e}^{-\lambda}}{k!} \ .
 \end{equation}
 
-This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density $P_0(\lambda) = \mathrm{e}^{-\lambda}$. Which gives the probability of detecting at least one particle via
+This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density, given by
+
+\begin{equation}
+    P_0(\lambda) = \mathrm{e}^{-\lambda} \ .
+\end{equation}
+
+Which gives the probability of detecting at least one particle via
 
 \begin{equation}
     P_p(\lambda) = 1-P_0(\lambda) \ .
@@ -81,13 +87,40 @@ Not each detected particle will be desired. A big component of the background co
 \end{figure}
 
 % How to filter the background away by using a coincidence trigger. Two (or more) simultaneous, unrelated, detections in separated detectors is unlikely.
-By using the fact that the particles from energetic showers are more correlated in time those showers can be distinguished from the background by looking for time-correlated particles. This might be possible with a single detector which looks for short bursts of many particles. However, this does not provide data for reconstruction, since the arrival time and density is only known at one position. Using multiple detectors which need to have a time-correlated detection is more sensitive to lower particle densities and provide data for reconstruction. Using two detectors to disgtinguish the particles from the background by requiring at least one particle in each detector makes the probability detection $P_p^2(\lambda)$, assuming the particle density is equal at both detectors. The size of and distance between the detectors will determine the lower energy limit.
+By using the fact that the particles from energetic showers are more correlated in time those showers can be distinguished from the background by looking for time-correlated particles. This might be possible with a single detector which looks for short bursts of many particles. However, this does not provide data for reconstruction, since the arrival time and density is only known at one position. Using multiple detectors which need to have a time-correlated detection is more sensitive to lower particle densities and provide data for reconstruction. Using two detectors to disgtinguish the particles from the background by requiring at least one particle in each detector makes the probability detection $P_2(\lambda) = P_p^2(\lambda)$, assuming the particle density is equal at both detectors. The size of and distance between the detectors will determine the lower energy limit.
+
+% How to figure out where should the detectors be placed (relative to each other)
+%  - For low energy (\SIrange{e14}{e15}{\eV}) showers the detectors need to be closely spaced (\SI{10}{\meter}) otherwise the density in the detectors becomes to low to effectively detect them.
+%  - For high energy (\SIrange{e18}{e20}{\eV}) showers the detectors need to be placed further apart (\SI{>500}{\meter}) otherwise the area covered by the detectors is to small and only few high energy showers will be detected.
+The efficiency with which two detectors can detector a shower can be estimated. Assume that the shower core is precisely between the two detectors. Here the detection efficiency is highest. If the shower was closer to either detector the probability of detection for one detector would go up, but it falls faster for the other detector, reducing the overall probability. Using an estimate of the particle density for (vertical) showers as described in \cref{eq:nkg} the probability of detection can be estimated for showers of different energies depending on the size of the detectors and the distance between the detectors.
+
+The relation between the median shower size (number of electrons at sea level) and primary energy (see \cref{fig:shower_size_distribution}) can be approximated by the following relation
+
+\begin{equation}
+    N_{\Pe} = 10^{\log\left(\frac{E}{\si{\eV}}\right) - 10.2} \ ,
+\end{equation}
+
+which is valid for (semi-)vertical showers. As the zenith angle of showers increases above \SI{15}{\degree} the shower size noticably decreases. Also the energy at which the transition from mostly muons to mostly electrons reach ground is at higher values for larger zenith angles. A better fit may be achieved by adding an extra parameter
+
+\begin{equation}
+    N = 10^{\log\left(\frac{E}{\si{\eV}}\right)^y - x} \ .
+\end{equation}
+
+This can be fitted more accurately to the electon, muon and total lepton sizes (per zenith angle). For electrons we find $y = 13.3$ and $x = 1.07$ to best describe simulated air showers from the Zenith.
+
+$P_2$ is a function of $P_0$, which can be written as a function of the shower energy, core distance, and detector size as follows
+
+\begin{equation}
+    P_0(E, r, A) = \mathrm{e}^{-A\rho(N_{\Pe}(E), r)} \\ .
+\end{equation}
+
+With this the expected detector efficiency for a detector setup can be estimated for various shower energies.
 
 % Why are for reconstruction multiple detection points needed.
 To be able to fully reconstruct the direction of an air shower at least three detection points are required. Having two detection points with arrival times provides one constraint on the shower axis, but a plane of possible axes remain, a third point constrains the shower axis. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). Using a 3-detector station the probability of detecting at least one particle in each is given by $P_p^3(\lambda)$. If the station had even more detectors but still required at least 3 in coincidence the probability of detection becomes
 
 \begin{equation}
-    P_{min=3}(\lambda) = \sum_{k=3}^{n} \left(^n_k\right) P_p^k P_0^{n-k} \ ,
+    P_{\mathrm{min}=3}(\lambda) = \sum_{k=3}^{n} \left(^n_k\right) P_p^k P_0^{n-k} \ ,
 \end{equation}
 
 where n is the total number of detectors.
@@ -100,10 +133,6 @@ Consider the 2-detector setup again in which both need to detect a particle with
 \end{equation}
 
 where $\tau$ is the time window, $A$ the detector area, and $f$ the flux. The time window should be at least the distance between the two detectors divided by the light speed. That should be the most extreme case for a shower to arrive horizontally in line with the detectors. Longer time differences are possible due to different transport time in the detector and the rise time and curvature of the shower front.
-
-- Where should the detectors be placed (relative to each other)
-  - For low energy (\SIrange{e14}{e15}{\eV}) showers the detectors need to be closely spaced (\SI{10}{\meter}) otherwise the density in the detectors becomes to low to effectively detect them.
-  - For high energy (\SIrange{e18}{e20}{\eV}) showers the detectors need to be placed further apart (\SI{>500}{\meter}) otherwise the area covered by the detectors is to small and only few high energy showers will be detected.
 
 % The detectors need to be reliable to prevent continuous maintenance tasks, and to last the length of the experiment, MoU expects ~5 years.
 Ideally the detectors operate without maintenance. But the components might have finite lifetimes or require recalibration after some time. If many detectors require frequent service and maintenance this will cost time that could otherwise be spent on data anlysis. Basically the costs of the experiment go up. Using tried-and-tests components that have been shown to be reliable for long periods are prefered.
@@ -162,6 +191,8 @@ The light emitted along the path of the particle is transmitted in random direct
 
 Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{1}{\MeV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
 
+For photons the interactions by which it produces detectable signals are .., and pair production. In case electrons are produced, those will procede in the usual way.
+
 
 \subsection{\pmt}
 
@@ -195,9 +226,10 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 \section{Station}
 
 % Impractical to connect detectors over long distances for online/realtime triggering.
-By making each station consist of at least two detectors the station can perform triggering as a standalone unit.
+By making each station consist of at least two detectors the station can perform triggering as a standalone unit. Because each station performs its own triggering the stations do not need to be interconnected. For detectors separated by large distances this it more practical, since both wireless and wired communication are either to unreliable or to slow.
 
-- Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
+% Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
+Each \pmt is readout with \adcs with a sample rate of \SI{2.5}{\ns}.
 
 - An efficient trigger can be made for a certain (and higher) particle density.
 
@@ -294,7 +326,20 @@ The layout of each station is not always precisely according to the suggested la
     - This requires good absolute timing at the stations.
     - Use GPS at stations for both positioning of the stations (\SI{~1}{\meter}) and absolute timing (\SI{~5}{\ns}).
 
+\subsection{Station locations}
+
 - Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
+
+
+\subsubsection{International}
+
+Locations of \hisparc stations are not limited to the Netherlands. Two other countries succesfully operate multiple detection stations.
+
+Since 2007 there has been a \hisparc station in Denmark. There are currently 3 operational stations at the Aarhus University. These stations are managed by Uffe Amelung Fredens. Fredens also wrote student materials for Danish high school students.
+
+In the United Kingdom a new cluster in Bristol was started in March 2012. This was initiated by Dr. Jaap Velthuis. Dr. Velthuis is the cluster coordinator for the Bristol cluster. Since then any schools around Bristol have created detectors and joined the network. Even more schools have plans to join. In 2014? a second cluster has started in the United Kingdom around Birmingham. The Birmingham cluster is coordinated by Cristina Lazzeroni.
+
+In Germany a station (70001) was temporarily placed inside the \kascade experiment in Karlsruhe. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for some test setups, including our detection station. \kascade triggered the \hisparc station when it detected a shower. More than \num{9e7} triggers occurred (in publicdb, more on external hdd? and in `/databases/kascade`?) in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 on the Science Park.
 
 - Stations closer than \SI{2e3}{\meter} are likely to detect the same shower.
 
@@ -335,7 +380,7 @@ The layout of each station is not always precisely according to the suggested la
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/experiment/distance_v_coincidence_rate}
-    \caption{Coincidence rate between stations as a function of distance. At increasing distances the contributions from increasingly larger/energetic showers dominate. The background rate is also shown. Real events may still be distinguished from background}
+    \caption{Coincidence rate between stations as a function of distance. At increasing distances the contributions from increasingly larger/energetic showers dominate. The background rate is also shown (dashed). Real events may still be distinguished from background. The square indicates two 4-detector stations, triangle for a 4- and 2-detector station, and the circle two 2-detector stations.}
     \label{fig:distance_v_coincidence_rate}
 \end{figure}
 
