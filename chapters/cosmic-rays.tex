@@ -43,12 +43,12 @@ Radiation fields can in some cases affect the cosmic rays. With energies above \
 
 % How the direction of cosmic rays no longer points to their origin, gyro radius.
 Cosmic rays do not simply travel in a straight line from their source to Earth. Moving charged particles are affects by magnetic fields. The Lorentz force may change the direction of the particle. The strength of this depends on the angle between the direction of motion and magnetic field lines. The deflection is strongest when the field is perpendicular to the direction of motion. The strength of all magnetic fields in the universe is not known. The overal field strength and distribution of large scale random fields for the Milky Way are being determined from experiments. The average magnetic field strength is \SI{0.6 \pm .2}{\nano\tesla} \cite{jansson2010magnetic}. The radius of curvature for relativistic particles traveling through a magnetic field is called the Larmor radius (or gyro radius). This is given by
-
+%
 \begin{equation}
     R = \SI{108}{\kilo\parsec}
         \frac{E_{\si{\exa\eV}}}{Z B_{\si{\nano\tesla}}}
 \end{equation}
-
+%
 where $R$ is the radius of curvature, $Z$ the atomic number of the particle, which is equal to the charge because atomic cosmic rays are fully ionised, $B$ is the magnetic field strength, and $E$ the energy of the particle. In \cref{fig:gyroradius} the gyroradius of a proton cosmic ray is shown for various energies of the cosmic ray and various strengths of the magnetic field \cite{grigat2011anisotropy}.
 
 \begin{figure}
@@ -178,11 +178,11 @@ From p-p collisions the p-Air cross sections can be extrapolated using the Glaub
 % Provide the model of the thickness of the atmosphere as a function of the height (as used in CORSIKA).
 
 The density gradient of the atmosphere is the next important factor. The atoms in the atmosphere are the potential targets for the incomming cosmic ray. Earth's atmosphere has been extensively measured and parameterized. As the density increases, so does the probability of a collision. The common way to describe the atmosphere is by giving the column depth, i.e. the amount of material a particle will have passed since it entered Earth's atmosphere. The atmospheric depth is given by
-
+%
 \begin{equation}
     X = \int \rho(h) \diff h
 \end{equation}
-
+%
 where $X$ is the atmospheric depth, $\rho$ is the density of the atmosphere as a function of height above ground ($h$). In \cref{fig:atmospheric_depth} the atmospheric depth is shown versus the height above sea level. At sea level the atmospheric depth is approximately \SI{1e3}{\gram\per\meter\squared}. This is the column depth for vertically incoming particles. However, cosmic rays also enter the atmosphere at angles. In this case the path through the atmosphere is longer by approximately $\cos^{-1} \theta$. The resulting column depth is called the slant depth.
 
 \begin{figure}
@@ -220,50 +220,50 @@ The hadronic interaction between the primary hadron and the nuclei produce a num
 
 % Explain what particles are produced and what happens to them.
 The most commonly produced particles in the hadronic interactions are light mesons. Neutral and charged pions are most commonly generated. In these interactions conservation laws apply. This means the convervation of baryon and lepton number, energy, momentum, angular momentum, and charge. Each (anti-)quark has a baryon number of $(-)\frac{1}{3}$. Mesons consist of a quark and anti-quark, so have a baryon number of 0. So mesons can 'freely' be added to the output of the interaction. As long as enough energy is available to produce the particles. A typical collision can be
-
+%
 \begin{equation}
-\HepProcess{\Pproton + \Pproton \to \Pproton + \Pproton + i \Ppiplus + i \Ppiminus + j \Ppizero},
+    \HepProcess{\Pproton + \Pproton \to \Pproton + \Pproton + i \Ppiplus + i \Ppiminus + j \Ppizero},
 \end{equation}
-
+%
 Here $i$ and $j$ can be any positive integer. These reactions are not fully elastic, because new particles are created. However, the incident particle, or parts of it, generally survive and still carry a significant fraction of the energy.
 
 % Explain how energy is transferred into the leptonic part of the shower.
 % Particle creation with energy transfer from hadronic to EM
 The neutral pions quickly decay (a mean life time of $\tau = \SI{8.4e-8}{\ns}$) via the electromagnetic force into two gamma rays (\SI{98.8}{\percent} of the time) \cite{olive2014pdg}.
-
+%
 \begin{equation}
-\HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
+    \HepProcess{\Ppizero \to \Pphoton + \Pphoton}.
 \end{equation}
-
+%
 Here the baryon number is conserved because leptons, neutrinos, and bosons have a baryon number of 0, equal to that of a meson. The gammas will initiate new electromagnetic cascades. Note that quoted mean lifetimes are for the particle at rest. Given the relativistic nature of the particles in showers, due to the high energies, the mean lifetime are longer in the lab/Earth frame.
 
 The charged pions decay a bit slower ($\tau = \SI{26}{\ns}$) into muons with same charge, and a (anti) muon neutrino \cite{olive2014pdg}.
-
+%
 \begin{equation}
-\HepProcess{\Ppiplus \to \APmuon + \Pnum},
-\HepProcess{\Ppiminus \to \Pmuon + \APnum}.
+    \HepProcess{\Ppiplus \to \APmuon + \Pnum},
+    \HepProcess{\Ppiminus \to \Pmuon + \APnum}.
 \end{equation}
-
+%
 The branching ratio for this process is \SI{99.99}{\percent}, the second most probable decay produces an electron and (anti) electron neutrino.
-
+%
 \begin{equation}
-\HepProcess{\Ppiplus \to \APelectron + \Pnue},
-\HepProcess{\Ppiminus \to \Pelectron + \APnue}.
+    \HepProcess{\Ppiplus \to \APelectron + \Pnue},
+    \HepProcess{\Ppiminus \to \Pelectron + \APnue}.
 \end{equation}
 
 The mean lifetime of the muon is relatively long with $\tau = \SI{2197}{\ns}$ \cite{duclos1973muon}. The muons can easily reach ground if they have enough energy because of time dilation and length contraction. Some muons do decay before reaching ground in which case the \Pmuon (\APmuon) produces a electron (positron) and positron neutrino (electron neutrino),
-
+%
 \begin{equation}
-\HepProcess{\Pmuon \to \Pelectron + \APnue + \Pnum}, \\
-\HepProcess{\APmuon \to \Ppositron + \Pnue + \APnum}.
+    \HepProcess{\Pmuon \to \Pelectron + \APnue + \Pnum}, \\
+    \HepProcess{\APmuon \to \Ppositron + \Pnue + \APnum}.
 \end{equation}
 
 In \cref{fig:schematic_shower} a schematic representation of the hadronic interction is seen. After the first interaction many new particles are created. The leading particle (the surviving part of the incident particle) continues towards the ground with a significant part of the energy. It will undergo further interactions, but with lower energy, and thus lower multiplicity.
 
 The dominant interaction for the high energy photons created by neutral pion decay is pair production. The photons must have more energy then the rest mass of the two produced particles, i.e. \SI{1022e6}{\eV} for an electron postitron pair.
-
+%
 \begin{equation}
-\HepProcess{\Pgamma \to \Pelectron + \Ppositron}.
+    \HepProcess{\Pgamma \to \Pelectron + \Ppositron}.
 \end{equation}
 
 Below this energy Compton scattering begins to dominate. In Compton scattering the photon recoils of another particle, transfering energy to the other particle.
@@ -344,16 +344,16 @@ The shower front can be defined in multiple ways, either as a snapshot in time o
 
 % The important distributions related to the shower front.
 % LDF for various components, and what influences it.
-The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (\SI{>3e9}{\eV}) gamma rays, followed by electrons (\SI{>3e9}{\eV}), then muons (\SI{>3e11}{\eV}). The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, the most well known is the Nishimura-Kamata-Greisen (NKG) \cite{apel2006nkg}. This is given by:
-
+The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (\SI{>3e9}{\eV}) gamma rays, followed by electrons (\SI{>3e9}{\eV}), then muons (\SI{>3e11}{\eV}). The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, the most well known is the Nishimura-Kamata-Greisen (NKG) \cite{apel2006nkg}. This is given by
+%
 \begin{equation}
     \label{eq:nkg}
     \rho(r) = N_\mathrm{e}\, c(s) \left(\frac{r}{R_0}\right)^{s - 2} \left(1 +
     \frac{r}{R_0}\right)^{s - 4.5},
 \end{equation}
-
-where $\rho(r)$ is the particle density at a given core distance, $N_e$ the number of electrons at ground level, $R_0$ the Molière radius, $s$ the shower age parameter, and $c(s)$ given by:
-
+%
+where $\rho(r)$ is the particle density at a given core distance, $N_e$ the number of electrons at ground level, $R_0$ the Molière radius, $s$ the shower age parameter, and $c(s)$ given by
+%
 \begin{equation}
     c(s) = \frac{\Gamma(4.5 - s)}{2\pi R_0^2\, \Gamma(s)\,\Gamma(4.5 - 2s)}.
 \end{equation}

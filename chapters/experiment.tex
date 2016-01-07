@@ -49,34 +49,34 @@ The experiment will be based in the Netherlands, with possible extensions to oth
 \section{Design for detection}
 
 % Detector the particles in the shower front, not the fluorescence/Cherenkov. For several reasons; particle detectors are much cheaper, provides higher uptime. Also detect extensive air showers during day time, moon nights, and with other sources of light pollution.
-In \cref{sec:other_observables} methods other than particles detectors for the observation of air showers were mentioned. These will not be considered, as these methods are much more expensive and have lower duty cycles. For experiments such as TA and Auger they do provide excellent independent calibration of the surface particle detectors and extra information about the shower This experiment will use particle detectors for the detection of cosmic rays.
+In \cref{sec:other_observables} methods other than particles detectors for the observation of air showers were mentioned. These will not be considered, as these methods are much more expensive and have lower duty cycles. For experiments such as TA and Auger they do provide excellent independent calibration of the surface particle detectors and extra information about the shower. This experiment will use particle detectors for the detection of cosmic rays.
 
 % What properties/observables of the air shower particles need to be measured.
 %  - Arrival time of the particles (leptons) and their number.
 %  - Accurate arrival time is needed for direction (using shower front shape).
 %  - Accurate particle count is needed for energy/core (using lateral density).
-As stated before the arrival time of particles and number of particles in a detector can be used to reconstruct the shower. The accuracy with which this needs to be measured depend on the properties of the shower and detectors. For increasing detector distance a lower arrival time accuracy is required to achieve the same direction reconstruction accuracy. With increasing core distance the particle density decreases, while the rise time of the shower front increases. This makes it more likely that the few particles that are detected are further delayed from the causal front. This increases the uncertainty in direction reconstruction.
+The arrival time of particles and number of particles in a detector can be used to reconstruct the shower. The accuracy with which this can to be measured depend on the properties of the shower and detectors. For increasing distance between detectors a lower arrival time accuracy is required to achieve the same direction reconstruction accuracy. With increasing core distance the particle density decreases, while the rise time of the shower front increases. This makes it more likely that the few particles that are detected are further delayed from the causal front. This increases the uncertainty in direction reconstruction.
 
-Also important to consider is the likelihood of actually detecting a shower. For a given particle density $\rho$ and a detector with area $A$ the probability of detecting exactly $k$ particles is given by the Poisson distribution. Here $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$ and $P_k$ the probability.
-
+Important to consider is the likelihood of actually detecting a shower. For a given charged particle density $\rho$ and a detector with area $A$ the probability of detecting exactly $k$ particles is given by the Poisson distribution. Here $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$ and $P_k$ the probability.
+%
 \begin{equation}
     P_k(\lambda) = \frac{\lambda^k \mathrm{e}^{-\lambda}}{k!} \ .
 \end{equation}
-
-This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle given a particle density, given by
-
+%
+This assumes the detectors are \SI{100}{\percent} efficient at detecting charged particles. The important probability is the probability of not detecting any particle (i.e. $k = 0$) given a particle density, given by
+%
 \begin{equation}
     P_0(\lambda) = \mathrm{e}^{-\lambda} \ .
 \end{equation}
-
+%
 Which gives the probability of detecting at least one particle via
-
+%
 \begin{equation}
     P_p(\lambda) = 1-P_0(\lambda) \ .
 \end{equation}
 
 % Each particle detector will have a background from low energy showers, such showers are very abundant, but only few particles (mainly muons) reach ground level.
-Not all detected particles will be desired. A big component of the background comes from low energy showers (\SI{<e14}{\eV}) which produce only a couple muons at sea level, and even fewer electrons. Such low energy cosmic rays are very abbundant. Instead of resulting in an instantaneous high density of particles these showers produce a random background of particles. These showers produce to few particles to effectively detect in multiple detectors. In \cref{fig:particle_density} the total particle flux at various atmospheric depths is shown. At sea level the muon flux dominates. The high muon flux relative to electrons is dominated by low energy showers, for higher energy showers the electrons muon ratio favors the electrons.
+Not all detected particles will be desired. A big component of the background comes from low energy showers (\SI{<e14}{\eV}) which produce only a couple muons at sea level, and even fewer electrons. Such low energy cosmic rays are very abbundant. Instead of resulting in an instantaneous high density of particles these showers produce a random background of particles. These showers produce to few particles to effectively sample the shower front. In \cref{fig:particle_density} the total particle flux at various atmospheric depths is shown. At sea level the muon flux dominates. The high muon flux relative to electrons is dominated by low energy showers, for higher energy showers the electron-muon ratio favors the electrons.
 
 \begin{figure}
     \centering
@@ -87,7 +87,7 @@ Not all detected particles will be desired. A big component of the background co
 \end{figure}
 
 % How to filter the background away by using a coincidence trigger. Two (or more) simultaneous, unrelated, detections in separated detectors is unlikely.
-By using the fact that the particles from energetic showers are more correlated in time those showers can be distinguished from the background by looking for time-correlated particles. This might be possible with a single detector which looks for short bursts of many particles. However, this does not provide data for reconstruction, since the arrival time and density is only known at one position. Using multiple detectors which need to have a time-correlated detection is more sensitive to lower particle densities and provide data for reconstruction. Using two detectors to disgtinguish the particles from the background by requiring at least one particle in each detector makes the probability detection $P_2(\lambda) = P_p^2(\lambda)$, assuming the particle density is equal at both detectors. The size of and distance between the detectors will determine the lower energy limit.
+By using the fact that the particles from energetic showers are more correlated in time those showers can be distinguished from the background by looking for time-correlated particles. This might be possible with a single detector which looks for short bursts of many particles. However, this does not provide data for reconstruction, since the arrival time and density is only known at one position. Multiple combined detectors using a time-correlated trigger is more sensitive to lower particle densities, since one particle needs to be detected per detector. Moveover. it provides data for reconstruction. Using two detectors to disgtinguish the particles from the background by requiring at least one particle in each detector makes the probability detection $P_2(\lambda) = P_p^2(\lambda)$, assuming the particle density is equal at both detectors. The size of and distance between the detectors will determine the lower energy limit.
 
 % How to figure out where should the detectors be placed (relative to each other)
 %  - For low energy (\SIrange{e14}{e15}{\eV}) showers the detectors need to be closely spaced (\SI{10}{\meter}) otherwise the density in the detectors becomes to low to effectively detect them.
@@ -95,54 +95,55 @@ By using the fact that the particles from energetic showers are more correlated 
 The efficiency with which two detectors can detector a shower can be estimated. Assume that the shower core is precisely between the two detectors. Here the detection efficiency is highest. If the shower was closer to either detector the probability of detection for one detector would go up, but it falls faster for the other detector, reducing the overall probability. Using an estimate of the particle density for (vertical) showers as described in \cref{eq:nkg} the probability of detection can be estimated for showers of different energies depending on the size of the detectors and the distance between the detectors.
 
 The relation between the median shower size (number of electrons at sea level) and primary energy (see \cref{fig:shower_size_distribution}) can be approximated by the following relation
-
+%
 \begin{equation}
     N_{\Pe} = 10^{\log\left(\frac{E}{\si{\eV}}\right) - 10.2} \ ,
 \end{equation}
-
+%
 which is valid for (semi-)vertical showers. As the zenith angle of showers increases above \SI{15}{\degree} the shower size noticably decreases. Also the energy at which the transition from mostly muons to mostly electrons reach ground is at higher values for larger zenith angles. A better fit may be achieved by adding an extra parameter
-
+%
 \begin{equation}
     N = 10^{\log\left(\frac{E}{\si{\eV}}\right)^y - x} \ .
 \end{equation}
-
-This can be fitted more accurately to the electon, muon and total lepton sizes (per zenith angle). For electrons we find $y = 13.3$ and $x = 1.07$ to best describe simulated air showers from the Zenith.
+%
+This can be fitted more accurately to the electon, muon and total lepton sizes (per zenith angle). For electrons we find $y = 13.3$ and $x = 1.07$ best sdescribe simulated air showers from the Zenith.
 
 $P_2$ is a function of $P_0$, which can be written as a function of the shower energy, core distance, and detector size as follows
-
+%
 \begin{equation}
     P_0(E, r, A) = \mathrm{e}^{-A\rho(N_{\Pe}(E), r)} \\ .
 \end{equation}
-
-With this the expected detector efficiency for a detector setup can be estimated for various shower energies. Inclined showers can also be investigated, incase of a flat detector the effective detection area is smaller by $\cos \theta$. The particle density is harder to estimate because different parts of the shower have different path lengths through the atmosphere. Also the effective distance between the detectors may change, depending on the azimuthal angle of the shower.
+%
+With this the expected detector efficiency for a detector setup can be estimated for various shower energies. Inclined showers can also be investigated, in case of a flat detector the effective detection area is smaller by $\cos \theta$. The particle density is harder to estimate because different parts of the shower have different path lengths through the atmosphere. Also the effective distance between the detectors may change, depending on the azimuthal angle of the shower.
 
 % Why are for reconstruction multiple detection points needed.
-To be able to fully reconstruct the direction of an air shower at least three detection points are required. Having two detection points with arrival times provides one constraint on the shower axis, but a plane of possible axes remain, a third point constrains the shower axis. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). Using a 3-detector station the probability of detecting at least one particle in each is given by $P_p^3(\lambda)$. If the station had even more detectors but still required at least 3 in coincidence the probability of detection becomes
-
+To be able to fully reconstruct the direction of an air shower at least three detection points are required. Having two detection points with arrival times provides a constraint on the shower axis, but a plane of possibilities remain \cite{schultheiss2016pair}, a third detection point (not on the same line) constrains the shower axis. This can either be achieved by a single station with three or more detectors (short distances), or by combining detections from multiple stations (larger distances). Using a 3-detector station the probability of detecting at least one particle in each is given by $P_p^3(\lambda)$. If the station had even more detectors ($n$) but still required at least 3 in coincidence the probability of detection becomes
+%
 \begin{equation}
-    P_{\mathrm{min}=3}(\lambda) = \sum_{k=3}^{n} \left(^n_k\right) P_p^k P_0^{n-k} \ ,
+    P_{\mathrm{min}=3}(\lambda) = \sum_{k=3}^{n} \binom{n}{k} P_p^k P_0^{n-k} \ .
 \end{equation}
-
-where n is the total number of detectors.
 
 % Depending on size of coincidence window how much background remains. Reconstruction should identify bad/accidental events.
-Consider the 2-detector setup again in which both need to detect a particle within a short time window to make certain both are from the same shower. The rate of muons at ground level is about \SI{~200}{\Pmump\per\meter\squared\per\second}. Most should have entirely uncorrelated arrival times, but since the distribution is random some might arrive simultaneously. The expected rate of coincidences in case all muons have random arrival times is given by
-
+Consider the 2-detector setup again in which both need to detect a particle within a short time window to make certain both are from the same shower. The rate of muons at ground level is approximately $f_{\Pmump} = \SI{~200}{\Pmump\per\meter\squared\per\second}$. Most should have entirely uncorrelated arrival times. Since the distribution is random some might arrive simultaneously. The expected rate of random coincidences can be calculated by
+%
 \begin{equation}
+    \label{eq:background_rate}
     R_{\mathrm{background}} = 2 \tau A^2 f^2 \ ,
 \end{equation}
+%
+where $\tau$ is the time window, $A$ the detector area, and $f$ the background flux. Note that this relation is only applicable if the time window $\tau$ is smaller than $f^{-1}$ and $R_{\mathrm{background}} \ll Af$.
 
-where $\tau$ is the time window, $A$ the detector area, and $f$ the flux. The time window should be at least the distance between the two detectors divided by the light speed. That should be the most extreme case for a shower to arrive horizontally in line with the detectors. Longer time differences are possible due to different transport time in the detector and the rise time and curvature of the shower front.
+The time window should be at least the distance between the two detectors divided by the light speed. That should be the most extreme case for a shower to arrive horizontally in line with the detectors. Longer time differences are possible due to different transport time in the detector and the rise time and curvature of the shower front.
 
 % The detectors need to be reliable to prevent continuous maintenance tasks, and to last the length of the experiment, MoU expects ~5 years.
-Ideally the detectors operate without maintenance. But the components might have finite lifetimes or require recalibration after some time. If many detectors require frequent service and maintenance this will cost time that could otherwise be spent on data anlysis. Basically the costs of the experiment go up. Using tried-and-tests components that have been shown to be reliable for long periods are prefered.
+Ideally the detectors operate without maintenance. The components might have finite lifetimes or require recalibration after some time. If many detectors require frequent service and maintenance this will cost time that could otherwise be spent on data analysis. Basically the costs of the experiment go up. Using tried-and-tests components that have been shown to be reliable for long periods are prefered.
 
 % Cost effective detectors so high-schools can participate in the project
 Making detectors larger makes them more likely to detect particles. The downside is that the detector becomes less easy to handle, more expensive, efficiency uniformity may worsen, and saturation might occur sooner. A good balance needs to be determined.
 
 % The detector needs to be safe to handle by students
 % Detectors need to be durable so they can survive the typical Dutch weather
-The experiment is meant to be accessible for high schools, the detectors need to be fairly easy to handle. If the detectors would be placed inside schools the roof material might affect the detections. In order to have enough space to place the detectors the most obvious location would be on the roof. If the detectors are outside proper protection from weather effects need to be considered.
+The experiment is meant to be accessible for high schools, the detectors need to be fairly easy to handle. If the detectors would be placed inside schools it may be dificult to find a safe location and the roof material might affect the detections. In order to have enough space to place the detectors the most obvious location would be on the roof. If the detectors are outside proper protection from weather effects need to be considered.
 
 
 \section{Detector}
@@ -154,9 +155,9 @@ The detector consists of two main components which perform the detection. The sc
 Scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{bc408}. The BC-408 material has good timing properties and light output for charged particles.
 
 % PMT size and type
-The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (effectively \SI{25}{\milli\meter}) diameter and \SI{~11}{\centi\meter} long \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts have a number of dynodes The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply was also compatible with the previously used tubes, and can serve to replace a broken power supply.
+The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and \SI{~11}{\centi\meter} long (depends on the power supply) \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts contain a number of high gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply is also compatible with the previously used tubes, and can serve to replace a failed power supply.
 
-Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light tight black pond foil to keep light out and protect the aluminium foil from outside influences.
+Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
 % Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
 All components are readily available, off the shelf, from suppliers and not specifically designed for \hisparc.
@@ -172,6 +173,8 @@ All components are readily available, off the shelf, from suppliers and not spec
 % Detector is protected by skibox from weather and is secured in place by weights.
 The final detector dimensions (approximately \SI[product-units=power]{200 x 50 x 3}{\centi\meter} fit well in the chosen detector casing, namely, roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather. Access to the detector for maintenance is also easy. Also with maintenance in mind, the optical tape with which the \pmt is attached allows it to be easily replaced.
 
+[insert photo of detector in skibox]
+
 
 \subsection{The scintillator}
 
@@ -179,7 +182,9 @@ The final detector dimensions (approximately \SI[product-units=power]{200 x 50 x
 Charge particles loose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionization is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scinatillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
 
 % Most shower muons/electrons are minimum ionizing particles (mips) and have similar energy loss in the detectors, given by Bethe-Bloch (spread on energy loss given by Landau).
-The mean amount of energy deposited by the particle going through the detector is described by the Bethe-Bloch formula. This gives the amount of energy lost by the particles per \si{\gram\centi\meter\squared} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution. The ionization energy loss for
+The average energy deposited by the particle going through the detector is described by the Bethe-Bloch formula. This gives the amount of energy lost by the particles per \si{\gram\centi\meter\squared} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution. The ionization energy loss (predicted by Bethe-Bloch) for both electrons and muons reaches a minimum value at some point. Muons and electrons at this energy (\SI{325e6}{\eV} and \SI{e6}{\eV} respectively) are refered to as \textit{minimum ionizing particles} (\mip). In [figref] the energy loss for electrons and muons is shown as a function of their energy. Shown are the total losses (gray), losses due to ionization (black), and other loss processes. The ionization losses are the only ones of real interest, since those result in the detectable scintillation light.
+
+[insert fig of energy losses, bethe-bloch, highlight ionization, use eV horizontal scale (two scales?) or beta gamma..]
 
 The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path can also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
 
@@ -189,7 +194,7 @@ The light emitted along the path of the particle is transmitted in random direct
 
 \subsubsection{Gammas in the scintillator}
 
-Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{1}{\MeV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
 
 For photons the interactions by which it produces detectable signals are .., and pair production. In case electrons are produced, those will procede in the usual way.
 
@@ -197,7 +202,7 @@ For photons the interactions by which it produces detectable signals are .., and
 \subsection{\pmt}
 
 % How PMT works
-The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. The electrons impacting this dynode will each cause the release of more electrons, which are accelerated towards the next dynode. At the end the electrons fall on the anode which is connected to the readout. The used PMTs have 11? (SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the PMT. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}}$ electrons at the anode.
+The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. The each electron impacting this dynode will cause the release of more electrons, which are accelerated towards the next dynode. At the end the electrons fall on the anode which is connected to the readout. The \pmts which are used have 11? (SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the PMT. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode.
 
 % Signal strength is used for particle density, need to be able to distinguish between different number.
 Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles.
@@ -243,7 +248,7 @@ The \hisparc electronics (versions II and III) are able to readout two detectors
 
 % Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
 For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}}$ the number of possible (physical) time differences between the two detectors is given by
-
+%
 \begin{equation}
     \begin{split}
         t_{\mathrm{max}} &= \frac{d}{c} \\
@@ -255,7 +260,7 @@ For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample
 \end{equation}
 
 
-
+- background rate: \cref{eq:background_rate}: $R = 2 1.5e-6 0.5^2 200^2 = 0.03$
 
 - An efficient trigger can be made for a certain (and higher) particle density.
 
