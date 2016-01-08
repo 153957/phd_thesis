@@ -157,7 +157,7 @@ Scintillators have been selected as detection material. This is a relatively che
 % PMT size and type
 The chosen photomultiplier tube \cite{et:pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and \SI{~11}{\centi\meter} long (depends on the power supply) \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts contain a number of high gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measureable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply is also compatible with the previously used tubes, and can serve to replace a failed power supply.
 
-Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
+Besides these the detector construction consists of several other components. An isosceles triangle light guide [measurements, base \SI{50}{\centi\meter}, legs ??, thickness ??] made from polymethylmethacrylate (PMMA). The light guide is glued to the scintillator using Optical Cement (\cite{bc600}). A little adapter piece (same material as light guide) is attached to the square end of the triangle with Optical Cement and the round window of the \pmt with optical tape [type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker, ??, aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in thick, ??, light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
 % Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
 All components are readily available, off the shelf, from suppliers and not specifically designed for \hisparc.
@@ -189,7 +189,15 @@ The average energy deposited by the particle going through the detector is descr
 The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path can also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
 
 % Signal transport efficiency not uniform for the detector due to geometry.
-The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted. A 2D Monte Carlo simulation of the detector [cite Jos Steijger] predicts the transmission efficiency from locations in the scintillator to the \pmt. The resulting transmission efficiency distribution is shown in [fig of tranmission efficiency].
+The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted. A 2D Monte Carlo simulation of the detector [cite Jos Steijger] predicts the transmission efficiency from locations in the scintillator to the \pmt. The resulting transmission efficiency distribution is shown in [fig of tranmission efficiency]. Also the travel time of the photons to the \pmt varies depending on the location of emission and the emission direction. In \cref{fig:transport_time} the distribution of transport times is shown, the time is the arrival time of the 15th photon producing a photoelectron at the \pmt. This is taken instead of the first because the signal threshold used for detection is greather than the signal of one photoelectron. The effects of these distributions on the reconstruction accuracy are discussed later.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/transport_time}
+    \caption{Transport time distribution for the detector. The scintillation light has to reach the PMT from the point of impact, the travel time depends on the impact location, this is the distribution for the entire detector.}
+    \label{fig:transport_time}
+\end{figure}
 
 
 \subsubsection{Gammas in the scintillator}
@@ -202,10 +210,20 @@ For photons the interactions by which it produces detectable signals are .., and
 \subsection{\pmt}
 
 % How PMT works
-The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. The each electron impacting this dynode will cause the release of more electrons, which are accelerated towards the next dynode. At the end the electrons fall on the anode which is connected to the readout. The \pmts which are used have 11? (SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the PMT. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode.
+The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. Each electron impacting the second dynode will cause the release of more electrons, which are accelerated towards the next dynode, and so on. At the end the electrons fall on the anode which is connected to the readout. The \pmts which are used have 11? (ET/SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it is not a fixed number. This results in a variation in the output signal for each single photoelectron. This can easily vary a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. It is more likely to happen at a later dynode because more interaction occur at those. Typical variations are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear [perhaps a fig, or at least a ref]. 
+
+[schematic figure of \pmt]
 
 % Signal strength is used for particle density, need to be able to distinguish between different number.
-Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles.
+Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles. In \cref{fig:ph_histogram_contrib} an example of the expected pulseheight histogram is shown including the contributions from gammas, and multiple leptons. The widths of the contributions are due to the particle inclination, Landau distribution, transmission efficiency, and \pmt variation. The first peak gives the most probable value (MPV) for the pulseheight of a single lepton. An approximation of the number of particles can be made by comparing a measured value to the MPV. The position of the MPV is dependend on the efficiency of the detector, by changing the voltage on the \pmt the position of the MPV can be tuned. Ideally the MPV is approximately \SI{150}{\mV}. If it is lower it is difficult to distinguish the lepton contribution from the gamma spectrum and the MPV will be hard to determine. If the MPV is at a much higher value the \pmt ages more quickly and the dynamic range [in number of particles..] will be reduced.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/ph_histogram_contrib}
+    \caption{Overlap between pulse integral contributions from multiple mips in one event, the with of each contribution is due to Landau distribution and transport efficiency.}
+    \label{fig:ph_histogram_contrib}
+\end{figure}
 
 % Fast ADC readout of the PMT provides accurate timing.
 Each \pmt is readout with \adcs at a sample rate of \SI{2.5}{\ns}. An example of a readout is shown in \cref{fig:trace}. With this high sample rate the signal shape of individual particles is unraveled. Subsequent signals from particles later in the shower front can be distinguished, and the shower rise time can be examined. With \SI{2.5}{\ns} the timing resolution is close to timing the uncertainty caused by the shower front rise time and the detector transport time. An even higher sample rate would not achieve much better timing resolution.
@@ -219,65 +237,80 @@ Each \pmt is readout with \adcs at a sample rate of \SI{2.5}{\ns}. An example of
 \end{figure}
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/experiment/ph_histogram_contrib}
-    \caption{Overlap between pulse integral contributions from multiple mips in one event, the with of each contribution is due to Landau distribution and transport efficiency.}
-    \label{fig:ph_histogram_contrib}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/experiment/transport_time}
-    \caption{Transport time distribution for the detector. The scintillation light has to reach the PMT from the point of impact, the travel time depends on the impact location, this is the distribution for the entire detector.}
-    \label{fig:transport_time}
-\end{figure}
-
-
 \section{Station}
 
 % Impractical to connect detectors over long distances for online/realtime triggering.
-By making each detection station consist of at least two detectors the station can perform triggering as a standalone unit. Each station performs its own triggering, therefore stations do not need to be interconnected. For detection stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger where the space between detectors is mostly empty wirelessly connecting detectors is an option. The \hisparc station consists of either 2 or 4 detectors connected to \hisparc electronics. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module, and a data connection for PCs.
+By making each detection station consist of at least two detectors the station can perform triggering as a standalone unit. Each station performs its own triggering, therefore stations do not need to be interconnected. For detection stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger where the space between detectors is mostly empty wirelessly connecting detectors is an option. The \hisparc station consists of either 2 or 4 detectors connected to \hisparc electronics. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module, and a data connection to a PC. Two versions of the electronics are currently being used, versions II and III. Version III differs from II in having USB 2 instead of USB 1 connectors, slightly different \adcs, and an upgradable firmware over USB.
 
-The \hisparc electronics continually readout the \pmt signal and compares the \adc values to two thresholds; a low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, and the default setting is \SI{-30}{\milli\volt} (low) and \SI{-70}{\milli\volt} (high).
+The \hisparc electronics has two \adcs per channel, each reads the \pmt signal at \SI{200}{\mega\hertz}. By interlacing the two \adcs a sampling frequency of \SI{400}{\mega\hertz} is achieved. These are 12-bits \adcs, allowing values between \SIrange{0}{4095}{\adc} and provide approximately \SI{2}{\volt} dynamic range. The two \adcs are calibrated to provide the same baseline and gain. The baselines are set to \SI{200}{\adc} (II) and \SI{30}{\adc} (III) for the two \hisparc electronics. The two verisons use a different type of \adc, with a slightly different dynamic range. The \si{\mV} to \si{\adc} conversion differs slightly, being \SI{0.57}{\adc\per\mV} (II) and \SI{0.584}{\adc\per\mV} (III).
 
-The \hisparc electronics (versions II and III) are able to readout two detectors simultaneously. However, as mentioned stations with four detectors exist, in those cases two boxes are connected to provide readout and triggering for four detectors. When connected the two boxes still work semi-independently, but exchange threshold and \gps information. Only one of the two (the Master) contains a \gps module, it provides the second box (Slave) with \gps timing information.
+The \pmt signals are continually read out, the resulting \adc values are compared to two thresholds; a low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, and the default setting is \SI{-30}{\milli\volt} (low) and \SI{-70}{\milli\volt} (high). The triggering logic keeps track of which channels are over a threshold and the trigger window in which trigger conditions need to be met. If a trigger occurs the time of the event is recorded as well as the trace readout of the \adc.
+
+The \hisparc electronics are able to readout two detectors simultaneously. However, as mentioned stations with four detectors exist, in those cases two boxes are interconnected via UTP cables to provide readout and triggering for four detectors. When connected the two boxes still work semi-independently, but exchange threshold and \gps information. Only one of the two (the Master) contains a \gps module, it provides the second box (Slave) with \gps timing information. By exchanging threshold information the trigger logic in the Master and Slave have acces to all four channels. Triggers based on four detectors can then be created.
 
 % Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
-For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}}$ the number of possible (physical) time differences between the two detectors is given by
+For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}} = \SI{2.5}{\ns}$ the number of possible (physically relevant) time differences between the two detectors detecting the same shower front can be calculated by
 %
 \begin{equation}
     \begin{split}
         t_{\mathrm{max}} &= \frac{d}{c} \\
         n &= \left\lfloor \frac{t_{\mathrm{max}}}{t_{\mathrm{sample}}} \right\rfloor \\
-        \theta &= \arcsin \frac{k t_{\mathrm{sample}}}{t_{\mathrm{max}}} \\
-%        k                & \in \Z \\
-%        -n \leq          &k \leq n
+        k &= \{x \in \mathbb{Z} : -n \leq x \leq n \} \\
+        \theta_{dt} &= \arcsin \frac{k t_{\mathrm{sample}}}{t_{\mathrm{max}}} \ .
     \end{split}
 \end{equation}
+%
+Here $\theta_{dt}$ is the set of possible angles of the shower axis relative to the line between the detectors. While placing detectors closer together increases the detection efficiency for low energy showers, it decreases the direction reconstruction accuracy.
 
+% An efficient trigger can be made for a certain (and higher) particle density.
+Using [$P_2$] we can determine the detector distance to efficiently (\SI{50}{\percent}) detect showers as a function of energy. Assume the shower axis is directly between the detectors, since that is where the station will be able to most efficiently detect the shower. The following relation is ploted in [todo: fig of E vs d].
+%
+\begin{equation}
+\begin{split}
+    r &= \frac{d}{2} \\
+    P_2(d) &= \left(1 - \mathrm{e}^{-A \rho(N(E), r)} \right)^2 = 0.5 \ .
+\end{split}
+\end{equation}
+%
+So by placing the detector \SI{~10}{\meter} apart a \SI{~e15}{\mV} [check actual number] shower can be detected with \SI{50}{\percent} efficiency if it fell directly between the detectors. At that distance the maximum time difference (assuming a flat shower front) between the detectors is \SI{30}{\ns}. However, shower fronts are not flat, and the rise time of the front can also cause time differences larger than expected from a horizontal shower with a flat front. Since that is a viable possibility the trigger should be long enough to also allow large time differences to detect showers when the detectors are far from the shower core.
 
-- background rate: \cref{eq:background_rate}: $R = 2 1.5e-6 0.5^2 200^2 = 0.03$
+% background rate: 
+In \cref{temporal_profile} the temporal profile of the shower front was shown, at very large core distances the time difference between the first and last particle may be larger than \SI{3000}{\ns}. For all core distances more than \SI{50}{\percent} of the particles arrive within \SI{1500}{\ns}. This is the value that was chosen as coincidence window for \hisparc. This is long enough to account for most extreme time differences at large core distances. The number of random coincidences due to the muon background (see \cref{eq:background_rate}) with this time window is estimated to be $2 \times \SI{1500}{\ns} \times \left(\SI{0.5}{\meter\squared}\right)^2 \times \left(\SI{200}{\hertz\per\meter\squared}\right)^2 = \SI{0.03}{\hertz}$. In a properly calibrated detector the rate of singles (number of signals over the a threshold per second) are slightly higher, \SI{250}{\hertz} (low) and \SI{120}{\hertz} (high).
 
-- An efficient trigger can be made for a certain (and higher) particle density.
+The standard trigger setting for a 2-detector station are 2 low signals, the high threshold is ignored. This condition has to be met within the trigger window of \SI{1500}{\ns}. This results in an event rate of approximately \SI{0.33}{\hertz}. Of which a third is expected to be from random coincidences. The low threshold is in the exponential gamma spectrum, a higher \pmt gain will increase the rate of triggers a lot, where atleast one of the detectors will have a gamma.
 
-- For (low energy) shower detection a station has multiple detectors close together and contains the trigger logic.
+For a 4-detector station the trigger is either 2 high signals or 3 low signals. The same trigger window is used. This results in a trigger rate of approximately \SI{0.66}{\hertz}. Of which about a fifth is expected to be due to random coincidences. The (default) layout of the 4-detector station is described in \cref{ssec:station_layout}.
 
-- For high energy showers the density still needs to be high enough in a station for a trigger, this limits maximum core distance for showers.
+% For (low energy) shower detection a station has multiple detectors close together and contains the trigger logic.
+% For high energy showers the density still needs to be high enough in a station for a trigger, this limits maximum core distance for showers.
+As noted, the trigger is such that low energy showers are effecively detected by the station and the time window is long enough that it can also trigger on the edges of the shower front from high energy showers.
 
-- Using more than two detectors in a station increases detection efficiency.
+% Using more than two detectors in a station increases detection efficiency.
+% More than two detectors have the possibility of direction reconstruction.
+The 4-detector station can more efficiently detect showers, since it has twice the detection area. It will trigger on lower particle densities than a 2-detector shower. This makes it capable of detecting large showers from further away. Additionally if three detectors detect a particle it might be possible to reconstruct the direction of the shower axis. This may not be accurate if the station is a the edge of the shower, because the time delays due to the rise time of the shower increase the uncertainty.
 
-- More than two detectors have the possibility of direction reconstruction.
+% Trigger efficiency as function of core distance and shower energy, for the different triggers (2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector for reconstructable).
+The particle density threshold for triggering on showers with \SI{50}{\percent} efficiency is different for the 2- and 4-detector stations. Also an important value is the trigger efficiency for at least 3-detectors with a hit in the 4-detector station, since this can result in reconstructable showers. In \cref{fig:ldf_energies2} the energy which can be triggered with \SI{50}{\percent} efficiency as a function of core distance is shown for these three cases.
 
-- Explain simple direction reconstruction with 3 detection points (flat/curved shower).
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/experiment/ldf_energies}
+    \caption{Trigger efficiency E = \SIrange{e14}{e20}{\eV} showers, add horizontal lines for 2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector (\SI{50}{\percent} efficient.}
+    \label{fig:ldf_energies2}
+\end{figure}
 
-- Trigger efficiency as function of core distance and shower energy, for the different triggers (2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector for reconstructable).
+% Explain simple direction reconstruction with 3 detection points (flat/curved shower).
+When there are three detection points which are not on a line the shower axis can be constrained. In this case the detectors are assumed to be at the same height and the front is considered flat, an approximation which can be valid at the short distances between detectors as they occur in a station.
+%
+[derivation of formula for shower direction, cartesian, 2D, flat]
+
 
 % Standard layouts created to encourage uniformity, these are also chosen for good shower acceptance, reconstruction accuracy of station events, and practicality for the locations.
-The layout of a typical 4-detector station is shown in \cref{fig:4_detector_layouts}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
+\subsection{Station layout}
+\label{ssec:station_layout}
+
+The layouts of a typical 4-detector station is shown in \cref{fig:4_detector_layouts}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers and provide accurate direction reconstruction resolution. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
 
 \begin{figure}
     \centering
@@ -297,20 +330,18 @@ The layout of a typical 4-detector station is shown in \cref{fig:4_detector_layo
     \label{fig:discrete_directions}
 \end{figure}
 
-The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps, whose position is know. From the \gps the distance to and the angle between (True?) North and the detector (center of the scintillator) is measured. Additionally the rotation of the detector itself around its center can be recorded, though this is less important. The coordinate system is also described in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important, though (full) direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).
+The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps, whose position is know. From the \gps the distance to and the angle between (True?) North and the detector (center of the scintillator) is measured. Additionally the rotation of the detector itself around its center can be recorded, though this is less important. The coordinate system is also described in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important. Though full direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).
 
-
-- Shower core/energy determination impractical with single station.
-
+% Shower core/energy determination impractical with single station.
+Determiniation of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low.
 
 \subsection{Weather station}
 
+% Optional weather station to provide local weather data.
+Optionally a \hisparc station can be extended with a weather station to provide local weather measurements. These measurements can help in understanding how shower development is affected by atmospheric conditions. For instance an high air pressure increases the number of collisions in air showers, thereby reducing the number of particles that reach sea level. This lowers the trigger rate for a station. Additionally some of the detector components have efficiencies dependend on their temperature. By measuring the temperature detections may be corrected for the changed efficiency. \hisparc uses a VantagePro weather station which includes the following sensors; temperature, air pressure, humidity, solar radiation, wind direction, wind speed, rain, and . These sensors are readout every \SI{5}{\second}. Currently there are .. \hisparc stations that also have a weather station. These locations are shown on the map in [fig ref].
 
-- Optional weather station to provide local weather data.
-
-- May not be required at each station, can use freely available KNMI data. However, in some cases closest KNMI station is far away.
-
-
+% May not be required at each station, can use freely available KNMI data. However, in some cases closest KNMI station is far away.
+Note that it is not required for all stations to have a weather station. The Royal Dutch Meteorological Institute (KNMI) also provides a public weather data service in the Netherlands. KNMI has 36 stations spread in a regular grid around the Netherlands. Not all \hisparc stations are close to a KNMI station, for some weather quantities this is no problem because they are similar over long distances, or can be interpolated. Besides temperature the local solar radiation strongly influences the temperature of the detector in a skibox.
 
 \begin{figure}
     \centering
@@ -318,14 +349,6 @@ The layout of each station is not always precisely according to the suggested la
                     {plots/experiment/azimuth_kascade_minn1}
     \caption{Test station at KASCADE was used to verify the performance of a single station. The direction agreement between simultaneously detected events is shown.}
     \label{fig:azimuth_kascade_minn1}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/experiment/ldf_energies}
-    \caption{Trigger efficiency E = \SIrange{e14}{e20}{\eV} showers, add horizontal lines for 2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector (\SI{50}{\percent} efficient, perhaps also \SI{~100}{\percent} efficiency lines).}
-    \label{fig:ldf_energies2}
 \end{figure}
 
 
@@ -347,20 +370,20 @@ The layout of each station is not always precisely according to the suggested la
 \end{figure}
 
 
-
 \section{Network}
 
+% Each station submits data/triggered events to central datastore
+When a station records data is uploads it to the central datastore at \nikhef. Here further offline analysis is performed and the data is made available for download. The automatic data analysis that is performed is described in [a later chapter]. 
 
-- Each station submits data/triggered events to central datastore
-
-- Use offline analysis to find station events detecting the same shower.
-    - This requires good absolute timing at the stations.
-    - Use GPS at stations for both positioning of the stations (\SI{~1}{\meter}) and absolute timing (\SI{~5}{\ns}).
+% Use offline analysis to find station events detecting the same shower.
+  % - This requires good absolute timing at the stations.
+  % - Use GPS at stations for both positioning of the stations (\SI{~1}{\meter}) and absolute timing (\SI{~5}{\ns}).
+An `offline trigger' is used to determine when stations were probably detecting the same shower. This is similar to the station trigger. In this case the data is searched for (at least two) stations that simultaneously (i.e. within a certain time window) detected events. These events that are likely due to the same shower are called coincidences. Coincidences between stations are expect to be caused by either the detection of the same shower, the detection of seperate but correlated showers (due to the GZ-effect), or the detection of two unrelated showers. The absolute timing of events detected by stations is important when looking for coincidences. It also influences the resolution with which coincidences can be reconstructed, because the arrival times in the detectors of the stations is to be compared.
 
 \subsection{Station locations}
 
-- Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
-
+% Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
+In [fig ref to map of station locations] the locations of all \hisparc stations is shown. In most regions there are multiple stations close (? km?) to eachother. The locations are in most cases limited to the locations of high schools and universities. Local universities provide support for the high schools, they guide students in building the detectors and provide support when needed. There are currently about \num{650} high schools in the Netherlands, some of which have multiple locations, resulting in a total of about \num{1500} school locations. Currently there are \num{80} high schools participating in \hisparc.
 
 \subsubsection{International}
 
@@ -370,9 +393,10 @@ Since 2007 there has been a \hisparc station in Denmark. There are currently 3 o
 
 In the United Kingdom a new cluster in Bristol was started in March 2012. This was initiated by Dr. Jaap Velthuis. Dr. Velthuis is the cluster coordinator for the Bristol cluster. Since then any schools around Bristol have created detectors and joined the network. Even more schools have plans to join. In 2014? a second cluster has started in the United Kingdom around Birmingham. The Birmingham cluster is coordinated by Cristina Lazzeroni.
 
-In Germany a station (70001) was temporarily placed inside the \kascade experiment in Karlsruhe. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for some test setups, including our detection station. \kascade triggered the \hisparc station when it detected a shower. More than \num{9e7} triggers occurred (in publicdb, more on external hdd? and in `/databases/kascade`?) in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 on the Science Park.
+In Germany a station (70001) was temporarily placed inside the \kascade experiment in Karlsruhe. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for some test setups, including our detection station. \kascade triggered the \hisparc station when it detected a shower. More than \num{9e7} triggers occurred [in publicdb, more on external hdd? and in `/databases/kascade'?] in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 on the Science Park.
 
-- Stations closer than \SI{2e3}{\meter} are likely to detect the same shower.
+% Stations closer than \SI{2e3}{\meter} are likely to at some point detect the same shower.
+For stations up to \SI{2e3}{\meter} distance from eachother they are likely to detect the same shower at some point. Large showers which can be detected upto \SI{e3}{\meter} from the shower core have energies of at least \SI{e19}{\eV}. These showers are quite rare, occuring about ...
 
 - Similar direction reconstruction algorithm as used for single station.
 
