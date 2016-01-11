@@ -363,8 +363,27 @@ The particle density threshold for triggering on showers with \SI{50}{\percent} 
 \end{figure}
 
 % Explain simple direction reconstruction with 3 detection points (flat/curved shower).
-When there are three detection points which are not on a line the shower axis can be constrained. In this case the detectors are assumed to be at the same height and the front is considered flat, an approximation which can be valid at the short distances between detectors as they occur in a station.
-[derivation of formula for shower direction, cartesian, 2D, flat]
+When there are three detection points which are not on a line the shower axis can be constrained. In this case the detectors are assumed to be at the same height and the front is considered flat, an approximation which can be valid at the short distances between detectors as they occur in a station. The 2-dimensional flat-front reconstruction method for three detection points is described in \cite{fokkema2012hisparc}. The following equations result in the shower axis direction, i.e. the azimuth ($\phi$) and zenith ($\theta$).
+
+\begin{equation}
+    \label{eq:direction-2dflat}
+    \begin{split}
+        \phi &= \arctan \left(\frac{r_1 \Delta t_2 \cos \phi_1 - r_2 \Delta t_1 \cos \phi_2}{r_2 \Delta t_1 \sin \phi_2 - r_1 \Delta t_2 \sin \phi_1} \right) \ , \\
+        \theta &= \arcsin \left(\frac{c \Delta t_i}{r_i \cos(\phi - \phi_i)} \right) \ .
+    \end{split}
+\end{equation}
+
+Here $r_i$ is the distance between detector 0 and detector $i$, $\Delta t_i$ is the time difference between detector 0 and detector $i$, and $\phi_1$ the angle between East and detector $i$ as seen from detector 0. Note that care must be taken to take the correct quadrant for the $\arctan$ and that $\phi - \phi_i \ne 2 \pi$. The same results can be achieved with a Cartesian approach as described in \cite{montanus2015direction}. This gives 
+
+\begin{equation}
+    \label{eq:direction-2dflat}
+    \begin{split}
+        \phi &= \arctan \left(\frac{-u_x v_z}{u_y v_z} \right) \ , \\
+        \theta &= \arcsin \left(\sqrt{\frac{u_x^2+u_y^2}{v_z^2}} \right) \ .
+    \end{split}
+\end{equation}
+
+Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1 y_2$, and $v_z = x_1 y_2 - x_2 y_1$. The $x$ and $y$ coordinates are as defined by the ENU coordinate system described in [ref apprendix coordinates], in this case using detector 0 as reference.
 
 \subsection{Station layout}
 \label{ssec:station_layout}
@@ -502,7 +521,7 @@ Interesting for shower reconstruction, coincidence rate, and possibilities for d
 \subsection{Coincidence rate}
 
 % Stations closer than \SI{2e3}{\meter} are likely to at some point detect the same shower.
-For stations up to \SI{2e3}{\meter} distance from each other they are likely to detect the same shower at some point in time. However, the rate is so low that it approaches the rate of coincidences due to random background particles. Real events may still be distinguisable from background if the event can be reconstructed very well. Large showers which can be detected efficiently by two stations both \SI{e3}{\meter} from the shower core have energies of at least \SI{e18}{\eV}. Such showers are rare, from \cref{fig:spectrum} we can estimate a rate of approximately \SI{1}{\per\kilo\meter\squared\per\day}. The sensitivity to those showers is not equal over that \si{\kilo\meter\squared}. So a lower rate is expected.
+For stations up to \SI{2e3}{\meter} distance from each other they are likely to detect the same shower at some point in time. However, the rate is so low that it approaches the rate of coincidences due to random background particles. Real events may still be distinguisable from background if the event can be reconstructed very well. Large showers which can be detected efficiently by two stations both \SI{e3}{\meter} from the shower core have energies of at least \SI{e18}{\eV}. Such showers are rare, from \cref{fig:spectrum} we can estimate a rate of approximately \SI{1}{\per\kilo\meter\squared\per\day}. The sensitivity to those showers is not equal over that \si{\kilo\meter\squared} area, so a lower rate is expected.
 
 % estimate the coincidence rate for showers of certain energy.
 As the distance between stations increase the probability of detecting low energy showers decrease. The highest contributions to coincidences are the lowest energy showers that can still be detected efficiently. This smoothly transitions to continually higher showers being the dominant source for coincidences. A rough estimate can be made by using the methods desribed above. For detector stations at a given distance calculate the probability of detecting showers for all relevant energies in the cosmic-ray spectrum (\SIrange{e13}{e20}{\eV}). Assume that the shower hit precisely between the stations, where the probability is highest. Scale the determined probability of detection with the occurance of such showers and compensate for the larger effective area for which high energy showers will be detectable.
@@ -520,7 +539,17 @@ In \cref{fig:distance_v_coincidence_rate} the coincidence rate is determined for
 \subsection{Shower reconstruction with multiple stations}
 
 % Similar direction reconstruction algorithm as used for single station.
-With the combined measurement data from multiple stations a more accurate reconstruction is possible. The distances between the detection points are larger while the timing accuracy remains excellent. The reconstruction algorithm needs to take into account the different relative altitudes of the detectors, since these are no longer all at the same altitudes. Note that for some stations (e.g. 507 and 1009) the detectors are also not all at the same altitude, but that is very rare.
+With the combined measurement data from multiple stations a more accurate reconstruction is possible. The distances between the detection points are larger while the timing accuracy remains excellent. The reconstruction algorithm needs to take into account the different relative altitudes of the detectors, since these are no longer all at the same altitudes \cite{steijger2012direction}. Note that for some stations (e.g. 507 and 1009) the detectors are also not all at the same altitude, but that is very rare. The Cartesian approach is used for 3D reconstruction of the shower direction \cite{montanus2015direction}
+
+\begin{equation}
+    \label{eq:direction3dflat}
+    \begin{split}
+        \phi &= \arctan \left(\frac{(\mathbf{u} \times \mathbf{v})_y \pm v_y \sqrt{v^2-u^2}}{(\mathbf{u} \times \mathbf{v})_x \pm v_x \sqrt{v^2-u^2}}\right) \ , \\
+        \theta & = \arccos \left( \frac{(\mathbf{u} \times \mathbf{v})_z \pm v_z \sqrt{v^2-u^2}}{v^2}\right) \ .
+    \end{split}
+\end{equation}
+
+Where ....[explain terms].
 
 % At large core distances the curvature of the shower front should be taken into account.
 Moreover, the curvature and rise time of the shower front play a big role and need to be accounted for in the reconstruction. 
