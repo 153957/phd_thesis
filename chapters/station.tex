@@ -1,19 +1,34 @@
-\chapter{The HiSPARC Experiment}
+\setcounter{chapter}{1}
+\chapter{The \hisparc detection station}
 
-\section{Detector}
+The \hisparc experiment utilizes independent detection stations which use multiple scintillator detectors to perform standalone triggering. A set of scintillators connected to the same readout system are called a station. Since each station performs its own triggering, stations do not need to be interconnected. For stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger, where the space between individual detectors is mostly empty, wirelessly connecting them is an option. A \hisparc station consists of either 2 or 4 scintillator detectors connected to \hisparc electronics. In this chapter the specifications and performance of a station is discussed. First the scintillator detectors are described in detail, followed by the electronics which perform the readout and triggering. Finally the way it all works together is looked at.
+
+
+% [for later use:]  consist of a scintillator sheet and a connected \pmt. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module \cite{trimble2007resolutiont}, and a data connection to a PC.
+
+\section{Scintillator detector}
 
 % Using scintillators with PMTs provide good particle detection efficiency, \SI{100}{\percent} of energetic leptons are detected, also some gammas are seen.
-The detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (\pmt) which converts the scintillation photons into an electric signal.
+The scintillator detector consists of two main components which perform the detection. The scintillator sheet, which emits light when charged particles pass through it, and the photomultiplier tube (\pmt) which converts the scintillation photons into an electric signal. In \cref{fig:scintillator_detector} a scintillator detector in the process of being built is shown.
 
-\subsection{Detector components}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/ADL_115651.jpg}
+    \caption{A photo of a partially finished scintillator detector. The scintillator sheet is prepared to be wrapped in aluminium foil, followed by the pond foil.}
+    \label{fig:scintillator_detector}
+\end{figure}
+
+
+\subsection{Scintillator detector components}
 
 % Scintillator size and material
-Scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{sgc2011bc408}. The BC-408 material has good timing properties and light output for charged particles.
+Plastic scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{sgc2011bc408}. The BC-408 material has good timing properties and light output for charged particles. The wavelength of maximum emision is \SI{425}{\nano\meter} (violet).
 
 % PMT size and type
-The chosen photomultiplier tube \cite{et2010pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and \SI{~11}{\centi\meter} long (depends on the power supply) \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts contain a number of high gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measurable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply is also compatible with the previously used tubes, and can serve to replace a failed power supply.
+The chosen photomultiplier tube \cite{et2010pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and approximately \SI{11}{\centi\meter} long (the final length depends on the connected power supply) \pmt. The photocathode material is biakali, which has a quantum efficiency of \SI{25}{\percent} for the wavelength of maximum emission of the scintillator. The \pmts contain a number of high gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measurable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and SensTech. Later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef \pmt power supply is also compatible with the previously used tubes and can be used to replace failed power supplies.
 
-Besides these the detector construction consists of several other components. An isosceles triangle with a squared top made from polymethylmethacrylate (PMMA) as light guide. The light guide has the following measurements a base of \SI{50}{\centi\meter}, legs of \SI{71.5}{\centi\meter}, and the thickness is \SI{2.2}{\centi\meter} (the top is also \SI{2.2}{\centi\meter} wide). The light guide is glued to the scintillator using Optical Cement \cite{sgc2014bc600}. A little adapter piece from square to round shape (same material as light guide) is attached to the square top of the triangle with Optical Cement and the round window of the \pmt with optical tape [ref type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in \SI{0.5}{\milli\meter} thick light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
+Besides these the detector construction consists of several other components. An isosceles triangle with a flat top made from polymethylmethacrylate (PMMA) is used as light guide. The light guide has the following measurements a base of \SI{50}{\centi\meter}, legs of \SI{71.5}{\centi\meter}, the thickness is \SI{2.2}{\centi\meter}, and the width of the top is also \SI{2.2}{\centi\meter}. The light guide is glued to the scintillator using Optical Cement \cite{sgc2014bc600}. A little adapter piece from square to round shape (same material as light guide) is attached to the square top of the triangle with Optical Cement and the round window of the \pmt with optical tape [ref type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil. The corners of the scintillator are covered with patches of thicker aluminium foil to prevent the sharp edges from piercing the foil. This is then wrapped in \SI{0.5}{\milli\meter} thick light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
 % Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
 All components are readily available, off the shelf, from suppliers and not specifically designed for \hisparc.
@@ -21,13 +36,13 @@ All components are readily available, off the shelf, from suppliers and not spec
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/station/ADL_115651.jpg}
-    \caption{Show a schematic/photo of detector, indicating the various components.}
+                    {plots/station/schematic_detector}
+    \caption{A schematic of the detector, the various components are indicated.}
     \label{fig:schematic_detector}
 \end{figure}
 
 % Detector is protected by skibox from weather and is secured in place by weights.
-The final detector dimensions (approximately) \SI[product-units=power]{200 x 50 x 3}{\centi\meter} fit well in the chosen detector casing, namely, roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather. Access to the detector for maintenance is also easy. Also with maintenance in mind, the optical tape with which the \pmt is attached allows it to be easily replaced. In \cref{fig:detector_in_skibox} a detector in a skibox is shown.
+The complete scintillator detector dimensions are (approximately) \SI[product-units=power]{200 x 50 x 3}{\centi\meter} and fit well in the chosen detector casing, namely roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather. Access to the detector for maintenance is also easy. Also with maintenance in mind, the optical tape with which the \pmt is attached allows it to be easily replaced. In \cref{fig:detector_in_skibox} a detector in a skibox is shown.
 
 \begin{figure}
     \centering
@@ -37,49 +52,74 @@ The final detector dimensions (approximately) \SI[product-units=power]{200 x 50 
     \label{fig:detector_in_skibox}
 \end{figure}
 
-\subsection{The scintillator}
+
+\subsection{Creating scintillation light}
 
 % How Scintillator works
-Charge particles loose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionisation is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scintillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
+Charged particles lose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionisation is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scintillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
 
 % Most shower muons/electrons are minimum ionising particles (mips) and have similar energy loss in the detectors, given by Bethe-Bloch (spread on energy loss given by Landau).
-The average energy deposited by the particle going through the detector is described by the Bethe-Bloch formula. This gives the amount of energy lost by the particles per \si{\gram\centi\meter\squared} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution. The ionisation energy loss (predicted by Bethe-Bloch) for both electrons and muons reaches a minimum value at some point. Muons and electrons at this energy (\SI{325e6}{\eV} and \SI{e6}{\eV} respectively) are referred to as \textit{minimum ionising particles} (\mip). In \cref{fig:bethe-bloch} the energy loss for electrons and muons is shown as a function of their energy. Shown are the total losses (grey), losses due to ionisation (black), and other loss processes. The ionisation losses are the only ones of real interest, since those result in the detectable scintillation light.
+The average energy deposited by the particle going through the detector is described by the Bethe-Bloch formula [ref]. This gives the amount of energy lost by the particles per \si{\gram\per\centi\meter\squared} of the material it passes through. The used scintillator has a density of \SI{1.032}{\gram\per\centi\meter\cubed} and thickness of \SI{2}{\centi\meter}. So a particle going vertically through the scintillator passes through about \SI{2}{\gram\per\centi\meter\squared}. However, the interactions in which the particles lose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution [ref]. The ionisation energy loss (predicted by Bethe-Bloch) for both electrons and muons reaches a minimum value at some point. Muons and electrons at this energy (\SI{325e6}{\eV} and \SI{e6}{\eV} respectively) are referred to as \textit{minimum ionising particles} (\mip). In \cref{fig:bethe-bloch} the energy loss for electrons and muons is shown as a function of their energy. Shown are the total losses (grey), losses due to ionisation (black), and other loss processes. The ionisation losses are the only ones of real interest, since those result in the detectable scintillation light.
+
+% Energy loss is approximately: 2 MeV g^-1 cm^2 * 1.032 g cm^-3 * 2 cm
+% Energy per scintillation photon: h*c/325 nm = 3.8149 eV
+% Number of scintillation photons: ...
+% Fraction that reaches \pmt (before photocathode): ...
+% Where is energy 'lost'? in base -> fluor?
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/bethe-bloch}
-    \caption{Expected ionization energy loss in the scintillator for electrons and muons as a function of their energy. Calculated with the Bethe-Bloch formula (use eV[/c] horizontal scale (two scales?) or keep beta gamma.}
+    \caption{Expected ionization energy loss in the scintillator for electrons and muons as a function of their energy. Calculated with the Bethe-Bloch formula for the used scintillation material. [use eV[/c] horizontal scale (two scales?) or keep beta gamma. and add other losses?]}
     \label{fig:bethe-bloch}
 \end{figure}
 
-The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path can also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
+The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path could also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
+
+
+\subsubsection{Gammas in the scintillator}
+
+Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+
+In case of Compton scattering electrons are `kicked' free by the photon, the energy transfered to the electron will cause scintillation light to be produced, as described above, the amount depends on the energy of the electron. Energetic photons can undergo pair creation, at least \SI{1.022}{\MeV} is required to create the electron and positron. In this case two instead of one particle causes ionisation, and can therefore result in a higher light output.
+
+The path length remaining for the electrons in the scintillator depends on where they are created. For instance, if the photon undergoes the interaction just before it exits the scintillator hardly any signal will be produced.
+
+
+\subsection{Scintillator light transmission uniformity}
 
 % Signal transport efficiency not uniform for the detector due to geometry.
-The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted. A 2D Monte Carlo simulation of the detector predicts the transmission efficiency from locations in the scintillator to the \pmt \cite{steijger2010mc}. The resulting transmission efficiency distribution is shown in\cref{fig:signal_response}. Also the travel time of the photons to the \pmt varies depending on the location of emission and the emission direction. In \cref{fig:transport_time} the distribution of transport times is shown, the time is the arrival time of the 15th photon producing a photoelectron at the \pmt. This is taken instead of the first because the signal threshold used for detection is greater than the signal of one photoelectron. The effects of these distributions on the reconstruction accuracy are discussed later.
+The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt and produce a photo electron. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted.
+
+A 2D Monte Carlo simulation of the scintillator detector predicts the transmission efficiency of scintillation light emitted at different locations in the scintillator to the \pmt \cite{steijger2010mc}. The resulting transmission efficiency distribution, for the entire scintillator, is shown in \cref{fig:signal_response}. This is experimentally confirmed by coincidence tests using a \SI[product-units = repeat]{1 x 1}{\centi\meter} scintillator connected to a \pmt and the standard detector. The small detector was then placed on various location on top of the large detector. Particles passing through both detectors are selected using a coincidence trigger. This way the position of the particle in the large detector is known and the efficiency at specific points can be determined. In \cref{fig:scintilator_transmission_compared} the results from the experiment and the simulation for the various positions are compared.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/signal_response}
-    \caption{Signal response distribution for the detector. The detector response is statistically modelled. The effect of particle angle of incidence can be accounted for by dividing the x-axis by $cos \theta$.}
+    \caption{Signal response distribution a single lepton passing vertically through the detector. The transmission efficiency is statistically modelled. The effect of particle angle of incidence can be accounted for by scaling the x-axis with $\cos{\theta}^{-1}$.}
     \label{fig:signal_response}
 \end{figure}
 
 \begin{figure}
     \centering
+    \includegraphics{plots/station/scintilator_transmission_compared}
+    \caption{Correlation between the transmission efficiency for different positions in the scintillator between a real HiSPARC detector and the simulated one. The difference can be explained by the aluminium foil in which the detector is wrapped is not taken into account in the simulation. Moreover, some of the positions are in locations where the simulation predicts a significant gradient. [todo; use simulation which does account for Alu foil.]}
+    \label{fig:scintilator_transmission_compared}
+\end{figure}
+
+Also the travel time of the photons to the \pmt varies depending on the location of emission and the emission direction. In \cref{fig:transport_time} the distribution of transport times is shown, the time is the arrival time when enough photons have reached the \pmt to produce a strong enough signal.
+
+\begin{figure}
+    \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/transport_time}
-    \caption{Transport time distribution for the detector. The scintillation light has to reach the PMT from the point of impact, the travel time depends on the impact location, this is the distribution for the entire detector.}
+    \caption{Transport time distribution for the detector. The scintillation light has to reach the \pmt from the point of impact, the travel time depends on the impact location, this is the distribution for the entire detector.}
     \label{fig:transport_time}
 \end{figure}
 
-
-\subsubsection{Gammas in the scintillator}
-
-Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
-
-For photons the interactions by which it produces detectable signals are .., and pair production. In case electrons are produced, those will proceed in the usual way.
+The signals detected by the \pmt do not know where in the detector a particle hit, so these distributions add to the uncertainties of the measured quantities.
 
 
 \subsection{\pmt}
@@ -96,10 +136,10 @@ The photomultiplier tube has a front window with a photocathode. When this is hi
 \end{figure}
 
 % PMT gain, fluctuations in gain..
-The \pmts which are used have 11? (ET/SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it is not a fixed number. This results in a variation in the output signal for each single photoelectron. This can easily vary a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. It is more likely to happen at a later dynode because more interaction occur at those. Typical variations are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear [perhaps a fig, or at least a ref].
+The \pmts which are used have 11 (ET/SensTech/Hamamatsu, 12?) dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it is not a fixed number. This results in a variation in the output signal for each single photoelectron. This can easily vary a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. It is more likely to happen at a later dynode because more interaction occur at those. Typical variations are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear [ref, et tubes pmt handbook].
 
 % Signal strength is used for particle density, need to be able to distinguish between different number.
-Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles. In \cref{fig:ph_histogram_contrib} an example of the expected pulse height histogram is shown including the contributions from gammas, and multiple leptons. The widths of the contributions are due to the particle inclination, Landau distribution, transmission efficiency, and \pmt variation. The first peak gives the most probable value (MPV) for the pulse height of a single lepton. An approximation of the number of particles can be made by comparing a measured value to the MPV. The position of the MPV is dependent on the efficiency of the detector, by changing the voltage on the \pmt the position of the MPV can be tuned. Ideally the MPV is approximately \SI{150}{\mV}. If it is lower it is difficult to distinguish the lepton contribution from the gamma spectrum and the MPV will be hard to determine. If the MPV is at a much higher value the \pmt ages more quickly and the dynamic range [in number of particles..] will be reduced.
+Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles. In \cref{fig:ph_histogram_contrib} an example of the expected pulse height histogram is shown including the contributions from gammas, and multiple leptons. The widths of the contributions are due to the particle inclination, Landau distribution, transmission efficiency, and \pmt variation. The first peak gives the most probable value (\mpv) for the pulse height of a single lepton. An approximation of the number of particles can be made by comparing a measured value to the \mpv. The position of the \mpv is dependent on the efficiency of the detector, by changing the voltage on the \pmt the position of the \mpv can be tuned. Ideally the \mpv is approximately \SI{150}{\mV}. If it is lower it is difficult to distinguish the lepton contribution from the gamma spectrum and the \mpv will be hard to determine. If the \mpv is at a much higher value the \pmt ages more quickly and the dynamic range [in number of particles..] will be reduced.
 
 \begin{figure}
     \centering
@@ -122,40 +162,12 @@ Each \pmt is readout with \adcs at a sample rate of \SI{2.5}{\ns}. An example of
 
 
 
-
-
-
-
-\section{Signal performance of a detector}
-\label{sec:detector-signal}
-
-\subsection{Scintillator uniformity}
-
-Monte Carlo simulation of signal transport in the detector predicts a non-uniform signal transmission for particles passing through different positions of the detector. This is experimentally confirmed by coincidence tests using a \SI[product-units = repeat]{1 x 1}{\centi\meter} scintillator connected to a \pmt and the standard detector. The small detector was then placed on various location on top of the large detector. Particles passing through both detectors are selected using a coincidence trigger. This way the position of the particle in the large detector is known and the efficiency at specific points can be determined. In \cref{fig:scintilator_transmission_compared} the results from the experiment and the simulation for the various positions are compared.
-
-\begin{figure}
-    \centering
-    \includegraphics{plots/station/scintilator_transmission_compared}
-    \caption{Correlation between the transmission efficiency for different positions in the scintillator between a real HiSPARC detector and the simulated one. The difference can be explained by the aluminium foil in which the detector is wrapped is not taken into account in the simulation. Moreover, some of the positions are in locations where the simulation predicts a significant gradient.}
-    \label{fig:scintilator_transmission_compared}
-\end{figure}
-
-In the detector simulation the distribution in \cref{fig:signal_efficiency} is used to simulate the signal strength caused by each particle in a detector. First combining the Bethe-Bloch formula and energy-straggling results in the Landau distribution, for vertical particles. The Landau distribution gives the amount of energy lost by particles which pass through the detector. In the simulations the exact location in the detector is ignored. Therefore, the Landau distribution is convolved with the transmission efficiency distribution of the detectors. The resulting distribution can be scaled by $\cos{\theta}^{-1}$ for particles arriving at angles in the detector.
-
-\begin{figure}
-    \centering
-    \input{plots/response/signal_efficiency}
-    \caption{Signal distribution for one particle. This distribution gives the signal from a single particles passing straight through a random location of the scintillator. The distribution scales with $\cos{\theta}^{-1}$.}
-    \label{fig:signal_efficiency}
-\end{figure}
-
-
 \subsection{\pmt linearity}
 
 In an EAS many more than one particle may pass through a detector. The response of the \pmt to different signal sizes needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the \adc, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce signals that saturate the \adc. Calibration tests have been performed on several \pmts to test their output given a known input signal.
 
 
-\subsection{PMT calibration}
+\subsection{\pmt calibration}
 \label{sub:pmt_calibration}
 
 A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the window of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a detector. The pulse-to-pulse intensity typically fluctuates by \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
@@ -164,7 +176,7 @@ A setup has been created to test the linearity of \pmts using LED light flashes.
     \centering
     \includegraphics[width=.45\linewidth]{plots/station/ARN_085351.jpg}
     \includegraphics[width=.45\linewidth]{plots/station/ARN_085349.jpg}
-    \caption{Here the setup for the PMT tests is shown. The first photo shows the fibers in the bundle. The second photo shows the bundle connected to the \pmt, wrapped light tight with tape.}
+    \caption{Here the setup for the \pmt tests is shown. The first photo shows the fibers in the bundle. The second photo shows the bundle connected to the \pmt, wrapped light tight with tape.}
     \label{fig:pmt_test_setup}
 \end{figure}
 
@@ -227,9 +239,9 @@ Since April 2014 new \pmts are first tested in the LED setup using a single fibe
 
 \subsection{Temperature in skibox}
 
-LiO 2010 - Remmers - hogere T hogere MPV
+LiO 2010 - Remmers - hogere T hogere \mpv
 
-The specifications of the scintillator and \pmt indicate that their efficiency depends on their temperature. The pulse height of signals determine wether they cross the thresholds in the electronics and cause a trigger. The efficiency of the detector may drop such that some events no longer cause a trigger, which they would have under normal circumstances. The change in efficiency also affects the MPV. The amount of effect the temperature has on the MPV will be examined.
+The specifications of the scintillator and \pmt indicate that their efficiency depends on their temperature. The pulse height of signals determine wether they cross the thresholds in the electronics and cause a trigger. The efficiency of the detector may drop such that some events no longer cause a trigger, which they would have under normal circumstances. The change in efficiency also affects the \mpv. The amount of effect the temperature has on the \mpv will be examined.
 
 About 20 \hisparc stations also have a weather station which includes a temperature sensor recording the outside temperature. The locations of the weather stations are shown in \cref{fig:weather-map}. Such enviornmental data is also available for other locations in the Netherlands from the Dutch Royal Meteorological Institute (KNMI) which operates many weather stations across the Netherlands. However, these are not at the same location as \hisparc stations. For short periods temperature probes have been placed inside the skibox, and attached to the \pmt, of some detectors to accurately measure the temperature of the detector. In \cref{fig:temperature_timeline} the values from these sensors for a month can be seen. The daily (night/day) fluctuations can clearly be seen. The skibox and \pmt temperatures clearly rise above the outside temperature. This is mostly due to the absorption of solar radiation by the skibox, and the heat generated by the \pmt. There is little to no air flow inside the skibox. On sunny days the temperatures in the skibox rise a lot higher than the outside temperature. Using solar radiation data the outside temperature can be corrected to accurately describe the skibox temperature (see \cite{devries2012weather} fig 7.7).
 
@@ -247,16 +259,16 @@ About 20 \hisparc stations also have a weather station which includes a temperat
     \label{fig:temperature_timeline}
 \end{figure}
 
-A day of data is enough to accurately determine the average MPV for that day. However, daily temperature fluctuation are large enough that when the days is broken into smaller pieces different values for the MPV are found \cite{bartels2012mpv}. In \cref{fig:mpv_temperature} the reconstructed MPV is set against the \pmt temperature. The spread around the fitted line is partially caused by the temperature gradient in the periods for which the MPV is determined. The correlation agrees reasonably with the specifications of the \pmt. The specification states the gain of the \pmt changes by \SI{0.5}{\percent\per\degreeCelsius}. It does not make clear wether the efficiency increases or decreases with changing temperature, nor at which temperature it is most efficient. From our measurements it seems the gain decreases with increasing temperature. The scintillator should be \SI{100}{\percent} effective upto \SI{20}{\degreeCelsius} above which it reduces with \SI{0.125}{\percent\per\degreeCelsius}. This is but a small contribution to the reduction of the MPV. The found gradient of \SI{-0.81}{\adc\per\degreeCelsius} in the range \SIrange{200}{170}{\adc} is \SI{0.44}{\percent\per\degreeCelsius}, in close agreement with the specification. (depends on what is used as reference..)
+A day of data is enough to accurately determine the average \mpv for that day. However, daily temperature fluctuation are large enough that when the days is broken into smaller pieces different values for the \mpv are found \cite{bartels2012mpv}. In \cref{fig:mpv_temperature} the reconstructed \mpv is set against the \pmt temperature. The spread around the fitted line is partially caused by the temperature gradient in the periods for which the \mpv is determined. The correlation agrees reasonably with the specifications of the \pmt. The specification states the gain of the \pmt changes by \SI{0.5}{\percent\per\degreeCelsius}. It does not make clear wether the efficiency increases or decreases with changing temperature, nor at which temperature it is most efficient. From our measurements it seems the gain decreases with increasing temperature. The scintillator should be \SI{100}{\percent} effective upto \SI{20}{\degreeCelsius} above which it reduces with \SI{0.125}{\percent\per\degreeCelsius}. This is but a small contribution to the reduction of the \mpv. The found gradient of \SI{-0.81}{\adc\per\degreeCelsius} in the range \SIrange{200}{170}{\adc} is \SI{0.44}{\percent\per\degreeCelsius}, in close agreement with the specification. (depends on what is used as reference..)
 
 \begin{figure}
     \centering
     \includegraphics[width=.7\linewidth]{plots/station/mpv_temperature}
-    \caption{Here we can see the correlation between the measured temperature and the MPV of the pulse heights. The red line is a linear fit to get the slope of the correlation.}
+    \caption{Here we can see the correlation between the measured temperature and the \mpv of the pulse heights. The red line is a linear fit to get the slope of the correlation.}
     \label{fig:mpv_temperature}
 \end{figure}
 
-Weather station data is available to correct measurements for the change in efficiency. The correction can be done using the outside temperature and solar radiation. However, this is less accurate then when the exact PMT temperature is known. Solar radiation depends on cloud cover, which may be very different from location to location depending on wind speed. Moreover, some detectors may be in the shade for parts of the day, this may mean differences of \SI{20}{\degreeCelsius} between the expected and actual temperature.
+Weather station data is available to correct measurements for the change in efficiency. The correction can be done using the outside temperature and solar radiation. However, this is less accurate then when the exact \pmt temperature is known. Solar radiation depends on cloud cover, which may be very different from location to location depending on wind speed. Moreover, some detectors may be in the shade for parts of the day, this may mean differences of \SI{20}{\degreeCelsius} between the expected and actual temperature.
 
 
 \subsection{Air pressure}
@@ -307,7 +319,7 @@ Despite these possible problems most detectors perform perfectly for many years,
 \section{Station}
 
 % Impractical to connect detectors over long distances for online/realtime triggering.
-By making each detection station consist of at least two detectors the station can perform triggering as a standalone unit. Each station performs its own triggering, therefore stations do not need to be interconnected. For detection stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger where the space between detectors is mostly empty wirelessly connecting detectors is an option. The \hisparc station consists of either 2 or 4 detectors connected to \hisparc electronics. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module \cite{trimble2007resolutiont}, and a data connection to a PC. Two versions of the electronics are currently being used, versions II and III. Version III differs from II in having USB 2 (\SI{480}{\mega\bit\per\second}) instead of USB 1.1 (\SI{12}{\mega\bit\per\second}) connectors, slightly different \adcs, and an upgradable firmware over USB. The PC connected to the electronics contains software to send and receive messages to and from the \hisparc electronics. The message formats and their meaning are described in \cite{verkooijen2008firmware}, further description of the software running on the stations is described in [later chapter]. The detectors and \gps antenna \cite{trimble2015bullet} are connected to the electronics using \SI{30}{\meter} long cables.
+Two versions of the electronics are currently being used, versions II and III. Version III differs from II in having USB 2 (\SI{480}{\mega\bit\per\second}) instead of USB 1.1 (\SI{12}{\mega\bit\per\second}) connectors, slightly different \adcs, and an upgradable firmware over USB. The PC connected to the electronics contains software to send and receive messages to and from the \hisparc electronics. The message formats and their meaning are described in \cite{verkooijen2008firmware}, further description of the software running on the stations is described in [later chapter]. The detectors and \gps antenna \cite{trimble2015bullet} are connected to the electronics using \SI{30}{\meter} long cables.
 
 \subsection{Signal readout}
 
