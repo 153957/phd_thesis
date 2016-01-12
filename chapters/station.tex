@@ -1,5 +1,487 @@
-\chapter{Single \hisparc station}
-\label{ch:station}
+\chapter{The HiSPARC Experiment}
+
+\section{Detector}
+
+% Using scintillators with PMTs provide good particle detection efficiency, \SI{100}{\percent} of energetic leptons are detected, also some gammas are seen.
+The detector consists of two main components which perform the detection. The scintillator, which emits light when charged particles pass through it, and the Photomultiplier tube (\pmt) which converts the scintillation photons into an electric signal.
+
+\subsection{Detector components}
+
+% Scintillator size and material
+Scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{sgc2011bc408}. The BC-408 material has good timing properties and light output for charged particles.
+
+% PMT size and type
+The chosen photomultiplier tube \cite{et2010pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and \SI{~11}{\centi\meter} long (depends on the power supply) \pmt. The quantum efficiency of the biakali photocathode is \SI{25}{\percent} for the wavelength of maximum emission of the scintillator, which is \SI{425}{\nano\meter}. The \pmts contain a number of high gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measurable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and Sens-Tech, later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef power supply is also compatible with the previously used tubes, and can serve to replace a failed power supply.
+
+Besides these the detector construction consists of several other components. An isosceles triangle with a squared top made from polymethylmethacrylate (PMMA) as light guide. The light guide has the following measurements a base of \SI{50}{\centi\meter}, legs of \SI{71.5}{\centi\meter}, and the thickness is \SI{2.2}{\centi\meter} (the top is also \SI{2.2}{\centi\meter} wide). The light guide is glued to the scintillator using Optical Cement \cite{sgc2014bc600}. A little adapter piece from square to round shape (same material as light guide) is attached to the square top of the triangle with Optical Cement and the round window of the \pmt with optical tape [ref type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil with patches of thicker aluminium foil at the corners of the scintillator, to prevent the sharp edges from piercing the thin foil. This is then wrapped in \SI{0.5}{\milli\meter} thick light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
+
+% Material is mostly 'off the shelf'. Construction/assembly can be performed by students.
+All components are readily available, off the shelf, from suppliers and not specifically designed for \hisparc.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/ADL_115651.jpg}
+    \caption{Show a schematic/photo of detector, indicating the various components.}
+    \label{fig:schematic_detector}
+\end{figure}
+
+% Detector is protected by skibox from weather and is secured in place by weights.
+The final detector dimensions (approximately) \SI[product-units=power]{200 x 50 x 3}{\centi\meter} fit well in the chosen detector casing, namely, roof boxes (in Dutch generally referred to as `ski box'). These can be securely fastened and are designed to withstand all kinds of weather. Access to the detector for maintenance is also easy. Also with maintenance in mind, the optical tape with which the \pmt is attached allows it to be easily replaced. In \cref{fig:detector_in_skibox} a detector in a skibox is shown.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/ADL_105036.jpg}
+    \caption{Detector in a skibox on the roof.}
+    \label{fig:detector_in_skibox}
+\end{figure}
+
+\subsection{The scintillator}
+
+% How Scintillator works
+Charge particles loose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionisation is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scintillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
+
+% Most shower muons/electrons are minimum ionising particles (mips) and have similar energy loss in the detectors, given by Bethe-Bloch (spread on energy loss given by Landau).
+The average energy deposited by the particle going through the detector is described by the Bethe-Bloch formula. This gives the amount of energy lost by the particles per \si{\gram\centi\meter\squared} of the material it passes through. However, the interactions in which the particles loose energy is a statistical process, the energy loss is not a fixed number but a distribution, the Landau distribution. The ionisation energy loss (predicted by Bethe-Bloch) for both electrons and muons reaches a minimum value at some point. Muons and electrons at this energy (\SI{325e6}{\eV} and \SI{e6}{\eV} respectively) are referred to as \textit{minimum ionising particles} (\mip). In \cref{fig:bethe-bloch} the energy loss for electrons and muons is shown as a function of their energy. Shown are the total losses (grey), losses due to ionisation (black), and other loss processes. The ionisation losses are the only ones of real interest, since those result in the detectable scintillation light.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/bethe-bloch}
+    \caption{Expected ionization energy loss in the scintillator for electrons and muons as a function of their energy. Calculated with the Bethe-Bloch formula (use eV[/c] horizontal scale (two scales?) or keep beta gamma.}
+    \label{fig:bethe-bloch}
+\end{figure}
+
+The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a longer path through it because they travel at an angle. This increases the expected mean energy loss. The path can also be shorter if the particle passes through one of the sides of the scintillator, but due to the large area of the detector relative to its thickness the chance of that happening is low.
+
+% Signal transport efficiency not uniform for the detector due to geometry.
+The light emitted along the path of the particle is transmitted in random directions. Depending on the angle at which the emitted photons hit the outer edges of the scintillator there is a chance that they will be reflected back or leave the scintillator. The entire detector is wrapped in aluminium foil to attempt to reflect those photons back into the scintillator. To detect the photons they need to hit the photocathode of the \pmt. To get to the \pmt they need to pass from the scintillator through a layer of optical glue, the light guide, another layer of optical glue, a small piece of light guide, and a layer of optical tape to reach the \pmt. During this most photons will be reflected a number of times. For \SI{1}{\mip} approximately 30000 photons [check.] are emitted, the fraction that reach the \pmt depend on the location in the scintillator where the particles are emitted. A 2D Monte Carlo simulation of the detector predicts the transmission efficiency from locations in the scintillator to the \pmt \cite{steijger2010mc}. The resulting transmission efficiency distribution is shown in\cref{fig:signal_response}. Also the travel time of the photons to the \pmt varies depending on the location of emission and the emission direction. In \cref{fig:transport_time} the distribution of transport times is shown, the time is the arrival time of the 15th photon producing a photoelectron at the \pmt. This is taken instead of the first because the signal threshold used for detection is greater than the signal of one photoelectron. The effects of these distributions on the reconstruction accuracy are discussed later.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/signal_response}
+    \caption{Signal response distribution for the detector. The detector response is statistically modelled. The effect of particle angle of incidence can be accounted for by dividing the x-axis by $cos \theta$.}
+    \label{fig:signal_response}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/transport_time}
+    \caption{Transport time distribution for the detector. The scintillation light has to reach the PMT from the point of impact, the travel time depends on the impact location, this is the distribution for the entire detector.}
+    \label{fig:transport_time}
+\end{figure}
+
+
+\subsubsection{Gammas in the scintillator}
+
+Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon  has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+
+For photons the interactions by which it produces detectable signals are .., and pair production. In case electrons are produced, those will proceed in the usual way.
+
+
+\subsection{\pmt}
+
+% How PMT works
+The photomultiplier tube has a front window with a photocathode. When this is hit by a photon an electron can be knocked free, due to the photoelectric effect. The electron is then pulled along electric field lines which direct it to a dynode. The electron will cause multiple electrons to be emitted from the dynode, these electrons are then pulled to the next dynode, which has a higher positive potential. Each electron impacting the second dynode will cause the release of more electrons, which are accelerated towards the next dynode, and so on. At the end the electrons fall on the anode which is connected to the readout. This is shown in \cref{fig:pmt_schematic}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/pmt_schematic}
+    \caption{Schematic crosssection of a \pmt.}
+    \label{fig:pmt_schematic}
+\end{figure}
+
+% PMT gain, fluctuations in gain..
+The \pmts which are used have 11? (ET/SensTech) and 12? (Hamamatsu) dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^{n_{\mathrm{dynodes}}} = \mathcal{O}(10^6)$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it is not a fixed number. This results in a variation in the output signal for each single photoelectron. This can easily vary a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. It is more likely to happen at a later dynode because more interaction occur at those. Typical variations are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear [perhaps a fig, or at least a ref].
+
+% Signal strength is used for particle density, need to be able to distinguish between different number.
+Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the signal distribution for single particles given by the Landau distribution combined with the transport efficiency one particle will in some (how often?) produce a signal equal or larger than the most probable signal strength of two particles. In \cref{fig:ph_histogram_contrib} an example of the expected pulse height histogram is shown including the contributions from gammas, and multiple leptons. The widths of the contributions are due to the particle inclination, Landau distribution, transmission efficiency, and \pmt variation. The first peak gives the most probable value (MPV) for the pulse height of a single lepton. An approximation of the number of particles can be made by comparing a measured value to the MPV. The position of the MPV is dependent on the efficiency of the detector, by changing the voltage on the \pmt the position of the MPV can be tuned. Ideally the MPV is approximately \SI{150}{\mV}. If it is lower it is difficult to distinguish the lepton contribution from the gamma spectrum and the MPV will be hard to determine. If the MPV is at a much higher value the \pmt ages more quickly and the dynamic range [in number of particles..] will be reduced.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/ph_histogram_contrib}
+    \caption{Overlap between pulse integral contributions from multiple mips in one event, the with of each contribution is due to Landau distribution and transport efficiency.}
+    \label{fig:ph_histogram_contrib}
+\end{figure}
+
+% Fast ADC readout of the PMT provides accurate timing.
+Each \pmt is readout with \adcs at a sample rate of \SI{2.5}{\ns}. An example of a readout is shown in \cref{fig:trace}. With this high sample rate the signal shape of individual particles is unraveled. Subsequent signals from particles later in the shower front can be distinguished, and the shower rise time can be examined. With \SI{2.5}{\ns} the timing resolution is close to timing the uncertainty caused by the shower front rise time and the detector transport time. An even higher sample rate would not achieve much better timing resolution.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/trace}
+    \caption{An example trace readout of the \pmt. The signal has the height of one \mip, so most likely one lepton was detected.}
+    \label{fig:trace}
+\end{figure}
+
+
+
+
+
+
+
+\section{Signal performance of a detector}
+\label{sec:detector-signal}
+
+\subsection{Scintillator uniformity}
+
+Monte Carlo simulation of signal transport in the detector predicts a non-uniform signal transmission for particles passing through different positions of the detector. This is experimentally confirmed by coincidence tests using a \SI[product-units = repeat]{1 x 1}{\centi\meter} scintillator connected to a \pmt and the standard detector. The small detector was then placed on various location on top of the large detector. Particles passing through both detectors are selected using a coincidence trigger. This way the position of the particle in the large detector is known and the efficiency at specific points can be determined. In \cref{fig:scintilator_transmission_compared} the results from the experiment and the simulation for the various positions are compared.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/station/scintilator_transmission_compared}
+    \caption{Correlation between the transmission efficiency for different positions in the scintillator between a real HiSPARC detector and the simulated one. The difference can be explained by the aluminium foil in which the detector is wrapped is not taken into account in the simulation. Moreover, some of the positions are in locations where the simulation predicts a significant gradient.}
+    \label{fig:scintilator_transmission_compared}
+\end{figure}
+
+In the detector simulation the distribution in \cref{fig:signal_efficiency} is used to simulate the signal strength caused by each particle in a detector. First combining the Bethe-Bloch formula and energy-straggling results in the Landau distribution, for vertical particles. The Landau distribution gives the amount of energy lost by particles which pass through the detector. In the simulations the exact location in the detector is ignored. Therefore, the Landau distribution is convolved with the transmission efficiency distribution of the detectors. The resulting distribution can be scaled by $\cos{\theta}^{-1}$ for particles arriving at angles in the detector.
+
+\begin{figure}
+    \centering
+    \input{plots/response/signal_efficiency}
+    \caption{Signal distribution for one particle. This distribution gives the signal from a single particles passing straight through a random location of the scintillator. The distribution scales with $\cos{\theta}^{-1}$.}
+    \label{fig:signal_efficiency}
+\end{figure}
+
+
+\subsection{\pmt linearity}
+
+In an EAS many more than one particle may pass through a detector. The response of the \pmt to different signal sizes needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the \adc, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce signals that saturate the \adc. Calibration tests have been performed on several \pmts to test their output given a known input signal.
+
+
+\subsection{PMT calibration}
+\label{sub:pmt_calibration}
+
+A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the window of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a detector. The pulse-to-pulse intensity typically fluctuates by \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.45\linewidth]{plots/station/ARN_085351.jpg}
+    \includegraphics[width=.45\linewidth]{plots/station/ARN_085349.jpg}
+    \caption{Here the setup for the PMT tests is shown. The first photo shows the fibers in the bundle. The second photo shows the bundle connected to the \pmt, wrapped light tight with tape.}
+    \label{fig:pmt_test_setup}
+\end{figure}
+
+The mean intensity of the individual fibers is not equal. For each \pmt the mean intensity of each individual fiber is determined. This is done by disconnecting and darkening the other fibers. This makes it possible to determine the input signal when multiple fibers are connected. This is expected to be the sum of the individual signals. Possible time delays between the pulses might make the resulting pulses wider instead of higher, so not only the pulse height is examined but also the pulse integral. Any subset of the 24 fibers can be used simultaneously. Signals with and expected \pmt output pulse over \SI{5}{\volt} are possible with the full bundle of fibers, with the \pmt is still at normal operating voltage.
+
+An oscilloscope is used to readout the \pmt signal. This allows for easy averaging of multiple signals and to readout signals larger than \SI{2}{\volt}. The oscilloscope measures the signal's pulse height and integral.
+
+In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The \senstech \pmt already start to be non-linear before the pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. The tests confirm that the \nikhef produced \pmt power supplies can supply enough current to saturate the \hisparc electronics. Larger input signals were not possible with the used setup, so it remains unclear at what point it will be unable to keep up. The non-linear curve can be fitted by the following equation, as described in \cite{icecube2010pmt}.
+
+\begin{equation}
+    \ln V_{\mathrm{in}} = \ln V +
+                          \frac{p_0 \left(\frac{V}{p_1}\right)^{p_2}}
+                               {\left(1 - \frac{V}{p_1}\right)^{\frac{1}{4}}}
+\end{equation}
+
+Where $V$ is the measured output signal and $V_{in}$ the input. The parameters ($p_{1,2,3}$) have no physical meaning.
+
+\begin{figure}
+    \centering
+    \input{plots/station/linearity_compared}
+    \caption{Measurements of the pulse height linearity of \pmts. The dependence of the pulse height output on the input light intensity is shown. The input on the horizontal axis is in arbitrary units. The data points show the results from tests with the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The black line are fits to the data.}
+    \label{fig:linearity_pmts}
+\end{figure}
+
+The pulse height and pulse integral were both measured during the tests. The relation between these quantities is shown in \cref{fig:ph_pi_compared_nikhef_senstech} for the different \pmts. The relationship is also linear for the \nikhef \pmt, and non-linear for the others.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\linewidth]
+                    {plots/station/ph_pi_compared_nikhef_senstech}
+    \caption{Measurements of the pulse height versus pulse integral. The data points show the results for the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The last data point for the \nikhef \pmt has an unexplained offset, possibly due to a bad measurement.}
+    \label{fig:ph_pi_compared_nikhef_senstech}
+\end{figure}
+
+In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing a \nikhef and \senstech \pmt used in a single station. The \senstech \pmt clearly does not saturate the \adcs, while the other does. The pulse integral does continue to grow for the \nikhef \pmt while its pulse height is saturated. This is explained by the pulse becoming wider at its base. The pulse integral grows slower when some of the samples in the pulse are saturated. The difference seen in this relation for the types of \pmts can be used to identify the \pmt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\textwidth]{plots/station/ph_pi_503.png}
+    \caption{Measured pulse height versus pulse integral from real detector data. The data is from detector 1 and 2 from station 503. Detector 1 (black) uses a \senstech \pmt, detector 2 (red) uses a \nikhef \pmt.}
+    \label{fig:ph_pi_503}
+\end{figure}
+
+As can be seen in both the test and cosmic data, the \senstech \pmt is a bit steeper at low pulse integrals. This means that the pulses are less wide. [different number of dynodes?, different voltage?]
+
+For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. Measured cosmic data does provide some insight into the non linearity, however, the pulse height and integral are not independent measurements.
+
+The \adcs in the \hisparc electronics are designed and calibrated to make the range \SIrange{200}{4096}{\adc} correspond to the range \SIrange{0}{-2}{\volt}. Signals greater than \SI{-2}{\volt} are clipped, preventing the pulse height to provide an accurate measure of signal strength. The pulse height clipping also affects the pulse integral. For larger signals the non-saturated parts of the signal also grow bigger, so the integral continues to increase.
+
+In determining the particle density at a detector there are two components to look at. Given a particle density the number of particles that actually pass through a detector follows from the Poisson distribution. The width of the distribution is the square root of the mean value. This means that the error becomes larger for higher densities. Given a number of particles passing through the detector the detected signal size
+
+- List contributions to uncertainty in particle density; Poisson, gamma's, scintillator position, pmt linearity.
+- Give total uncertainty on particle density (as function of density).
+
+Since April 2014 new \pmts are first tested in the LED setup using a single fiber to ensure it works properly. The test finds the voltage at which the output has a pulse height around \SI{340}{\milli\volt}. This pulse height value requires a voltage close to the normal operational voltage of \pmts on a \hisparc detector. The current of the \pmt is checked, high currents can indicate failing \pmts.
+
+
+\section{Environmental conditions}
+\label{sec:detector-environmental}
+
+\subsection{Temperature in skibox}
+
+LiO 2010 - Remmers - hogere T hogere MPV
+
+The specifications of the scintillator and \pmt indicate that their efficiency depends on their temperature. The pulse height of signals determine wether they cross the thresholds in the electronics and cause a trigger. The efficiency of the detector may drop such that some events no longer cause a trigger, which they would have under normal circumstances. The change in efficiency also affects the MPV. The amount of effect the temperature has on the MPV will be examined.
+
+About 20 \hisparc stations also have a weather station which includes a temperature sensor recording the outside temperature. The locations of the weather stations are shown in \cref{fig:weather-map}. Such enviornmental data is also available for other locations in the Netherlands from the Dutch Royal Meteorological Institute (KNMI) which operates many weather stations across the Netherlands. However, these are not at the same location as \hisparc stations. For short periods temperature probes have been placed inside the skibox, and attached to the \pmt, of some detectors to accurately measure the temperature of the detector. In \cref{fig:temperature_timeline} the values from these sensors for a month can be seen. The daily (night/day) fluctuations can clearly be seen. The skibox and \pmt temperatures clearly rise above the outside temperature. This is mostly due to the absorption of solar radiation by the skibox, and the heat generated by the \pmt. There is little to no air flow inside the skibox. On sunny days the temperatures in the skibox rise a lot higher than the outside temperature. Using solar radiation data the outside temperature can be corrected to accurately describe the skibox temperature (see \cite{devries2012weather} fig 7.7).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{plots/station/weather-map}
+    \caption{This map shows the locations of all \hisparc (green) and \knmi (blue) weather stations.}
+    \label{fig:weather-map}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plots/station/temperature_timeline}
+    \caption{Measured temperatures over time from several different sensors. A temperature probe was placed inside a \hisparc detector skibox (blue). Another sensor was attached to the \pmt of the detector (green). The weather station connected to the \hisparc station also has a temperature sensor.}
+    \label{fig:temperature_timeline}
+\end{figure}
+
+A day of data is enough to accurately determine the average MPV for that day. However, daily temperature fluctuation are large enough that when the days is broken into smaller pieces different values for the MPV are found \cite{bartels2012mpv}. In \cref{fig:mpv_temperature} the reconstructed MPV is set against the \pmt temperature. The spread around the fitted line is partially caused by the temperature gradient in the periods for which the MPV is determined. The correlation agrees reasonably with the specifications of the \pmt. The specification states the gain of the \pmt changes by \SI{0.5}{\percent\per\degreeCelsius}. It does not make clear wether the efficiency increases or decreases with changing temperature, nor at which temperature it is most efficient. From our measurements it seems the gain decreases with increasing temperature. The scintillator should be \SI{100}{\percent} effective upto \SI{20}{\degreeCelsius} above which it reduces with \SI{0.125}{\percent\per\degreeCelsius}. This is but a small contribution to the reduction of the MPV. The found gradient of \SI{-0.81}{\adc\per\degreeCelsius} in the range \SIrange{200}{170}{\adc} is \SI{0.44}{\percent\per\degreeCelsius}, in close agreement with the specification. (depends on what is used as reference..)
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\linewidth]{plots/station/mpv_temperature}
+    \caption{Here we can see the correlation between the measured temperature and the MPV of the pulse heights. The red line is a linear fit to get the slope of the correlation.}
+    \label{fig:mpv_temperature}
+\end{figure}
+
+Weather station data is available to correct measurements for the change in efficiency. The correction can be done using the outside temperature and solar radiation. However, this is less accurate then when the exact PMT temperature is known. Solar radiation depends on cloud cover, which may be very different from location to location depending on wind speed. Moreover, some detectors may be in the shade for parts of the day, this may mean differences of \SI{20}{\degreeCelsius} between the expected and actual temperature.
+
+
+\subsection{Air pressure}
+
+The mean free path of shower particles is determined by the thickness of the air layer it passes through. If there are more particles to collide with the chance for interaction increases. An increase in air pressure reduces the mean free path. This means more interactions in a shower. \hisparc stations are far below Xmax so the extinction processes dominate. An increase in air pressure further reduces the number of particles reaching ground level and make detection less likely.
+
+Air pressure data is available from the \hisparc weather stations and also from KNMI data. In \cref{fig:rate_pressures} a correlation between the event rate in a station and the air pressure is shown.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\linewidth]{plots/station/barometer}
+    \caption{This shows the detected number of events fitted with a model that corrects the expectation using air pressure. A better match also considers temperature. Temperature can reduce or increase signal efficiency of a detector to make trigger less/more likely.}
+    \label{fig:rate_pressures}
+\end{figure}
+
+The local air pressure is to be taken into account when determining the shower energy. The relation between shower size and shower energy depends on air pressure. Air pressure does not affect the signal generated by a \mip.
+
+[Describe how much uncertainty this adds to density reconstruction.]
+
+
+\section{Durability}
+\label{sec:detector-durability}
+
+Light leaks, often directly evident after construction, some develop over time. Can be discovered in multiple ways (event rate/number of peaks). Often easy to fix by applying extra foil and tape.
+
+The connection between the scintillator and lightguide (glue) sometimes breaks, the detector may still works but with different efficiency. As long as the detector is not moved and properly supported it can continue to operate indefinitely. Repairing the detector takes as much time as the initial construction. The glued edges needs to be sanded again.
+
+In the small time period shown in \cref{fig:temperature_timeline} temperatures above \SI{42}{\degreeCelsius} are seen. The specifications of the \pmt state its maximum operational temperature as \SI{60}{\degreeCelsius}. Such high temperatures likely occur occasionally. However, this does not seem to be an issue.
+
+A batch of \pmts has been encountered where the failure rate was very high, around 30 \pmts failed. This is quite a significant number since we have approximately 300 \pmts in use. The power supplies of these \pmts failed. The actual vacuum tubes were still working fine. The costs to have the power supply replaced by the manufacturer were excessive, almost equal to a new \pmt. This was one of the motivations to manufacture \pmt bases. Replacing \pmts is an easy process, this can be performed without moving the detector.
+
+The power supplies provides by the company that assembled the HiSPARC electronics were a bad batch. They all fail within a couple months of use. These have been replaced by a different type of power supply of which no failures have been observed. Not all electronics were deployed at once, so preemptive replacements have been done for those deployed later.
+
+On some occasions power interruptions can cause down time for a station.  There are cases where supplies were disconnected by cleaning crews or students that wanted to use the power socket for their own devices. Some schools disable their power grid during vacation time, in order to save power. Usually the station resumes operation after the vacation when the power is restored.
+
+Despite these possible problems most detectors perform perfectly for many years, and problems can be addressed easily, as was the goal. For example station 13 on Hervormd Lyceum West in Amsterdam has been working since March 2005 with minimal interruptions. [what happened 13 august 2015?].
+
+
+
+
+
+
+
+
+
+
+
+\section{Station}
+
+% Impractical to connect detectors over long distances for online/realtime triggering.
+By making each detection station consist of at least two detectors the station can perform triggering as a standalone unit. Each station performs its own triggering, therefore stations do not need to be interconnected. For detection stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger where the space between detectors is mostly empty wirelessly connecting detectors is an option. The \hisparc station consists of either 2 or 4 detectors connected to \hisparc electronics. The \hisparc electronics incorporates \pmt readout and control, triggering logic, a \gps module \cite{trimble2007resolutiont}, and a data connection to a PC. Two versions of the electronics are currently being used, versions II and III. Version III differs from II in having USB 2 (\SI{480}{\mega\bit\per\second}) instead of USB 1.1 (\SI{12}{\mega\bit\per\second}) connectors, slightly different \adcs, and an upgradable firmware over USB. The PC connected to the electronics contains software to send and receive messages to and from the \hisparc electronics. The message formats and their meaning are described in \cite{verkooijen2008firmware}, further description of the software running on the stations is described in [later chapter]. The detectors and \gps antenna \cite{trimble2015bullet} are connected to the electronics using \SI{30}{\meter} long cables.
+
+\subsection{Signal readout}
+
+The \hisparc electronics has two \adcs per channel, each reads the \pmt signal at \SI{200}{\mega\hertz}. By interlacing the two \adcs a sampling frequency of \SI{400}{\mega\hertz} is achieved. These are 12-bits \adcs, allowing values between \SIrange{0}{4095}{\adc} and provide approximately \SI{2}{\volt} dynamic range. The two \adcs are calibrated to provide the same baseline and gain. The baselines are set to \SI{200}{\adc} (II) and \SI{30}{\adc} (III) for the two \hisparc electronics. The two versions use a different type of \adc, with a slightly different dynamic range. The \si{\mV} to \si{\adc} conversion differs slightly, being \SI{0.57}{\adc\per\mV} (II) and \SI{0.584}{\adc\per\mV} (III). In addition to the \adcs each channel has two comparators which record the time over threshold for a given threshold. The thresholds of the comparators can be configured but are by default set to \SI{-5}{\volt} and \SI{-10}{\volt}. In case of signals which saturate the \adcs the comparators provide additional information about the actual signal size.
+
+The \pmt signals are continually read out, the resulting \adc values are compared to two thresholds; a low and high threshold. These thresholds can be set for each channel individually. Usually they are set equally for all channels in a station, and the default setting is \SI{-30}{\milli\volt} (low) and \SI{-70}{\milli\volt} (high). The triggering logic keeps track of which channels are over a threshold and the trigger window in which trigger conditions need to be met. If a trigger occurs the time of the event is recorded as well as the trace readout of the \adc.
+
+\subsection{Efficient triggering}
+
+The \hisparc electronics are able to readout two detectors simultaneously. However, as mentioned stations with four detectors exist, in those cases two boxes are interconnected via UTP cables to provide readout and triggering for four detectors. When connected the two boxes still work semi-independently, but exchange threshold and \gps information. Only one of the two (the Master) contains a \gps module, it provides the second box (Slave) with \gps timing information. By exchanging threshold information the trigger logic in the Master and Slave have acces to all four channels. Triggers based on four detectors can then be created.
+
+% Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
+For two detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}} = \SI{2.5}{\ns}$ the number of possible (physically relevant) time differences between the two detectors detecting the same shower front can be calculated by
+%
+\begin{equation}
+    \begin{split}
+        t_{\mathrm{max}} &= \frac{d}{c} \\
+        n &= \left\lfloor \frac{t_{\mathrm{max}}}{t_{\mathrm{sample}}} \right\rfloor \\
+        k &= \{x \in \mathbb{Z} : -n \leq x \leq n \} \\
+        \theta_{dt} &= \arcsin \frac{k t_{\mathrm{sample}}}{t_{\mathrm{max}}} \ .
+    \end{split}
+\end{equation}
+%
+Here $\theta_{dt}$ is the set of possible angles of the shower axis relative to the line between the detectors. While placing detectors closer together increases the detection efficiency for low energy showers, it decreases the direction reconstruction accuracy.
+
+% An efficient trigger can be made for a certain (and higher) particle density.
+Using [$P_2$] we can determine the detector distance to efficiently (\SI{>50}{\percent}) detect showers as a function of primary energy. Assume the shower axis is directly between the detectors, since that is where the station will be able to most efficiently detect the shower. The following relation is plotted in \cref{fig:efficiency_distance_energy}, the transition from low efficiency to very efficient is fairly sharp.
+%
+\begin{equation}
+\begin{split}
+    r &= \frac{d}{2} \\
+    P_2(d) &= \left(1 - \mathrm{e}^{-A \rho(N(E), r)} \right)^2 = 0.5 \ .
+\end{split}
+\end{equation}
+%
+So by placing the detector \SI{~10}{\meter} apart a \SI{e14.3}{\eV} shower can be detected with \SI{50}{\percent} efficiency if it fell directly between the detectors. At that distance the maximum time difference (assuming a flat shower front) between the detectors is \SI{30}{\ns}. However, shower fronts are not flat, and the rise time of the front can also cause time differences larger than expected from a horizontal shower with a flat front. Since that is a viable possibility the trigger should be long enough to also allow large time differences to detect showers when the detectors are far from the shower core.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/efficiency_distance_energy}
+    \caption{Efficiency of detection for showers of various energies as function of the distance between detectors. From impossible (black) to \SI{100}{\percent} efficienct (white). [will probably replace 2d histogram by 'contour' lines]}
+    \label{fig:efficiency_distance_energy}
+\end{figure}
+
+% background rate for a given time window
+In \cref{fig:temporal_profile} the temporal profile of the shower front was shown, at very large core distances the time difference between the first and last particle may be larger than \SI{3000}{\ns}. For all core distances more than \SI{50}{\percent} of the particles arrive within \SI{1500}{\ns}. This is the value that was chosen as coincidence window for \hisparc. This is long enough to account for most extreme time differences at large core distances. The number of random coincidences due to the muon background (see \cref{eq:background_rate}) with this time window is estimated to be $2 \times \SI{1500}{\ns} \times \left(\SI{0.5}{\meter\squared}\right)^2 \times \left(\SI{200}{\hertz\per\meter\squared}\right)^2 = \SI{0.03}{\hertz}$. In a properly calibrated detector the rate of singles (number of signals over the a threshold per second) are slightly higher, \SI{250}{\hertz} (low) and \SI{120}{\hertz} (high).
+
+The standard trigger setting for a 2-detector station are 2 low signals, the high threshold is ignored. This condition has to be met within the trigger window of \SI{1500}{\ns}. This results in an event rate of approximately \SI{0.33}{\hertz}. Of which a third is expected to be from random coincidences. The low threshold is in the exponential gamma spectrum, a higher \pmt gain will increase the rate of triggers a lot, where at least one of the detectors will have a gamma.
+
+For a 4-detector station the trigger is either 2 high signals or 3 low signals. The same trigger window is used. This results in a trigger rate of approximately \SI{0.66}{\hertz}. Of which about a fifth is expected to be due to random coincidences. The (default) layout of the 4-detector station is described in \cref{ssec:station_layout}.
+
+% For (low energy) shower detection a station has multiple detectors close together and contains the trigger logic.
+% For high energy showers the density still needs to be high enough in a station for a trigger, this limits maximum core distance for showers.
+As noted, the trigger is such that low energy showers are effectively detected by the station and the time window is long enough that it can also trigger on the edges of the shower front from high energy shower.
+
+% Using more than two detectors in a station increases detection efficiency.
+% More than two detectors have the possibility of direction reconstruction.
+The 4-detector station can more efficiently detect showers, since it has twice the detection area. It will trigger on lower particle densities than a 2-detector shower. This makes it capable of detecting large showers from further away. Additionally if three detectors detect a particle it might be possible to reconstruct the direction of the shower axis. This may not be accurate if the station is a the edge of the shower, because the time delays due to the rise time of the shower increase the uncertainty.
+
+% Trigger efficiency as function of core distance and shower energy, for the different triggers (2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector for reconstructable).
+The particle density threshold for triggering on showers with \SI{50}{\percent} efficiency is different for the 2- and 4-detector stations. Also an important value is the trigger efficiency for at least 3-detectors with a hit in the 4-detector station, since this can result in reconstructable showers. In \cref{fig:ldf_energies2} the energy which can be triggered with \SI{50}{\percent} efficiency as a function of core distance is shown for these three cases.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]
+                    {plots/station/ldf_energies}
+    \caption{Trigger efficiency E = \SIrange{e14}{e20}{\eV} showers, add horizontal lines for 2 in 2-detector, any 2 in 4-detector, and any 3 in 4-detector (\SI{50}{\percent} efficient.}
+    \label{fig:ldf_energies2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/efficiency_two_16}
+    \caption{Detection (trigger) efficiency as a function of core distance for showers of different primary energy (and zenith).}
+    \label{fig:efficiency_two_16}
+\end{figure}
+
+% Explain simple direction reconstruction with 3 detection points (flat/curved shower).
+When there are three detection points which are not on a line the shower axis can be constrained. In this case the detectors are assumed to be at the same height and the front is considered flat, an approximation which can be valid at the short distances between detectors as they occur in a station. The 2-dimensional flat-front reconstruction method for three detection points is described in \cite{fokkema2012hisparc}. The following equations result in the shower axis direction, i.e. the azimuth ($\phi$) and zenith ($\theta$).
+
+\begin{equation}
+    \label{eq:direction-2dflat}
+    \begin{split}
+        \phi &= \arctan \left(\frac{r_1 \Delta t_2 \cos \phi_1 - r_2 \Delta t_1 \cos \phi_2}{r_2 \Delta t_1 \sin \phi_2 - r_1 \Delta t_2 \sin \phi_1} \right) \ , \\
+        \theta &= \arcsin \left(\frac{c \Delta t_i}{r_i \cos(\phi - \phi_i)} \right) \ .
+    \end{split}
+\end{equation}
+
+Here $r_i$ is the distance between detector 0 and detector $i$, $\Delta t_i$ is the time difference between detector 0 and detector $i$, and $\phi_1$ the angle between East and detector $i$ as seen from detector 0. Note that care must be taken to take the correct quadrant for the $\arctan$ and that $\phi - \phi_i \ne 2 \pi$. The same results can be achieved with a Cartesian approach as described in \cite{montanus2015direction}. This gives
+
+\begin{equation}
+    \label{eq:direction-2dflat}
+    \begin{split}
+        \phi &= \arctan \left(\frac{-u_x v_z}{u_y v_z} \right) \ , \\
+        \theta &= \arcsin \left(\sqrt{\frac{u_x^2+u_y^2}{v_z^2}} \right) \ .
+    \end{split}
+\end{equation}
+
+Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1 y_2$, and $v_z = x_1 y_2 - x_2 y_1$. The $x$ and $y$ coordinates are as defined by the ENU coordinate system described in [ref apprendix coordinates], in this case using detector 0 as reference.
+
+\subsection{Station layout}
+\label{ssec:station_layout}
+
+% Standard layouts created to encourage uniformity, these are also chosen for good shower acceptance, reconstruction accuracy of station events, and practicality for the locations.
+The layouts of a typical 4-detector station is shown in \cref{fig:4_detector_layouts}. The detectors are separated by \SI{10}{\meter} to exclude the smallest showers and provide accurate direction reconstruction resolution. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]
+                    {plots/station/4_detector_diamond}
+    \includegraphics[width=0.4\textwidth]
+                    {plots/station/4_detector_star}
+    \caption{4-detector station layouts. 4-detector stations are typically placed in the diamond or star formation. Both contain multiple triangles between sets of 3 detectors.}
+    \label{fig:4_detector_layouts}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/discrete_directions}
+    \caption{Both 4-detector layouts result in the following distribution of possible shower directions given \SI{2.5}{\ns} arrival time sampling in the detectors. For the diamond layout more points can be made by more combinations, i.e. more possible solutions. Approximately \SI{5}{\degree} between adjacent points near Zenith.}
+    \label{fig:discrete_directions}
+\end{figure}
+
+The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps antenna, whose position is know. From the \gps the distance to and the angle between (True?) North and the detector (the center of the scintillator) is measured. Additionally the rotation of the detector itself around its center can be recorded, though this is less important. The coordinate system is also described in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring their detector positions and how they can submit them to the Public Database. Information about the position of detectors in 2-detector stations is also important. Though full direction reconstruction is not possible with only two detectors it can define a plane where the shower should come from (reference Niek).
+
+\subsection{Reconstruction accuracy}
+
+The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. The \hisparc station was placed between the \kascade detectors and triggered (using an external trigger) when the surrounding detectors detected an event. The \kascade reconstruction of the events which triggered the \hisparc station were made available. By applying the reconstruction to the data and comparing this to the \kascade reconstruction the performance of a single station is tested.
+
+The reconstruction of the shower direction has shown to be accurately reconstructable. The results reported in [ref fokkema] are shown in \cref{fig:azimuth_kascade_minn1}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/azimuth_kascade_minn1}
+    \caption{Test station at KASCADE was used to verify the performance of a single station. The direction agreement between simultaneously detected events is shown.}
+    \label{fig:azimuth_kascade_minn1}
+\end{figure}
+
+% Shower core/energy determination impractical with single station.
+Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low. In \cref{fig:n_501_510_sum} the predicted (by \kascade) particle density at a detector is compared to the actual measured signal. The large spread is due to the Poison, Landau, transmission, and \pmt gain distributions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/n_501_510_sum}
+    \caption{(place holder figure showing different data) Test station at KASCADE used to verify the particle density measurement of a single detector and full station, compared to the KASCADE predicted particle density.}
+    \label{fig:n_501_510_sum}
+\end{figure}
+
+
+\subsection{Weather station}
+
+% Optional weather station to provide local weather data.
+Optionally a \hisparc station can be extended with a weather station to provide local weather measurements. These measurements can help in understanding how shower development is affected by atmospheric conditions. For instance an high air pressure increases the number of collisions in air showers, thereby reducing the number of particles that reach sea level. This lowers the trigger rate for a station. Additionally some of the detector components have efficiencies dependent on their temperature. By measuring the temperature detections may be corrected for the changed efficiency. \hisparc uses a Davis Vantage Pro 2 weather station \cite{davis2012vantagepro} which includes the following sensors; temperature, relative humidity, atmospheric pressure, wind direction, wind speed, solar radiation, UV index and rain rate. These sensors are readout at a \SI{5}{\second} interval. Currently there are 19 \hisparc stations that also have a weather station. These locations are shown on the map in \cref{fig:map_weather_knmi}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/map_weather_knmi}
+    \caption{Locations of HiSPARC weather stations (red) and the KNMI weather stations (blue).}
+    \label{fig:map_weather_knmi}
+\end{figure}
+
+% May not be required at each station, can use freely available KNMI data. However, in some cases closest KNMI station is far away.
+Note that it is not required for all stations to have a weather station. The Royal Dutch Meteorological Institute (KNMI) also provides a public weather data service in the Netherlands. KNMI has 36 stations spread in a regular grid around the Netherlands. Not all \hisparc stations are close to a KNMI station, for some weather quantities this is no problem because they are similar over long distances, or can be interpolated. Besides temperature the local solar radiation strongly influences the temperature of the detector in a ski-box.
+
+
+
+
+
 
 \section{Signal digitization}
 
@@ -146,3 +628,4 @@ For events in coincidence the direction reconstructions (arrival time gradients?
     \caption{Angle between the direction reconstruction in coincident events between station 501 and 510.}
     \label{fig:angle_between_501_510}
 \end{figure}
+
