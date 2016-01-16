@@ -52,7 +52,7 @@
 \tikzexternalize
 \tikzsetexternalprefix{tikz/}
 
-\usepackage[detect-all, binary-units, separate-uncertainty=true,
+\usepackage[detect-all, binary-units, separate-uncertainty,
             retain-unity-mantissa=false]{siunitx}
 \usepackage{amsmath}
 \usepackage{epigraph}  % For typesetting quotations
@@ -78,8 +78,6 @@
 
 
 \usepackage{shape-datastore}
-
-% commands for names and abbreviations to get correct capitalization.
 
 % Projects
 \newcommand{\hisparc}{\textsmaller{HiSPARC}\xspace}
@@ -121,19 +119,17 @@
 % ...
 \newcommand{\mip}{\textsmaller{MIP}\xspace}
 \newcommand{\mpv}{\textsmaller{MPV}\xspace}
-\newcommand{\adcs}{\textsmaller{ADC}s\xspace}
-\newcommand{\Adcs}{A\textsmaller{DC}s\xspace}
 
 % Hardware
-\newcommand{\hi}{\textsc{h i}\xspace}
-\newcommand{\hii}{\textsc{h ii}\xspace}
 \newcommand{\hisparcii}{\textsmaller{HiSPARC II}\xspace}
 \newcommand{\hisparciii}{\textsmaller{HiSPARC III}\xspace}
 \newcommand{\adc}{\textsmaller{ADC}\xspace}
+\newcommand{\adcs}{\textsmaller{ADC}s\xspace}
+\newcommand{\fpga}{\textsmaller{FPGA}\xspace}
 \newcommand{\pmt}{\textsmaller{PMT}\xspace}
 \newcommand{\pmts}{\textsmaller{PMT}s\xspace}
 \newcommand{\gps}{\textsmaller{GPS}\xspace}
-\newcommand{\senstech}{\textsmaller{Sens-Tech}\xspace}
+\newcommand{\senstech}{Sens-Tech\xspace}
 
 % References
 \usepackage[capitalise, noabbrev]{cleveref}
@@ -149,9 +145,12 @@
 \DeclareSIUnit{\parsec}{pc}
 \DeclareSIUnit{\year}{yr}
 
+% Equations
 \newcommand{\ud}{\mathrm{d}}
 \newcommand{\diff}{\mathop{}\!\ud}
 
 \renewcommand{\EUR}[1]{\euro\,\num{#1}}
 
+% Disable slow parts for faster draft output
+% \newcommand{\longprocess}[1]{}
 \newcommand{\longprocess}[1]{#1}
