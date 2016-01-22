@@ -212,7 +212,7 @@ In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing the pulse height and 
     \label{fig:ph_histogram_contrib_nonlin}
 \end{figure}
 
-For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. It is impractical to do so for all already installed scintillator stations. Fortunately the \pmts are relatively linear up to \SI{1}{\volt}. Measured cosmic data does provide some insight into the non linearity. Partially via the pulse height and integral relation, however, those are not independent measurements, and partially via the pulse height histogram.
+For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. It is impractical to do so for all already installed scintillator stations. Fortunately the \pmts are relatively linear up to \SI{1}{\volt}. Measured cosmic data does provide some insight into the non linearity. Partially via the pulse height and integral relation, however, those are not independent measurements, and partially via the pulse height histogram. Even if the linearity curve can be determined, at very high pulse heights the signals will all converge towards the same value, making the distinction between high values impossible.
 
 Since April 2014 the new \nikhef \pmts are first tested in the LED setup using a single fiber to ensure it works properly. The test finds the voltage at which the output has a pulse height around \SI{340}{\milli\volt}. This pulse height value requires a voltage close to the normal operational voltage of \pmts on a scintillator detector. The current of the \pmt is also checked, high currents can indicate failing \pmts. The linearity tests are currently to cumbersome to perform for each \pmt. Moreover, most new \pmts use the \nikhef power supply and should not require calibration.
 
@@ -490,7 +490,7 @@ Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1
 
 The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. A 4-detector \hisparc station was placed between the \kascade detectors and triggered (using an external trigger) when the surrounding \kascade detectors detected an event. The \kascade reconstruction of the shower which triggered the \hisparc station were made available. By reconstructing the \hisparc data and comparing this to the \kascade reconstruction the performance of a single station is tested.
 
-The reconstruction of the shower direction has shown to be accurately reconstructable. The results reported in \cite{fokkema2012hisparc} are shown in \cref{fig:angle_kascade_core_distance}. Depending on the core distance of the shower and the .
+The reconstruction of the shower direction has shown to be accurately reconstructable. The results reported in \cite{fokkema2012hisparc} are shown in \cref{fig:angle_kascade_core_distance}. Depending on the core distance of the shower and the overall particle density. The uncertainty is lower for showers with the core close to the station, quickly increasing with distance. If only large showers were selected, higher particle density, than the uncertainty remains lower at larger core distances.
 
 \begin{figure}
     \centering
@@ -501,14 +501,16 @@ The reconstruction of the shower direction has shown to be accurately reconstruc
 \end{figure}
 
 % Shower core/energy determination impractical with single station.
-Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low. In \cref{fig:n_501_510_sum} the predicted (by \kascade) particle density at a detector is compared to the actual measured signal. The large spread is due to the Poison, Landau, transmission, and \pmt gain distributions. The differences show that it is difficult to accurately predict the actual particle densities.
+Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low. In \cref{fig:hisparc_v_kascade_average} the by \kascade determined particle density at the station is compared to the actual measured signal. \kascade has many detectors to accurately measure the shower front, it then fits an \ldf to this and calculates the expected particle densities at each fo the \hisparc scintillator detectors. No error is given for the \kascade determined particle density, so it is assumed to be correct. However, the \ldf predicts a smooth radially symmetric density distribution, while actual showers may have local minima and maxima. As described before the number of actually detected particles given a particle density is given by the Poisson distribution. The error on the measured particle density is indicated in the plot (green). Also the error due to the scintillator transmission efficiency and \pmt response is shown (red), and finally the error caused by the non-linearity of the \pmt is indicated (blue). The uncertainty is large at low particle densities due to the scintillator detector and Poisson effects. At high particle densities the non-linearity of the \pmt is the main source of uncertainty.
+
+The scintillator detector error is estimated by a Gaussian distribution with a width of $\sigma = \sqrt{\rho} 0.68$, the error increases at higher densities. The error due to the non-linearity is estimated by $\sigma_{V_{\mathrm{out}}} = \sigma_{V_{\mathrm{in}}} \frac{\mathrm{d}V_{\mathrm{out}}}{\mathrm{d}V_{\mathrm{in}}}$.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/station/n_501_510_sum}
-    \caption{(place holder figure showing different data) Test station at KASCADE used to verify the particle density measurement of a single detector and full station, compared to the KASCADE predicted particle density.}
-    \label{fig:n_501_510_sum}
+                    {plots/station/hisparc_v_kascade_average}
+    \caption{Test station at KASCADE was used to verify the particle density measurement of the scintillator detectors. Here the reconstructed station average particle density is compared to the KASCADE predicted particle density. The non-linearity of the \pmts cause an underestimation of the \hisparc particle density (red, solid), compressing the value range at higher signal strength, the Poisson errors are also compressed, as can be seen in the predicted error (green, dashed). The errors due to scintillator detector effects (red, dashed) and \pmt saturation (blue, dashed) are also indicated.}
+    \label{hisparc_v_kascade_average}
 \end{figure}
 
 
