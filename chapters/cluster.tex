@@ -1,12 +1,12 @@
 \chapter{\hisparc network}
 \label{ch:cluster}
 
-The data from multiple \hisparc stations can be combined to perform data analysis with more detection points separated by larger distances. In order to combine the data the exact detection time of individually (per station) detected showers must be known. The \gps module of each station is used to aquire accurate absolute timestamps. The accuracy of the \gps is examined to determine the error it introduces when cominbing data from multiple stations. Not only the timing error, but also the position error is examined.
+The data from multiple \hisparc stations can be combined to perform data analysis with more detection points separated by larger distances. In order to combine the data the exact detection time of individually (per station) detected showers must be known. The \gps module of each station is used to acquire accurate absolute timestamps. The accuracy of the \gps is examined to determine the error it introduces when cominbing data from multiple stations. Not only the timing error, but also the position error is examined.
 
 
 \section{Positions}
 
-Before a \gps reciever can accurately determine the current time it needs to know where it is. Since the \gps antenna is stationary its location can be determined very accurately once and then kept fixed. The \gps then only needs to worry about the time. Since it knows it position and the orbits of each \gps satellite it could determine the current time with the signal of only one \gps satellite. However, when more are used a more accurate result is achieved.
+Before a \gps reciever can accurately determine the current time it needs to know where it is. Since the \gps antenna is stationary, its location can be determined very accurately once and then kept fixed. The \gps then only needs to worry about the time. Since it knows its position and the orbits of each \gps satellite it could determine the current time with the signal of only one \gps satellite. However, when more are used a more accurate result is achieved.
 
 
 \subsection{\gps self-survey}
@@ -120,18 +120,18 @@ In 2004 \hisparc started data collection. Initially with several stations in Ams
 \subsection{Station locations}
 
 % Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
-In \cref{fig:network} the locations of all \hisparc stations is shown. Most stations are clustered in or around the slightly larger cities. The locations are in most cases limited to the locations of high schools and universities. Universities provide support for the high schools in their region, they guide students in building the detectors and provide support when needed. There are currently about \num{650} high schools in the Netherlands  \cite{duo2016hoofd}, some of which have multiple locations, resulting in a total of about \num{1500} high-school locations \cite{duo2016all}. Currently there are \num{80} Dutch high schools participating in \hisparc.
+In \cref{fig:network} the locations of all \hisparc stations is shown. Most stations are clustered in or around the slightly larger cities. The locations are in most cases limited to the locations of high schools and universities. Universities provide support for the high schools in their region, they guide students in building the detectors and provide assistance when needed. There are currently about \num{650} high schools in the Netherlands  \cite{duo2016hoofd}, some of which have multiple locations, resulting in a total of about \num{1500} high-school locations \cite{duo2016all}. Currently there are \num{80} [get actual number] Dutch high schools participating in \hisparc.
 
 
 \subsubsection{International}
 
-Locations of \hisparc stations are not limited to the Netherlands. Two other countries successfully operate multiple detection stations. All station locations are shown in \cref{fig:network}.
+Locations of \hisparc stations are not limited to the Netherlands. Two other countries also successfully operate multiple detection stations.
 
 Since 2007 there has been a \hisparc station in Denmark. There are currently 3 operational stations at the Aarhus University. These stations are managed by Uffe Amelung Fredens. Fredens also makes student materials for Danish high-school students.
 
 In the United Kingdom a new cluster in Bristol was started in March 2012. This was initiated by Dr. Jaap Velthuis, who is the cluster coordinator for the Bristol cluster. Since then more than 10 schools around Bristol have created detectors and joined the network. Even more schools have plans to join. In 2014 a second cluster was started in the United Kingdom around Birmingham. The Birmingham cluster is coordinated by Cristina Lazzeroni.
 
-In Germany a station (70001) was placed inside the \kascade experiment in Karlsruhe, from 2008 up to and including 2011. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for some test setups, including our detection station. \kascade triggered the \hisparc station when it detected a shower. More than \num{9e7} triggers occurred [2010-2011 in datastore, rest in /databases/kascade] in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 at the Science Park.
+In Germany a station (70001) was placed inside the \kascade experiment in Karlsruhe, it operated there from 2008 up to and including 2011. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for other experiments, including the \hisparc detection station. When the \kascade detectors detected a shower the \hisparc station was triggered. More than \num{9e7} triggers occurred [2010-2011 in datastore, rest in /databases/kascade] in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 at the Science Park.
 
 \begin{figure}
     \centering
@@ -144,7 +144,7 @@ In Germany a station (70001) was placed inside the \kascade experiment in Karlsr
 
 \subsection{Uptime}
 
-Unfortunately not all stations continue to operate properly. \cref{fig:active_stations} shows the cumulative number of stations that have had at least a days worth of events (green), additionally the number of active stations per day (black) is shown. Though the number of active station also increases it lags behind the total number of stations. This is partially explained by stations being moved to a new location under a new name. In which case both stations count toward the total number of stations, but only one active station. In some cases the contact at a station retired and no followup was arranged, leaving the station without proper maintenance. Other problems that have been known to case stations to be down are Windows Updates, internet proxies, bad configuration, power supply failures, light leaks in the detectors, or some other issues [cite maintenance docs]. In many cases (software or configuration related problems) remote control of the station can be used to make station operational again.
+Unfortunately not all stations continue to operate properly. \cref{fig:active_stations} shows the cumulative number of stations that have had at least a days worth of events (green), additionally the number of active stations per day (black) is also shown. Though the number of active station also increases it lags behind the total number of stations. This is partially explained by stations being moved to a new location under a new name. In which case both stations count toward the total number of stations, but only one active station. In some cases the contact person at a high station retired without arranging followup, leaving the station without proper maintenance. Other problems that have been known to cause stations to be down are Windows Updates, internet connectivity, bad configuration, power supply failures, light leaks in the detectors, or some other issues [cite maintenance docs]. In many cases (software or configuration related problems) remote control of the station can be used to make station operational again.
 
 \begin{figure}
     \centering
@@ -239,35 +239,4 @@ In \cref{fig:station_offsets_501_502}
              stations.}
     \label{fig:station_offsets_501_510}
 \end{figure}
-
-
-\subsection{Shower reconstruction with multiple stations}
-
-% Similar direction reconstruction algorithm as used for single station.
-With the combined measurement data from multiple stations a more accurate reconstruction is possible. The distances between the detection points are larger while the timing accuracy remains excellent. The reconstruction algorithm needs to take into account the different relative altitudes of the detectors, since these are no longer all at the same altitudes \cite{steijger2012direction}. Note that for some stations (e.g. 507 and 1009) the detectors are also not all at the same altitude, but that is very rare. The Cartesian approach is used for 3D reconstruction of the shower direction \cite{montanus2015direction}
-
-\begin{equation}
-    \label{eq:direction3dflat}
-    \begin{split}
-        \phi &= \arctan \left(\frac{(\mathbf{u} \times \mathbf{v})_y \pm v_y \sqrt{v^2-u^2}}{(\mathbf{u} \times \mathbf{v})_x \pm v_x \sqrt{v^2-u^2}}\right) \ , \\
-        \theta & = \arccos \left( \frac{(\mathbf{u} \times \mathbf{v})_z \pm v_z \sqrt{v^2-u^2}}{v^2}\right) \ .
-    \end{split}
-\end{equation}
-
-Where ....[explain terms].
-
-% At large core distances the curvature of the shower front should be taken into account.
-Moreover, the curvature and rise time of the shower front play a big role and need to be accounted for in the reconstruction.
-
-% For a large event should arrival times in each detector be used or station average density and average/first arrival time?
-For stations separated by large distances the reconstruction can be performed using data from all individual detectors in each station or by using a station average. It depends on the used reconstruction algorithm what the best choice will be. In case of using the first arrival time from all detectors at the station arrival time will provide better results for a reconstruction assuming a flat shower front. In the case of a shaped shower front the reconstruction should take into account the probability of detection and thus the most likely arrival times. For arrival direction reconstruction using a shaped shower front the shower axis (core) location must be known. In \cref{fig:angle_between_501_minn16_510} reconstruction accuracy using the individual detector arrival times is compared to a reconstruction using station averages (or first?).
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/cluster/angle_between_501_minn16_510}
-    \caption{(placeholder plot, not data mentioned in caption) Distance between reconstructions when using average/first arrival time, versus simulation input. Using separate detectors should hold more information, but the reconstruction algorithm should be aware (using curved or flat reconstruction?)}
-    \label{fig:angle_between_501_minn16_510}
-\end{figure}
-
 
