@@ -28,7 +28,7 @@ The scintillator detector consists of two main components which perform the dete
 Plastic scintillators have been selected as detection material. This is a relatively cheap material with high reliability and excellent efficiency. The scintillator is a sheet of \SI[product-units=power]{100 x 50 x 2}{\centi\meter} made from BC-408 \cite{sgc2011bc408}. The BC-408 material has good timing properties and light output for charged particles. The wavelength of maximum emission is \SI{425}{\nano\meter} (violet).
 
 % PMT size and type
-The chosen photomultiplier tube \cite{et2010pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and approximately \SI{11}{\centi\meter} long (the final length depends on the connected power supply) \pmt. The photocathode material is biakali, which has a quantum efficiency of \SI{25}{\percent} for the wavelength of maximum emission of the scintillator. The \pmts contain 11 high-gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measurable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and \senstech. Later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef \pmt power supply is also compatible with the previously used tubes and can be used to replace failed power supplies.
+The chosen photomultiplier tube \cite{et2010pmt,hamamatsu2014pmt} is a compact \SI{29}{\milli\meter} (\SI{25}{\milli\meter} effectively) diameter and approximately \SI{11}{\centi\meter} long (the final length depends on the connected power supply) \pmt. The photocathode material is biakali, which has a quantum efficiency of \SI{25}{\percent} for the wavelength of maximum emission of the scintillator. The \pmts contain 11 high-gain caesiated antimony (SbCs) dynodes. The \pmts are very efficient at amplifying faint light pulses to measurable electric signals. Several brands and types of \pmts have been used. At first \pmts (including power supply) were sourced from Electron Tubes, ET Enterprises and \senstech. Later new \pmts were constructed using Hamamatsu tubes with a \nikhef power supply. The \nikhef \pmt power supply is also compatible with the previously used tubes and can be used to replace failed power supplies.
 
 Besides these the scintillator detector construction consists of several other components. An isosceles triangle with a flat top made from polymethylmethacrylate (PMMA) is used as light guide. The light guide has the following measurements a base of \SI{50}{\centi\meter}, legs of \SI{71.5}{\centi\meter}, the thickness is \SI{2.2}{\centi\meter}, and the width of the top is also \SI{2.2}{\centi\meter}. The light guide is glued to the scintillator using Optical Cement \cite{sgc2014bc600}. A little adapter piece from square to round shape (same material as light guide) is attached to the square top of the triangle with Optical Cement and the round window of the \pmt with optical tape [ref type?]. This construction is wrapped in thin, \SI{30}{\micro\meter}, aluminium foil. The corners of the scintillator are covered with patches of thicker aluminium foil to prevent the sharp edges from piercing the foil. This is then wrapped in \SI{0.5}{\milli\meter} thick light-tight black pond foil to keep light out and protect the aluminium foil from outside influences.
 
@@ -55,7 +55,7 @@ The complete scintillator detector dimensions are (approximately) \SI[product-un
 \end{figure}
 
 
-\subsection{Creating scintillation light}
+\subsection{Scintillation light}
 
 % How Scintillator works
 Charged particles lose energy in the scintillator in interactions with the base of the scintillator, polyvinyltoluene. Ionisation is the main source of energy loss for energetic charged particles (electrons, muons). The base will emit photons which are rapidly absorbed by the fluor of the scintillator, anthracene. The fluor then emits light at a lower wavelength, to which the scintillator is more transparent. Some of this light will reach the \pmt.
@@ -82,7 +82,7 @@ The scintillator is \SI{2}{\centi\meter} thick, however, many particles have a l
 
 \subsubsection{Gammas in the scintillator}
 
-Energetic photons can also deposit energy in the scintillator due to Compton scattering and pair creation. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons, see fig [By Jos/Tom]. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
+Energetic photons (\SI{>100}{\keV}) can also deposit energy in the scintillator due to Compton scattering and pair creation \cite{lio2015}. However, the cross sections for these interactions is very low. A \SI{e6}{\eV} photon has a mean free path greater than \SI{10}{\centi\meter}, which increases further for higher energy photons. Despite the low detection chance, the large number of photons in an air shower makes them statistically relevant.
 
 In case of Compton scattering electrons are `kicked' free by the photon, the energy transferred to the electron will cause scintillation light to be produced, as described above, the amount depends on the energy of the electron. Energetic photons can undergo pair creation, at least \SI{1.022}{\MeV} is required to create the electron and positron. In this case two instead of one particle causes ionisation, and can therefore result in a higher light output.
 
@@ -139,7 +139,7 @@ The photomultiplier tube has a front window with a photocathode. When this is hi
 \end{figure}
 
 % PMT gain, fluctuations in gain..
-The \pmts which are used have 11 dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^11$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it may vary. This results in a variation in the output signal for each single photoelectron. This can easily vary a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. Typical variations in output, for the same number of created photoelectrons, are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear \cite{hamamatsu2007handbook}.
+The \pmts which are used have 11 dynodes, this number affects the gain of the \pmt. If each electron causes \num{3} electrons to be released from a dynode then every electron falling on the first dynode will result in $3^11$ electrons at the anode. The number of electrons emitted by a dynode for each electron that falls on it may vary. This results in a variation in the output signal for each single photoelectron. This can vary  y a factor of 2, if for instance the first dynode emits either 2 or 4 electrons instead of 3. Typical variations in output, for the same number of created photoelectrons, are of the order of \SI{10}{\percent}. By changing the voltage on the dynodes the gain of the \pmt can be tuned, with a higher voltage resulting in a higher gain. The relation between gain and voltage is not linear \cite{hamamatsu2007handbook}.
 
 % Signal strength is used for particle density, need to be able to distinguish between different number.
 Both the scintillator and \pmt can handle multiple particles simultaneously and will produce correspondingly higher signal output. The integrated signal strength should be the sum of two individual particles. Given the width of the signal distribution for single particles given by the Landau distribution combined with the transport efficiency a single particle will in some cases (how often?) produce a signal equal or larger than the most probable signal strength of two particles. In \cref{fig:ph_histogram_contrib} an example of the expected pulse height histogram is shown including the contributions from gammas, and multiple leptons. The widths of the contributions are due to the particle inclination, Landau distribution, transmission efficiency, and \pmt variation. The first peak gives the most probable value (\mpv) for the pulse height of a single lepton. An approximation of the number of particles can be made by comparing a measured value to the \mpv. The position of the \mpv depends mostly on the transmission efficiency of the scintillator detector and the gain of the \pmt. By changing the voltage on the \pmt (i.e. on the dynodes) the position of the \mpv can be tuned. Ideally the \mpv is approximately \SI{150}{\mV}. If it is lower it is difficult to distinguish the lepton contribution from the gamma spectrum and the \mpv will be hard to determine. If the \mpv is at a much higher value the \pmt ages more quickly and the dynamic range [in number of particles..] will be reduced.
@@ -156,9 +156,11 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 \subsection{\pmt output linearity}
 \label{sub:pmt_linearity}
 
-An EAS may cause many particles to pass through a scintillator detector simultaneously. The response of the \pmt to different signal sizes needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the readout \adcs, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce such large signals. Calibration tests have been performed on several \pmts to test their output given a known input signal.
+% Why the PMTs are begin tested
+An EAS may cause many particles to pass through a scintillator detector simultaneously. The response of the \pmt to different signal stengths needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the readout \adcs, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce such large signals. It appears that the output is compressed at high values. Calibration tests have been performed on several \pmts to test their output given a known input signal.
 
-A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the window of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light pulses. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a scintillator detector. The \pmt pulse intensity typically fluctuates up to \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
+% LED test setup
+A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the photocathode of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light pulses. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a scintillator detector. The \pmt pulse intensity typically fluctuates up to \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
 
 \begin{figure}
     \centering
@@ -168,38 +170,78 @@ A setup has been created to test the linearity of \pmts using LED light flashes.
     \label{fig:pmt_test_setup}
 \end{figure}
 
-The mean intensity of the individual fibers is not equal. For each \pmt the mean intensity of each individual fiber is determined. This is done by turning off the other fibers. This makes it possible to determine the input signal when multiple fibers are connected, i.e. the sum of the individual contributions. Possible time delays between the pulses might make the resulting pulses wider instead of higher, so not only the pulse height is examined but also the pulse integral. Any subset of the 24 fibers can be used simultaneously. Signals with and expected \pmt output pulse over \SI{5}{\volt} are possible with the full bundle of fibers, with the \pmt is still at normal operating voltage.
+% Test calibration
+The mean intensity of the individual fibers is not equal. For each \pmt the mean intensity of each individual fiber is determined. This is done by turning off the other fibers. This makes it possible to determine the input signal when multiple fibers are connected, i.e. the sum of the individual contributions. Possible time delays between the pulses might make the resulting pulses wider instead of higher, so not only the pulse height is examined but also the pulse integral. Any subset of the 24 fibers can be used simultaneously. Signals with an expected \pmt output pulse height over \SI{5}{\volt} are possible with the full bundle of fibers, with the \pmt at normal operating voltage.
 
-An oscilloscope is used to readout the \pmt signal. This allows for easy averaging of multiple signals and to readout signals larger than \SI{2}{\volt}. The oscilloscope measures the signal's pulse height and integral.
+An oscilloscope is used to readout the \pmt signal. This allows for easy averaging of multiple signals and to readout signals larger than the \SI{2}{\volt} limit of the \hisparc electronics. The oscilloscope measures the signal's pulse height and integral.
 
-In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The \senstech \pmt starts to deviate from the straight line before the pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. Larger input signals were not possible with the used setup, so it is unclear at what point it will be unable to keep up with the input. The non-linear curve can be fitted by the following equation, as described in \cite{icecube2010pmt},
+% PMT test results
+In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The \senstech \pmt starts to deviate from the straight line before the measured pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. Larger input signals were not possible with the used setup, so it is unclear at what input the \nikhef \pmt will be unable to keep the output linear with the input.
 
+% Fitting the data
+The non-linear data can be fitted by an equation described in \cite{icecube2010pmt}. However, the parameters are very correlated and are not always able to accurately fit the data, this is especially the case for test data discussed later in [TODO: ref \kascade section]. A different phenomenological model has been devised, shown in \ref{eq:lin_circ_lin}. The model (on log-log axes) consists of two linear parts with different slopes ($a_1$ and $a_2$) and y-intercepts ($b_1$ and $b_2$), which are joined by a circle segment. For the first line the slope $a_1$ is fixed to 1 and the y-intercept $b_1$ to 0. The two linear components are tangent to the circle whose radius $r$ is also a free parameter. The final relation is described by
+%
 \begin{equation}
-    \ln V_{\mathrm{in}} = \ln V +
-                          \frac{p_0 \left(\frac{V}{p_1}\right)^{p_2}}
-                               {\left(1 - \frac{V}{p_1}\right)^{\frac{1}{4}}} \ .
+\label{eq:lin_circ_lin}
+    \log y =
+    \begin{cases}
+        a_1 \log x + b_1,                     & \text{if $x \leq x_1$}.\\
+        y_c \pm \sqrt{r^2 - \left(\log x - x_c\right)^2}, & \text{if $x_1 < x < x_2$}.\\
+        a_2 \log x + b_2,                     & \text{if $x \geq x_2$}.
+    \end{cases}
 \end{equation}
-
-Here $V$ is the measured output signal and $V_{in}$ the input. The parameters $p_i$ have no physical meaning.
+%
+Here $x$ is the recorded output and $y$ the expected output [TODO: fix dimensions of these quantities, different depending on what is fitted, so dimensionless preferable, but also fix plot axes..]. The center of the circle ($x_c$, $y_c$) is found by computing the intersection between two lines which are parallel to the original lines but shifted by a distance $r$
+%
+\begin{equation}
+    \begin{aligned}
+    x_c &= \frac{b^{\parallel}_2 - b^{\parallel}_1}{a_1 - a_2} \ ,\\
+    y_c &= a_1 x_c + b^{\parallel}_1 \ ,
+    \end{aligned}
+\end{equation}
+%
+here the y-intercepts ($b^{\parallel}_1$ and $b^{\parallel}_2$) of the parallel lines are, with $i \in \{1, 2\}$, defined as
+%
+\begin{equation}
+    b^{\parallel}_i = b_i \mp r \sqrt{1 + a_i^2} \ .
+\end{equation}
+%
+The intersection points ($x_1$, $x_2$) between the lines and circle segment can be found by defining lines perpendicular to the original lines and passing through the center of the circle. The intersection then becomes
+%
+\begin{equation}
+    x_i = \frac{b^{\bot}_i - b_i}{a_i - a^{\bot}_i} \ ,
+\end{equation}
+%
+where the slope and y-intercepts of the perpendicular lines are given by
+%
+\begin{equation}
+    \begin{aligned}
+    a^{\bot}_i &= -\frac{1}{a_i} \ ,\\
+    b^{\bot}_i &= \left(a_i + \frac{1}{a_i}\right) x_c + b^{\parallel}_i \ .
+    \end{aligned}
+\end{equation}
+%
+The signs in the equation of the circle segment and the intercepts of the parallel lines depend on the slopes $a_1$ and $a_2$. If $a_1 > a_2$ use the upper signs, otherwise use the lower signs.
 
 \begin{figure}
     \centering
-    \input{plots/station/linearity_compared}
-    \caption{Measurements of the pulse height linearity of \pmts. The dependence of the pulse height output on the input light intensity is shown. The input on the horizontal axis is in arbitrary units. The data points show the results from tests with the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The black line are fits to the data.}
+    \includegraphics[width=0.7\linewidth]{plots/station/data_ph_senstech}
+    \caption{Measurements of the pulse height linearity of \pmts. The dependence of the pulse height output on the input light intensity is shown. The input on the horizontal axis is scaled so that the inputs and outputs for the individual fibers are equal. The data points show the results from tests with the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The black lines are fits to the data. [Todo: combine data from multiple tests in one plot]}
     \label{fig:linearity_pmts}
 \end{figure}
 
-The pulse height and pulse integral were both measured during the tests. The relation between these quantities is shown in \cref{fig:ph_pi_compared_nikhef_senstech} for the different \pmts. The relationship is also linear for the \nikhef \pmt, and non-linear for the others. The curve starts steeper for the \senstech \pmt, which means the output pulses are a bit slimmer (height versus width ratio).
+The pulse height and pulse integral were both measured during the tests. The relation between these quantities is shown in \cref{fig:ph_pi_compared_nikhef_senstech} for the different \pmts. The relationship is linear for the \pmt with the \nikhef power supply, and non-linear for the others. The curve starts steeper for the \senstech \pmt, which means the output pulses are a bit slimmer (height versus width ratio).
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]
-                    {plots/station/ph_pi_compared_nikhef_senstech}
+                    {plots/station/data_piph_senstech_integral}
     \caption{Measurements of the pulse height versus pulse integral. The data points show the results for the \senstech \pmt (closed circles) and the \nikhef \pmt (open circles). The last data point for the \nikhef \pmt has an unexplained offset, possibly due to a bad measurement.}
     \label{fig:ph_pi_compared_nikhef_senstech}
 \end{figure}
 
-In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing the pulse height and integral of two scintillator detectors, one with a \nikhef \pmt, the other width a\senstech \pmt. The \senstech \pmt clearly does not utilize the full dynamic range of the readout, while the other does. The pulse integral continues to grow for both, even when the \nikhef \pmt saturates the readout. This is explained by the pulse becoming wider at its base. The pulse integral grows slower when some of the samples in the pulse are saturated. The non-linearity causes the higher pulseheights to be condensed, the contributions to the pulseheights would look like \cref{fig:ph_histogram_contrib_nonlin}.
+% Compare pulseheight and intergral for real data
+In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing the pulse height and integral of two scintillator detectors, one with a \nikhef \pmt, the other width a \senstech \pmt. The \senstech \pmt clearly does not utilize the full dynamic range of the readout, while the other does. The pulse integral continues to grow for both, even when the \nikhef \pmt saturates the readout. This is explained by the pulse becoming wider at its base. The pulse integral grows slower when some of the samples in the pulse are saturated. The non-linearity causes the higher pulseheights to be condensed, the contributions to the pulseheights would look like \cref{fig:ph_histogram_contrib_nonlin}.
 
 \begin{figure}
     \centering
@@ -212,12 +254,14 @@ In \cref{fig:ph_pi_503} cosmic-ray data is shown comparing the pulse height and 
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/ph_histogram_contrib_nonlin}
-    \caption{Pulseheight histogram as in \cref{fig:ph_histogram_contrib}, but with a non-linear \pmt, causing the end to be condensed.}
+    \caption{Pulseheight histogram as in \cref{fig:ph_histogram_contrib}, but with a non-linear \pmt, causing the end to be condensed. [todo: fix area count]}
     \label{fig:ph_histogram_contrib_nonlin}
 \end{figure}
 
-For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. It is impractical to do so for all already installed scintillator stations. Fortunately the \pmts are relatively linear up to \SI{1}{\volt}. Measured cosmic data does provide some insight into the non linearity. Partially via the pulse height and integral relation, however, those are not independent measurements, and partially via the pulse height histogram. Even if the linearity curve can be determined, at very high pulse heights the signals will all converge towards the same value, making the distinction between high values impossible.
+% Applying corrections to data
+For each \senstech \pmt a different correction needs to be applied to the detected signals. Unfortunately, almost no \pmts have been calibrated using the LED setup. It is impractical to do so for all already installed scintillator stations. Fortunately the \pmts are relatively linear up to \SI{1}{\volt}. Measured cosmic data does provide some insight into the non linearity. Partial information may be obtained via the pulse height and integral relation, however, those are not independent measurements.
 
+% Testing new PMTs
 Since April 2014 the new \nikhef \pmts are first tested in the LED setup using a single fiber to ensure it works properly. The test finds the voltage at which the output has a pulse height around \SI{340}{\milli\volt}. This pulse height value requires a voltage close to the normal operational voltage of \pmts on a scintillator detector. The current of the \pmt is also checked, high currents can indicate failing \pmts. The linearity tests are currently to cumbersome to perform for each \pmt. Moreover, most new \pmts use the \nikhef power supply and should not require calibration.
 
 
@@ -313,12 +357,12 @@ Note that if the \adc alignment is incorrect the same input pulse results in dif
 
 \subsubsection{Trigging for four scintillator detectors}
 
-As mentioned, stations with four scintillator detectors exist, in those cases two \hisparc electronics units are interconnected via UTP cables to provide readout and triggering for four scintillator detectors. When connected the two boxes still work semi-independently, but exchange channel threshold and timing information. Only one of the two (the Master) contains a \gps module, it provides the second box (Slave) with the current time and a synchronization pulse. By exchanging threshold information the trigger logic in both the Master and Slave have access to all four channels. Triggers based on four scintillator detectors can then be created. Each unit sends its own data to the PC.
+As mentioned, stations with four scintillator detectors exist, in those cases two \hisparc electronics units are interconnected via UTP cables to provide readout and triggering for four scintillator detectors. When connected the two boxes still work semi-independently, but exchange channel threshold and timing information. Only one of the two (the Master) contains a \gps module, providing it with a very accurate pulse per second (\pps). The \pps is a slower clock than the \SI{200}{\mega\hertz} clock, but it is very accurate. This \pps is used to accurately mark the start of seconds for the fast clock. This \pps is also passed to the Slave unit to synchronise the two clocks. The Master provides the Slave with the current time and a synchronisation pulse. By exchanging threshold information the trigger logic in both the Master and Slave have access to all four channels. Triggers based on four scintillator detectors can then be created. Each unit sends its own data to the PC.
 
 
 \section{Station}
 
-\subsection{Efficient triggering}
+\subsection{Efficiency of triggering}
 
 % Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
 For two scintillator detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}} = \SI{2.5}{\ns}$ the number of possible (physically relevant) time differences between the two scintillator detectors detecting the same shower front can be calculated by
@@ -432,7 +476,7 @@ Assuming cosmic rays arrive from all direction isotropically then the distributi
 \begin{figure}
     \centering
     \includegraphics{plots/station/detector_time_difference_distribution}
-    \caption{This shows the distribtuion of arrival time differences between the two scintillator for triggered events. A days worth of data is used. The peak around \SI{0}{\ns} are from strongly correlated particles, most events with time differences larger than \SI{100}{\ns} are for random coincidences.}
+    \caption{This shows the distribution of arrival time differences between the two scintillator for triggered events. A days worth of data is used. The peak around \SI{0}{\ns} are from strongly correlated particles, most events with time differences larger than \SI{100}{\ns} are for random coincidences.}
     \label{fig:detector_time_difference_distribution}
 \end{figure}
 
@@ -463,7 +507,7 @@ The offset between Master and Slave scintillator detectors may be caused by dela
 \begin{figure}
     \centering
     \includegraphics{plots/station/time_delta_501}
-    \caption{Timestamp difference distribution between the Master and Slave, trigging on the same events but making their own timestamps.}
+    \caption{Timestamp difference distribution between the Master and Slave, trigging on the same events but making their own timestamps. The mean offset is \SI{-2.0}{\ns} and the width of the distribution is \SI{2.0}{\ns}.}
     \label{fig:time_delta_501}
 \end{figure}
 
@@ -498,6 +542,9 @@ Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1
 
 The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. A 4-detector \hisparc station was placed between the \kascade detectors and triggered (using an external trigger) when the surrounding \kascade detectors detected an event. The \kascade reconstruction of the shower which triggered the \hisparc station were made available. By reconstructing the \hisparc data and comparing this to the \kascade reconstruction the performance of a single station is tested.
 
+
+\subsubsection{Direction reconstruction accuracy}
+
 The reconstruction of the shower direction has shown to be accurately reconstructable. The results reported in \cite{fokkema2012hisparc} are shown in \cref{fig:angle_kascade_core_distance}. Depending on the core distance of the shower and the overall particle density. The uncertainty is lower for showers with the core close to the station, quickly increasing with distance. If only large showers were selected, higher particle density, than the uncertainty remains lower at larger core distances.
 
 \begin{figure}
@@ -508,19 +555,32 @@ The reconstruction of the shower direction has shown to be accurately reconstruc
     \label{fig:angle_kascade_core_distance}
 \end{figure}
 
-% Shower core/energy determination impractical with single station.
-Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low. In \cref{fig:hisparc_v_kascade_average} the by \kascade determined particle density at the station is compared to the actual measured signal. \kascade has many detectors to accurately measure the shower front, it then fits an \ldf to this and calculates the expected particle densities at each fo the \hisparc scintillator detectors. No error is given for the \kascade determined particle density, so it is assumed to be correct. However, the \ldf predicts a smooth radially symmetric density distribution, while actual showers may have local minima and maxima. As described before the number of actually detected particles given a particle density is given by the Poisson distribution. The error on the measured particle density is indicated in the plot (green). Also the error due to the scintillator transmission efficiency and \pmt response is shown (red), and finally the error caused by the non-linearity of the \pmt is indicated (blue). The uncertainty is large at low particle densities due to the scintillator detector and Poisson effects. At high particle densities the non-linearity of the \pmt is the main source of uncertainty.
 
-The scintillator detector error is estimated by a Gaussian distribution with a width of $\sigma = \sqrt{\rho} 0.68$, the error increases at higher densities. The error due to the non-linearity is estimated by $\sigma_{V_{\mathrm{out}}} = \sigma_{V_{\mathrm{in}}} \frac{\mathrm{d}V_{\mathrm{out}}}{\mathrm{d}V_{\mathrm{in}}}$.
+\subsubsection{Density reconstruction accuracy}
+
+The \hisparc scintillator detectors detect particles, and via the pulse integral an estimation can be made for the number of detected particles. The desired value is the actual particle density of the shower front at the location of the detector. However, there is no perfect answer, different particle densities can result in the same number of detected particles. Using Bayes' Theorem the probability that the actual density is $\lambda$ given a measurement $x$ is given by
+%
+\begin{equation}
+    P(\lambda|x) = \alpha_0 P(x|\lambda) P(\lambda)
+\end{equation}
+%
+where $P(x|\lambda)$ is the Poisson distribution given in \ref{eq:poisson}. $P(\lambda)$ is the Bayesian prior function, which is the \emph{a priori} assumed distribution of possible values for $\lambda$, and $\alpha_0$ is a normalization constant given by $\int_0^\infty P(x|\lambda) P(\lambda) \ud \lambda$. \cite{vulpen2011poisson}. For $P(\lambda)$ the distribution of values is taken as the distribution of \kascade prediction data.
+
+In \cref{fig:hisparc_kascade_station_mpv} the by \kascade determined particle density at the station is compared to the measured signal. \kascade experiment has many detectors to accurately measure the shower front, it then fits an \ldf to this and calculates the expected particle densities at each fo the \hisparc scintillator detectors. No error is given for the \kascade determined particle density, so it is assumed to be correct. However, the \ldf inherently predicts a smooth radially symmetric density distribution, while actual showers have local minima and maxima. The uncertainty is large at low particle densities due to the scintillator detector signal transmission efficiency and Poisson effects. At high particle densities the non-linearity of the \pmt is the main source of uncertainty.
+
+The scintillator detector error is estimated by a Gaussian distribution with a width of $\sigma = \sqrt{\rho} 0.68$, the error increases at higher densities.
+%The error due to the non-linearity is estimated by $\sigma_{V_{\mathrm{out}}} = \sigma_{V_{\mathrm{in}}} \frac{\mathrm{d}V_{\mathrm{out}}}{\mathrm{d}V_{\mathrm{in}}}$.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/station/hisparc_v_kascade_average}
+                    {plots/station/hisparc_kascade_station_mpv}
     \caption{Test station at KASCADE was used to verify the particle density measurement of the scintillator detectors. Here the reconstructed station average particle density is compared to the KASCADE predicted particle density. The non-linearity of the \pmts cause an underestimation of the \hisparc particle density (red, solid), compressing the value range at higher signal strength, the Poisson errors are also compressed, as can be seen in the predicted error (green, dashed). The errors due to scintillator detector effects (red, dashed) and \pmt saturation (blue, dashed) are also indicated.}
-    \label{hisparc_v_kascade_average}
+    \label{hisparc_kascade_station_mpv}
 \end{figure}
 
+% Shower core/energy determination impractical with single station.
+Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low.
 
 \section{Weather station}
 
@@ -554,4 +614,4 @@ The power supplies provided with the \hisparc electronics by the manufacturer we
 
 On some occasions power interruptions can cause down time for a station.  There are cases where supplies were disconnected by cleaning crews or students that wanted to use the power socket for their own devices. Some schools disable their power grid during vacation time, in order to save power. Usually the station resumes operation after the vacation when the power is restored.
 
-Despite these possible problems most detectors perform perfectly for many years, and problems can be addressed easily, as was the goal. One example of a perfectly performing station is station 13 at Hervormd Lyceum West in Amsterdam. This station has been working since March 2005 with minimal interruptions. [what happened 13 august 2015?]
+Despite these possible problems most detectors perform perfectly for many years, and problems can be addressed easily, as was the goal. One example of a perfectly performing station is station 13 at Hervormd Lyceum West in Amsterdam. This station has been working since March 2005 with minimal interruptions, it has currently detected \num{e8} events.
