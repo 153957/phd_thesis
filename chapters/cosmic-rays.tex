@@ -352,7 +352,7 @@ The particle density at the core of the shower front is highest and then quickly
     \frac{r}{R_0}\right)^{s - 4.5},
 \end{equation}
 %
-where $\rho(r)$ is the particle density at a given core distance, $N_e$ the number of electrons at ground level, $R_0$ the Molière radius, $s$ the shower age parameter, and $c(s)$ given by
+where $\rho(r)$ is the electron density at a given core distance, $N_e$ the number of electrons at ground level, $R_0$ the Molière radius, $s$ the shower age parameter, and $c(s)$ given by
 %
 \begin{equation}
     c(s) = \frac{\Gamma(4.5 - s)}{2\pi R_0^2\, \Gamma(s)\,\Gamma(4.5 - 2s)}.
@@ -365,7 +365,7 @@ The NKG was derived analytically for showers initiated by an \Pelectron or \Ppho
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/ldf}
     \caption{Lateral density distribution]
-The particle density as a function of core distance for a shower of $E = \SI{e16}{\eV}$. The contribution from te different components is shown.}
+The particle density as a function of core distance for a shower of $E = \SI{e16}{\eV}$. The contribution from the different components is shown.}
     \label{fig:ldf}
 \end{figure}
 
@@ -488,6 +488,7 @@ In \cref{sec:other_observables} methods other than particles detectors for the o
 The arrival time of particles and number of particles in a detector can be used to reconstruct the shower. The accuracy with which this can to be measured depend on the properties of the shower and detectors. For increasing distance between detectors a lower arrival time accuracy is required to achieve the same direction reconstruction accuracy. With increasing core distance the particle density decreases, while the rise time of the shower front increases. This makes it more likely that the few particles that are detected are further delayed from the causal front. This increases the uncertainty in direction reconstruction.
 
 \subsection{Detection probability}
+\label{ssec:detection_probability}
 
 %  - Accurate particle count is needed for energy/core (using lateral density).
 Important to consider is the likelihood of actually detecting a shower. For a given charged particle density $\rho$ and a detector with area $A$ the probability of detecting exactly $k$ particles is given by the Poisson distribution. Here $\lambda$ is the expected number of particles, i.e. $\lambda = \rho A$ and $P_k$ the probability.

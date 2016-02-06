@@ -1,19 +1,87 @@
 \chapter{\hisparc network}
 \label{ch:cluster}
 
-The data from multiple \hisparc stations can be combined to perform data analysis with more detection points separated by larger distances. In order to combine the data the exact detection time of individually (per station) detected showers must be known. The \gps module of each station is used to acquire accurate absolute timestamps. The accuracy of the \gps is examined to determine the error it introduces when cominbing data from multiple stations. Not only the timing error, but also the position error is examined.
+% How the network started, when stations were built.
+In 2004 \hisparc started data collection. Initially with several stations in Amsterdam, later expanding to other regions. Presently there are over \num{70} \hisparc stations actively collecting data. The data from multiple \hisparc stations can be combined to perform shower reconstruction with more detection points separated by larger distances. In order to combine the data the exact detection time of individually (per station) detected showers must be known. The \gps module of each station is used to determine its location and acquire accurate absolute timestamps. The accuracy of the \gps is examined to determine the introduced error when combining data from multiple stations. Not only the timing error, but also the position error is examined.
+
+
+\section{Data taking}
+
+
+\subsection{Station locations}
+
+% Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
+In \cref{fig:network} the locations of all \hisparc stations is shown. Most stations are clustered in or around large cities. The locations are in most cases limited to the locations of high schools and universities. Universities provide support for the high schools in their region, they guide students in building the detectors and provide assistance when needed. There are \num{70} Dutch high schools participating in \hisparc. This is more than \SI{10}{\percent} of the total number of high schools in the Netherlands, which is currently about \num{650} \cite{duo2016hoofd}.
+
+
+\subsubsection{International}
+
+Locations of \hisparc stations are not limited to the Netherlands. Two other countries also successfully operate multiple detection stations.
+
+Since 2007 there has been a \hisparc station in Denmark. There are currently 3 operational stations at the Aarhus University. In the United Kingdom a new cluster was formed around Bristol in March 2012. Since then more than 10 schools around Bristol have created detection stations and joined the network. Even more schools have plans to join. In 2014 a second cluster was started in the United Kingdom around Birmingham.
+
+In Germany a station (70001) was placed inside the \kascade experiment in Karlsruhe, it operated there from 2008 up to and including 2011. This was done to calibrate and test the reconstruction accuracy of a single \hisparc station, as reported in [ref previous chap]. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for other experiments, including the \hisparc detection station. When the \kascade detectors detected a shower the \hisparc station was triggered. More than \num{9e7} triggers occurred [2010-2011 in datastore, rest in /databases/kascade] in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 at the Science Park.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cluster/network}
+    \caption{Locations of \hisparc stations in Netherlands, United Kingdom, and Denmark. Stations which also include a weather station are indicated with red circles.}
+    \label{fig:network}
+\end{figure}
+
+
+\subsection{Uptime}
+
+Unfortunately not all stations continue to operate properly. \cref{fig:active_stations} shows the cumulative number of stations that have had at least a days worth of events (green), additionally the number of active stations per day (black) is also shown. Over the last \SI{12}{\year} the number of detection stations with data has grown at an average rate of one per month. Though the number of active station also increases it lags behind the total number of stations. This is partially explained by stations being moved to a new location under a new name. In which case both stations count toward the total number of stations, but only one active station. In some cases the contact person at a high station retired without arranging followup, leaving the station without proper maintenance. Other problems that have been known to cause stations to be down are Windows Updates, internet connectivity, bad configuration, power supply failures, light leaks in the detectors, or some other issues \cite{delaat2013maintenance}. In many cases (software or configuration related problems) remote control of the station can be used to make station operational again.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cluster/active_stations}
+    \caption{Cumulative number of stations with at least an hour of good data and the number of active stations per day.}
+    \label{fig:active_stations}
+\end{figure}
+
+% Each station submits data/triggered events to central datastore
+When a station records data is uploads it to the central datastore at \nikhef. Here further offline analysis is performed and the data is made available for download. The automatic data analysis that is performed is described in [a later chapter]. The data is sent from the station as a HTTP POST request to the datastore server. This server checks the station number and password for verification and also if all data is correctly received using a checksum. If this succeeds the data is stored in the raw datastore. The datastore stores the detected events, comparator data, configuration settings, error messages, single rates, and \gps signal information. Additionally a station may upload weather data, for which the data, configuration and errors are stored. In \cref{fig:luminosity_network} the cumulative number of detected events (green) and verified good events (black) are shown.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cluster/luminosity_network}
+    \caption{Cumulative number of events by all stations, the lower line contains only events when the stations were working properly.}
+    \label{fig:luminosity_network}
+\end{figure}
+
+% Use offline analysis to find station events detecting the same shower.
+  % - This requires good absolute timing at the stations.
+  % - Use GPS at stations for both positioning of the stations (\SI{~1}{\meter}) and absolute timing (\SI{~5}{\ns}).
+An `offline trigger' is used to determine when stations were probably detecting the same shower. This is similar to the station trigger. In this case the data is searched for (at least two) stations that simultaneously (i.e. within a certain time window) detected events. These events that are likely due to the same shower are called coincidences. Coincidences between stations are expect to be caused by either the detection of the same shower, the detection of separate but correlated showers (due to the GZ-effect), or the detection of two unrelated showers.
+
+The absolute timing of events detected by stations is important when looking for coincidences. It also influences the resolution with which coincidences can be reconstructed, because the arrival times in the detectors of the stations is to be compared.
+
+Important for shower reconstruction, coincidence rate, and possibilities for detection the GZ-effect are the distances between pairs of stations. In \cref{fig:network_station_distances} the distribution of distances between all possible pairs of stations are shown. The points beyond \SI{250}{\kilo\meter} are due to combinations between stations in different countries. And the pair separated by only \SI{2}{\meter} is the combination of station 501 and 510. These were intentionally interlaced to compare the results from two stations which are virtually at the same location. The results from comparing these stations is shown in [ref to later chapter about station performance or reconstructions].
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/cluster/network_station_distances}
+    \caption{Distribution of distances between all possible pairs of stations in the entire \hisparc network.}
+    \label{fig:network_station_distances}
+\end{figure}
 
 
 \section{Positions}
 
-Before a \gps reciever can accurately determine the current time it needs to know where it is. Since the \gps antenna is stationary, its location can be determined very accurately once and then kept fixed. The \gps then only needs to worry about the time. Since it knows its position and the orbits of each \gps satellite it could determine the current time with the signal of only one \gps satellite. However, when more are used a more accurate result is achieved.
+Before a \gps receiver can accurately determine the current time it needs to know where it is. Since the \gps antenna is stationary, its location can be determined very accurately once and then kept fixed. The \gps then only needs to worry about the time. Since it knows its position and the orbits of each \gps satellite it could determine the current time with the signal of only one \gps satellite. However, when more are used a more accurate result is achieved.
 
 
 \subsection{\gps self-survey}
 
 To get a fix on the position of a stationary \gps antenna the \gps can perform a self-survey. During the self-survey the \gps will continuously determine its location, at the end of the survey the center of the clouds of positions will be taken as the correct location. \gps satellites orbit the Earth every \SI{12}{\hour}, taking in account the rotation of the Earth each \gps satellite will be above the same location of the Earth every \SI{24}{\hour}. By using a self-survey of \SI{86400}{\second} (i.e. \SI{24}{\hour}) a good average is determined, which should minimize the position error. This self-survey needs to be performed only once, if the \gps antenna remains fixed in its place.
 
-The accuracy of the position after a self-survey is horizontally better than \SI{0.5}{\meter}, the altitude is slightly less accurate, but still within \SI{1}{\meter}. Two \gps antennae separated by \SI{2}{\meter} are used by station 501 and station 510. Each station performed a self-survey with its own \gps and one with the \gps of the other station to test the accuracy. Horizontal position differences of \SI{1.}{\centi\meter} were measured using the same \gps antennae. However, altitude differences of \SI{2}{\meter} were seen. The size of the errors is partially due to the high latitude (\SI{>50}{\degree}) of the Netherlands. \gps satellite orbits have an inclination of \SI{55}{\degree}. Rarely will a satellite be see straight overhead or towards North in the Netherlands. Most of observed satellites will be on the Southern part of the sky. For locations above \SI{55}{\degree} satellites will only be seen towards the Southern sky. Normally elevation masks are used to exclude \gps satellites close to the horizon. This is done because signals from those satellites pass through a larger amount atmosphere, increasing the chances of distortions. However, for locations at high latitudes they need to be included to increase the accuracy.
+The accuracy of the position after a self-survey is horizontally better than \SI{0.5}{\meter}, the altitude is slightly less accurate, but still within \SI{1}{\meter}. Two \gps antennae separated by \SI{2}{\meter} are used by station 501 and station 510. Each station performed a self-survey with its own \gps and one with the \gps of the other station to test the accuracy. Horizontal position differences of \SI{1.}{\centi\meter} were measured using the same \gps antennae. However, altitude differences of \SI{2}{\meter} were seen. The size of the errors is partially due to the high latitude (\SI{>50}{\degree}) of the Netherlands. \gps satellite orbits have an inclination of \SI{55}{\degree}. Rarely will a satellite be seen straight overhead or towards North in the Netherlands. Most of observed satellites will be on the Southern part of the sky. For locations above \SI{55}{\degree} satellites will only be seen towards the Southern sky. Normally elevation masks are used to exclude \gps satellites close to the horizon. This is done because signals from those satellites pass through a larger amount atmosphere, increasing the chances of distortions. However, for locations at high latitudes they need to be included to increase the accuracy.
 
 %\begin{verbatim}
 %GPS s510
@@ -35,11 +103,11 @@ When a \hisparc station is first deployed the \gps will determine its location f
 \label{sub:gps_timestamps}
 
 % Explain what goes into creating an extended timestamp, from trigger and PPS to ext_timestamp.
-Every second the \gps receiver sends a Pulse Per Second (\pps) signal to the \hisparc electronics to indicate the start of a second \cite{verkooijen2008firmware}. The \hisparc box uses a \SI{200}{\mega\hertz} clock to determine the time within this second. The clock is synchronized to the \pps. However, crystal in this internal clock does not work at exactly \SI{200}{\mega\hertz}. To correctly determine the time within a second a clock tick counter is read at the moment of a trigger (\ctd) and when each \pps arrives (\ctp). The counter is reset at each \pps. With these counts the fraction of the second at which the trigger occurred can be determined. For increased accuracy the two \adcs are used, one of which reads the signal on the negative side of the clock pulse. If the `negative' \adc caused a trigger the final timestamp will be offset by \SI{2.5}{\ns}. Effectively making it a \SI{400}{\mega\hertz} clock with \SI{2.5}{\ns} sampling.
+Every second the \gps receiver sends a Pulse Per Second (\pps) signal to the \hisparc electronics to indicate the start of a second \cite{verkooijen2008firmware}. The \hisparc box uses a \SI{200}{\mega\hertz} clock to determine the time within this second. The clock is synchronised to the \pps. However, crystal in this internal clock does not work at exactly \SI{200}{\mega\hertz}. To correctly determine the time within a second a clock tick counter is read at the moment of a trigger (\ctd) and when each \pps arrives (\ctp). The counter is reset at each \pps. With these counts the fraction of the second at which the trigger occurred can be determined. For increased accuracy the two \adcs are used, one of which reads the signal on the negative side of the clock pulse. If the `negative' \adc caused a trigger the final timestamp will be offset by \SI{2.5}{\ns}. Effectively making it a \SI{400}{\mega\hertz} clock with \SI{2.5}{\ns} sampling.
 
 % What are the errors on determining the ext_timestamp and how are some corrected for/minimized.
-However, the fraction between \ctd and \ctp is not yet very accurate relative to the absolute \gps time. The \pps signals have slight time errors relative to the actual \gps seconds, caused by how the \pps is produced. The \gps module has an internal high-precision clock with a frequency of  \SI{12.504}{\mega\hertz}. The \pps is synchronized to the closest tick of this clock, of which both the positive and negative sides are used. This introduces an error of up to \SI{\pm 20}{\ns}. The size of this error is reported by the \gps module to the electronics after the \pps. This error is present at the start of each second and therefore both the error at start ($E_{\mathrm{Quan1}}$) and end ($E_{\mathrm{Quan1}}$) of each second need to be corrected. The total time between two \pps (i.e. the \ctp) is then $10^9 - E_{\mathrm{Quan1}} + E_{\mathrm{Quan2}} \si{\ns}$. Finally a synchronization error between the \pps and the \hisparc clock exists, the \SI{200}{\mega\hertz} clock is synchronized to the \pps. A synchonization error bit ($E_{\mathrm{Sync}}$) indicates if the time is shifted by \SI{2.5}{\ns} because the \pps arrived on the negative edge of the \SI{200}{\mega\hertz} clock.
-Determination of the subsecond part of the timestamp is then done with the following equation
+However, the fraction between \ctd and \ctp is not yet very accurate relative to the absolute \gps time. The \pps signals have slight time errors relative to the actual \gps seconds, caused by how the \pps is produced. The \gps module has an internal high-precision clock with a frequency of  \SI{12.504}{\mega\hertz}. The \pps is synchronised to the closest tick of this clock, of which both the positive and negative sides are used. This introduces an error of up to \SI{\pm 20}{\ns}. The size of this error is reported by the \gps module to the electronics after the \pps. This error is present at the start of each second and therefore both the error at start ($E_{\mathrm{Quan1}}$) and end ($E_{\mathrm{Quan1}}$) of each second need to be corrected. The total time between two \pps (i.e. the \ctp) is then $10^9 - E_{\mathrm{Quan1}} + E_{\mathrm{Quan2}} \si{\ns}$. Finally a synchronisation error between the \pps and the \hisparc clock exists, the \SI{200}{\mega\hertz} clock is synchronised to the \pps. A synchronisation error bit ($E_{\mathrm{Sync}}$) indicates if the time is shifted by \SI{2.5}{\ns} because the \pps arrived on the negative edge of the \SI{200}{\mega\hertz} clock.
+Determination of the sub-second part of the timestamp is then done with the following equation
 %
 \begin{equation}
 \label{eq:timestamp}
@@ -47,11 +115,13 @@ Determination of the subsecond part of the timestamp is then done with the follo
         E_{\mathrm{Sync}} + E_{\mathrm{Quan1}} + \left(\frac{\ctd}{\ctp}\right)
         \left(10^9 - E_{\mathrm{Quan1}} + E_{\mathrm{Quan2}}\right) \ .
 \end{equation}
+%
+Note that in the \hisparc software the timestamp is increased by \SI{1}{\second}, the reason for this is not entirely clear. But for the purpose of keeping the used time system constant this one second offset is maintained. [Check if we indeed have 1 s extra offset to lightning]
 
-Events are sent from the \hisparc electronics to the PC as soon as they are readout, because of the limited buffer space in the electronics. The events contain the trace data, timestamp (in seconds) of the `current second', and the \ctd. The events do not contain the \ctp of the second in which they occured. These are send separately in one second messages (\osm). The \osm is send at the start of each second. It contains the timestamp and synchronization error of the second, and the \ctp and quantization error of the previous second. The subsecond part of the timestamps is therefore determined on the PC where the data from the event and multiple \osm can be combined. The \osm for the start of the second of the event is required for the synchronization error. The \osm for the second after the event is required for the \ctp value and the first quantization error. The \osm for the next second is required required for the second quantization error. Note the Resolution T GPS Embedded Board User Guide incorrectly states the quantization error value is in seconds, it is in fact in nanoseconds.
+Events are sent from the \hisparc electronics to the PC as soon as they are readout, because of the limited buffer space in the electronics. The events contain the trace data, timestamp (in seconds) of the `current second', and the \ctd. The events do not contain the \ctp of the second in which they occurred. These are send separately in one second messages (\osm). The \osm is send at the start of each second. It contains the timestamp and synchronisation error of the second, and the \ctp and quantization error of the previous second. The subsecond part of the timestamps is therefore determined on the PC where the data from the event and multiple \osm can be combined. The \osm for the start of the second of the event is required for the synchronisation error. The \osm for the second after the event is required for the \ctp value and the first quantization error. The \osm for the next second is required required for the second quantization error. Note the Resolution T GPS Embedded Board User Guide incorrectly states the quantization error value is in seconds, it is in fact in nanoseconds.
 
 % How it works for master/slave
-The same procedure is performed for event from the Master and Slave electronics, each sends their own \osm and event messages to the PC. The Master passes the \pps is receives from the \gps on to the Slave electronics. This synchronizes their clocks, but also introduces another synchronization error. The timestamps determined for the Master and Slave event are used to find which events belong together. After this they are simply combined, discarding the timing information from the Slave events. Due to the clock synchronization errors between the Master and Slave errors of \SI{2.5}{\ns} between them needs to be expected. This explains the time differences reported in \cref{sec:masterslavetiming}.
+The same procedure is performed for event from the Master and Slave electronics, each sends their own \osm and event messages to the PC. The Master passes the \pps is receives from the \gps on to the Slave electronics. This synchronises their clocks, but also introduces another synchronisation error. The timestamps determined for the Master and Slave event are used to find which events belong together. After this they are simply combined, discarding the timing information from the Slave events. Due to the clock synchronisation errors between the Master and Slave errors of \SI{2.5}{\ns} between them needs to be expected. This explains the time differences reported in \cref{sec:masterslavetiming}.
 
 
 \subsection{\gps timing accuracy}
@@ -111,80 +181,7 @@ In several tests a bad position was entered in the \gps module, claiming the \gp
 \end{figure}
 
 
-\section{Data taking}
-
-% How the network started, when stations were built.
-In 2004 \hisparc started data collection. Initially with several stations in Amsterdam, later expanding to other regions. Over the last \SI{12}{\year} the number of stations with data has grown at an average rate of one per month.
-
-
-\subsection{Station locations}
-
-% Current station locations, explain why the stations are in those locations. Due to those being the locations of high schools..
-In \cref{fig:network} the locations of all \hisparc stations is shown. Most stations are clustered in or around the slightly larger cities. The locations are in most cases limited to the locations of high schools and universities. Universities provide support for the high schools in their region, they guide students in building the detectors and provide assistance when needed. There are currently about \num{650} high schools in the Netherlands  \cite{duo2016hoofd}, some of which have multiple locations, resulting in a total of about \num{1500} high-school locations \cite{duo2016all}. Currently there are \num{80} [get actual number] Dutch high schools participating in \hisparc.
-
-
-\subsubsection{International}
-
-Locations of \hisparc stations are not limited to the Netherlands. Two other countries also successfully operate multiple detection stations.
-
-Since 2007 there has been a \hisparc station in Denmark. There are currently 3 operational stations at the Aarhus University. These stations are managed by Uffe Amelung Fredens. Fredens also makes student materials for Danish high-school students.
-
-In the United Kingdom a new cluster in Bristol was started in March 2012. This was initiated by Dr. Jaap Velthuis, who is the cluster coordinator for the Bristol cluster. Since then more than 10 schools around Bristol have created detectors and joined the network. Even more schools have plans to join. In 2014 a second cluster was started in the United Kingdom around Birmingham. The Birmingham cluster is coordinated by Cristina Lazzeroni.
-
-In Germany a station (70001) was placed inside the \kascade experiment in Karlsruhe, it operated there from 2008 up to and including 2011. This was done to calibrate and test the direction reconstruction accuracy of a single \hisparc station. Although the \kascade-GRANDE experiment officially shut down on March 30, 2009, it was kept active until November, 26th 2011 as a test facility for other experiments, including the \hisparc detection station. When the \kascade detectors detected a shower the \hisparc station was triggered. More than \num{9e7} triggers occurred [2010-2011 in datastore, rest in /databases/kascade] in this period. The detectors used for the \kascade station have since been repurposed and now form station 508 at the Science Park.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/cluster/network}
-    \caption{Locations of \hisparc stations in Netherlands, United Kingdom, and Denmark. Stations which also include a weather station are indicated with red circles.}
-    \label{fig:network}
-\end{figure}
-
-
-\subsection{Uptime}
-
-Unfortunately not all stations continue to operate properly. \cref{fig:active_stations} shows the cumulative number of stations that have had at least a days worth of events (green), additionally the number of active stations per day (black) is also shown. Though the number of active station also increases it lags behind the total number of stations. This is partially explained by stations being moved to a new location under a new name. In which case both stations count toward the total number of stations, but only one active station. In some cases the contact person at a high station retired without arranging followup, leaving the station without proper maintenance. Other problems that have been known to cause stations to be down are Windows Updates, internet connectivity, bad configuration, power supply failures, light leaks in the detectors, or some other issues [cite maintenance docs]. In many cases (software or configuration related problems) remote control of the station can be used to make station operational again.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/cluster/active_stations}
-    \caption{Cumulative number of stations with at least an hour of good data and the number of active stations per day.}
-    \label{fig:active_stations}
-\end{figure}
-
-
-% Each station submits data/triggered events to central datastore
-When a station records data is uploads it to the central datastore at \nikhef. Here further offline analysis is performed and the data is made available for download. The automatic data analysis that is performed is described in [a later chapter]. The data is sent from the station as a HTTP POST request to the datastore server. This server checks the station number and password for verification and also if all data is correctly recieved using a checksum. If this succeeds the data is stored in the raw datastore. The datastore stores the detected events, comparator data, configuration settings, error messages, single rates, and \gps signal information. Additionally a station may upload weather data, for which the data, configuration and errors are stored. In \cref{fig:luminosity_network} the cumulative number of detected events (green) and verified good events (black) are shown.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/cluster/luminosity_network}
-    \caption{Cumulative number of events by all stations, the lower line contains only events when the stations were working properly.}
-    \label{fig:luminosity_network}
-\end{figure}
-
-% Use offline analysis to find station events detecting the same shower.
-  % - This requires good absolute timing at the stations.
-  % - Use GPS at stations for both positioning of the stations (\SI{~1}{\meter}) and absolute timing (\SI{~5}{\ns}).
-An `offline trigger' is used to determine when stations were probably detecting the same shower. This is similar to the station trigger. In this case the data is searched for (at least two) stations that simultaneously (i.e. within a certain time window) detected events. These events that are likely due to the same shower are called coincidences. Coincidences between stations are expect to be caused by either the detection of the same shower, the detection of separate but correlated showers (due to the GZ-effect), or the detection of two unrelated showers.
-
-The absolute timing of events detected by stations is important when looking for coincidences. It also influences the resolution with which coincidences can be reconstructed, because the arrival times in the detectors of the stations is to be compared.
-
-Important for shower reconstruction, coincidence rate, and possibilities for detection the GZ-effect are the distances between pairs of stations. In \cref{fig:network_station_distances} the distribution of distances between all possible pairs of stations are shown. The points beyond \SI{250}{\kilo\meter} are due to combinations between stations in different countries. And the pair separated by only \SI{2}{\meter} is the combination of station 501 and 510. These were intentionally interlaced to compare the results from two stations which are virtually at the same location. The results from comparing these stations is shown in [ref to later chapter about station performance or reconstructions].
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]
-                    {plots/cluster/network_station_distances}
-    \caption{Distribution of distances between all possible pairs of stations in the entire \hisparc network.}
-    \label{fig:network_station_distances}
-\end{figure}
-
-
-\subsection{Coincidence rate}
+\section{Detection by multiple stations}
 
 % Stations closer than \SI{2e3}{\meter} are likely to at some point detect the same shower.
 Station pairs separated by up to \SI{2e3}{\meter} are likely to detect the same shower at some point in time. At distances of \SI{2e3}{\meter} the rate of coincidences is so low that it approaches the rate of random coincidences due to random background particles. Real events may still be distinguishable from background if the event can be reconstructed very well. Large showers which can be detected efficiently by two stations both \SI{e3}{\meter} from the shower core have energies of at least \SI{e18}{\eV}. Such showers are rare, from \cref{fig:spectrum} we can estimate a rate of approximately \SI{1}{\per\kilo\meter\squared\per\day}. The sensitivity to those showers is not equal over that \si{\kilo\meter\squared} area, so a lower rate is expected.
@@ -212,7 +209,7 @@ The offset can be determined from real data. For any combination of two stations
 
 \subsection{Station timing offsets}
 
-The \hisparc stations at the Science Park are relatively close.. bla bla.
+The \hisparc stations at the Amsterdam Science Park are relatively close. This means that each pair of stations will have at least (for the two stations furthest appart) 25 coincidences per day. By collecting coincidences from a slightly longer period enough data is collected to accurately determine the time offset between the stations
 
 
 In \cref{fig:station_offsets_501_502}
@@ -239,4 +236,5 @@ In \cref{fig:station_offsets_501_502}
              stations.}
     \label{fig:station_offsets_501_510}
 \end{figure}
+
 

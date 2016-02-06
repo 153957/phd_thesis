@@ -73,7 +73,7 @@ The average energy deposited by the particle going through the scintillator is d
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/bethe-bloch}
-    \caption{Expected ionization energy loss in the scintillator for electrons and muons as a function of their energy. Calculated with the Bethe-Bloch formula for the used scintillation material. [use eV[/c] horizontal scale (two scales?) or keep beta gamma. and add other losses?]}
+    \caption{Expected ionisation energy loss in the scintillator for electrons and muons as a function of their energy. Calculated with the Bethe-Bloch formula for the used scintillation material. [use eV[/c] horizontal scale (two scales?) or keep beta gamma. and add other losses?]}
     \label{fig:bethe-bloch}
 \end{figure}
 
@@ -157,7 +157,7 @@ Both the scintillator and \pmt can handle multiple particles simultaneously and 
 \label{sub:pmt_linearity}
 
 % Why the PMTs are begin tested
-An EAS may cause many particles to pass through a scintillator detector simultaneously. The response of the \pmt to different signal stengths needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the readout \adcs, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce such large signals. It appears that the output is compressed at high values. Calibration tests have been performed on several \pmts to test their output given a known input signal.
+An EAS may cause many particles to pass through a scintillator detector simultaneously. The response of the \pmt to different signal strengths needs to be investigated to determine the accuracy with which the number of particles can be reconstructed. Ideally the output of the \pmt grows linearly with the number of photons impacting its photocathode. Large signals from the \pmt, capable of saturating the readout \adcs, are expected to occur dozens of times a day. However, in the data we find that some \pmts never produce such large signals. It appears that the output is compressed at high values. Calibration tests have been performed on several \pmts to test their output given a known input signal.
 
 % LED test setup
 A setup has been created to test the linearity of \pmts using LED light flashes. A bundle of 24 optical fibers, each connected to a LED, are fed into a cap which directs the light at the photocathode of a \pmt. The LEDs can be triggered simultaneously to produce a short (\SI{20}{\ns}) pulse. This is similar to a pulse generator, but with light pulses. The intensity of light produced on the \pmt by a single fiber is comparable to one or two \mip in a scintillator detector. The \pmt pulse intensity typically fluctuates up to \SI{50}{\percent}. Taking the average over hundreds of pulses gives a very stable result.
@@ -179,7 +179,7 @@ An oscilloscope is used to readout the \pmt signal. This allows for easy averagi
 In \cref{fig:linearity_pmts} the results of two \pmt tests are shown. The \senstech \pmt starts to deviate from the straight line before the measured pulse height reaches \SI{1}{\volt}. With increased signal input it just barely reaches \SI{2}{\volt}. The \nikhef \pmt on the other hand is linear over the entire range that was measured. Larger input signals were not possible with the used setup, so it is unclear at what input the \nikhef \pmt will be unable to keep the output linear with the input.
 
 % Fitting the data
-The non-linear data can be fitted by an equation described in \cite{icecube2010pmt}. However, the parameters are very correlated and are not always able to accurately fit the data, this is especially the case for test data discussed later in [TODO: ref \kascade section]. A different phenomenological model has been devised, shown in \ref{eq:lin_circ_lin}. The model (on log-log axes) consists of two linear parts with different slopes ($a_1$ and $a_2$) and y-intercepts ($b_1$ and $b_2$), which are joined by a circle segment. For the first line the slope $a_1$ is fixed to 1 and the y-intercept $b_1$ to 0. The two linear components are tangent to the circle whose radius $r$ is also a free parameter. The final relation is described by
+The non-linear data can be fitted by an equation described in \cite{icecube2010pmt}. However, the parameters are very correlated and are not always able to accurately fit the data, this is especially the case for test data discussed later in \cref{sec:kascade_density}. A different phenomenological model has been devised, shown in \ref{eq:lin_circ_lin}. The model (on log-log axes) consists of two linear parts with different slopes ($a_1$ and $a_2$) and y-intercepts ($b_1$ and $b_2$), which are joined by a circle segment. For the first line the slope $a_1$ is fixed to 1 and the y-intercept $b_1$ to 0. The two linear components are tangent to the circle whose radius $r$ is also a free parameter. The final relation is described by
 %
 \begin{equation}
 \label{eq:lin_circ_lin}
@@ -278,7 +278,7 @@ For short periods temperature probes have been placed inside the skibox and atta
     \label{fig:temperature_timeline}
 \end{figure}
 
-A day of data is enough to accurately determine the average \mpv for that day. However, daily temperature fluctuation are large enough that when the days is broken into smaller pieces different values for the \mpv are found \cite{bartels2012mpv}. In \cref{fig:mpv_temperature} the reconstructed \mpv (for 4 hour intervals) is set against the \pmt temperature. The spread around the fitted line is partially caused by the temperature gradient in the periods for which the \mpv is determined. The correlation agrees reasonably with the specifications of the \pmt. The specification states the gain of the \pmt changes by \SI{0.5}{\percent\per\degreeCelsius}. It does not make clear wether the efficiency increases or decreases with changing temperature, nor at which temperature it is most efficient. From these measurements it seems the gain decreases with increasing temperature. The scintillator should be \SI{100}{\percent} effective upto \SI{20}{\degreeCelsius} above which it reduces with \SI{0.125}{\percent\per\degreeCelsius}. This is but a small contribution to the reduction of the \mpv. The found gradient of \SI{-0.81}{\adc\per\degreeCelsius} in the range \SIrange{200}{170}{\adc} is \SI{0.44}{\percent\per\degreeCelsius}, in close agreement with the specification. The same effect was found in \cite[Section 3.6]{lio2011}. However, in \cite[Section 3.5]{lio2010} experiments were performed that showed a positive correlation between temperature and the \mpv of a \pmt. Note that a different type of \pmt was used in those tests.
+A day of data is enough to accurately determine the average \mpv for that day. However, daily temperature fluctuation are large enough that when the days is broken into smaller pieces different values for the \mpv are found \cite{bartels2012mpv}. In \cref{fig:mpv_temperature} the reconstructed \mpv (for 4 hour intervals) is set against the \pmt temperature. The spread around the fitted line is partially caused by the temperature gradient in the periods for which the \mpv is determined. The correlation agrees reasonably with the specifications of the \pmt. The specification states the gain of the \pmt changes by \SI{0.5}{\percent\per\degreeCelsius}. It does not make clear wether the efficiency increases or decreases with changing temperature, nor at which temperature it is most efficient. From these measurements it seems the gain decreases with increasing temperature. The scintillator should be \SI{100}{\percent} effective up to \SI{20}{\degreeCelsius} above which it reduces with \SI{0.125}{\percent\per\degreeCelsius}. This is but a small contribution to the reduction of the \mpv. The found gradient of \SI{-0.81}{\adc\per\degreeCelsius} in the range \SIrange{200}{170}{\adc} is \SI{0.44}{\percent\per\degreeCelsius}, in close agreement with the specification. The same effect was found in \cite[Section 3.6]{lio2011}. However, in \cite[Section 3.5]{lio2010} experiments were performed that showed a positive correlation between temperature and the \mpv of a \pmt. Note that a different type of \pmt was used in those tests.
 
 \begin{figure}
     \centering
@@ -299,7 +299,7 @@ The \hisparc electronics incorporates \pmt readout and control, triggering logic
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/hisparciii_front_power_hit_trigger.png}
-    \caption{A powered \hisparc electronics with connected detectors. The orange LEDs next to the signal input activate when a signal in that channel is over the low thresholds. The center LED (white) indicates the occurance of a trigger.}
+    \caption{A powered \hisparc electronics with connected detectors. The orange LEDs next to the signal input activate when a signal in that channel is over the low thresholds. The center LED (white) indicates the occurrence of a trigger.}
     \label{fig:hisparciii_front}
 \end{figure}
 
@@ -379,7 +379,7 @@ For two scintillator detectors separated by a distance $d$ and sample rate $t_{\
 Here $\theta_{dt}$ is the set of possible angles of the shower axis relative to the line between the detectors. While placing detectors closer together increases the detection efficiency for low energy showers, it decreases the direction reconstruction accuracy.
 
 % An efficient trigger can be made for a certain (and higher) particle density.
-Using [ref $P_2$ previous chapter] we can determine the detector distance to efficiently (\SI{>50}{\percent}) detect showers as a function of primary energy. Assume the shower axis is directly between the detectors, since that is where the station will be able to most efficiently detect the shower. The following relation is plotted in \cref{fig:efficiency_distance_energy}, the transition from low efficiency to very efficient is fairly sharp.
+Using the equations in \cref{ssec:detection_probability} we can determine the detector distance to efficiently (\SI{>50}{\percent}) detect showers as a function of primary energy. Assume the shower axis is directly between the detectors, since that is where the station will be able to most efficiently detect the shower. The following relation is plotted in \cref{fig:efficiency_distance_energy}, the transition from low efficiency to very efficient is fairly sharp.
 %
 \begin{equation}
 \begin{split}
@@ -394,7 +394,7 @@ So by placing the scintillator detectors \SI{~10}{\meter} apart a \SI{e14.3}{\eV
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/efficiency_distance_energy}
-    \caption{Efficiency of detection for showers of various energies as function of the distance between detectors. From impossible (black) to \SI{100}{\percent} efficienct (white). [will probably replace 2d histogram by 'contour' lines]}
+    \caption{Efficiency of detection for showers of various energies as function of distance from the core to the two scintillator detectors. The lines indicate the probability of triggering. The lines indicate \SI{10}{\percent} (dotted), \SI{50}{\percent} (dashed), and \SI{90}{\percent} (solid) probabilities. Below the lines the probability is even lower, while above the top line the probability of detection approaches \SI{100}{\percent}.}
     \label{fig:efficiency_distance_energy}
 \end{figure}
 
@@ -480,7 +480,7 @@ Assuming cosmic rays arrive from all direction isotropically then the distributi
     \label{fig:detector_time_difference_distribution}
 \end{figure}
 
-The offsets between detectors in a station can be very stable over time. Changes to the station hardware and configuration can distrupt this. In \cref{fig:detector_offset_drift_month_501} the detector offsets for a 4-detector station are shown. The large jumps in offsets are explained by the change to \hisparciii electronics.
+The offsets between detectors in a station can be very stable over time. Changes to the station hardware and configuration can disrupt this. In \cref{fig:detector_offset_drift_month_501} the detector offsets for a 4-detector station are shown. The large jumps in offsets are explained by the change to \hisparciii electronics.
 
 \begin{figure}
     \centering
@@ -502,7 +502,7 @@ These detector offsets are automatically determined each day for each station. I
 \subsubsection{Master slave timing}
 \label{sec:masterslavetiming}
 
-The offset between Master and Slave scintillator detectors may be caused by delays in the exchange of threshold information. The Master and Slave separately determine if a trigger occured, determine the event timestamp, and  transmit it to the \daq software. In the \daq software the events from the Master and Slave are combined again (using the timestamp to find those that belong together) and the timestamp from the Master is used for the event. However, a slight timestamp difference may exist. In \cref{fig:time_delta_501} the distritbution of timestamp differences for \num{6624} events is shown. This timestamp difference could be used to partly compensate for time offsets between the Master and Slave scintillator detectors. However, simply fitting the overall time difference compensates for this offset and individual scintillator detector offsets. The timestamp difference could be used on an event to event basis to improve the time resolution. But this is found to hardly improve the arrival time accuracy (\SI{0.5}{\ns}). Moreover, timestamp difference data is unavailable available for practically all \hisparc data. This effect slightly increases the arrival time difference accuracy between Master and Slave scintillator detectors, the mean offset is compensated for.
+The offset between Master and Slave scintillator detectors may be caused by delays in the exchange of threshold information. The Master and Slave separately determine if a trigger occurred, determine the event timestamp, and  transmit it to the \daq software. In the \daq software the events from the Master and Slave are combined again (using the timestamp to find those that belong together) and the timestamp from the Master is used for the event. However, a slight timestamp difference may exist. In \cref{fig:time_delta_501} the distribution of timestamp differences for \num{6624} events is shown. This timestamp difference could be used to partly compensate for time offsets between the Master and Slave scintillator detectors. However, simply fitting the overall time difference compensates for this offset and individual scintillator detector offsets. The timestamp difference could be used on an event to event basis to improve the time resolution. But this is found to hardly improve the arrival time accuracy (\SI{0.5}{\ns}). Moreover, timestamp difference data is unavailable available for practically all \hisparc data. This effect slightly increases the arrival time difference accuracy between Master and Slave scintillator detectors, the mean offset is compensated for.
 
 \begin{figure}
     \centering
@@ -535,7 +535,7 @@ Here $r_i$ is the distance between detector 0 and detector $i$, $\Delta t_i$ is 
     \end{split}
 \end{equation}
 
-Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1 y_2$, and $v_z = x_1 y_2 - x_2 y_1$. The $x$ and $y$ coordinates are as defined by the ENU coordinate system described in [ref appendix coordinates], in this case using detector 0 as reference.
+Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1 y_2$, and $v_z = x_1 y_2 - x_2 y_1$. The $x$ and $y$ coordinates are as defined by the ENU coordinate system described in \cref{ch:coordinates}, in this case using detector 0 as reference.
 
 
 \subsection{Performance of a station}
@@ -557,16 +557,28 @@ The reconstruction of the shower direction has shown to be accurately reconstruc
 
 
 \subsubsection{Density reconstruction accuracy}
+\label{sec:kascade_density}
 
-The \hisparc scintillator detectors detect particles, and via the pulse integral an estimation can be made for the number of detected particles. The desired value is the actual particle density of the shower front at the location of the detector. However, there is no perfect answer, different particle densities can result in the same number of detected particles. Using Bayes' Theorem the probability that the actual density is $\lambda$ given a measurement $x$ is given by
+The \hisparc scintillator detectors detect particles, and via the pulse integral an estimation can be made for the number of detected particles. The desired value is the actual particle density on of the shower front at the location of the detector. However, there is no perfect answer, different particle densities can result in the same number of detected particles. Using Bayes' Theorem the probability that the actual particle density is $\lambda$ given a measurement $x$ is given by
 %
 \begin{equation}
-    P(\lambda|x) = \alpha_0 P(x|\lambda) P(\lambda)
+    \label{eq:bayes_poisson}
+    P(\lambda|x) = P(x|\lambda) P(\lambda) / \alpha_0
 \end{equation}
 %
-where $P(x|\lambda)$ is the Poisson distribution given in \ref{eq:poisson}. $P(\lambda)$ is the Bayesian prior function, which is the \emph{a priori} assumed distribution of possible values for $\lambda$, and $\alpha_0$ is a normalization constant given by $\int_0^\infty P(x|\lambda) P(\lambda) \ud \lambda$. \cite{vulpen2011poisson}. For $P(\lambda)$ the distribution of values is taken as the distribution of \kascade prediction data.
+where $P(x|\lambda)$ is the Poisson distribution given in \ref{eq:poisson}. $P(\lambda)$ is the Bayesian prior function, which is the \emph{a priori} assumed distribution of possible values for $\lambda$, and $\alpha_0$ is a normalisation constant given by $\int_0^\infty P(x|\lambda) P(\lambda) \ud \lambda$. \cite{vulpen2011poisson}. For $P(\lambda)$ the distribution of values is taken as the distribution of \kascade predictions. Due to the required triggering of the \kascade detector for data to be recorded and the applied data cuts the probability of a very low particle density is suppressed.
 
-In \cref{fig:hisparc_kascade_station_mpv} the by \kascade determined particle density at the station is compared to the measured signal. \kascade experiment has many detectors to accurately measure the shower front, it then fits an \ldf to this and calculates the expected particle densities at each fo the \hisparc scintillator detectors. No error is given for the \kascade determined particle density, so it is assumed to be correct. However, the \ldf inherently predicts a smooth radially symmetric density distribution, while actual showers have local minima and maxima. The uncertainty is large at low particle densities due to the scintillator detector signal transmission efficiency and Poisson effects. At high particle densities the non-linearity of the \pmt is the main source of uncertainty.
+Using \cref{eq:bayes_poisson} a relation between the detected number of particles and the contributions from the actual particle densities is obtained. This is shown in \cref{fig:poisson_ranges}. From this we can see that if \num{10} particles are detected there is a \SI{50}{\percent} chance that this is caused by an actual density of \num{8.3} particles or less.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/poisson_ranges}
+    \caption{For a given number of detected particles the probability distribution that this number was caused by a certain actual particle density is shown. The median value of the distribution (solid, black) is indicated. The shaded area contains \SI{50}{\percent} of the distributions, evenly distributed around the median. For reference the $y = x$ line (dashed) is shown.}
+    \label{fig:poisson_ranges}
+\end{figure}
+
+In \cref{fig:hisparc_kascade_station_mpv} the by \kascade determined particle density at the station is compared to the measured signal. The \kascade experiment has many detectors to accurately measure the shower front, it then fits an \ldf to this, taking the shower inclination into account, and calculates the expected particle densities in the shower front at each of the \hisparc scintillator detectors. For this analysis the particle densities are converted to particle densities on the ground using $\rho^\prime = \cos\theta(\rho_{\Pe} + \rho_{\Pmu})$, compensating for the effective area. No error is given for the \kascade determined particle density, so it is assumed to be correct. However, the \ldf inherently predicts a smooth radially symmetric density distribution, but actual showers have local minima and maxima. The uncertainty is large at low particle densities due to the scintillator detector signal transmission efficiency and Poisson effects. At high particle densities the non-linearity of the \pmt is the main source of uncertainty.
 
 The scintillator detector error is estimated by a Gaussian distribution with a width of $\sigma = \sqrt{\rho} 0.68$, the error increases at higher densities.
 %The error due to the non-linearity is estimated by $\sigma_{V_{\mathrm{out}}} = \sigma_{V_{\mathrm{in}}} \frac{\mathrm{d}V_{\mathrm{out}}}{\mathrm{d}V_{\mathrm{in}}}$.
@@ -575,12 +587,13 @@ The scintillator detector error is estimated by a Gaussian distribution with a w
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/station/hisparc_kascade_station_mpv}
-    \caption{Test station at KASCADE was used to verify the particle density measurement of the scintillator detectors. Here the reconstructed station average particle density is compared to the KASCADE predicted particle density. The non-linearity of the \pmts cause an underestimation of the \hisparc particle density (red, solid), compressing the value range at higher signal strength, the Poisson errors are also compressed, as can be seen in the predicted error (green, dashed). The errors due to scintillator detector effects (red, dashed) and \pmt saturation (blue, dashed) are also indicated.}
-    \label{hisparc_kascade_station_mpv}
+    \caption{Test station at KASCADE was used to verify the particle density measurement of the scintillator detectors. Here the reconstructed station average particle density is compared to the KASCADE predicted particle density. The non-linearity of the \pmts cause an underestimation of the \hisparc particle density (blue, solid), compressing the value range at higher signal strength, the Poisson errors are also compressed, as can be seen in the predicted error (green, dashed). The errors due to scintillator detector effects (red, dashed) and \pmt saturation (blue, dashed) are also indicated [todo clearly show all errors, perhaps 2d Hist in separate plot].}
+    \label{fig:hisparc_kascade_station_mpv}
 \end{figure}
 
 % Shower core/energy determination impractical with single station.
 Determination of the shower core is impractical with a single station. The error on the determination of the particle density is to high and the number of detection points to low.
+
 
 \section{Weather station}
 
@@ -604,7 +617,7 @@ Note that it is not required for all stations to have a weather station. The Roy
 
 One of the issues that may arrise during or after the construction of the scintillator detector are light leaks. As the name suggests this means that light from outside can leak into the detector causing false readings. These are often directly evident after construction, although some develop over time when the detector was improperly wrapped. A light leak causes may small pulses in the channel of the leaking scintillator detector. This causes an increase in the event rate, however, 4-detector stations are less affected because of the trigger settings. The number of small peaks in the 4-detector station event do increase. This problem is often easily fixed by applying extra pond foil and tape.
 
-The connection between the scintillator and lightguide (glue) is known to have broken on occasion, the scintillator detector may still works but with lower efficiency. As long as the detector is not moved and properly supported it can continue to operate indefinitely. Repairing the scintillator detector takes almost as much time as the initial construction, and has to be done very carfully to prevent damaging the attached \pmt.
+The connection between the scintillator and lightguide (glue) is known to have broken on occasion, the scintillator detector may still works but with lower efficiency. As long as the detector is not moved and properly supported it can continue to operate indefinitely. Repairing the scintillator detector takes almost as much time as the initial construction, and has to be done very carefully to prevent damaging the attached \pmt.
 
 In the small time period shown in \cref{fig:temperature_timeline} temperatures above \SI{42}{\degreeCelsius} are seen. The specifications of the \pmt state its maximum operational temperature as \SI{60}{\degreeCelsius}. Such high temperatures may occur occasionally. However, this does not seem to be an issue yet.
 
