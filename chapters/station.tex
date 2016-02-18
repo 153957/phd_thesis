@@ -107,7 +107,8 @@ A 2D Monte Carlo simulation of the scintillator detector predicts the transmissi
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/scintilator_transmission_compared}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/scintilator_transmission_compared}
     \caption{Correlation between the transmission efficiency for different positions in the scintillator between a real scintillator detector and the simulated one. The difference can be explained by the aluminium foil in which the detector is wrapped is not taken into account in the simulation. Moreover, some of the positions are in locations where the simulation predicts a significant gradient. [todo; use simulation which does account for Alu foil.]}
     \label{fig:scintilator_transmission_compared}
 \end{figure}
@@ -330,7 +331,8 @@ In order to get consistent data both \adcs for each channel are aligned to have 
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/adc_alignment}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/adc_alignment}
     \caption{Signals are read by two \adcs alternatively (open and closed circles). When the \adcs are not properly aligned they return different results for the same input.}
     \label{fig:adc_alignment}
 \end{figure}
@@ -357,7 +359,7 @@ Note that if the \adc alignment is incorrect the same input pulse results in dif
 
 \subsubsection{Trigging for four scintillator detectors}
 
-As mentioned, stations with four scintillator detectors exist, in those cases two \hisparc electronics units are interconnected via UTP cables to provide readout and triggering for four scintillator detectors. When connected the two boxes still work semi-independently, but exchange channel threshold and timing information. Only one of the two (the Master) contains a \gps module, providing it with a very accurate pulse per second (\pps). The \pps is a slower clock than the \SI{200}{\mega\hertz} clock, but it is very accurate. This \pps is used to accurately mark the start of seconds for the fast clock. This \pps is also passed to the Slave unit to synchronise the two clocks. The Master provides the Slave with the current time and a synchronisation pulse. By exchanging threshold information the trigger logic in both the Master and Slave have access to all four channels. Triggers based on four scintillator detectors can then be created. Each unit sends its own data to the PC.
+As mentioned, stations with four scintillator detectors exist, in those cases two \hisparc electronics units are interconnected via UTP cables to provide readout and triggering for four scintillator detectors. When connected the two boxes still work semi-independently, but exchange channel threshold and timing information. Only one of the two (the Master) contains a \gps module, which providing it with a very accurate pulse per second (\pps). The \pps is a slower clock than the \SI{200}{\mega\hertz} clock, but it is very accurate. This \pps is used to accurately mark the start of seconds for the fast clock. This \pps is also passed to the Slave unit to synchronise the two clocks. The Master provides the Slave with the current time and a synchronisation pulse. By exchanging threshold information the trigger logic in both the Master and Slave have access to all four channels. Triggers based on four scintillator detectors can then be created. Each unit sends its own data to the PC.
 
 
 \section{Station}
@@ -437,7 +439,7 @@ The particle density threshold for triggering on showers with \SI{50}{\percent} 
 \label{sec:station_layout}
 
 % Standard layouts created to encourage uniformity, these are also chosen for good shower acceptance, reconstruction accuracy of station events, and practicality for the locations.
-The typical layout of 2-detector stations are relatively straightforward. The two scintillator detectors are separated by \SIrange{6}{10}{\meter}. The \gps antenna is usually placed between the two detectors. The layouts of a typical 4-detector stations are shown in \cref{fig:4_detector_layouts}. The scintillator detectors are separated by \SI{10}{\meter} to exclude the smallest showers and provide accurate direction reconstruction resolution. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
+The typical layout of 2-detector stations are relatively straightforward. The two scintillator detectors are separated by \SIrange{6}{10}{\meter}. The layouts of a typical 4-detector stations are shown in \cref{fig:4_detector_layouts}. The scintillator detectors are separated by \SI{10}{\meter} to exclude the smallest showers and provide accurate direction reconstruction resolution. Given the location of the station is on the roofs of buildings the size of typical roofs also limits the possible size of the stations. The distance between detectors also affects the resolution for reconstructing the direction of air showers. The possible directions for three detectors in an equilateral triangle with \SI{10}{\meter} sides and a timing resolution of \SI{2.5}{\ns} is shown in \cref{fig:discrete_directions}. Using the inner detector with two outer detectors reduces the direction resolution, having only 1/3rd the possible directions. In some cases (space allowing) the decision has been made to move the inner detector outside the triangle to form a second equilateral triangle sharing one of the sides. In this case all combinations of three detectors result in the same possible direction reconstructions.
 
 \begin{figure}
     \centering
@@ -459,13 +461,14 @@ The typical layout of 2-detector stations are relatively straightforward. The tw
 
 The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps antenna, whose position is known. \gps positions are automatically submitted by the station to the datastore. From the \gps the distance to and the angle between (True?) North and the center of each scintillator is measured. Additionally, the rotation of the long side of the scintillator to North can be recorded, though this is less important. The used coordinate system is described in more detail in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring the layout of their station and how they can submit them to \hisparc. Information about the position of scintillator detectors in 2-detector stations is also important. Even though full direction reconstruction is not possible with only two detection points it can be used to define a plane where the shower should come from \cite{schultheiss2016pair}.
 
-In \cref{fig:locations_501} the different \gps and scintillator detector locations for station 501 are shown. The outlier \gps locations are caused by the usage of temporary \gps antenna during tests. The station layout described by the clustered positions describes the original star-layout, an equilateral triangle with one scintillator detector in the center. When station 510 was built station 501 was also moved to create overlapping diamond-shaped stations. One detector (green) was not moved during this transition. For each physical \gps location (including the temporary test locations) the relative scintillator detector positions have been measured. Other Science Park stations for which the detectors have been moved are 502 and 505. For station 505 this was done multiple times because alterations to the roof on which the scintillator detector reside required them to be moved.
+In \cref{fig:4d_station_501_detectors} the different scintillator detector locations for station 501 are shown. The station started in the star-layout, an equilateral triangle with one scintillator detector in the center. When station 510 was built station 501 was also moved to create overlapping diamond-shaped stations. One detector (green) was not moved during this transition. Other Science Park stations for which the detectors have been moved are 502 and 505. For station 505 this was done multiple times because alterations to the roof on which the scintillator detector reside required them to be moved.
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/locations_501}
-    \caption{Detector (closed circles) and \gps locations (open circles) for station 501. Over time the detectors and \gps antenna for station 501 have been moved multiple times. The clusters of circles are not necessarily movements of the \gps or the scintillator detectors but merely new self-surveys by the \gps resulting in a slightly different position.}
-    \label{fig:locations_501}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/4d_station_501_detectors}
+    \caption{Scintillator detector locations for station 501. At one point the detectors were moved to new locations. The old positions (circle) follow the star layout shown in \cref{fig:4_detector_layouts}, the new positions (triangles) used the diamond layout. The colors indicate the ids of the detectors.}
+    \label{fig:4d_station_501_detectors}
 \end{figure}
 
 
@@ -475,7 +478,8 @@ Assuming cosmic rays arrive from all direction isotropically then the distributi
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/detector_time_difference_distribution}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/detector_time_difference_distribution}
     \caption{This shows the distribution of arrival time differences between the two scintillator for triggered events. A days worth of data is used. The peak around \SI{0}{\ns} are from strongly correlated particles, most events with time differences larger than \SI{100}{\ns} are for random coincidences.}
     \label{fig:detector_time_difference_distribution}
 \end{figure}
@@ -484,7 +488,8 @@ The offsets between detectors in a station can be very stable over time. Changes
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/detector_offset_drift_month_501}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/detector_offset_drift_month_501}
     \caption{This shows the changes in scintillator detector offsets for the scintillator detectors of station 501. Scintillator detector 2 (red) is used as reference. Scintillator detector 1 (black) is the other channel connected to the Master electronics. The large jump observed for detector 3 (green) and 4 (blue) was caused by the switch from \hisparcii to \hisparciii electronics.}
     \label{fig:detector_offset_drift_month_501}
 \end{figure}
@@ -493,7 +498,8 @@ These detector offsets are automatically determined each day for each station. I
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/detector_offset_distribution}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/detector_offset_distribution}
     \caption{Distribution of scintillator detector offsets. The scintillator detector offsets between the two scintillator detectors connected to the Master electronics for all \hisparc stations are shown.}
     \label{fig:detector_offset_distribution}
 \end{figure}
@@ -506,7 +512,8 @@ The offset between Master and Slave scintillator detectors may be caused by dela
 
 \begin{figure}
     \centering
-    \includegraphics{plots/station/time_delta_501}
+    \includegraphics[width=0.6\textwidth]
+                    {plots/station/time_delta_501}
     \caption{Timestamp difference distribution between the Master and Slave, trigging on the same events but making their own timestamps. The mean offset is \SI{-2.0}{\ns} and the width of the distribution is \SI{2.0}{\ns}.}
     \label{fig:time_delta_501}
 \end{figure}
@@ -528,7 +535,7 @@ When there are three detection points (which are not on a line) the shower axis 
 Here $r_i$ is the distance between detector 0 and detector $i$, $\Delta t_i$ is the time difference between detector 0 and detector $i$, and $\phi_1$ the angle between East and detector $i$ as seen from detector 0. Note that care must be taken to take the correct quadrant for the $\arctan$ and that $\phi - \phi_i \ne 2 \pi$. The same results can be achieved with a Cartesian approach as described in \cite{montanus2015direction}. This gives
 
 \begin{equation}
-    \label{eq:direction-2dflat}
+    \label{eq:direction-2dflat-cart}
     \begin{split}
         \phi &= \arctan \left(\frac{-u_x v_z}{u_y v_z} \right) \ , \\
         \theta &= \arcsin \left(\sqrt{\frac{u_x^2+u_y^2}{v_z^2}} \right) \ .
@@ -619,12 +626,16 @@ One of the issues that may arrise during or after the construction of the scinti
 
 The connection between the scintillator and lightguide (glue) is known to have broken on occasion, the scintillator detector may still works but with lower efficiency. As long as the detector is not moved and properly supported it can continue to operate indefinitely. Repairing the scintillator detector takes almost as much time as the initial construction, and has to be done very carefully to prevent damaging the attached \pmt.
 
+% Temperature in skibox
 In the small time period shown in \cref{fig:temperature_timeline} temperatures above \SI{42}{\degreeCelsius} are seen. The specifications of the \pmt state its maximum operational temperature as \SI{60}{\degreeCelsius}. Such high temperatures may occur occasionally. However, this does not seem to be an issue yet.
 
+% Some PMTs failed, expensive and difficult to replace, possibly cheaper to produce at Nikhef
 A batch of \pmts has been encountered where the failure rate was very high, around 30 \pmts failed. This is quite a significant number since \hisparc has approximately 300 \pmts in use. The power supplies of these \pmts failed. The actual vacuum tubes were still working fine. The costs to have the power supply replaced by the manufacturer were excessive, almost equal to a new \pmt. This was one of the motivations to manufacture the \nikhef \pmt power supplies. Replacing \pmts is a fairly easy process and can be performed without moving the scintillator detector.
 
+% HiSPARC III power supplies failed, cheap and easy to replace
 The power supplies provided with the \hisparc electronics by the manufacturer were from a bad batch. All have failed within a couple months of use. These have been replaced by a different type of power supply of which no failures have yet been observed. Not all electronics were deployed at once, so preemptive power supply replacements have been done for those deployed later.
 
+% Power issues, vacations, cleaners, etc..
 On some occasions power interruptions can cause down time for a station.  There are cases where supplies were disconnected by cleaning crews or students that wanted to use the power socket for their own devices. Some schools disable their power grid during vacation time, in order to save power. Usually the station resumes operation after the vacation when the power is restored.
 
 Despite these possible problems most detectors perform perfectly for many years, and problems can be addressed easily, as was the goal. One example of a perfectly performing station is station 13 at Hervormd Lyceum West in Amsterdam. This station has been working since March 2005 with minimal interruptions, it has currently detected \num{e8} events.
