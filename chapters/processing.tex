@@ -19,6 +19,13 @@ When the \hisparc electronics trigger the detected signal traces and timing info
 
 The pulse height is the value of the highest signal in the trace, relative to the baseline. The pulse integral is the sum of the signals that are at least \SI{20}{\adc} (baselineThreshold) above the baseline. This threshold filters signal noise and small peaks.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/processing/integral}
+    \caption{Illustrated definition of the pulse integral.}
+    \label{fig:integral}
+\end{figure}
+
 For the number of peaks a different[?] threshold is set. As soon as the values rise above the threshold a peak is counted, when the signal reached its highest point and then drops down again the value needs to drop at least the value of the threshold before a new peak can start, for which the value needs to rise at least the threshold value again, above the new local minimum.
 
 The standard deviation of the trace values relative to the baseline is determined.
