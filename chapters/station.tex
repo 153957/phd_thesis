@@ -362,7 +362,13 @@ Note that if the \adc alignment is incorrect the same input pulse results in dif
 As mentioned, stations with four scintillator detectors exist, in those cases two \hisparc electronics units are interconnected via UTP cables to provide readout and triggering for four scintillator detectors. When connected the two boxes still work semi-independently, but exchange channel threshold and timing information. Only one of the two (the Master) contains a \gps module, which providing it with a very accurate pulse per second (\pps). The \pps is a slower clock than the \SI{200}{\mega\hertz} clock, but it is very accurate. This \pps is used to accurately mark the start of seconds for the fast clock. This \pps is also passed to the Slave unit to synchronise the two clocks. The Master provides the Slave with the current time and a synchronisation pulse. By exchanging threshold information the trigger logic in both the Master and Slave have access to all four channels. Triggers based on four scintillator detectors can then be created. Each unit sends its own data to the PC.
 
 
-\section{Station}
+\subsubsection{Special triggering conditions}
+\label{sssec:external-trigger}
+
+An additional signal input is available on the rear of the \hisparc electronics which can be used to provide an external trigger. The external trigger has a threshold of \SI{+3}{\volt}. The electronics can be configured to trigger on the external trigger, also in a combination with the other trigger options. The external trigger is processed faster by the electronics. If signals arrive at the front inputs and the external trigger simultaneously the input signals will be later in the trace when trigger by the external trigger than when triggered on the inputs. The time differences compared to the regular triggers are \SI{123.3}{\ns} and \SI{134.50}{\ns} for \hisparc II and III electronics respectively. This offset is likely due to the handling of the external trigger in the electronics and firmware.
+
+
+\section{Detection station}
 
 \subsection{Efficiency of triggering}
 
@@ -461,14 +467,14 @@ The typical layout of 2-detector stations are relatively straightforward. The tw
 
 The layout of each station is not always precisely according to the suggested layout. Not all roofs provide the required space. It is not a problem if the layout deviates from the suggested ones, as long as the actual positions are known. In order to get the absolute position of the detectors their positions are measured relative to the \gps antenna, whose position is known. \gps positions are automatically submitted by the station to the datastore. From the \gps the distance to and the angle between (True?) North and the center of each scintillator is measured. Additionally, the rotation of the long side of the scintillator to North can be recorded, though this is less important. The used coordinate system is described in more detail in \cref{ch:coordinates}. If the location of detectors relative to the \gps is changed the new layout can be recorded with the timestamp of when it changed. The data analysis takes these changes into account to use the correct layout when reconstructing events. For students a document has been created which outlines the steps for measuring the layout of their station and how they can submit them to \hisparc. Information about the position of scintillator detectors in 2-detector stations is also important. Even though full direction reconstruction is not possible with only two detection points it can be used to define a plane where the shower should come from \cite{schultheiss2016pair}.
 
-In \cref{fig:4d_station_501_detectors} the different scintillator detector locations for station 501 are shown. The station started in the star-layout, an equilateral triangle with one scintillator detector in the center. When station 510 was built station 501 was also moved to create overlapping diamond-shaped stations. One detector (green) was not moved during this transition. Other Science Park stations for which the detectors have been moved are 502 and 505. For station 505 this was done multiple times because alterations to the roof on which the scintillator detector reside required them to be moved.
+In \cref{fig:station_501_detectors_4D} the different scintillator detector locations for station 501 are shown. The station started in the star-layout, an equilateral triangle with one scintillator detector in the center. When station 510 was built station 501 was also moved to create overlapping diamond-shaped stations. One detector (green) was not moved during this transition. Other Science Park stations for which the detectors have been moved are 502 and 505. For station 505 this was done multiple times because alterations to the roof on which the scintillator detector reside required them to be moved.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
-                    {plots/station/4d_station_501_detectors}
+                    {plots/station/station_501_detectors_4D}
     \caption{Scintillator detector locations for station 501. At one point the detectors were moved to new locations. The old positions (circle) follow the star layout shown in \cref{fig:4_detector_layouts}, the new positions (triangles) used the diamond layout. The colors indicate the ids of the detectors.}
-    \label{fig:4d_station_501_detectors}
+    \label{fig:station_501_detectors_4D}
 \end{figure}
 
 
@@ -548,7 +554,7 @@ Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1
 
 \subsection{Performance of a station}
 
-The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. A 4-detector \hisparc station was placed between the \kascade detectors and triggered (using an external trigger) when the surrounding \kascade detectors detected an event. The \kascade reconstruction of the shower which triggered the \hisparc station were made available. By reconstructing the \hisparc data and comparing this to the \kascade reconstruction the performance of a single station is tested.
+The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. A 4-detector \hisparc station was placed between the \kascade detectors and triggered, using an external trigger, when the surrounding \kascade detectors detected an event. The \kascade reconstruction of the shower which triggered the \hisparc station were made available. By reconstructing the \hisparc data and comparing this to the \kascade reconstruction the performance of a single station is tested.
 
 
 \subsubsection{Direction reconstruction accuracy}
