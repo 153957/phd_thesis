@@ -1,23 +1,25 @@
-\documentclass[a4paper,11pt,oneside]{book}
+% arara: pdflatexmkhalt: {shell: yes}
+% arara: makechapters: {compileAll: no, items: [chapters/cosmic-rays, chapters/station, chapters/cluster, chapters/processing]}
+
+% chapters/cosmic-rays,
+% chapters/station,
+% chapters/cluster,
+% chapters/processing,
+
+% chapters/analysis,
+% chapters/conclusions,
+% chapters/coordinates,
+% chapters/network,
+% chapters/outreach,
+% chapters/pmt_design,
+% chapters/simulations,
+% chapters/software,
+% chapters/summary
+
+\documentclass[a4paper, 11pt, oneside]{book}
 \usepackage{a4wide}
 
 \input{preamble}
-
-% Options for drafts
-%\includeonly{}
-%    chapters/cosmic-rays,
-%    chapters/station,
-%    chapters/cluster,
-%    chapters/software,
-%    chapters/processing,
-%    chapters/simulations,
-%    chapters/analysis,
-%    chapters/network,
-%    chapters/conclusions,
-
-%    chapters/coordinates,
-%    chapters/pmt_design,
-%    chapters/outreach,
 
 % Disable this for draft output (it is really slow)
 %\usepackage[babel]{microtype}
