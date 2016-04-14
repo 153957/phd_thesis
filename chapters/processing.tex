@@ -58,9 +58,14 @@ Most events contain only two pulses in two detectors. These pulses are often ver
 
 During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. The amplitude of the saw-tooth can be different at different signal levels, because both the offset and gain may be different. This can be filtered out by averaging the signal. This is a multi-step process. First the trace is split into the even and odd parts (positive and negative clock) which are smoothed separately. These smoothed signals are interleaved and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses. 
 
-This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled, here raw trace values are preserved. The importance of this is described in \cref{sec:trigger_time}. The most recent version of the \hisparc \daq implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
+This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled, to preserve raw trace values. The negative effect of trace filtering is described in \cref{sec:trigger_time}. The most recent version of the \hisparc \daq implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
 
-[figure of raw -> filtered traces]
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/processing/mean_filter}
+    \caption{The same trace as shown in \cref{fig:integral}, except this one is filtered using the Mean Filter. The small peaks and baseline are noticeably smoother.}
+    \label{fig:mean_filter}
+\end{figure}
 
 
 \subsection{Trigger pattern}
@@ -73,23 +78,36 @@ The \hisparc events contain a trigger pattern which indicates which trigger thre
 The events contain ... when sent from the PC.
 
 
-\section{Offline processing}
+\section{Offline processing for the Event Summary Data}
 
-Every morning, several hours after midnight, data from the previous day is processed to generate the Event Summary Data (ESD). The event processing also looks for older dates with new events, not just yesterday. Several hours after midnight is used because some stations may be slow in uploading data, this allows for some extra time to let all events from the previous day come in. Stations have a local buffer in case they are temporarily unable to upload data. There have been cases where a station had several months worth of data locally. The processing applies the event processing module from \sapphire to the data.
+Every morning, several hours after midnight, all new data is processed to generate the Event Summary Data (ESD). Several hours after midnight is used because some stations may be slow in uploading data, this allows extra time to let all events from the previous day come in.  The event processing also looks for older dates with new events, not just yesterday. Stations have a local buffer in case they are temporarily unable to upload data. There have been cases where a station had several months worth of data locally which was all uploaded once the connection was reestablished. By keeping track of modification dates to the raw data files (stored by date) it is easy to find dates with new data. The processing applies the event processing module from \sapphire to the data. The following section describe exactly what this involves.
+
+The first step is the sorting of the events by timestamp, since events are not always uploaded in the correct order. Next duplicate events are removed. Duplicate events can occur when uploading a batch of events takes to long and \python has a timeout, while Windows continues to upload in the background. The \python program will try to upload the data again because it believes the upload failed.
+
 
 \subsection{Number of particles}
 
-First data is sorted by timestamp and duplicate events are removed. Then the Most Probable Value (MPV) for the pulse integrals for each channel is determined by fitting [a gauss? check FindMPV.. class]. This provides an estimate for the signal corresponding to a single particle for that detector.
+The size of the signals is a measure for the number of particles which passed though the detector. The pulse integral will be used for this since it also accounts for particles which arrive separately in time. Moreover, as shown in \cref{sub:pmt_linearity} the integral is less hindered by saturation of the \adcs. In order to relate the pulse integral to a number of particles the signal strength for a single particle needs to be determined. This is done separately for each detector, since each may be calibrated differently. To determine the signal for a single particle pulse integral data from multiple events is required. As shown in \cref{fig:ph_histogram_contrib} the pulse height histogram is a combination of contributions by a different number of particles and gamma's, the same is true for the pulse integral. By taking a day's worth of events the peak, which is Most Probable Value (\mpv) for a single particle, becomes apparent. By fitting this value a good estimate for the signal of a single particle is achieved.
 
-figure of pulse integral histogram
+[figure of pulse integral histogram with fitted MPV]
 
 
 \subsection{Trigger time}
 \label{sec:trigger_time}
 
-Then the trigger time for each event and the first particle in each channel is determined. We already have the \gps timestamp (upto nanoseconds) and a trace, but the timestamp is determined at the moment the trigger conditions are met.
+For each event a \gps timestamp is recorded at the moment the trigger conditions are met. Unfortunately, no data is included which connects the \gps timestamp to a specific sample of the traces. This is needed to relate traces from different events and stations. In order to find the sample in the traces to which the \gps timestamp belongs the trigger has to be reconstructed from the trace. Since the trigger conditions are known this simply requires applying the trigger logic to the traces. For each channel look if and when it crosses the low and high thresholds. Then find which trigger conditions are met, and which are first. For a 2-detector station this is simply the second channel that crosses the low threshold. For a 4-detector station either the second high or third low signal, which ever is first. However, the \hisparc electronics trigger on the raw traces which the \adcs read out, but if the Mean Filter is active in the \daq the traces are filtered before they are transmitted to the datastore. The filter sometimes smoothes trace such that signals that actually crossed a threshold no longer do so in the filtered trace. In some cases this makes it impossible to reconstruct the trigger. However, this is only the case where low signals or slow rising signals were part of the trigger.
 
-figure showing  relative trace time (sample)  in relation to GPS time.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/processing/trigger_time.png}
+    \caption{The reconstruction of the trigger time within a trace. For this 4-detector station event the trigger was caused by 2 high signals.}
+    \label{fig:trigger_time}
+\end{figure}
+
+
+\subsection{Arrival times}
+
+The arrival time of particles in each individual detector is used for direction  reconstruction. By finding the start of the first pulse in each detector 
 
 
 \subsection{Detector offsets}
