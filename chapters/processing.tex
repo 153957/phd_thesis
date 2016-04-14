@@ -1,43 +1,51 @@
 \chapter{Data processing}
 \label{ch:data_processing}
 
+The events recorded by the \hisparc electronics consist of the \pmt readouts (traces) and the trigger timestamp. Before the events can be used in analysis observables have to be extracted from the traces. For the reconstructions the particle count and arrival time for each detector are used. These values can be derived from the traces and trigger timestamp. The following sections will detail each step of the processing.
+
 \section{Online processing}
 % On the HiSPARC PC
 % This data is sent to/stored in the datastore (Table 3.1 Fokkema);
-% ext_timestamp
-% data_reduction
-% trigger_pattern
-% baseline
-% std_dev
-% n_peaks
-% pulseheigts
-% integrals
-% traces
-% event_rate
+% ext_timestamp, data_reduction, trigger_pattern, baseline, std_dev, n_peaks, pulseheights, integrals, traces, event_rate
 
-When the \hisparc electronics trigger the detected signal traces and timing information is send to the controlling PC. First the PC determines the /gps timestamp for the event. The PC then analyses each trace individually to determine the event properties. There is a high probability (how high?) that the start of the traces (the pre-trigger window) do not contain significant signals, this is used to determine the baseline of the trace. After the baseline is known other properties can be determined.
+When the \hisparc electronics trigger the detected signal traces and timing information is sent to the controlling PC. First the PC determines the absolute \gps timestamp for the event. The PC then analyses each trace individually to determine several event properties.
 
-The pulse height is the value of the highest signal in the trace, relative to the baseline. The pulse integral is the sum of the signals that are at least \SI{20}{\adc} (baselineThreshold) above the baseline. This threshold filters signal noise and small peaks.
+
+\subsection{Trace baseline}
+
+Though the \adcs are calibrated the baselines can still shift away from the desired value. Therefore the baseline must be determined for each trace. There is a high probability that the pre-trigger window part of the event traces do not contain a significant signal. If there was a large signal if would likely have been part of the trigger. Moreover, the rate of singles is low enough that the probability of a coincidental signal is less than \SI{0.1}{\percent}. Hence the first part of traces is suitable for determining their baselines. An algorithm checks if the signal is smooth enough by calculating a cumulative moving average and comparing each sample to the average and previous sample \cite{oostenbrugge2014daq}. At least the first 50 samples must satisfy the smoothness criteria. If that is the case then the average of those samples will be the baseline. If the start of the trace is not smooth the baseline can not be determined and will be set to the error value \num{-999}. The algorithm has recently been updated to also attempt to find a baseline from the end of the trace if it does not succeed from the start, this is not retroactively applied. Once the baseline is known other properties can be determined, if the baseline can not be determined all other properties are also set to \num{-999}. The baseline determination will fail if the first part of the trace contains a peak. Also signal oscillations (caused by a bad \pmt) can cause the baseline determination to fail. However, in the case of large oscillations the trigger may have been caused by the oscillations, so the data is bad.
+
+
+\subsection{Signal strength}
+
+The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, since the trigger thresholds are not relative to the actual baseline. For events triggered in 4-detector stations there are often two detectors with very small or no significant pulses. Most events are triggered by two high signals in two detectors, with no signals in the other two detectors.  
+
+The pulse integral is the sum of the signals that are at least \SI{20}{\adc} above the baseline. This threshold filters signal noise, reflections, and small peaks. In \cref{fig:integral} these two observables are illustrated.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{plots/processing/integral}
-    \caption{Illustrated definition of the pulse integral.}
+    \caption{Illustrated definition of the pulse height and integral for a signal trace (solid line). The baseline (lower dashed line) was determined using the pre-trigger window of the trace (not shown). The pulse height is the space between the two dashed lines. The integral is indicated by the shaded area, only signals above the threshold (dotted line) count towards the integral.}
     \label{fig:integral}
 \end{figure}
 
-For the number of peaks a different[?] threshold is set. As soon as the values rise above the threshold a peak is counted, when the signal reached its highest point and then drops down again the value needs to drop at least the value of the threshold before a new peak can start, for which the value needs to rise at least the threshold value again, above the new local minimum.
 
-The standard deviation of the trace values relative to the baseline is determined.
+\subsection{Signal structure}
 
-The trigger rate (Hz) as measured by the \daq over the last 90 seconds is added to the event. The first few events when starting the \daq will have a ... to low trigger rate due to the lack of information from the 90 seconds preceding the first trigger... something like that..
+Most traces contain only a single pulse. However, sometimes multiple particle pass through a detected within the short time window of the trigger, and separated enough to be distinguishable in the trace. In order to find events with multiple pulses the number of peaks in a trace is determined. This starts at the start of a trace and when the signal values rise more than the low threshold (relative to the baseline) a peak is counted. When a peak has reached its apex and then lowers again the maximum value is remembered, the value needs to drop at least the value of the threshold before a new peak can start. For the next peak the signal value needs to rise at least the threshold value again, above the new local minimum. The number of peaks is also a good indication of light leaks, which result in many small peaks in traces. The ratio between the pulse height and integral also provides structure information. If the pulse integral is higher than expected (see pmt linearity test or ph v integral plot) for a given pulse height then the trace probably contains multiple peaks.
+
+[illustrate with figure]
+
+As a measure of the stability of the trace around the baseline the standard deviation of the same part of the trace that was used for the baseline is calculated. This can be an indicator for the misalignment of the \adcs.
+
+At each event the average trigger rate (\si{\hertz}) as measured by the \daq over the last 90 seconds is added to the event. The first few events when starting the \daq will have a to low trigger rate due to the lack of information from the 90 seconds preceding the first trigger. Though not a property of the event itself, this provides insight in the proper operation of the detection station.
 
 
 \subsection{Data reduction}
 
-\cite{oostenbrugge2014daq}
+Most events contain only two pulses in two detectors. These pulses are often very correlated in time (at least within the \SI{1.5}{\micro\second} trigger window) and normal small pulses are \SIrange{30}{100}{\ns} long. The rest of the trace is usually empty, and contains no valuable data. For each event the part containing all significant pulses is determined. The algorithm looks from the start and end of the traces up to the point that any of the detectors has a pulse. The empty parts of the traces will be cut away, some padding is added to allow verification of the baseline in the offline analysis. On average (median) this leads to traces with \SI{150}{\ns} (i.e. 60 samples) length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples). Overall \SI{2.5}{\percent} of the measured data is kept. This greatly reduces the size of data to be transferred to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
 
-For all traces (for each channel) in an event the part which contains all significant pulses is calculated. A bit of padding is added to allow verification of the baseline in the offline analysis. The rest of the traces is cut away. On average (median) this leads to traces with \SI{150}{\ns} length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples), so overall only \SI{2.5}{\percent} of the measured data is kept. This reduces the size of data to be transfered to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
+[figure with part of (more than reduced) full trace showing the cutoffs]
 
 % Scipt to determine some values, to be determined for larger dataset:
 % lengths = [zlib.decompress(s.blobs[i]).count(',') for i in range(0, s.blobs.nrows, 4)]
@@ -48,16 +56,21 @@ For all traces (for each channel) in an event the part which contains all signif
 
 \subsection{Mean/Noise filter}
 
-During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. This can be filtered by averaging the signal. This is a multi-step process. First the trace is split in the positive and negative (adc clock) part which are smoothed seperately. These smoothed signals are interleaved again and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses. Since data is compressed when stored the smoothing can improve the compressability of the data, because the data will have more equal values.
+During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. The amplitude of the saw-tooth can be different at different signal levels, because both the offset and gain may be different. This can be filtered out by averaging the signal. This is a multi-step process. First the trace is split into the even and odd parts (positive and negative clock) which are smoothed separately. These smoothed signals are interleaved and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses. 
 
-This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled so raw trace values are preserved. The importance of this is described in the next section. The most recent version of the \hisparc \daq [to be released] implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
+This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled, here raw trace values are preserved. The importance of this is described in \cref{sec:trigger_time}. The most recent version of the \hisparc \daq implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
 
-figure of raw -> filtered traces
+[figure of raw -> filtered traces]
 
 
 \subsection{Trigger pattern}
 
-The \hisparc events contain a trigger pattern which indicates which trigger thresholds were active during the trigger window, which of the comparators were triggered, and the prescense of a slave. The trigger threshold pattern does not mean that those active thresholds actually contributed to the trigger. For instance 2 simultaneous high signals in channels 1 and 2 caused a trigger, then some nano seconds later (still in the trigger window) a high signal appears in channel 3, the high threshold for channel 3 will be marked as active, even though that channel did not actively contribute to the trigger. The trigger pattern was only recently implemented (2015), along with support for the comperators.
+The \hisparc events contain a trigger pattern which indicates which trigger thresholds (including the external trigger) were active during the trigger window, which of the comparators were triggered, and the presence of a slave. A threshold being set to `on' in the trigger threshold pattern does not mean that that threshold actively contributed to the trigger. Take for example a 4-detector station which triggers on 2 high signals. If 2 simultaneous high signals in channels 1 and 2 cause a trigger, then several nano seconds later (still in the trigger window) a high signal appears in channel 3, the high threshold for channel 3 will be marked as active, even though that channel did not actively contribute to the trigger. Therefore it is better to look at the traces to determine what caused the trigger. Moreover, due to a software bug the trigger pattern was stored incorrectly for most data, missing part of the pattern. The trigger pattern is not used in the further analysis.
+
+
+\subsection{Event data from PC}
+
+The events contain ... when sent from the PC.
 
 
 \section{Offline processing}
@@ -72,6 +85,7 @@ figure of pulse integral histogram
 
 
 \subsection{Trigger time}
+\label{sec:trigger_time}
 
 Then the trigger time for each event and the first particle in each channel is determined. We already have the \gps timestamp (upto nanoseconds) and a trace, but the timestamp is determined at the moment the trigger conditions are met.
 
