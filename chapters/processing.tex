@@ -107,19 +107,44 @@ For each event a \gps timestamp is recorded at the moment the trigger conditions
 
 \subsection{Arrival times}
 
-The arrival time of particles in each individual detector is used for direction  reconstruction. By finding the start of the first pulse in each detector 
+The arrival time of particles in each individual detector is used for direction  reconstruction. The arrival time is defined at the start of the first pulse in a detector, as illustrated in \cref{fig:arrival_time}. Using the \gps timestamp and trigger time these arrival times can be converted to \gps time using $t_{i,\gps} = t_\gps - t_{trigger} + t_i$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/processing/arrival_time.png}
+    \caption{The reconstruction of the arrival time within traces.}
+    \label{fig:arrival_time}
+\end{figure}
 
 
 \subsection{Detector offsets}
 
-Time offsets are observed between detectors, these need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within one station. All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station.
+Time offsets are observed between detectors as reported in \cref{sec:detector-offsets}. These need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within a station.
+
+All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station.
 
 
 \subsection{Coincidences}
 
-Finally all processed events from one day are taken into one long list and coincidences are found. A coincidence is a group of least two events whos (extended) timestamps are within \SI{10000}{\ns}.
+Finally all processed events from all stations of a day are sorted into a long list. Then coincidences between stations are found. A coincidence is a group of least two events for which the \gps timestamps are within \SI{10000}{\ns}. All unique combinations of events which are not subsets of other combinations are stored.
 
 
 \subsection{Station offsets}
 
-To do.
+Finally the offset between stations is determined. More than a single day of data is required for this. As reported in ...station offsets..
+
+
+\section{Data analysis}
+
+\subsection{Shower front arrival time}
+
+\subsection{Particle density}
+
+
+\section{Data quality}
+
+\subsection{Day}
+
+\subsection{Events}
+
+\subsection{Detector}
