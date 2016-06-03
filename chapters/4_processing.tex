@@ -1,7 +1,8 @@
 \chapter{Data processing}
 \label{ch:data_processing}
 
-The events recorded by the \hisparc electronics consist of the \pmt readouts (traces) and the trigger timestamp. Before the events can be used in analysis observables have to be extracted from the traces. For the reconstructions the particle count and arrival time for each detector are used. These values can be derived from the traces and trigger timestamp. The following sections will detail each step of the processing.
+Events recorded by \hisparc electronics consist of the \pmt readouts (traces) and a trigger timestamp. Before events can be used in analysis observables have to be extracted from the traces. For the core and direction reconstructions the particle count and arrival time for each detector are used. These values can be derived from the traces and trigger timestamp. The following sections will detail each step of the processing.
+
 
 \section{Online processing}
 \label{sec:online}
@@ -19,7 +20,7 @@ Though the \adcs are calibrated the baselines can still shift away from the desi
 
 \subsection{Signal strength}
 
-The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, since the trigger thresholds are not relative to the actual baseline. For events triggered in 4-detector stations there are often two detectors with very small or no significant pulses. Most events are triggered by two high signals in two detectors, with no signals in the other two detectors.  
+The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, since the trigger thresholds are not relative to the actual baseline. For events triggered in 4-detector stations there are often two detectors with very small or no significant pulses. Most events are triggered by two high signals in two detectors, with no signals in the other two detectors.
 
 The pulse integral is the sum of the signals that are at least \SI{20}{\adc} above the baseline. This threshold filters signal noise, reflections, and small peaks. In \cref{fig:integral} these two observables are illustrated.
 
@@ -57,7 +58,7 @@ Most events contain only two pulses in two detectors. These pulses are often ver
 
 \subsection{Mean/Noise filter}
 
-During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. The amplitude of the saw-tooth can be different at different signal levels, because both the offset and gain may be different. This can be filtered out by averaging the signal. This is a multi-step process. First the trace is split into the even and odd parts (positive and negative clock) which are smoothed separately. These smoothed signals are interleaved and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses. 
+During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. The amplitude of the saw-tooth can be different at different signal levels, because both the offset and gain may be different. This can be filtered out by averaging the signal. This is a multi-step process. First the trace is split into the even and odd parts (positive and negative clock) which are smoothed separately. These smoothed signals are interleaved and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses.
 
 This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled, to preserve raw trace values. The negative effect of trace filtering is described in \cref{sec:trigger_time}. The most recent version of the \hisparc \daq implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
 
@@ -108,7 +109,7 @@ For each event a \gps timestamp is recorded at the moment the trigger conditions
 
 \subsection{Arrival times}
 
-The arrival time of particles in each individual detector is used for direction  reconstruction. The arrival time is defined at the start of the first pulse in a detector, as illustrated in \cref{fig:arrival_time}. Using the \gps timestamp and trigger time these arrival times can be converted to \gps time using $t_{i,\gps} = t_\gps - t_{trigger} + t_i$.
+The arrival time of particles in each individual detector is used for direction  reconstruction. The arrival time is defined at the start of the first pulse in a detector, as illustrated in \cref{fig:arrival_time}. Using the \gps timestamp and trigger time these arrival times can be converted to \gps time using $t_{i,\gps} = t_{\gps} - t_{trigger} + t_i$.
 
 \begin{figure}
     \centering
@@ -132,7 +133,7 @@ Finally all processed events from all stations of a day are sorted into a long l
 
 \subsection{Station offsets}
 
-Finally the offset between stations is determined. More than a single day of data is required for this. As reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the number of coincidences between the stations, from ... follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations, as an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets of up to \SI{100}{\ns} [check value] become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
+Finally the offset between stations is determined. More than a single day of data is required for this. As reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the coincidence rate between the stations, from ... follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations. This is an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets of up to \SI{100}{\ns} [check value] become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
 
 In some cases pairs of station are separated by a large distance but have stations between them that are closer to both. For instance stations 505 and 509 are separated by ... 600 meters, yet between them is station 501, separated 300 meter from both. There are far more coincidences between 501-505 and 501-509 than 505-509. Using 501 as a stepping stone reduces the time window required to determine an offset between 505-509, and in
 
