@@ -10,19 +10,26 @@ Events recorded by \hisparc electronics consist of the \pmt readouts (traces) an
 % On the HiSPARC PC
 % This data is sent to/stored in the datastore (Table 3.1 Fokkema);
 % ext_timestamp, data_reduction, trigger_pattern, baseline, std_dev, n_peaks, pulseheights, integrals, traces, event_rate
-When the \hisparc electronics trigger the detected signal traces and timing information is sent to the controlling PC. First the PC determines the absolute \gps timestamp for the event. The PC then analyses each trace individually to determine several event properties.
+When the \hisparc electronics trigger the detected signal traces and timing information is sent to the controlling PC. First the PC determines the absolute \gps timestamp for the event, as explained in [ref previous chapter]. The PC then analyses each trace individually to determine several event properties.
 
 
 \subsection{Trace baseline}
 
-Though the \adcs are calibrated the baselines can still shift away from the desired value. Therefore the baseline must be determined for each trace. There is a high probability that the pre-trigger window part of the event traces do not contain a significant signal. If there was a large signal if would likely have been part of the trigger. Moreover, the rate of singles is low enough that the probability of a coincidental signal is less than \SI{0.1}{\percent}. Hence the first part of traces is suitable for determining their baselines. An algorithm checks if the signal is smooth enough by calculating a cumulative moving average and comparing each sample to the average and previous sample \cite{oostenbrugge2014daq}. At least the first 50 samples must satisfy the smoothness criteria. If that is the case then the average of those samples will be the baseline. If the start of the trace is not smooth the baseline can not be determined and will be set to the error value \num{-999}. The algorithm has recently been updated to also attempt to find a baseline from the end of the trace if it does not succeed from the start, this is not retroactively applied. Once the baseline is known other properties can be determined, if the baseline can not be determined all other properties are also set to \num{-999}. The baseline determination will fail if the first part of the trace contains a peak. Also signal oscillations (caused by a bad \pmt) can cause the baseline determination to fail. However, in the case of large oscillations the trigger may have been caused by the oscillations, so the data is bad.
+% Baseline can deviate from desired value
+% Thresholds are based on absolute ADC count values
+% How baseline is determined from trace
+% Why it can fail, how often that happens
+Though the \adcs are calibrated the baselines can still shift away from the desired value. Therefore the baseline must be determined for each trace. There is a high probability that the pre-trigger window part of the event traces do not contain a significant signal. If there was a large signal in that time it would likely have been part of the trigger. Moreover, the rate of singles is low enough that the probability of a coincidental signal is less than \SI{0.1}{\percent}. Hence the first part of traces is suitable for determining their baselines. An algorithm checks if the signal is smooth enough by calculating a cumulative moving average and comparing each sample to the average and previous sample \cite{oostenbrugge2014daq}. At least the first 50 samples (i.e. \SI{125}{\ns}) must satisfy the smoothness criteria. If that is the case then the average of those samples will be the baseline. If the start of the trace is not smooth the baseline can not be determined and will be set to the error value \num{-999}. The algorithm has recently been updated to also attempt to find a baseline from the end of the trace if it does not succeed from the start, this has not yet been retroactively applied to existing events. Once the baseline is known other properties can be determined, if the baseline can not be determined all other properties are also set to \num{-999}. The baseline determination will fail if the first part of the trace contains a peak. Also signal oscillations (caused by a bad \pmt) can cause the baseline determination to fail. However, in the case of large oscillations the trigger may have been caused by the oscillations, so the data is bad.
 
 
 \subsection{Signal strength}
 
-The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, since the trigger thresholds are not relative to the actual baseline. For events triggered in 4-detector stations there are often two detectors with very small or no significant pulses. Most events are triggered by two high signals in two detectors, with no signals in the other two detectors.
+% Pulse height and integral determination
+% Requires good baseline
+% integral definition
+The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, since the trigger thresholds are absolute thresholds, not relative to the actual baseline. For events triggered in 4-detector stations there are often two detectors with very small or no significant pulses. Most events are triggered by two high signals in two detectors, with no signals in the other two detectors.
 
-The pulse integral is the sum of the signals that are at least \SI{20}{\adc} above the baseline. This threshold filters signal noise, reflections, and small peaks. In \cref{fig:integral} these two observables are illustrated.
+The pulse integral is the sum of the signals that are at least \SI{20}{\adc} above the baseline. The pulse integral more accurately represents the particle count in a detector. The threshold for signals to count towards the pulse integral filters signal noise, reflections, and small peaks. In \cref{fig:integral} the pulse height and integral are illustrated.
 
 \begin{figure}
     \centering
@@ -34,22 +41,26 @@ The pulse integral is the sum of the signals that are at least \SI{20}{\adc} abo
 
 \subsection{Signal structure}
 
+% Some other observables, number of peaks and standard deviation
 Most traces contain only a single pulse. However, sometimes multiple particle pass through a detected within the short time window of the trigger, and separated enough to be distinguishable in the trace. In order to find events with multiple pulses the number of peaks in a trace is determined. This starts at the start of a trace and when the signal values rise more than the low threshold (relative to the baseline) a peak is counted. When a peak has reached its apex and then lowers again the maximum value is remembered, the value needs to drop at least the value of the threshold before a new peak can start. For the next peak the signal value needs to rise at least the threshold value again, above the new local minimum. The number of peaks is also a good indication of light leaks, which result in many small peaks in traces. The ratio between the pulse height and integral also provides structure information. If the pulse integral is higher than expected (see pmt linearity test or ph v integral plot) for a given pulse height then the trace probably contains multiple peaks.
 
 [illustrate with figure]
 
 As a measure of the stability of the trace around the baseline the standard deviation of the same part of the trace that was used for the baseline is calculated. This can be an indicator for the misalignment of the \adcs.
 
-At each event the average trigger rate (\si{\hertz}) as measured by the \daq over the last 90 seconds is added to the event. The first few events when starting the \daq will have a to low trigger rate due to the lack of information from the 90 seconds preceding the first trigger. Though not a property of the event itself, this provides insight in the proper operation of the detection station.
+% At each event the average trigger rate (\si{\hertz}) as measured by the \daq over the last 90 seconds is added to the event. The first few events when starting the \daq will have a to low trigger rate due to the lack of information from the 90 seconds preceding the first trigger. Though not a property of the event itself, this provides insight in the proper operation of the detection station.
 
 
 \subsection{Data reduction}
 
-Most events contain only two pulses in two detectors. These pulses are often very correlated in time (at least within the \SI{1.5}{\micro\second} trigger window) and normal small pulses are \SIrange{30}{100}{\ns} long. The rest of the trace is usually empty, and contains no valuable data. For each event the part containing all significant pulses is determined. The algorithm looks from the start and end of the traces up to the point that any of the detectors has a pulse. The empty parts of the traces will be cut away, some padding is added to allow verification of the baseline in the offline analysis. On average (median) this leads to traces with \SI{150}{\ns} (i.e. 60 samples) length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples). Overall \SI{2.5}{\percent} of the measured data is kept. This greatly reduces the size of data to be transferred to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
+% Data reduction to reduce load on uploading and datastore
+% Unfortunately introduced data loss
+% Partly saved by sending unreduced trace every so often
+Most events contain only two pulses in two detectors. These pulses are often very correlated in time (at least within the \SI{1.5}{\micro\second} trigger window) and normal small pulses are \SIrange{30}{100}{\ns} long. The rest of the trace is usually empty, and contains no valuable data. For each event the part containing all significant pulses is determined. The algorithm looks from the start and end of the traces up to the point that any of the detectors has a pulse. The empty parts of the traces will be cut away, some padding is left to allow verification of the baseline in the offline analysis. On average (median) this leads to traces with \SI{150}{\ns} (i.e. 60 samples) length. The default trace length (pre-trigger, trigger, post-trigger windows) is \SI{6}{\micro\second} (i.e. 2400 samples). Overall \SI{2.5}{\percent} of the measured data is kept. This greatly reduces the size of data to be transferred to the datastore and to be analysed offline. In order to have more baseline information every \SI{40}{\minute} the full traces of an event are kept. This allows for a quality check of the baselines.
 
 [figure with part of (more than reduced) full trace showing the cutoffs]
 
-% Scipt to determine some values, to be determined for larger dataset:
+% Script to determine some values, to be determined for larger dataset:
 % lengths = [zlib.decompress(s.blobs[i]).count(',') for i in range(0, s.blobs.nrows, 4)]
 % median(lengths)
 % mean([l for l in lengths if l != 2400])
@@ -58,6 +69,10 @@ Most events contain only two pulses in two detectors. These pulses are often ver
 
 \subsection{Mean/Noise filter}
 
+% Another destructive process
+% May prevent trigger time reconstruction
+% Is useful to smoothen trace and perhaps get more realistic values
+% Does not perfectly solve different baselines and gains for the channels..
 During the setup of a station the separate \adcs for each channel in the \hisparc electronics are aligned, however, this alignment is not perfect and can change over time. Typically a saw-tooth pattern can be observed in the measured traces. The amplitude of the saw-tooth can be different at different signal levels, because both the offset and gain may be different. This can be filtered out by averaging the signal. This is a multi-step process. First the trace is split into the even and odd parts (positive and negative clock) which are smoothed separately. These smoothed signals are interleaved and then smoothed again. The smoothing algorithm can be configured to prevent smoothing of signals significantly different from surrounding signals, in order to preserve real pulses.
 
 This is a destructive method in which information is lost. For the \hisparc stations at the Science Park the filtering has been disabled, to preserve raw trace values. The negative effect of trace filtering is described in \cref{sec:trigger_time}. The most recent version of the \hisparc \daq implements this filter only for the display on the \hisparc PC. The data will be sent to the datastore unfiltered. If desired the filter can be applied in the offline analysis.
@@ -72,16 +87,19 @@ This is a destructive method in which information is lost. For the \hisparc stat
 
 \subsection{Trigger pattern}
 
+% Unfortunately not reported correctly for a long time
+% Does not specify exact trigger for the event, just highlights which thresholds were triggered
 The \hisparc events contain a trigger pattern which indicates which trigger thresholds (including the external trigger) were active during the trigger window, which of the comparators were triggered, and the presence of a slave. A threshold being set to `on' in the trigger threshold pattern does not mean that that threshold actively contributed to the trigger. Take for example a 4-detector station which triggers on 2 high signals. If 2 simultaneous high signals in channels 1 and 2 cause a trigger, then several nano seconds later (still in the trigger window) a high signal appears in channel 3, the high threshold for channel 3 will be marked as active, even though that channel did not actively contribute to the trigger. Therefore it is better to look at the traces to determine what caused the trigger. Moreover, due to a software bug the trigger pattern was stored incorrectly for most data, missing part of the pattern. The trigger pattern is not used in the further analysis.
 
 
 \subsection{Event data from PC}
 
-The events contain ... when sent from the PC.
+The events uploaded for the station to the datastore contain the above described observables.
 
 
 \section{Offline processing for the Event Summary Data}
 
+% Daily data processing
 Every morning, several hours after midnight, all new data is processed to generate the Event Summary Data (ESD). Several hours after midnight is used because some stations may be slow in uploading data, this allows extra time to let all events from the previous day come in.  The event processing also looks for older dates with new events, not just yesterday. Stations have a local buffer in case they are temporarily unable to upload data. There have been cases where a station had several months worth of data locally which was all uploaded once the connection was reestablished. By keeping track of modification dates to the raw data files (stored by date) it is easy to find dates with new data. The processing applies the event processing module from \sapphire to the data. The following section describe exactly what this involves.
 
 The first step is the sorting of the events by timestamp, since events are not always uploaded in the correct order. Next duplicate events are removed. Duplicate events can occur when uploading a batch of events takes to long and \python has a timeout, while Windows continues to upload in the background. The \python program will try to upload the data again because it believes the upload failed.
@@ -89,7 +107,10 @@ The first step is the sorting of the events by timestamp, since events are not a
 
 \subsection{Number of particles}
 
-The size of the signals is a measure for the number of particles which passed though the detector. The pulse integral will be used for this since it also accounts for particles which arrive separately in time. Moreover, as shown in \cref{sub:pmt_linearity} the integral is less hindered by saturation of the \adcs. In order to relate the pulse integral to a number of particles the signal strength for a single particle needs to be determined. This is done separately for each detector, since each may be calibrated differently. To determine the signal for a single particle pulse integral data from multiple events is required. As shown in \cref{fig:ph_histogram_contrib} the pulse height histogram is a combination of contributions by a different number of particles and gamma's, the same is true for the pulse integral. By taking a day's worth of events the peak, which is Most Probable Value (\mpv) for a single particle, becomes apparent. By fitting this value a good estimate for the signal of a single particle is achieved.
+% Fit MPV in pulse integral histogram
+% Not yet corrected for inclination
+% Assumes leptonic signal
+The size of the signals is a measure for the number of particles which passed though the detector. The pulse integral will be used for this since it also accounts for particles which arrive separately in time. Moreover, as shown in \cref{sub:pmt_linearity} the integral is less hindered by saturation of the \adcs. In order to relate the pulse integral to a number of particles the signal strength for a single particle needs to be determined. This is done separately for each detector, since each may be calibrated differently. To determine the signal for a single particle pulse integral data from multiple events is required. As shown in \cref{fig:ph_histogram_contrib} the pulse height histogram is a combination of contributions by a different number of particles and gamma's, the same is true for the pulse integral. By taking a day's worth of events the peak, which is Most Probable Value (\mpv) for a single particle, becomes apparent. By fitting this value a good estimate for the signal of a single particle is achieved. The pulse integral is divided by the fitted \mpv. This number is a first rough estimate for the number of particles. Corrections for the shower angle and \pmt saturation still need to be applied.
 
 [figure of pulse integral histogram with fitted MPV]
 
@@ -97,6 +118,8 @@ The size of the signals is a measure for the number of particles which passed th
 \subsection{Trigger time}
 \label{sec:trigger_time}
 
+% Reconstruct trigger time, may fail for filtered traces
+% Used to relate events from different stations
 For each event a \gps timestamp is recorded at the moment the trigger conditions are met. Unfortunately, no data is included which connects the \gps timestamp to a specific sample of the traces. This is needed to relate traces from different events and stations. In order to find the sample in the traces to which the \gps timestamp belongs the trigger has to be reconstructed from the trace. Since the trigger conditions are known this simply requires applying the trigger logic to the traces. For each channel look if and when it crosses the low and high thresholds. Then find which trigger conditions are met, and which are first. For a 2-detector station this is simply the second channel that crosses the low threshold. For a 4-detector station either the second high or third low signal, which ever is first. However, the \hisparc electronics trigger on the raw traces which the \adcs read out, but if the Mean Filter is active in the \daq the traces are filtered before they are transmitted to the datastore. The filter sometimes smoothes trace such that signals that actually crossed a threshold no longer do so in the filtered trace. In some cases this makes it impossible to reconstruct the trigger. However, this is only the case where low signals or slow rising signals were part of the trigger.
 
 \begin{figure}
@@ -109,6 +132,7 @@ For each event a \gps timestamp is recorded at the moment the trigger conditions
 
 \subsection{Arrival times}
 
+% Arrival times in individual detectors
 The arrival time of particles in each individual detector is used for direction  reconstruction. The arrival time is defined at the start of the first pulse in a detector, as illustrated in \cref{fig:arrival_time}. Using the \gps timestamp and trigger time these arrival times can be converted to \gps time using $t_{i,\gps} = t_{\gps} - t_{trigger} + t_i$.
 
 \begin{figure}
@@ -121,31 +145,38 @@ The arrival time of particles in each individual detector is used for direction 
 
 \subsection{Detector offsets}
 
-Time offsets are observed between detectors as reported in \cref{sec:detector-offsets}. These need to be corrected for correct direction reconstruction. One day of data is enough to determine these offsets for the detectors within a station.
+% Offsets between detectors in same station
+Time offsets are observed between detectors in the same station, as reported in \cref{sec:detector-offsets}. These need to be corrected for to be able relate the detector arrival  times within a station. A single day of data is enough to accurately determine these offsets for the detectors within a station. The timing offset represent what the time difference would be if the detectors were simultaneously hit. This means that the determined offset must also be corrected for the altitude difference between the detectors. The altitude difference causes the detector positioned lower to have later arrival times. For most stations this is irrelevant as the detectors are at the same altitude, but there are some exceptions.
 
-All events that triggered a combination of two detectors. Calculate at all arrival time differences. Ideally the mean would be \SI{0}{\ns}, standard deviation related to the distance between the detectors. However, there is often an offset of several nano seconds. Distribution of offsets.. see section station.
+[illustration, show mirror symmetry and altitude effect?]
+
+First the best detector reference is determined by determining which detector participated in most events with any of the other detectors. In case of 4-detector stations detector 2 will often be this station since it is closest to all other detectors. In case of a 2-detector station detector 2 is always used. After offsets have been determined detector 2 is made the reference by setting its offset to \SI{0}{\ns}. Ideally all offsets are \SI{0}{\ns}, but this is not the case. The distribution off detector timing offsets for all \hisparc stations was shown in [ref chapter station].
 
 
 \subsection{Coincidences}
 
-Finally all processed events from all stations of a day are sorted into a long list. Then coincidences between stations are found. A coincidence is a group of least two events for which the \gps timestamps are within \SI{10000}{\ns}. All unique combinations of events which are not subsets of other combinations are stored.
+% Coincidences between multiple stations
+After processing data from individual stations their data is combined. First the processed events from all stations of a day are sorted (by timestamp) into a long list. Then coincidences are searched for. A coincidence is a group of least two events for which the \gps timestamps are within \SI{10000}{\ns}, which indicates they are likely from the same air shower. Of course unrelated simultaneous air showers do occur. However, at this stage no further analysis is performed other than looking for groups of events which fall within the time window. Events can be present in multiple coincidences as long as the coincidences is not a subset of another coincidence. 
 
 
 \subsection{Station offsets}
 
-Finally the offset between stations is determined. More than a single day of data is required for this. As reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the coincidence rate between the stations, from ... follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations. This is an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets of up to \SI{100}{\ns} [check value] become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
+% Offsets between stations that are often in coincidence
+Finally the timing offset between stations is determined. More than a single day of data is required for this, as reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the coincidence rate between the stations, from [ref coincidence rate] follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations. This is an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets, of up to \SI{100}{\ns} [check value], become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
 
-In some cases pairs of station are separated by a large distance but have stations between them that are closer to both. For instance stations 505 and 509 are separated by ... 600 meters, yet between them is station 501, separated 300 meter from both. There are far more coincidences between 501-505 and 501-509 than 505-509. Using 501 as a stepping stone reduces the time window required to determine an offset between 505-509, and in
+% Explain solution for difficult to determine offsets for distant pairs by using other stations
+In some cases pairs of station are separated by a large distance but have stations between them that are closer to both. For instance stations 505 and 509 are separated by ... \SI{600}{\meter}. There are many stations between them which are closer to both, for example station 501, separated 300 meter from both. There are far more coincidences between 501-505 and 501-509 than 505-509. In this case, using 501 as a stepping stone reduces the time window required to determine an offset between 505-509, and increases the accuracy of the offset.
 
+% Explain best reference/shortest path/accurate offsets algorithm
+At some point one station has to be appointed the reference station. The timing of that station will be considered as correct. In order to minimize the errors the station which has the lowest offset error to all other stations in the coincidence has to be found. This includes offsets via other stations which can increase the accuracy. To determine this the Floyd-Warshall algorithm [cite floyd1962algorithm] is used to find all the shortest paths between all stations in the coincidence, here the path lengths are the square of the error between the station pairs. So the path from station $i$ to station $j$ via $k$ is $\sigma_{i,j}^2 = \sigma_{i,k}^2 + \sigma{k,j}^2 + \sigma_{i, j}^2$. The station with the lowest overall error (path lengths) is used as reference. The paths resulting from the algorithm are reconstructed to calculate the resulting offsets.
 
-\section{Data analysis}
-
-\subsection{Shower front arrival time}
-
-\subsection{Particle density}
+[ add graph to illustrate shortest path, best reference ]
 
 
 \section{Data quality}
+
+In this section the criteria for defining good data are discussed. 
+
 
 \subsection{Day}
 
@@ -153,7 +184,10 @@ In some cases pairs of station are separated by a large distance but have statio
 
 \subsubsection{Implementation problems}
 
+% Problems in the software which causes some reconstructions to fail
+% Acceptable percentage of failed events in case of active filter
 As mentioned in the \cref{sec:online} there were some bugs in the software which caused the malformed trigger pattern, traces cut to small, and destructively filtered traces. These were fixed in the \hisparc station software version released at the end of 2015. Most stations still operate on the old version of the software. The cause is that the for some events the trigger time reconstruction fails, which prevents the event from being used in coincidence direction reconstruction. On a daily basis this results in \SI{0.2 \pm 0.1}{\percent} failed trigger time reconstructions. In these events the maximum signal strength will be just above the trigger threshold, and reduced just below it by the filter.
 
 
 \subsection{Detector}
+
