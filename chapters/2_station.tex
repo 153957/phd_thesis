@@ -513,7 +513,7 @@ These detector offsets are automatically determined each day for each station. I
 
 
 \subsubsection{Master slave timing}
-\label{sec:masterslavetiming}
+\label{sec:master_slave_timing}
 
 The offset between Master and Slave scintillator detectors may be caused by delays in the exchange of threshold information. The Master and Slave separately determine if a trigger occurred, determine the event timestamp, and  transmit it to the \daq software. In the \daq software the events from the Master and Slave are combined again (using the timestamp to find those that belong together) and the timestamp from the Master is used for the event. However, a slight timestamp difference may exist. In \cref{fig:time_delta_501} the distribution of timestamp differences for \num{6624} events is shown. This timestamp difference could be used to partly compensate for time offsets between the Master and Slave scintillator detectors. However, simply fitting the overall time difference compensates for this offset and individual scintillator detector offsets. The timestamp difference could be used on an event to event basis to improve the time resolution. But this is found to hardly improve the arrival time accuracy (\SI{0.5}{\ns}). Moreover, timestamp difference data is unavailable available for practically all \hisparc data. This effect slightly increases the arrival time difference accuracy between Master and Slave scintillator detectors, the mean offset is compensated for.
 

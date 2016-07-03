@@ -7,29 +7,29 @@ In order to develop and test reconstructions simulations are used. The in- and o
 
 \section{Monte Carlo extensive air shower simulation}
 
-For the simulation of cosmic-ray induced air showers there are several programs available, most notably \corsika and \aires \cite{sciutto1999}. \corsika was chosen because development is still active, unlike \aires which received its last update in 2006. \corsika also includes updated models based on recent \lhc data. Additionally, \corsika is widely used by other cosmic-ray experiments.
+For the simulation of cosmic-ray induced air showers there are several programs available, most notably \corsika and \aires \cite{sciutto1999aires}. \corsika was chosen because development is still active, unlike \aires which received its last update in 2006. \corsika also includes updated models based on recent \lhc data. Additionally, \corsika is widely used by other cosmic-ray experiments.
 
-\corsika version 74000 is used for all simulations reported in this thesis. \corsika provides the choice from many models for various interactions. For high energy hadronic interactions; DPMJET, EPOS LHC\cite{pierog2013}, NEXUS, QGSJET,QGSJETII-04\cite{ostapchenko2013}, SIBYLL, and VENUS are available. For hadrons with energies below \SI{80}{\GeV} GHEISHA\cite{fesefeldt1985}, FLUKA, or URQMD can be selected. Electromagnetic interactions can be treated by EGS4\cite{egs4} code or by NKG formulas.
+\corsika version 74000 is used for all simulations reported in this thesis. \corsika provides the choice from many models for various interactions. For high energy hadronic interactions; DPMJET, EPOS \lhc \cite{pierog2013epos}, NEXUS, QGSJET, QGSJETII-04 \cite{ostapchenko2013qgsjetii}, SIBYLL, and VENUS are available. For hadrons with energies below \SI{80}{\GeV} GHEISHA \cite{fesefeldt1985}, FLUKA, or URQMD can be selected. Electromagnetic interactions can be treated by EGS4\cite{egs4} code or by NKG formulas.
 
-From these options QGSJETII, GHEISHA and EGS4 were chosen. QGSJETII was chosen because the model has been tuned with \lhc data, and performs similar to EPOS, though both are not perfect yet (see ICRC2015 talks). Moreover, QGSJETII is easier to setup and faster to run [ref manual] than EPOS. All other options were left to their default values. The thinning algorithms were always disabled. For this configuration of \corsika an executable was compiled.  All simulations were performed using that same executable. 
+From these options QGSJETII, GHEISHA and EGS4 were chosen. QGSJETII was chosen because the model has been tuned with \lhc data, and performs similar to EPOS, though both are not perfect yet (see ICRC2015 talks). Moreover, QGSJETII is easier to setup and faster to run [ref manual] than EPOS. All other options were left to their default values. The thinning algorithms were always disabled. For this configuration of \corsika an executable was compiled.  All simulations were performed using that same executable.
 
 % From CORSIKA manual regarding model speed:
 % - The QGSJETII04 option needs about 3 times more CPU-time than the HDPM  option (NKG enabled, EGS4 disabled).
 % - The EPOS option needs roughly 7.5 times more CPU-time than the VENUS option (E0 = 1015 eV, NKG enabled, EGS4 disabled).
 % - The VENUS option needs roughly 15 times more CPU-time than the HDPM option (NKG enabled, EGS4 disabled).
-% So the EPOS option needs 7.5 x 15 = 112.5 times more CPU-time than the QGSJETII option.
+% So the EPOS option needs 7.5 x 15 = 112.5 times more CPU-time than the QGSJETII option. However, a large portion of simulation is not spent in the hadron models.
 
 
 \subsection{Shower parameters}
 
 The simulations are steered by an input file, most important parameters can be set here. The default options are used whenever applicable and believing in sensibly chosen defaults. The magnetic field and observation level values have been modified to values suitable for Amsterdam [ref]. The observation level for all simulations is set to\SI{10}{\meter} above sea level, which is relevant for the Science Park, where ground level is \SI{3.7}{\meter} below sea level, and the detector stations are on the roofs of buildings. The seeds for the random number generators (first for the hadron shower, second for EGS4) are randomly chosen and required to be unique for each simulation. The two seed values can be used as identifiers for specific simulations. Each combination of two seeds is unique in the dataset of simulations. A single air shower is simulated per run.
 
-Each run is for a specific particle with a specific energy between \SIrange{e11}{e18}{\eV} in steps of $\log E = 0.5$ (in \si{\eV}). The zenith angle is also set for each run and is varied from\SIrange{0}{60}{\degree} in steps of \SI{7.5}{\degree}. The azimuthal angle is usually set to \SI{0}{\degree} (\hisparc coordinate system), but can be varied in steps of \SI{45}{\degree}.
+Each run is for a specific particle with a specific energy between \SIrange{e11}{e18}{\eV} in steps of $\log \frac{E}{\si{\eV}} = 0.5$. The zenith angle is also set for each run and is varied from\SIrange{0}{60}{\degree} in steps of \SI{7.5}{\degree}. The azimuthal angle is usually set to \SI{0}{\degree} (\hisparc coordinate system), but can be varied in steps of \SI{45}{\degree}.
 
 
 \subsubsection{Primary particle}
 
-Given the high abundance of protons as primary cosmic ray particles and iron with a relative high abundance for heavier nuclei these are the particles that were most focused on for the simulations. However, small datasets with other primaries have also been created. For protons all possible combinations of energy and zenith have been simulated at least 10 times. In \cref{fig:simulations_proton_energy_zenith} the number of simulated showers for each combination of the energy and zenith parameters for proton primaries can be seen.
+Given the high abundance of protons as primary cosmic ray particles and iron with a relative high abundance for heavier nuclei these are the particles that were most focused on for the simulations. However, small datasets with other primaries have also been created. For protons all possible combinations of energy and zenith have been simulated at least 10 times. In \cref{fig:simulations_proton_energy_zenith} the number of simulated showers for each combination of the energy and zenith parameters for proton primaries can be seen. The focus was on the showers most often seen by \hisparc, i.e. primary energy of \SI{e15}{\eV} at \SI{22.5}{\degree} zenith.
 
 
 \subsubsection{Energy cuts}
@@ -39,30 +39,34 @@ The \corsika simulations will be used as input for detector simulations. Therefo
 
 \subsection{Stoomboot}
 
-To run a significant number of simulations the local \nikhef computer cluster 'Stoomboot' was utilized. This cluster used to have around 300 CPUs available, but was expanded in February 2014 to over 800 CPUs. Job queueing uses a fair-use policy to give each group at Nikhef equal access to computation time.
+To run a significant number of simulations the local \nikhef computer cluster 'Stoomboot' was utilized. This cluster used to have around 300 CPUs available, but was expanded in February 2014 to over 800 CPUs. Job queueing uses a fair-use policy to give each group at Nikhef equal opportunity to use computation time.
 
-Simulation time for each simulation is different because the number of particles in a simulations will be different each run, even with the same starting paramters (except for the seeds). Stoomboot has a maximum job time of \SI{96}{\hour}. This allows for showers with primary energies up to \SI{e17}{\eV}, which take around 60 hours to complete. Showers with primary energies less than \SI{e14}{\eV} are very quick and take only a minute [check] to complete. A large sample of showers can easily be generated by running many jobs simultaneously.
+Simulation time for each simulation is different because the total number of particles in a shower will be different each run, even with the same starting paramters but with different seeds for the random number generators. Stoomboot has a maximum job time of \SI{96}{\hour}. This allows for showers with primary energies up to \SI{e17}{\eV}, which take around 60 hours to complete. Showers with primary energies less than \SI{e14}{\eV} are very quick and take only a minute [check] to complete. A large sample of showers can easily be generated by running many jobs simultaneously.
 
-Cosmic rays with energies above \SI{e17}{\eV} have been observed, so some simulations at higher energies are desired. During the 2014 Christmas holidays 285 jobs at energies \SIlist{e17.5}{e18}{\eV} were run. To allow this the maximum job time had been manually extended by a Stoomboot administrator. The longest jobs took over \SI{480}{\hour} (i.e.\SI{20}{\day}) to complete. In total over [check] \SI{50}{\year} of CPU time was used to generate the entire simulation sample.
+Cosmic rays with energies above \SI{e17}{\eV} have been observed, so some simulations at higher energies are desired. During the 2014 Christmas holidays 285 jobs at energies \SIlist{e17.5;e18}{\eV} were run. To allow this the maximum job time had been manually extended by a Stoomboot administrator. The longest jobs took over \SI{480}{\hour} (i.e.\SI{20}{\day}) to complete. In total over [check] \SI{50}{\year} of CPU time was used to generate the entire simulation sample.
 
 \begin{figure}
     \centering
-    \input{plots/simulations/shower_walltime}
-    \caption{\captitle{Walltime for \corsika simulations.}}
+    \input{plots/reconstructions/shower_walltime}
+    \caption{\captitle{Walltime for \corsika simulations.} Vertial lines indicate the walltime limits of the different Stoomboot queues.}
     \label{fig:simulations_shower_walltime}
 \end{figure}
 
 
 \subsection{No thinning}
 
-\corsika provides a thinning mechanism to reduce the computation time. This could allow for the simulation of even more energetic air showers, for cases where otherwise the simulation time would become unreasonable. Thinning works by taking particles emerging from interactions which are below a given fraction of the primary particle energy and drops all but one of those. The particle that is kept is given a weight to represent the number of dropped particles. These weights are then included with the particle information for the particles at the observation level. This format is currently incompatible with the detector simulation. A dethinning algorithm exists \cite{stokes2012} which can unravel the weighted particles into separate particles, of course some information is already is lost.
+% Explain how thinning helps to reduce computation time
+% - Keep one particle if energy drops below fraction, only up to given weight
+% - To reduce storage thin particles close to core at observation level
+\corsika provides a thinning mechanism to reduce the computation time and storage requirements. This could allow for the simulation of even more energetic air showers, for cases where otherwise the simulation time would become unreasonable. Thinning works by taking particles emerging from interactions which are below a given fraction of the primary particle energy and drops all but one of those. The particle that is kept is given a weight to represent the number of dropped particles. These weights are then included with the particle information for the particles at the observation level. Additionally, particles close to the shower core at the observation level, where the detectors are likely saturated, may be thinned further to reduce the required storage size. The thinned shower output format is currently incompatible with the \hisparc detector simulation. The detector simulations requires individual particles, otherwise the particle density needs to be reconstructed to apply Poisson statistics to achieve the number of particles in a detector. A dethinning algorithm exists \cite{stokes2012} which can unravel the weighted particles into separate particles, of course some information is already lost.
 
+% We do not use thinning because Stoomboot is fast enough for some 1e18 eV
 The thinning mechanism has not been enabled because with Stoomboot enough computational time was available to run showers with energies up to \SI{e18}{\eV} without thinning. As shown by [LiO Sabine] the number of detected air showers by the Science Park cluster with primary energies above \SI{e18}{\eV} is low. Therefore simulated showers with higher energies are not immediately necessary, moreover, the extremely large file sizes make it harder to use them.
 
 
 \subsection{Simulations catalogue}
 
-Using Stoomboot a collection of over \num{70000} simulated showers has been created. This data is stored on the \hisparc data server (trave) which has \SI{37}{\tera\byte} space. This space is shared with the raw \hisparc data (cosmic and weather), \knmi lightning data, and analysis files from various \hisparc collaborators.
+Using Stoomboot a collection of over \num{70000} simulated showers has been created. This data, approximately \SI{20}{\tera\byte} [check], is stored on the \hisparc data server (trave) which has \SI{37}{\tera\byte} space. This space is shared with the raw \hisparc data (cosmic and weather), \knmi lightning data, and analysis files from various \hisparc collaborators.
 
 For easy use with the \sapphire framework the \corsika simulations are converted from the sequential unformatted \fortran data format to \hdf format. This is done using a modified version of the the Python \corsika Reader package \cite{gonzalez2011}. During the conversion the values are (when applicable) converted to the units and coordinate systems used in \hisparc [see appendix].
 
@@ -72,7 +76,7 @@ After the initial conversion further optimisation is performed by sorting and in
 
 \begin{figure}
     \centering
-    \input{plots/simulations/energy_zenith_proton}
+    \input{plots/reconstructions/energy_zenith_proton}
     \caption{\captitle{Proton simulations overview.} The square of the area of the rectangles indicate the number simulations with that energy and zenithb combinations with a proton primary.}
     \label{fig:simulations_proton_energy_zenith}
 \end{figure}
@@ -80,11 +84,11 @@ After the initial conversion further optimisation is performed by sorting and in
 
 \subsubsection{Simulation overview}
 
-Whenever new simulations are performed they are automatically converted to \hdf and added to an overview. The overview can for instance be used to find a suitable \corsika simulation for a detector simulation. The overview contains the variable input parameters, the number of particles on ground level per particle type, and the height of first interaction for each simulation. From this data we can compare the shower sizes for proton primary showers as a function of energy and zenith angle. The shower sizes, in this case the sum of all leptons, are shown in \cref{fig:simulations_shower_sizes}. There is a clear separation between the shower sizes for particle of different energies (in steps of $\log(E/\si{eV}$) at the same inclination. There may be some overlap betwee showers of adjacent energies, but only at the few percentile level.
+Whenever new simulations are performed they are automatically converted to \hdf and added to an overview. The overview can for instance be used to find a suitable \corsika simulation for a detector simulation. The overview contains the variable input parameters, the number of particles on ground level per particle type, and the height of first interaction for each simulation. From this data we can compare the shower sizes for proton primary showers as a function of energy and zenith angle. The shower sizes, in this case the sum of all leptons, are shown in \cref{fig:simulations_shower_sizes}. There is a clear separation between the shower sizes for particle of different energies, in steps of $\log(\frac{E}{\si{eV}}$, at the same inclination. There may be some overlap between showers of adjacent energies, but only at the few percentile level.
 
 \begin{figure}
     \centering
-    \input{plots/simulations/shower_sizes}
+    \input{plots/reconstructions/shower_sizes}
     \caption{\captitle{Shower size versus zenith angle and primary energy.}             Each line indicates the median shower size for a specific energy as a function of zenith angle. The gray area indicates the 16th and 84th percentile.}
     \label{fig:simulations_shower_sizes}
 \end{figure}
@@ -98,8 +102,9 @@ As input the \corsika showers or parameterized descriptions of the shower front 
 
 
 \subsection{Simulation steps}
+
 [todo]
-The detector simulation requires a cluster object and a choice of shower input. Finally a sensible maximum core distance and number of iterations can be chosen. For each iteration the following steps are taken.
+The detector simulation requires a cluster object, choice of shower input, and a number of iterations. Depending on the type of shower input some other options may be available. Finally a sensible maximum core distance and number of iterations can be chosen. For each iteration the following steps are taken.
 
 Generate shower parameters; core position, azimuth angle, and timestamp. A random position within a given radius around the cluster origin is generated for the shower core position.
 
@@ -133,6 +138,11 @@ See detector response, cluster response and calibration.
 The direction reconstruction algorithm reported in [fokkema2012] can be improved for better accuracy. Several improvements can be made; first using more than 3 detection points, second account for the different altitudes of the detectors, and finally account for the shape of the shower front.
 
 
+\subsection{Reconstruction in cartesian coordinates}
+
+[bits from montanus]
+
+
 \subsection{Utilizing more detection points}
 
 [bits from montanus]
@@ -145,9 +155,20 @@ The direction reconstruction algorithm reported in [fokkema2012] can be improved
 
 \subsection{Air shower front shape as seen by stations}
 
-The shape of the shower front as seen by the detectors must be determined. Using the simulated dataset these characteristics of the air showers can be extracted. The variation from shower to shower with the same starting parameters can be estimated, these variations limit the accuracy of the shower reconstruction.
+The shape of the shower front as seen by the detectors must be determined. Using the simulated dataset these characteristics of the air showers can be extracted. Even with the same starting parameters the shower front at ground level varies for each shower. Moreover, if the detection station position is shifted by a meter it will detect entirely different particles. The variations from shower to shower with the same starting parameters (particle and energy) and within the same shower can be estimated. These variations limit the accuracy of the shower reconstruction.
 
-For showers with a proton primary from zenith \SI{0}{\degree} a selection fo 40 showers [check] was made for the following energies \SIlist{1e15;1e15.5;1e16;1e16.5;1e17}. Each of these showers was simulated on a single station at specific core distances, and also rotated randomly. Further from the shower core the detection probability decreased to below \SI{100}{\percent}. For each shower the median arrival time at each core distance was determined. For each set of parameters these values were combined to get an average shower profile for showers with that energy and particle kind.
+For showers with a proton primary from zenith \SI{0}{\degree} a selection of \num{40} showers [check] was made for the following energies \SIlist{e15;e15.5;e16;e16.5;e17}. These showers are used to investigate the variations between showers. Each of these showers was used in a detector simulation and simulated on a single station at several specific core distances. For each core distance each shower was used \num{5000} times with randomized azimuthal angles, by randomizing the location of the station along the chosen core distance circle. For each shower the median arrival time at each core distance was determined. For each shower energy these values were combined to get an average shower profile.
+
+In figure \cref{fig:shower_detected_time_profile} the actual temporal lepton distribution and the detected (first arrival time) distributions are compared. For higher particle densities the detected shower profile is pushed more forward, since the probability that the first particle is closer to the front of the shower front is higher. At core distances where the detection/trigger probability drops the uncertainty in the detected profile increases, more simulations would be required to obtain an accurate profile, however, since the detection probability is so low the importance is negligible.
+
+\begin{figure}
+    \centering
+    \includegraphics{plots/reconstructions/proton_E_16-0_Z_0-0_I_22_149042664_130233131}
+    \caption{Compared raw shower front profile (open, gray) to detected shower profile (closed, blue). As a function of core distance the temporal distribution of leptons in the shower front is shown. The markers indicate the median arrival times, the colored bands include \SI{50}{\percent} of the particles. For the detected shower profile the arrival time of the first particle in a detector counts, if the station triggered.}
+    \label{fig:shower_detected_time_profile}
+\end{figure}
+
+After combining the detected profiles from multiple showers a relation can be derrived between the time delay and core distance. For each shower energy the shower profile is fit using $t = a r ^ b$. In table [make table with fitted params] the fitted parameters are shown. This time delay is used in direction reconstruction.
 
 
 \subsection{Reconstruction steps}
@@ -156,4 +177,4 @@ Raw data is first processed as described in \cref{ch:data_processing}. Because t
 
 The shower direction can be used to improve the estimated particle density in a station by correcting for the longer path of the shower particles in the detectors, which are a factor $\cos^{-1} \theta$ higher than they would be if going vertically through the detectors. Simultaneously the effective surface of the detector is reduced by a factor $\cos \theta$. Both these effects need to be corrected for. The uncertainty in the detected density is at low particle densities dominated by Poisson statistics. The value to be considered is not the particle density but the number of detected particles. Therefore the number should be corrected for the longer path, but not the different effective area.
 
-Using the estimated core position the direction reconstruction can use the core position to determine the radial core distance of each detector to the shower core. The reconstruction can then use non-flat shower fronts to reconstruct the core. The shape of a shower front 
+Using the estimated core position the direction reconstruction can use the core position to determine the radial core distance of each detector to the shower core. The reconstruction can then use non-flat shower fronts to reconstruct the core. The shape of a shower front

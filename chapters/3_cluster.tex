@@ -97,7 +97,7 @@ Events are sent to the PC as soon as possible to quickly empty the buffer to mak
 \subsubsection{Slave electronics timing}
 
 % How it works for master/slave
-The same timestamp calculation procedure is performed for events from the Master and Slave electronics, each sends their own \osm and measured data messages to the PC. The Master passes the received \pps from the \gps on to the Slave electronics. This synchronises their clocks, but also introduces another synchronisation error. The timestamps determined for the Master and Slave event are used to find which events belong together. After this they are simply combined, discarding the timing information from the Slave events. Due to the clock synchronisation errors between the Master and Slave errors of \SI{2.5}{\ns} between them are expected. This explains the time differences reported in \cref{sec:masterslavetiming}.
+The same timestamp calculation procedure is performed for events from the Master and Slave electronics, each sends their own \osm and measured data messages to the PC. The Master passes the received \pps from the \gps on to the Slave electronics. This synchronises their clocks, but also introduces another synchronisation error. The timestamps determined for the Master and Slave event are used to find which events belong together. After this they are simply combined, discarding the timing information from the Slave events. Due to the clock synchronisation errors between the Master and Slave errors of \SI{2.5}{\ns} between them are expected. This explains the time differences reported in \cref{sec:master_slave_timing}.
 
 
 \subsection{Timestamp offsets}
@@ -251,6 +251,7 @@ Important for shower reconstruction, coincidence rate, and possibilities for det
 
 
 \section{Detection by multiple stations}
+\label{sec:detection-multiple-stations}
 
 % Stations closer than \SI{2e3}{\meter} are likely to at some point detect the same shower.
 Station pairs separated by up to \SI{2e3}{\meter} occasionally detect the same shower at some point in time. At distances of \SI{2e3}{\meter} the rate of coincidences is close to the rate of random coincidences due to the event rate of the individual stations. Real events may still be distinguishable from background if the event can be reconstructed. Large showers which can be detected efficiently by two stations both \SI{e3}{\meter} from the shower core have energies of at least \SI{e18}{\eV}. Such showers are rare, from \cref{fig:spectrum} we can estimate a rate of approximately \SI{1}{\per\kilo\meter\squared\per\day}. The sensitivity to those showers is not equal over that \si{\kilo\meter\squared} area, so a lower rate is expected.

@@ -42,7 +42,7 @@ The pulse integral is the sum of the signals that are at least \SI{20}{\adc} abo
 \subsection{Signal structure}
 
 % Some other observables, number of peaks and standard deviation
-Most traces contain only a single pulse. However, sometimes multiple particle pass through a detected within the short time window of the trigger, and separated enough to be distinguishable in the trace. In order to find events with multiple pulses the number of peaks in a trace is determined. This starts at the start of a trace and when the signal values rise more than the low threshold (relative to the baseline) a peak is counted. When a peak has reached its apex and then lowers again the maximum value is remembered, the value needs to drop at least the value of the threshold before a new peak can start. For the next peak the signal value needs to rise at least the threshold value again, above the new local minimum. The number of peaks is also a good indication of light leaks, which result in many small peaks in traces. The ratio between the pulse height and integral also provides structure information. If the pulse integral is higher than expected (see pmt linearity test or ph v integral plot) for a given pulse height then the trace probably contains multiple peaks.
+Most traces contain only a single pulse. However, sometimes multiple particle pass through a detected within the short time window of the trigger, and separated enough to be distinguishable in the trace. In order to find events with multiple pulses the number of peaks in a trace is determined. This starts at the start of a trace and when the signal values rise more than the low threshold (relative to the baseline) a peak is counted. When a peak has reached its apex and then lowers again the maximum value is remembered, the value needs to drop at least the value of the threshold before a new peak can start. For the next peak the signal value needs to rise at least the threshold value again, above the new local minimum. The number of peaks is also a good indication of light leaks, which result in many small peaks in traces. A single event with many peaks does not immediately indicate a light leak. The ratio between the pulse height and integral also provides structure information. If the pulse integral is higher than expected [see pmt linearity test or ph v integral plot] for a given pulse height then the trace probably contains multiple peaks, or the \adcs are saturated.
 
 [illustrate with figure]
 
@@ -64,7 +64,7 @@ Most events contain only two pulses in two detectors. These pulses are often ver
 % lengths = [zlib.decompress(s.blobs[i]).count(',') for i in range(0, s.blobs.nrows, 4)]
 % median(lengths)
 % mean([l for l in lengths if l != 2400])
-% len([l for l in lengths if l ==2400])
+% len([l for l in lengths if l == 2400])
 
 
 \subsection{Mean/Noise filter}
@@ -144,50 +144,61 @@ The arrival time of particles in each individual detector is used for direction 
 
 
 \subsection{Detector offsets}
+\label{sec:process_detector_offsets}
 
 % Offsets between detectors in same station
-Time offsets are observed between detectors in the same station, as reported in \cref{sec:detector-offsets}. These need to be corrected for to be able relate the detector arrival  times within a station. A single day of data is enough to accurately determine these offsets for the detectors within a station. The timing offset represent what the time difference would be if the detectors were simultaneously hit. This means that the determined offset must also be corrected for the altitude difference between the detectors. The altitude difference causes the detector positioned lower to have later arrival times. For most stations this is irrelevant as the detectors are at the same altitude, but there are some exceptions.
+Time offsets are observed between detectors in the same station, as reported in \cref{sec:detector-offsets}. These need to be corrected for to be able relate the detector arrival times within a station. A single day of data is enough to accurately determine these offsets for the detectors within a station. A four-detector station in the star-layout has approximately \num{60000} triggers per day. A pair of detectors in the outer triangle have approximately \num{12000} triggers in common while a pair which includes the center detector is in approximately \num{14000} triggers. Following from [ref background rate], approximately \num{3000} of these triggers per pair are background. Most of the background is easily removed by constraining the maximum allowed time difference between the detectors. Limitting the maximum time difference to the time it would take light to go from one detector to the other, typically \SI{33}{\ns}, removes most background events, leaving only approximately \num{250} background triggers. A small percentage real showers will also be removed, but in those cases the time difference is larger than expected due to shower front thickness and detector transport time effects. Those events do not contribute much to an accurate offset. The timing offset represents what the arrival time difference would be if the detectors were simultaneously hit. This means that the determined offset must also be corrected for the altitude difference between the detectors. The altitude difference causes the detector positioned lower to have later arrival times. For most stations this is irrelevant as the detectors are at the same altitude, but there are some exceptions.
 
 [illustration, show mirror symmetry and altitude effect?]
 
-First the best detector reference is determined by determining which detector participated in most events with any of the other detectors. In case of 4-detector stations detector 2 will often be this station since it is closest to all other detectors. In case of a 2-detector station detector 2 is always used. After offsets have been determined detector 2 is made the reference by setting its offset to \SI{0}{\ns}. Ideally all offsets are \SI{0}{\ns}, but this is not the case. The distribution off detector timing offsets for all \hisparc stations was shown in [ref chapter station].
+% Determining the offset, the procedure
+First the best detector reference is determined by determining which detector participated in most events with any of the other detectors. In case of 4-detector stations detector 2 will often be this station since it is closest to all other detectors. In case of a 2-detector station detector 2 is always used. After offsets have been determined detector 2 is made the reference by setting its offset to \SI{0}{\ns}. Ideally all offsets are \SI{0}{\ns}, but this is not the case. The distribution off detector timing offsets for all \hisparc stations was shown in \cref{sec:detector-offsets}.
 
 
 \subsection{Coincidences}
 
 % Coincidences between multiple stations
-After processing data from individual stations their data is combined. First the processed events from all stations of a day are sorted (by timestamp) into a long list. Then coincidences are searched for. A coincidence is a group of least two events for which the \gps timestamps are within \SI{10000}{\ns}, which indicates they are likely from the same air shower. Of course unrelated simultaneous air showers do occur. However, at this stage no further analysis is performed other than looking for groups of events which fall within the time window. Events can be present in multiple coincidences as long as the coincidences is not a subset of another coincidence. 
+After processing data from individual stations their data is combined. First the processed events from all stations of a day are sorted (by timestamp) into a long list. Then coincidences are searched for. A coincidence is a group of least two events for which the \gps timestamps are within \SI{10000}{\ns}, which indicates they are likely from the same air shower. Of course unrelated simultaneous air showers do occur. However, at this stage no further selection is performed other than looking for groups of events which fall within the time window. Events can be present in multiple coincidences as long as the coincidences is not a subset of another coincidence.
 
 
 \subsection{Station offsets}
 
 % Offsets between stations that are often in coincidence
-Finally the timing offset between stations is determined. More than a single day of data is required for this, as reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the coincidence rate between the stations, from [ref coincidence rate] follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations. This is an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets, of up to \SI{100}{\ns} [check value], become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
+Finally the timing offset between stations is determined. More than a single day of data is required for this, as reported in [ref station offsets section]. The amount of time required to determine an accurate station offsets depends on the coincidence rate between the stations, from \cref{sec:detection-multiple-stations} follows the coincidence rate between stations as a function of their distance. However, as shown in [ref width distance] the width of the time difference distribution increases with distance between the stations. This is an effect of inclined showers and shower front curvature. With enough coincidences these effects average out and a good offset can bet determined. When the distance between stations is very large the expected \gps offsets, of up to \SI{100}{\ns} [check value], become less important as they have less effect on the direction reconstruction. At a distance of .. meters a difference of 100 ns only changes the direction by ... (from Zenith)...
 
 % Explain solution for difficult to determine offsets for distant pairs by using other stations
-In some cases pairs of station are separated by a large distance but have stations between them that are closer to both. For instance stations 505 and 509 are separated by ... \SI{600}{\meter}. There are many stations between them which are closer to both, for example station 501, separated 300 meter from both. There are far more coincidences between 501-505 and 501-509 than 505-509. In this case, using 501 as a stepping stone reduces the time window required to determine an offset between 505-509, and increases the accuracy of the offset.
+In some cases pairs of station are separated by a large distance but have stations between them that are closer to both. For instance stations 505 and 509 are separated by \SI{580}{\meter}. There are many stations between them which are closer to both, for example station 501, separated less than \SI{350}{\meter} from both. There are far more coincidences between 501-505 and 501-509 than 505-509. In this case, using 501 as a stepping stone reduces the time window required to determine an offset between 505-509, and increases the accuracy of the offset.
 
 % Explain best reference/shortest path/accurate offsets algorithm
-At some point one station has to be appointed the reference station. The timing of that station will be considered as correct. In order to minimize the errors the station which has the lowest offset error to all other stations in the coincidence has to be found. This includes offsets via other stations which can increase the accuracy. To determine this the Floyd-Warshall algorithm [cite floyd1962algorithm] is used to find all the shortest paths between all stations in the coincidence, here the path lengths are the square of the error between the station pairs. So the path from station $i$ to station $j$ via $k$ is $\sigma_{i,j}^2 = \sigma_{i,k}^2 + \sigma{k,j}^2 + \sigma_{i, j}^2$. The station with the lowest overall error (path lengths) is used as reference. The paths resulting from the algorithm are reconstructed to calculate the resulting offsets.
+At some point one station has to be appointed the reference station. The timing of that station will be considered as correct. In order to minimize the errors the station which has the lowest offset error to all other stations in the coincidence has to be found. This includes offsets via other stations which can increase the accuracy. To determine this the Floyd-Warshall algorithm \cite{floyd1962algorithm} is used to find all the shortest paths between all stations in the coincidence. Here the path lengths between nodes are the square of the error on the offset between the station pairs. So the path from station $i$ to station $j$ via $k$ would be $\sigma_{i,j}^2 = \sigma_{i,k}^2 + \sigma_{k,j}^2$. The station with the lowest overall error, i.e. sum of path lengths to all other stations, is used as reference. The paths resulting from the algorithm are reconstructed to calculate the resulting offsets.
 
 [ add graph to illustrate shortest path, best reference ]
 
 
 \section{Data quality}
 
-In this section the criteria for defining good data are discussed. 
+In this section the criteria for defining good data are discussed.
 
 
-\subsection{Day}
+\subsection{Exclude entire day}
 
-\subsection{Events}
+% Exclude station: bad GPS, change of configuration (gps/electronics/voltages)
+All data for a station for a day is excluded if something was changed in the configuration of that station. Specifically if the \gps position is altered, different electronics are connected, or the \pmt voltages are changed. If the \gps position changes this can indicate that the station is moved or that a different \gps antenna is connected. All these changes can affect the timing offsets of the station and detectors. A change in the electronics and voltages can also affect the \mpv value of each detector. The offsets and \mpv are determined daily using (multiple) full days as input. Changes to the station which affect these calibration values can cause the fits to be based on mixed datasets. Therefore, those days are excluded from the analysis.
 
-\subsubsection{Implementation problems}
+% Exclude detector: bad MPV, bad detector offset
+Data from malfunctioning or improperly configured detectors must also be excluded. When determining the particle density in a station only particles and detection area of the working detectors must be counted. If in a four-detector station one or two detectors are malfunctioning the other two can still trigger on showers. In some cases a malfunctioning detector can cause false signals which will contribute to the triggering of the station, in those cases an offline trigger can be used to determine if the station would also have triggered if only the signals of the working detectors is considered. The particle counts and detection area of the bad detectors are excluded when calculating the particle density in the station. In the analysis a bad detector can be recognized by a failed \mpv fit, which means that the derrived particle counts are set to an error value.
+
+
+\subsection{Specific bad events}
+
+% Exclude entire event: bad t_trigger, trigger on n particles, ...
+If trigger time reconstruction fails the event can not be properly placed in absolute \gps timing and can therefore not participate in coincidences. There are two known causes for a failed trigger reconstruction. Either the incorrect trigger configuration is used in the reconstruction or the trace signals are below the thresholds because the noise filter was active. There are some cases in which an updated configuration was not sent to the datastore after In that case the event can also be excluded due to the low signals. After the \mpv for each detector has been determined a new trigger can be defined based on the number of particles in the detector. Using the \mpv and pulse integral the number of particles is estimated more accurately than when using the pulse height, which was used in the trigger on the station. By triggering on the calibrated pulse integral a more consistent trigger is achieved.
+
+% Exclude specific detector: ...
+
+
+\subsubsection{Software implementation issues}
 
 % Problems in the software which causes some reconstructions to fail
 % Acceptable percentage of failed events in case of active filter
 As mentioned in the \cref{sec:online} there were some bugs in the software which caused the malformed trigger pattern, traces cut to small, and destructively filtered traces. These were fixed in the \hisparc station software version released at the end of 2015. Most stations still operate on the old version of the software. The cause is that the for some events the trigger time reconstruction fails, which prevents the event from being used in coincidence direction reconstruction. On a daily basis this results in \SI{0.2 \pm 0.1}{\percent} failed trigger time reconstructions. In these events the maximum signal strength will be just above the trigger threshold, and reduced just below it by the filter.
-
-
-\subsection{Detector}
-
