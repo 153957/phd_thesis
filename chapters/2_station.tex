@@ -1,5 +1,6 @@
 \setcounter{chapter}{1}
 \chapter{The \hisparc detection station}
+\label{ch:station}
 
 % What type of detectors are used (and why), and why organised in independent stations
 The \hisparc experiment utilizes independent detection stations which use multiple scintillator detectors to perform standalone triggering. A set of scintillator detectors connected to the same readout system are called a station. Since each station performs its own triggering, stations do not need to be interconnected. For stations separated by large distances this approach is more practical, since wireless and wired communication are either to unreliable or to slow. For experiments like Auger, where the space between individual surface detectors is mostly empty, wirelessly connecting them is an option. A \hisparc station consists of either 2 or 4 scintillator detectors connected to \hisparc electronics. In this chapter the specifications and performance of a station is discussed. First the scintillator detectors are described in detail, followed by the electronics which perform the readout and triggering. Finally the way they work together in a station is looked at.
@@ -371,6 +372,7 @@ An additional signal input is available on the rear of the \hisparc electronics 
 \section{Detection station}
 
 \subsection{Efficiency of triggering}
+\label{ssec:efficiency_triggering}
 
 % Multiple detector readout with ADCs, use the good timing for coincidence time trigger.
 For two scintillator detectors separated by a distance $d$ and sample rate $t_{\mathrm{sample}} = \SI{2.5}{\ns}$ the number of possible (physically relevant) time differences between the two scintillator detectors detecting the same shower front can be calculated by

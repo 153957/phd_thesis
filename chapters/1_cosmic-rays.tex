@@ -45,8 +45,7 @@ Radiation fields can in some cases affect the cosmic rays. With energies above \
 Cosmic rays do not simply travel in a straight line from their source to Earth. Moving charged particles are affects by magnetic fields. The Lorentz force may change the direction of the particle. The strength of this depends on the angle between the direction of motion and magnetic field lines. The deflection is strongest when the field is perpendicular to the direction of motion. The strength of all magnetic fields in the universe is not known. The overal field strength and distribution of large scale random fields for the Milky Way are being determined from experiments. The average magnetic field strength is \SI{0.6 \pm .2}{\nano\tesla} \cite{jansson2010magnetic}. The radius of curvature for relativistic particles traveling through a magnetic field is called the Larmor radius (or gyro radius). This is given by
 %
 \begin{equation}
-    R = \SI{108}{\kilo\parsec}
-        \frac{E_{\si{\exa\eV}}}{Z B_{\si{\nano\tesla}}}
+    R = \SI{108}{\kilo\parsec} \frac{E_{\si{\exa\eV}}}{Z B_{\si{\nano\tesla}}}
 \end{equation}
 %
 where $R$ is the radius of curvature, $Z$ the atomic number of the particle, which is equal to the charge because atomic cosmic rays are fully ionised, $B$ is the magnetic field strength, and $E$ the energy of the particle. In \cref{fig:gyroradius} the gyroradius of a proton cosmic ray is shown for various energies of the cosmic ray and various strengths of the magnetic field \cite{grigat2011anisotropy}.
@@ -321,7 +320,7 @@ In \cref{fig:shower} all traces of the particles in an air shower are shown. The
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/shower_size_distribution}
-    \caption{Number of leptons on ground distributions versus the energy of the primary particle. The variation from shower to shower means that showers will have a different number of particles reaching ground level, eventhough the primary energy was equal. The variations can be as high as a factor 10.  \cite{heck2013corsika}}
+    \caption{Number of leptons on ground distributions versus the energy of the primary particle. The variation from shower to shower means that showers will have a different number of particles reaching ground level, eventhough the primary energy was equal. The variations can be as high as a factor 10. \cite{heck2013corsika}}
     \label{fig:shower_size_distribution}
 \end{figure}
 
@@ -532,13 +531,13 @@ The efficiency with which two detectors can detector a shower can be estimated. 
 The relation between the median shower size (number of electrons at sea level) and primary energy (see \cref{fig:shower_size_distribution}) can be approximated by the following relation
 %
 \begin{equation}
-    N_{\Pe} = 10^{\log\left(\frac{E}{\si{\eV}}\right) - 10.2} \ ,
+    N_{\Pe} = 10^{\log\left(E / {\si{\eV}}\right) - 10.2} \ ,
 \end{equation}
 %
 which is valid for (semi-)vertical showers. As the zenith angle of showers increases above \SI{15}{\degree} the shower size noticeably decreases. Also the energy at which the transition from mostly muons to mostly electrons at ground is at higher values for larger zenith angles. A better fit may be achieved by adding an extra parameter
 %
 \begin{equation}
-    N = 10^{\log\left(\frac{E}{\si{\eV}}\right)^y - x} \ .
+    N = 10^{\log\left(E / {\si{\eV}}\right)^y - x} \ .
 \end{equation}
 %
 This can be fitted more accurately to the median electron, muon and total lepton sizes (per zenith angle). For the number of electrons the values $x = 13.3$ and $y = 1.07$ best describe results from simulated air showers (protons from the Zenith).

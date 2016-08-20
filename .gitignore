@@ -4,10 +4,10 @@ TODO
 outlines/
 scraps/
 chapters/*.pdf
-articles/**.pdf
-articles/**.csv
-articles/**.txt
-articles/**.webarchive
+articles/*/*.pdf
+articles/*/*.csv
+articles/*/*.txt
+articles/*/*.webarchive
 articles/fokkema_references
 !articles/*.bib
 !articles/*/*.bib

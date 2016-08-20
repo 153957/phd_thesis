@@ -9,7 +9,7 @@ In order to develop and test reconstructions simulations are used. The in- and o
 
 For the simulation of cosmic-ray induced air showers there are several programs available, most notably \corsika and \aires \cite{sciutto1999aires}. \corsika was chosen because development is still active, unlike \aires which received its last update in 2006. \corsika also includes updated models based on recent \lhc data. Additionally, \corsika is widely used by other cosmic-ray experiments.
 
-\corsika version 74000 is used for all simulations reported in this thesis. \corsika provides the choice from many models for various interactions. For high energy hadronic interactions; DPMJET, EPOS \lhc \cite{pierog2013epos}, NEXUS, QGSJET, QGSJETII-04 \cite{ostapchenko2013qgsjetii}, SIBYLL, and VENUS are available. For hadrons with energies below \SI{80}{\GeV} GHEISHA \cite{fesefeldt1985}, FLUKA, or URQMD can be selected. Electromagnetic interactions can be treated by EGS4\cite{egs4} code or by NKG formulas.
+\corsika version 74000 is used for all simulations reported in this thesis. \corsika provides the choice from many models for various interactions. For high energy hadronic interactions; DPMJET, EPOS \lhc \cite{pierog2013epos}, NEXUS, QGSJET, QGSJETII-04 \cite{ostapchenko2013qgsjetii}, SIBYLL, and VENUS are available. For hadrons with energies below \SI{80}{\GeV} GHEISHA \cite{fesefeldt1985}, FLUKA, or URQMD can be selected. Electromagnetic interactions can be treated by EGS4 \cite{egs4} code or by NKG formulas.
 
 From these options QGSJETII, GHEISHA and EGS4 were chosen. QGSJETII was chosen because the model has been tuned with \lhc data, and performs similar to EPOS, though both are not perfect yet (see ICRC2015 talks). Moreover, QGSJETII is easier to setup and faster to run [ref manual] than EPOS. All other options were left to their default values. The thinning algorithms were always disabled. For this configuration of \corsika an executable was compiled.  All simulations were performed using that same executable.
 
@@ -24,7 +24,7 @@ From these options QGSJETII, GHEISHA and EGS4 were chosen. QGSJETII was chosen b
 
 The simulations are steered by an input file, most important parameters can be set here. The default options are used whenever applicable and believing in sensibly chosen defaults. The magnetic field and observation level values have been modified to values suitable for Amsterdam [ref]. The observation level for all simulations is set to\SI{10}{\meter} above sea level, which is relevant for the Science Park, where ground level is \SI{3.7}{\meter} below sea level, and the detector stations are on the roofs of buildings. The seeds for the random number generators (first for the hadron shower, second for EGS4) are randomly chosen and required to be unique for each simulation. The two seed values can be used as identifiers for specific simulations. Each combination of two seeds is unique in the dataset of simulations. A single air shower is simulated per run.
 
-Each run is for a specific particle with a specific energy between \SIrange{e11}{e18}{\eV} in steps of $\log \frac{E}{\si{\eV}} = 0.5$. The zenith angle is also set for each run and is varied from\SIrange{0}{60}{\degree} in steps of \SI{7.5}{\degree}. The azimuthal angle is usually set to \SI{0}{\degree} (\hisparc coordinate system), but can be varied in steps of \SI{45}{\degree}.
+Each run is for a specific particle with a specific energy between \SIrange{e11}{e18}{\eV} in steps of $\log \left(E / \si{\eV}\right) = 0.5$. The zenith angle is also set for each run and is varied from\SIrange{0}{60}{\degree} in steps of \SI{7.5}{\degree}. The azimuthal angle is usually set to \SI{0}{\degree} (\hisparc coordinate system), but can be varied in steps of \SI{45}{\degree}.
 
 
 \subsubsection{Primary particle}
@@ -84,7 +84,7 @@ After the initial conversion further optimisation is performed by sorting and in
 
 \subsubsection{Simulation overview}
 
-Whenever new simulations are performed they are automatically converted to \hdf and added to an overview. The overview can for instance be used to find a suitable \corsika simulation for a detector simulation. The overview contains the variable input parameters, the number of particles on ground level per particle type, and the height of first interaction for each simulation. From this data we can compare the shower sizes for proton primary showers as a function of energy and zenith angle. The shower sizes, in this case the sum of all leptons, are shown in \cref{fig:simulations_shower_sizes}. There is a clear separation between the shower sizes for particle of different energies, in steps of $\log(\frac{E}{\si{eV}}$, at the same inclination. There may be some overlap between showers of adjacent energies, but only at the few percentile level.
+Whenever new simulations are performed they are automatically converted to \hdf and added to an overview. The overview can for instance be used to find a suitable \corsika simulation for a detector simulation. The overview contains the variable input parameters, the number of particles on ground level per particle type, and the height of first interaction for each simulation. From this data we can compare the shower sizes for proton primary showers as a function of energy and zenith angle. The shower sizes, in this case the sum of all leptons, are shown in \cref{fig:simulations_shower_sizes}. There is a clear separation between the shower sizes for particle of different energies, in steps of $\log \left(E / {\si{\eV}}\right) = 0.5$, at the same inclination. There may be some overlap between showers of adjacent energies, but only at the few percentile level.
 
 \begin{figure}
     \centering
@@ -140,17 +140,17 @@ The direction reconstruction algorithm reported in [fokkema2012] can be improved
 
 \subsection{Reconstruction in cartesian coordinates}
 
-[bits from montanus]
+[]%[bits from montanus]
 
 
 \subsection{Utilizing more detection points}
 
-[bits from montanus]
+[]%[bits from montanus]
 
 
 \subsection{Accounting for detector altitudes}
 
-[bits from montanus]
+[]%[bits from montanus]
 
 
 \subsection{Air shower front shape as seen by stations}

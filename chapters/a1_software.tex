@@ -6,8 +6,7 @@
 
 \section{Distributed version control}
 
-Our code has transitioned from Bazaar \cite{bazaar} to \git \cite{git} as
-distributed version control systems (DVCS). \git was chosen for its compatibility with \github \cite{github}. When Bazaar was still used the code repositories were hosted on a Nikhef server, this made it difficult for others to access the code and thereby harder to participate or contribute. On \github the software has been open sourced and can be downloaded with a single click, on any system. \github is now used to host all code repositories. \github provides a web-interface to manage projects, keep track of issues, and handle pull requests. \github provides a Graphical User Interface (GUI) for Mac and Windows called GitHub Desktop (cite github desktop), making it easy for those unfamiliar with the command line to use \git. Moreover, \git has a much larger userbase than other DVCS (cite DVCS statistics), which often makes it easier to find solutions to problems, because it is more likely that someone else has experienced the same problem.
+Our code has transitioned from Bazaar \cite{bazaar} to \git \cite{git} as distributed version control systems (DVCS). \git was chosen for its compatibility with \github \cite{github}. When Bazaar was still used the code repositories were hosted on a Nikhef server, this made it difficult for others to access the code and thereby harder to participate or contribute. On \github the software has been open sourced and can be downloaded with a single click, on any system. \github is now used to host all code repositories. \github provides a web-interface to manage projects, keep track of issues, and handle pull requests. \github provides a Graphical User Interface (GUI) for Mac and Windows called GitHub Desktop (cite github desktop), making it easy for those unfamiliar with the command line to use \git. Moreover, \git has a much larger userbase than other DVCS (cite DVCS statistics), which often makes it easier to find solutions to problems, because it is more likely that someone else has experienced the same problem.
 
 \github also provides webpage hosting of static pages for repositories, called \github Pages. This feature is used to host software documentation and the compiled version of the teaching materials, for which the sources are also on \github.
 
@@ -62,7 +61,7 @@ Functions have been added to \sapphire and \jsparc to access the \api. These tak
 
 \subsection{Event Summary Database}
 
-Each morning at 4:00 UTC the Public database server starts to process new data, what processing entails is described in (secref other section). It looks for all raw data files that have been changed since the last processing. After processing the raw data the results are stored in the Event Summary Database (ESD). The ESD contains processed event and weather data, and coincidence data for the events. The ESD is then used to generate daily overviews per station and for coincidences.
+Each morning at 4:00 \utc the Public database server starts to process new data, what processing entails is described in (secref other section). It looks for all raw data files that have been changed since the last processing. After processing the raw data the results are stored in the Event Summary Database (ESD). The ESD contains processed event and weather data, and coincidence data for the events. The ESD is then used to generate daily overviews per station and for coincidences.
 
 
 \subsection{Data downloads}
@@ -86,11 +85,7 @@ During the installation pip will also try to install other packages which are re
 
 \subsection{Clusters}
 
-Using the \api \sapphire has access to the \gps coordinates of all
-stations. For stations that have submitted their detector positions,
-those are available as well. This makes it easy to setup a cluster with
-any selection of \hisparc stations. This can be used for simulations.
-Imaginary stations can be added to plan future station locations.
+Using the \api \sapphire has access to the \gps coordinates of all stations. For stations that have submitted their detector positions, those are available as well. This makes it easy to setup a cluster with any selection of \hisparc stations. This can be used for simulations. Imaginary stations can be added to plan future station locations.
 
 
 \subsection{\corsika}
@@ -117,53 +112,26 @@ also known).
 
 \subsection{Data quality}
 
-This code flags bad data and ensures that the data going into the
-reconstruction is good data.
+This code flags bad data and ensures that the data going into the reconstruction is good data.
 
 [TODO: Write code to determine data quality.]
 
 
 \section{Code testing}
 
-Tests have been written to ensure that programming code does what is
-expected, even when it is modified later. Code tests can be very
-specific and precisely check the output given some inputs, check how
-often another function is called, and ensure that the correct errors are
-thrown when given invalid input. More general tests are also used to
-validate code validity and coding style. A lot of effort has been put
-into ensuring that all \python code adheres to the same coding style,
-the Python Enhancement Proposal (PEP) 8 - Style Guide for Python Code. Using a consistent style makes code easier to read and makes it easier to find bugs.
+Tests have been written to ensure that programming code does what is expected, even when it is modified later. Code tests can be very specific and precisely check the output given some inputs, check how often another function is called, and ensure that the correct errors are thrown when given invalid input. More general tests are also used to validate code validity and coding style. A lot of effort has been put into ensuring that all \python code adheres to the same coding style, the Python Enhancement Proposal (PEP) 8 - Style Guide for Python Code. Using a consistent style makes code easier to read and makes it easier to find bugs.
 
-These tests can be run locally while developing code. However,
-developers might forget to run tests or do not want to spend time
-testing. To ensure that new code is always tested the \sapphire and
-\jsparc repositories have the \travis service \cite{travis} added. After
-new commits are pushed to those repository \travis starts a Virtual
-Machine that will download the repository and install any requirements we have defined and run the tests. The results are then displayed on the
-repository page, and the person that pushed the code will get an e-mail
-if the tests fail. For \sapphire commits must pass the tests before they can be pushed to the master branch.
+These tests can be run locally while developing code. However, developers might forget to run tests or do not want to spend time testing. To ensure that new code is always tested the \sapphire and \jsparc repositories have the \travis service \cite{travis} added. After new commits are pushed to those repository \travis starts a Virtual Machine that will download the repository and install any requirements we have defined and run the tests. The results are then displayed on the repository page, and the person that pushed the code will get an e-mail if the tests fail. For \sapphire commits must pass the tests before they can be pushed to the master branch.
 
 
 \subsection{Code coverage}
 
-Having a test for a function does not guarantee that every bit of code
-is tested. To check which parts of the code are tested we use a code
-coverage tool. While \travis runs tests it keeps track of which lines of
-code in \sapphire are run. At the end of the tests a report is sent to
-\coveralls \cite{coveralls} and \codecov \cite{codecov} which then shows overviews of which lines have been tested and which have not. However, testing each line once does not ensure proper coverage. A common scenario is that only one path through an if statement is checked, and since else is optional in \python it is not always obvious that the alternative is not tested. \codecov takes this into account and reports on missed execution branches.
+Having a test for a function does not guarantee that every bit of code is tested. To check which parts of the code are tested we use a code coverage tool. While \travis runs tests it keeps track of which lines of code in \sapphire are run. At the end of the tests a report is sent to \coveralls \cite{coveralls} and \codecov \cite{codecov} which then shows overviews of which lines have been tested and which have not. However, testing each line once does not ensure proper coverage. A common scenario is that only one path through an if statement is checked, and since else is optional in \python it is not always obvious that the alternative is not tested. \codecov takes this into account and reports on missed execution branches.
 
 
 \subsection{Vagrant}
 
-The Public Database is more complex than \sapphire and \jsparc. It
-requires the Django package \cite{django}, a database and raw data to be
-fully tested. These tests can be very time consuming. When developing
-code for the Public Database, it is best to test it in en environment
-similar to the live server. To accomplish this we use a local virtual
-machine that is provisioned by scripts to install the required packages
-and setup some configurations. These scripts for provisioning a test
-machine can also be used to setup the live server, this ensures that the
-test and live server are almost identical.
+The Public Database is more complex than \sapphire and \jsparc. It requires the Django package \cite{django}, a database and raw data to be fully tested. These tests can be very time consuming. When developing code for the Public Database, it is best to test it in en environment similar to the live server. To accomplish this we use a local virtual machine that is provisioned by scripts to install the required packages and setup some configurations. These scripts for provisioning a test machine can also be used to setup the live server, this ensures that the test and live server are almost identical.
 
 [TODO: Testing publicdb]
 
