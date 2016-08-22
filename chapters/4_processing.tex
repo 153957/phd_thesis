@@ -1,7 +1,7 @@
 \chapter{Data processing}
 \label{ch:data_processing}
 
-Events recorded by \hisparc electronics consist of the \pmt readouts (traces) and a trigger timestamp. Before events can be used in analysis observables have to be extracted. For the core and direction reconstructions the particle count and arrival time for each detector are used. These values can be derived from the traces and trigger timestamp using calibration values and configuration settings. The following sections will detail each step of the processing.
+Events recorded by \hisparc electronics consist of the \pmt readouts (traces) and a trigger timestamp. Before events can be used in analysis observables have to be extracted. For the core and direction reconstructions the particle count and arrival time for each detector are used. These values can be derived from the traces and trigger timestamp using calibration values and configuration settings. The following sections will detail each step of the processing. Part of the processing is performed on the station PC because some observables provide insight into the proper working of the detectors and the calibration of the \pmts. Other observables which are determined using multiple events and those for which the algorithm is subject to change are determined offline at \nikhef.
 
 
 \section{Online processing}
@@ -23,6 +23,8 @@ Even though the \adcs are calibrated the baselines can still shift away from the
 
 If the start of the trace is not smooth the baseline can not be determined and will be set to the error value \num{-999}. The algorithm has recently been updated to also attempt to find a baseline from the end of the trace if it does not succeed from the start. The udpated algorithm has not yet been retroactively applied to existing traces for which no good baseline was found. Once the baseline is known other properties can be determined, if the baseline can not be determined all other properties dependent on it are also set to \num{-999}. In a properly operating station the baseline determination hardly ever fails. The probability of a significant signal to prevent baseline determination, but not strong enough to be part of the trigger, within the first \SI{125}{\ns} is extremely low.
 
+Deviations of the baseline to the desired value are represented in a histogram in the \hisparc \daq interface. If the baseline deviation is to large this affects the trigger thresholds because those assume the correct baseline.
+
 
 \subsection{Signal strength}
 
@@ -32,6 +34,8 @@ If the start of the trace is not smooth the baseline can not be determined and w
 The pulse height is the value of the highest signal in the trace, relative to the baseline. With the baseline calibrated to \SI{200}{\adc} the highest possible pulse height is $4096 - 200 = \SI{3896}{\adc}$. For most stations this value is rarely attained, because most \pmts are unable to produce large enough signals, as discussed in \cref{sub:pmt_linearity}. For stations with new \pmts saturated signals occur multiple times per day. For each triggered event in a 2-detector station, using the default triggering, both detectors should have a pulse height at least equal to the low threshold, since that is the trigger condition. This may fluctuate due to fluctuations in the baseline, because the trigger thresholds are absolute thresholds, not relative to the actual baseline. In 4-detector stations the most common trigger is two high signals in two detectors, with no signals in the other two detectors. So in a 4-detector station events can have detectors with pulse heights less than the trigger thresholds.
 
 The pulse integral is the integral of the area under the signals. However, only signals that are at least the baseline-threshold above the baseline are included. The threshold filters signal noise, reflections, and small peaks from the integral. The pulse integral more accurately represents the particle count in a detector, since it also acounts for signals which are separated in time. In \cref{fig:integral} the pulse height and integral are illustrated.
+
+As soon as the \hisparc \daq starts data taking it will begin to accumulate the determined pulse heights and integrals in histograms. These histograms can be used to determine by eye if the \mpv is clearly visible and above the thresholds but not to high. If this is not the case the \pmts voltage need to be adjusted. About half an hour of data is needed to properly asses this.
 
 \begin{figure}
     \centering
@@ -53,7 +57,7 @@ Most traces contain only a single pulse. However, sometimes multiple particles p
     \label{fig:n_peaks}
 \end{figure}
 
-The number of peaks can be a good indication of light leaks, which result in many small peaks in traces. A single event with many peaks does not immediately indicate a light leak, however, if occurs very often for a detector that may be indicative.
+The number of peaks can be a good indication of light leaks, which result in many small peaks in traces. A single event with many peaks does not immediately indicate a light leak, however, if occurs very often for a detector that may be indicative. A histogram with the number of peaks is therefore also shown in the \hisparc \daq.
 
 The ratio between the pulse height and integral also provides structure information. If the pulse integral is higher than expected for a given pulse height, then the trace probably contains multiple peaks, or the \adcs are saturated limiting the maximum pulse height.
 
