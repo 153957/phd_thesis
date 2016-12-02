@@ -25,11 +25,12 @@ To get a fix on the position of a stationary \gps antenna the \gps receiver can 
 
 
 \subsection{Position determination precision}
+\label{subsec:position_determination_precision}
 
 % The accuracy of the resulting position. Using surveys from existing stations.
 Multiple self-surveys by a \gps antenna which has not been physically moved provides insight into the precision of the positioning. Most \hisparc stations have performed multiple self-surveys. The self-survey results from all \hisparc stations will be used to approximate the \gps accuracy by looking at the spread around the average location of each station.
 
-Unfortunately the used survey lengths are not stored, so some surveys may have used an incorrect length. In the past most surveys were performed with \SI{1}{\hour} length. Additionally, a \gps antenna may have been physically moved between surveys. By only taking the \gps locations within \SI{15}{\meter} from the current location most significant changes should be excluded. The center point of the left-over positions is taken and then the horizontal and vertical distance to each of the locations is calculated. The resulting distributions are shown in \cref{fig:gps_distance_cm_all}. For the horizontal and vertical distances \SI{69}{\percent} are within \SIlist{1.1;1.6}{\meter} respectively.
+Unfortunately the used survey lengths are not stored, so some surveys may have used an incorrect length. In the past most surveys were performed with \SI{1}{\hour} length. Additionally, a \gps antenna may have been physically moved between surveys. By only taking the \gps locations within \SI{15}{\meter} from the current location most significant changes should be excluded. The center point of the remaining positions is taken and then the horizontal and vertical distance to each of the locations is calculated. The resulting distributions are shown in \cref{fig:gps_distance_cm_all}. For the horizontal and vertical distances \SI{69}{\percent} are within \SIlist{1.1;1.6}{\meter} respectively.
 
 \begin{figure}
     \centering
@@ -40,7 +41,7 @@ Unfortunately the used survey lengths are not stored, so some surveys may have u
 \end{figure}
 
 % What causes the size of the position error. High DOP because satellites always on Southern part of sky.
-The size of the errors is partially due to the high latitude (\SI{>50}{\degree}) of the Netherlands. \gps satellite orbits are inclined by \SI{55}{\degree} relative to the Earth's equator. Rarely will a satellite be seen straight overhead or towards North in the Netherlands. Most of observed satellites will be on the Southern part of the sky. For locations above \SI{55}{\degree} latitude \gps satellites always appear on the southern part of the sky. An elevation mask is used to exclude \gps satellites when they are within \SI{10}{\degree} of the horizon. This is done because signals from those satellites pass through a larger amount atmosphere, increasing the chances of distortions.
+The size of the errors is partially due to the high latitude (\SI{>50}{\degree}) of the Netherlands. \gps satellite orbits are inclined by \SI{55}{\degree} relative to the Earth's equator. Rarely will a \gps satellite be seen straight overhead or towards the northern sky in the Netherlands. Most of the observed satellites will be on the southern part of the sky. For locations above \SI{55}{\degree} latitude \gps satellites always appear on the southern part of the sky. An elevation mask is used to exclude \gps satellites when they are within \SI{10}{\degree} of the horizon. This is done because signals from those satellites pass through a larger amount atmosphere, increasing the chances of distortions.
 
 % GPS and detector locations. For example all GPS locations for 501. Detectors only moved once, need relative locations to GPS.
 Station 501 has had five different physical \gps antenna locations, shown in \cref{fig:station_501_4D}. Two of these (the bottom and left one) are temporary locations which were used because the actual \gps antenna was being used for testing purposes. The two center positions are the new \gps locations for stations 501 and 510. Both are shown because the \gps antennae were switched between the two for a test. The actual scintillator detectors for station 501 were only moved once during operation. In \cref{fig:4d_station_501_detectors} these two detector layouts are shown. For each physical \gps location the relative scintillator detector positions have been measured.

@@ -6,11 +6,11 @@
 
 \section{Distributed version control}
 
-Our code has transitioned from Bazaar \cite{bazaar} to \git \cite{git} as distributed version control systems (DVCS). \git was chosen for its compatibility with \github \cite{github}. When Bazaar was still used the code repositories were hosted on a Nikhef server, this made it difficult for others to access the code and thereby harder to participate or contribute. On \github the software has been open sourced and can be downloaded with a single click, on any system. \github is now used to host all code repositories. \github provides a web-interface to manage projects, keep track of issues, and handle pull requests. \github provides a Graphical User Interface (GUI) for Mac and Windows called GitHub Desktop (cite github desktop), making it easy for those unfamiliar with the command line to use \git. Moreover, \git has a much larger userbase than other DVCS (cite DVCS statistics), which often makes it easier to find solutions to problems, because it is more likely that someone else has experienced the same problem.
+In 2012 [Check account creation date] the \hisparc codebase was transitioned from Bazaar \cite{bazaar} to \git \cite{git} as distributed version control systems (DVCS). \git was chosen for its popularity and compatibility with \github \cite{github}. When Bazaar was still used the code repositories were hosted on a \nikhef server, this made it difficult for others to access the code and thereby harder to participate or contribute. On \github the software has been open sourced and can be downloaded easily. \github is now used to host all \hisparc code and teaching material repositories. \github provides a web-interface to manage projects, keep track of issues, and handle pull requests, which are proposals to adopt code changes. \github also provides a Graphical User Interface (GUI) for Mac and Windows called GitHub Desktop (cite github desktop), making it easy for those unfamiliar with the command line to use \git. Moreover, \git has a much larger userbase than other DVCS (cite DVCS statistics), which often makes it easier to find solutions to problems, because it is more likely that someone else has experienced the same problem.
 
 \github also provides webpage hosting of static pages for repositories, called \github Pages. This feature is used to host software documentation and the compiled version of the teaching materials, for which the sources are also on \github.
 
-For each project with \github Pages a Makefile exists to automatically update these from the latest commit in the master branch. In some cases the Makefile also runs some commands to generate documents. For code repositories Sphinx (cite Sphinx) is used to make code documentation. For the LaTeX repositories, those with teaching materials, the LaTeX files are compiled to the common Portable Document Format (PDF) using the latest version of TeXLive.
+For each project with documentation hosted by \github Pages contains a Makefile which streamlines the steps to generate an up to date version of the compiled documentation or teaching materials for the most recent commit. In some cases the Makefile also runs some commands to generate documents. For code repositories Sphinx (cite Sphinx) is used to make code documentation. For the LaTeX repositories, those with teaching materials, the LaTeX files are compiled to the common Portable Document Format (PDF) using the latest version of TeXLive.
 
 
 \section{Programming language}
@@ -20,7 +20,7 @@ Given the outreach and open source character of \hisparc, programming languages 
 Most code repositories use \python as main language.
 \sapphire, station-software, publicdb, datastore.
 
-The web-based programs use \javascript. Which is the commonly used to make dynamic websites.
+The web-based applications use \javascript. Which is the commonly used to make dynamic websites.
 
 The proprietary programming language \labview (also VHDL?) is used for the  \daq software which runs on the detection stations. \labview is not version control friendly. Moreover, its files require paid software to read and compile, and the readability is lacking. These limitations makes it difficult to test the code, collaborate and switch maintainer of the code.
 
