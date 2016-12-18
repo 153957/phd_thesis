@@ -337,23 +337,23 @@ In \cref{fig:shower} all traces of the particles in an air shower are shown. The
 
 \section{Shower front}
 
+\subsection{Characteristics of the shower front}
 % What the shower looks like as it reaches ground, how this shape is a result of the various interactions.
+Of interest to ground-based experiments is what the observables of the shower on the ground are. The focus will be on the leptons and high energy gamma rays which can be efficiently detected. The shower development in the air happens fast, many of the created particles have a lot of energy and move at relativistic speeds. The direction of motion remains approximately equal to the initial incident particle. If a snapshot were made during the development of the shower a `front' would be seen. This is the shell of particles moving towards ground \cite{drescher2006eas}. The highest density will be at the core of the shower axis, with a lower density towards the edges. The thickness of the front will increase with increasing core distance because of the different path lengths the particles took to get there will vary more. The front of the front is not flat/tangent, at larger core distances the first particles will be delayed relative to the tangent plane of the first particle, again because that particles will have needed to travel a longer distance to get to the sides. Theoretically a causal front exists, a (semi-)sphere with the first interaction at its origin which moves with speed $c$. Since no particle is known to travel faster than light there should be no particle from the shower that reaches ground before the causal front. The expected curvature of the front is approximately a sphere. In \cref{fig:schematic_front} the discussed features are shown in a schematic representation of the front.
 
-Of interest to ground-based experiments is what the observables on the ground are. The focus will be on the leptons and high energy gamma rays which can be efficiently detected. The shower development in the air happens fast, many of the created particles have a lot of energy and move at relativistic speeds. The direction of motion remains approximately equal to the initial incident particle. If a snapshot were made during the development of the shower a 'front' would be seen. This is the shell of particles moving towards ground \cite{drescher2006eas}. The highest density will be at the core of the shower axis, with a lower density towards the edges. The thickness of the front will increase with increasing core distance because of the different path lengths the particles took to get there will vary more. The front of the front is not flat/tangent, at larger core distances the first particles will be delayed relative to the tangent plane of the first particle, again because that particles will have needed to travel a longer distance to get to the sides. Theoretically a causal front exists, a (semi-)sphere with the first interaction at its origin which moves with speed $c$. Since no particle is known to travel faster than light there should be no particle from the shower that reaches ground before the causal front. The expected curvature of the front is approximately a sphere. In \cref{fig:schematic_front} the discussed features are shown in a schematic representation of the front.
-
-The shower front can be defined in multiple ways, either as a snapshot in time or the front as is passes an observation level. In the first case the $z$ (height) coordinates of particles is relavant, in the second it is replaced by the arrival time $t$ of the particles at a certain observation level. Since particle detectors are fixed at a certain altitude the second definition will be used when refering to the shower front.
+The shower front can be defined in multiple ways, either as a snapshot in time or the front as is passes an observation level. In the first case the $z$ (height) coordinates of particles is relavant, in the second it is replaced by the arrival time $t$ of the particles at a certain observation level. Since particle detectors are fixed at a certain altitude the second definition will be used here when refering to the shower front.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/schematic_front}
-    \caption{A schematic representation of the front as it approaches ground level. The dots represent shower particles. This is a snapshot in time, all particles are moving with approximately $c$ towards the ground. The particles on the front will reach the ground first followed by those behind. Near the core the density of particles in higher and they are closer to the front. Away from the core the front is curved away from a flat shower front plane. The thickness (rise time) of the front increases with core distance. \cite{grieder2010eas} to \cite{heck2013corsika}}
+    \caption{A schematic representation of the front as it approaches ground level. The dots represent shower particles. This is a snapshot in time, all particles are moving with approximately $c$ towards the ground. Near the core the density of particles in higher and they are closer to the front. Away from the core the front is curved away from a flat shower front plane. The thickness (rise time) of the front increases with core distance. \cite{grieder2010eas} to \cite{heck2013corsika}.}
     \label{fig:schematic_front}
 \end{figure}
 
 % The important distributions related to the shower front.
 % LDF for various components, and what influences it.
-The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density as a function of core distance is shown for different particle types. The most common particles are high energy (\SI{>3e9}{\eV}) gamma rays, followed by electrons (\SI{>3e9}{\eV}), then muons (\SI{>3e11}{\eV}). The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, the most well known is the Nishimura-Kamata-Greisen (NKG) \cite{apel2006nkg}. This is given by
+The particle density at the core of the shower front is highest and then quickly deminishes as the distance increases. In \cref{fig:ldf} the typical particle density on ground versus the core distance is shown for different particle types in the air shower. The most common particles are high energy gamma rays (\SI{>3e9}{\eV}), followed by electrons (\SI{>3e9}{\eV}), then muons (\SI{>3e11}{\eV}). The energy limits are based on detection probabilities and absorption probabilities of the particles, which will be discussed in [todo; reference to section]. The density decreases rapidly with increasing distance. The lateral density distribution can be parameterized by a so called lateral distribution function (LDF). Several such parameterizations exist, the most well known is the Nishimura-Kamata-Greisen (NKG) \cite{apel2006nkg}. This is given by
 %
 \begin{equation}
     \label{eq:nkg}
@@ -373,13 +373,12 @@ The NKG was derived analytically for showers initiated by an \Pelectron or \Ppho
     \centering
     \includegraphics[width=0.6\textwidth]
                     {plots/cosmic-rays/ldf}
-    \caption{Lateral density distribution]
-The particle density as a function of core distance for a shower of $E = \SI{e16}{\eV}$. The contribution from the different components is shown.}
+    \caption{Lateral density distribution. The particle density at ground as a function of core distance for a vertical shower initiated by a proton with $E = \SI{e16}{\eV}$. The contributions from the different particles is shown.}
     \label{fig:ldf}
 \end{figure}
 
 
-\subsection{Temporal shower front}
+\subsection{Shower front profiles in energy and time}
 
 % At various core distances the temporal profile.
 The temporal structure of the shower front can be seen for various core distances in \cref{fig:temporal_profile}. Shortly after the first few particles most of the front crosses the obervation level, followed by a long tail of straggling particles. Further from the core the particle density is lower and the spread in arrival times increases.

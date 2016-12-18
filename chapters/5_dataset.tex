@@ -18,13 +18,13 @@ The dataset that will be used for the analysis in following chapters is presente
 % Stations must be close enough together (\SI{<1}{\kilo\meter}) to have lot of detections for statistics.
 % Uptime must be good, specifically simultaneous uptime of stations.
 % Properly configured station to make triggering similar.
-At least three detection points are required for the reconstruction of the shower direction. More detections can be used to improve the accuracy. A temporal and density [quantitative?] analysis of the shower front will be performed and properties of the air shower will be reconstructed.
+At least three detection points are required for the reconstruction of the shower direction. More detections can be used to improve the accuracy. A temporal and structural analysis of the shower front will be performed and properties of the air shower will be reconstructed.
 
-The detection points can either be individual \hisparc detectors or \hisparc stations. In order to suitable for accurate reconstructions the detection points must meet some criteria. They must be close enough to simultaneously detect air showers of the desired primary energy. They should not be on a line, because that negatively affects the direction reconstruction accuracy.
+The detection points can either be individual \hisparc detectors or \hisparc stations. In order to suitable for accurate reconstructions the detection points must meet some criteria. They must be close enough to simultaneously detect air showers of the desired cosmic-ray energy. They should not all be on a single line, because that negatively affects the reconstruction accuracy.
 
-The detection stations need to have been online simultaneously for extended periods of time. Simultaneous uptime increases the exposure time, which is needed for rare very-high-energy cosmic rays. Moreover, coincidences between stations are used to calibrate the timing offsets.
+The detection stations need to have been online simultaneously for extended periods of time. Simultaneous uptime increases the exposure time, which is needed for rarer very-high-energy cosmic rays. Moreover, coincidences between stations are required to calibrate the timing offsets.
 
-Finally the stations must have been configured properly, moreover the locations of the detectors must be known. If the detector locations are unknown they could theoretically be as far as \SI{60}{\meter} from the \gps antenna location, in practice this had never been the case. With the known location of the individual detectors each detector can be used separately in the reconstruction, or at least the center of mass location of the station detectors is known.
+Finally the stations must have been configured properly, moreover the locations of the detectors must be known. If the detector locations are unknown they could theoretically be as far as \SI{60}{\meter} from the \gps antenna location, though in practice this has never been the case. With the known location of the individual detectors each detector can be used separately in the reconstruction, or at least the center of mass location of the station detectors is known.
 
 
 \section{Cluster selection}
@@ -35,7 +35,15 @@ Finally the stations must have been configured properly, moreover the locations 
 % Science park stations have good uptime.
 % Mean/noise filter disabled for long period for good trigger time reconstruction.
 % Large distance between outer detectors, detectors in between useful for accurate station timing offsets and more accurate reconstructions.
-Over \num{100} combinations of \hisparc station pairs can be found in which the stations are separated by less than \SI{1}{\kilo\meter}. If combinations of three stations are desired in which each leg of the triangle is at most \SI{1}{\kilo\meter} a set of approximately \num{180} triangles are found, with some stations occuring in multiple triples. From these triples there are \num{7} which are isolated, meaning that the stations in those do not occur in other triples. However, in only \num{2} of these triples, University Twente and Zaanlands Lyceum, do the stations have a significant simultaneous uptime, known detector positions, and no known unknown configuration issues. There are two station clusters, University Eindhoven and Amsterdam Zuid, in which four stations are close together and multiple combinations of triples can be made. The Amsterdam Zuid cluster has the following problem [list problems? uptime, station moved...?]. Finally there is the Amsterdam Science Park cluster. The Science Park cluster currently has \num{11} detection stations, a number which gradually grew over time. This cluster has a high simulteneous uptime and for each of these staitons the detector locations, including changes of time, are known. One of the Science Park stations, 507, is located within the main \nikhef building, the building above the detectors greatly attenuate the number of electrons and gammas. The acceptance and response of this station differs from other stations. This station will be ignored because the full effects of the attenuation are not yet understood, work on understanding this is on going [refrence LiO Gerrit]. So four possible candiate clusters remain, their layouts are shown in \ref{fig:compact_clusters}. The chosen cluster for the analysis in this thesis is the Science Park cluster because it affords the most opertunities for detailed studies. The Science Park cluster is the only cluster with only 4-detector stations. These allow for direction reconstruction within each station and have a higher shower acceptance than 2-detector stations.
+Over \num{100} combinations of \hisparc station pairs can be found in which the stations are separated by less than \SI{1}{\kilo\meter}. If combinations of three stations are desired in which each leg of the triangle is at most \SI{1}{\kilo\meter} a set of approximately \num{180} triangles are found, with some stations occuring in multiple triples.
+
+From these triples there are \num{7} triples which are isolated, meaning that the \num(21) stations in those do not occur in other triples. However, in only \num{2} of these triples, University Twente and Zaanlands Lyceum, do the stations have a significant simultaneous uptime, known detector positions, and no known unknown configuration issues.
+
+There are two station clusters, University Eindhoven and Amsterdam Zuid, in which four stations are close together and multiple combinations of triples can be made. However, some of the Amsterdam-Zuid stations have been moved when a school changed their location, and the previous detector positions have not been recorded properly. Additionally the simultaneous uptime is relatively low.
+
+Finally there is the Amsterdam Science Park cluster. The Science Park cluster currently has \num{11} detection stations, a number which gradually grew over time. This cluster has a high simulteneous uptime and for each of these staitons the detector locations, including changes of time, are known. One of the Science Park stations, 507, is located within the main \nikhef building, the building above the detectors greatly attenuate the number of electrons and gammas. The acceptance and response of this station differs from other stations. This station will be ignored because the full effects of the attenuation are not yet understood, work on understanding this is on going [refrence LiO Gerrit].
+
+So four possible candiate clusters remain, their layouts are shown in \ref{fig:compact_clusters}. For the analysis in this thesis the Amsterdam Science Park cluster will be used because it affords the most opportunities for detailed studies. The Science Park cluster is the only cluster with exclusively 4-detector stations. This allows for direction reconstruction within each station and such stations have a higher shower acceptance than 2-detector stations.
 
 \begin{figure}
     \centering
@@ -51,7 +59,7 @@ Over \num{100} combinations of \hisparc station pairs can be found in which the 
 \section{Raw data}
 
 % Start date for each station and number of raw triggered events
-Not all Science Park stations were deployed at the same time, several were installed during my research period. The first station at Science Park was station 501 which started data taking in March 2004. A year later a second station was installed at the University of Amsterdam. In August 2008 an additional five stations were added. Finally three stations were added in 2013, 2014, and 2015. In table [ref table with start date/number of events] the dates on which the stations started data taking is listed, also the total number of events recorded up to February 2016 [check] is shown. Station 507 is excluded for reasons stated above.
+Not all Science Park stations were deployed at the same time, several were installed during my research period. The first station at Science Park was station 501 which started data taking in March 2004. A year later a second station was installed at the University of Amsterdam. In August 2008 an additional five stations were added. Finally three more stations were added in 2013, 2014, and 2015. In table [ref table with start date/number of events] the dates on which the stations started data taking is listed, also the total number of events recorded up to February 2016 [check] is shown. Station 507 is excluded for reasons stated above.
 
 \begin{verbatim}
     Start        Station  N
@@ -67,7 +75,7 @@ Not all Science Park stations were deployed at the same time, several were insta
     2015-06-16   511       10e6
 \end{verbatim}
 
-The total number of events does not scale linearly with time since first data taking, as seen in the table [ref?]. This is mainly caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences.
+The total number of events does not scale linearly with time since first data taking. This is caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences. The raw data also includes triggered events due to background radiation. Background radiatio includes \eas with only very few or single particles at ground level.
 
 
 \section{Data quality cuts}
@@ -82,12 +90,12 @@ Not all of the events which were counted in [ref previous table] will be taken i
 
 \subsection{Mixed \utc and \gps timestamps}
 
-Originally the \gps configuration used \utc timestamps during data taking, in March 2010 [Or was it 2008?] the default configuration was changed to use \gps timestamps. Research into coincidences with lightning strikes has shown that not all \hisparc stations were simultaneously reconfigured to \gps time. The research showed that by June 2011 no siginficant number of stations were still on \utc time. This configuration settings is unfortunately not included in the configuration messages from stations, so the chosen setting can not be recovered. If the time settings between a pair for stations is  incompatible the number of coindcidences will be less than expected. By offsetting event timestamps by the number of active leap seconds and comparing the coincidence rate again it might be possible to determine which station is at fault. Only  events after June 2011 will be considered.
+Originally the \gps module in the \hisparc electronics was configured to use \utc timestamps during data taking, around March 2010 the default configuration was changed to use \gps timestamps. The value of this configuration setting is unfortunately not included in the stored configuration messages from stations, so the chosen setting can not be recovered easily. Research into coincidences with lightning strikes has shown that not all \hisparc stations were simultaneously reconfigured to \gps time. The research showed that by June 2011 no significant number of stations were still on \utc time. If the time settings between a pair of stations do not match the number of coindcidences will be less than expected. By offsetting event timestamps by the number of active leap seconds and comparing the coincidence rate again it might be possible to determine which station is using the wrong setting. Only events after June 2011 will be considered.
 
 
 \subsection{Configuration changes}
 
-Days on which the configuration of a station is changed will also be ignored. On such days the station will be operating under different configurations for various parts of the day. For example, if at noon the \pmt voltages were changed the \mpv value for the affected detectors can be changed. Since the \mpv is currently determined daily using all day of that data mixed datasets are used in the fit, resulting in bad calibration. The total number of days skipped because of this is relatively small. Station 501 has most days with changes because it was often used to test new software, or at times its \gps was borrowed by another station. Some of the days with a new configuration have only partial data because the station may have been restarted and reconfigured after a longer downtime.
+Days on which the configuration of a station is changed will also be ignored. On such days the station will be operating under different configurations for various parts of the day. For example, if at noon the \pmt voltages were changed the \mpv value for the affected detectors may have changed. The \mpv is determined daily using all data of that day, but that data will contain mixed datasets in the fit, resulting in a bad calibration. The total number of days skipped because of this is relatively small. Some of the days with a new configuration have only partial data because the station may have been restarted and reconfigured after a longer downtime. In table [ref following table] the number of days on which a setting was changed for a station is shown. Also the total number of days of data to be excluded per station is shown. Station 501 has most days with changes because it was often used to test new software, or at times its \gps was borrowed by another station.
 
 \begin{verbatim}
     changed param   501 502 503 504 505 506 508 509 510 511
@@ -100,17 +108,24 @@ Days on which the configuration of a station is changed will also be ignored. On
 
 \subsection{Drastic unexpected calibration value changes}
 
-Most calibration values are determined daily, for the station offset data from days before and after the concerning date is also used. Normally the calibration values differ little from day to day. Most large changes are explained by changes in the configuration. However, some can not be explained by calibration changes. External effects such as the replacement of signals cables can cause calibration changes, while no reconfiguration was required. Days on which the calibration changes a lot can [will?] also be excluded to prevent bad data due to unaccounted for changes.
+Most calibration values are determined daily, for the station offset data from days before and after the concerning date is also used. Normally the calibration values differ little from day to day. Most large changes are explained by changes in the configuration. However, some can not be explained by calibration changes. External effects such as the replacement of signals cables can cause calibration changes. Such changes are generally not logged. Days on which the calibration changes a lot will also be excluded to prevent bad data due to unaccounted for changes.
 
-[Will this actually be done? What are the criteria, how many days are affected (after other cuts)]
+[Analysis: find significant outliers (determine criteria), determine which (and how many) days are affected (after previous cuts)]
+
+\begin{verbatim}
+    changed param   501 502 503 504 505 506 508 509 510 511
+    mpv             ?   ?   ?   ?   ?   ?   ?   ?   ?   ?
+    offset          ?   ?   ?   ?   ?   ?   ?   ?   ?   ?
+    GPS             ?   ?   ?   ?   ?   ?   ?   ?   ?   ?
+    Total days      [number of unique days to be excluded]
+\end{verbatim}
 
 
 \subsection{Failed reconstruction of observables in events}
 
-As noted before if a detector part of an event has a bad baseline the detector will be excluded for that event, if the trigger reconstruction and failed the entire event is excluded, if the \mpv fit or timing offset of a detector fails for a day that detector is excluded for the entire day, and if the station timing offset fails the station is excluded for the entire day.
+If a detector part of an event has a bad baseline the detector will be excluded for that event, if the trigger reconstruction failed the entire event is excluded, if the \mpv fit or timing offset of a detector fails for a day that detector is excluded for the entire day, and if the station timing offset fails the station is excluded for the entire day.
 
-Additionally if the number of events on a day in which a specific detector would be excluded exceeds a fraction [threshold per observable] it will be considered malfunctioning and excluded for the entire day. Similarly for a station, if too many events of a station are excluded on a day the station will be excluded for the entire day. If the noise filter [ref to processing section] is enabled on a station then a failed trigger time reconstruction is expected for approximately \SI{0.1}{\percent}. With the noise filter disabled over a magnitude less failed reconstructions are expected. Failed reconstructions can still occur due to back to back triggers, which can interfere with the trigger reconstruction algorithm.
-
+Additionally if the number of events on a day in which a specific detector would be excluded exceeds a nominal fraction it will be considered malfunctioning and excluded for the entire day. Similarly for a station, if too many events of a station are excluded on a day the station will be excluded for the entire day. If the noise filter [ref to processing section] is enabled on a station then a failed trigger time reconstruction is expected for approximately \SI{0.1}{\percent}. With the noise filter disabled over a magnitude less failed reconstructions are expected. Failed reconstructions can still occur due to back to back triggers, which can interfere with the trigger reconstruction algorithm.
 
 \begin{figure}
     \centering
@@ -129,31 +144,30 @@ Additionally if the number of events on a day in which a specific detector would
 [Add table of observables+thresholds or add threshold lines to plots]
 
 
-\section{Remaining exposure/uptime}
+\section{Remaining uptime and events per station}
 
 % Graph uptime of remaining events
 % time with n simultaneaous active stations
-
-Remaining number of events per station after cuts.
+The cuts discussed above are applied to the data of the individual stations. In table [ref following table] the remaining number of days with data and number of events are shown. These events have not been filtered based on being able to successfully reconstruct the shower.
 
 \begin{verbatim}
-    Station  N after cut
-    501      97e6
-    502      66e6
-    503      71e6
-    504      86e6
-    505      70e6
-    506      76e6
-    508      32e6
-    509      82e6
-    510      24e6
-    511       8e6
+    Station  days with data  N after cut
+    501      ?               97e6
+    502      ?               66e6
+    503      ?               71e6
+    504      ?               86e6
+    505      ?               70e6
+    506      ?               76e6
+    508      ?               32e6
+    509      ?               82e6
+    510      ?               24e6
+    511      ?                8e6
 \end{verbatim}
 
 
 \section{Effect on coincidences}
 
-The number of coincidences before and after the cuts with at least n stations in coincidence. Number of coincidences with at least 2 stations in coincidence: 13391318.
+Removing bad events also affects the number of coincidences. In table [ref following table] the number of coincidences before and after the cuts with at least N stations are listed. Number of coincidences with at least 2 stations in coincidence: 13391318.
 
 \begin{verbatim}
     N   Before cut   After cut
