@@ -37,7 +37,7 @@ Finally the stations must have been configured properly, moreover the locations 
 % Large distance between outer detectors, detectors in between useful for accurate station timing offsets and more accurate reconstructions.
 Over \num{100} combinations of \hisparc station pairs can be found in which the stations are separated by less than \SI{1}{\kilo\meter}. If combinations of three stations are desired in which each leg of the triangle is at most \SI{1}{\kilo\meter} a set of approximately \num{180} triangles are found, with some stations occuring in multiple triples.
 
-From these triples there are \num{7} triples which are isolated, meaning that the \num(21) stations in those do not occur in other triples. However, in only \num{2} of these triples, University Twente and Zaanlands Lyceum, do the stations have a significant simultaneous uptime, known detector positions, and no known unknown configuration issues.
+From these triples there are \num{7} triples which are isolated, meaning that the \num{21} stations in those do not occur in other triples. However, in only \num{2} of these triples, University Twente and Zaanlands Lyceum, do the stations have a significant simultaneous uptime, known detector positions, and no known unknown configuration issues.
 
 There are two station clusters, University Eindhoven and Amsterdam Zuid, in which four stations are close together and multiple combinations of triples can be made. However, some of the Amsterdam-Zuid stations have been moved when a school changed their location, and the previous detector positions have not been recorded properly. Additionally the simultaneous uptime is relatively low.
 
@@ -75,7 +75,7 @@ Not all Science Park stations were deployed at the same time, several were insta
     2015-06-16   511       10e6
 \end{verbatim}
 
-The total number of events does not scale linearly with time since first data taking. This is caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences. The raw data also includes triggered events due to background radiation. Background radiatio includes \eas with only very few or single particles at ground level.
+The total number of events does not scale linearly with time since first data taking. This is caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences. The raw data also includes triggered events due to background radiation. Background radiatio includes EAS with only very few or single particles at ground level.
 
 
 \section{Data quality cuts}
@@ -108,7 +108,8 @@ Days on which the configuration of a station is changed will also be ignored. On
 
 \subsection{Drastic unexpected calibration value changes}
 
-Most calibration values are determined daily, for the station offset data from days before and after the concerning date is also used. Normally the calibration values differ little from day to day. Most large changes are explained by changes in the configuration. However, some can not be explained by calibration changes. External effects such as the replacement of signals cables can cause calibration changes. Such changes are generally not logged. Days on which the calibration changes a lot will also be excluded to prevent bad data due to unaccounted for changes.
+Most calibration values are determined daily, for the station offset data from days before and after the concerning date is also used. Normally the calibration values differ little from day to day. Many large changes coincide with changes to the station or detector configurations. The remaining calibration changes are in most cases caused by external effects such as the replacement of signals cables or \pmts. Such changes are generally not logged, making it hard to reconstruct what happened. Days on which a calibration value changes significantly will also be excluded to prevent bad data due to unaccounted for changes to a station. In \cref{fig:mpv} the daily determined \mpv for each detector in each station is shown. The visible jumps often coincide with changes to the \pmt voltage calibration, and are therefore already excluded. The days of the remaining jumps will also be excluded. In most cases the \mpv does seem to settle to a stable value after a jump. Except for station 501 the \gps location of the Science Park stations only changed by up to \SI{2}{\meter}. However, for station 501 the \gps location has jumps of up to \SI{25}{\meter}, this is explained by the temporary \gps antenna it used for a period of time, while its normal \gps antenna was used for a test. In this case we know the causes of the jumps.
+% and also that the temporary \gps had a bad sky coverage, and therefore less accurate timing. It's events recorded during that period will be excluded.
 
 [Analysis: find significant outliers (determine criteria), determine which (and how many) days are affected (after previous cuts)]
 
@@ -119,6 +120,13 @@ Most calibration values are determined daily, for the station offset data from d
     GPS             ?   ?   ?   ?   ?   ?   ?   ?   ?   ?
     Total days      [number of unique days to be excluded]
 \end{verbatim}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/dataset/mpv.pdf}
+    \caption{Timelines of the calibrated \mpv of each detector for the Science Park stations. These values are determined daily. Large jumps are likely to due to recalibration or replacement of \pmts.}
+    \label{fig:mpv}
+\end{figure}
 
 
 \subsection{Failed reconstruction of observables in events}
@@ -167,7 +175,7 @@ The cuts discussed above are applied to the data of the individual stations. In 
 
 \section{Effect on coincidences}
 
-Removing bad events also affects the number of coincidences. In table [ref following table] the number of coincidences before and after the cuts with at least N stations are listed. Number of coincidences with at least 2 stations in coincidence: 13391318.
+Removing bad events also affects the number of coincidences. Interesting for the purpose of calibrations, mainly station timing offsets, is the number of coincidences in which at least 2 stations are in coincidence. In the remaining dataset there are \num{13391318} coincidences with at least 2 stations in coincidence. The largest potion of this is dominated by the stations which are close together, i.e 501 and 510. When more stations in coincidence are required, for more accurate reconstruction, the number of coincidences sharply drops. This is because the distances to the other stations are much larger and much larger air showers are required to create the coincidences, and because more stations are required to have been active simultaneously. In table [ref following table] the number of coincidences before and after the cuts with at least N stations are listed.
 
 \begin{verbatim}
     N   Before cut   After cut
@@ -180,3 +188,10 @@ Removing bad events also affects the number of coincidences. In table [ref follo
     9   3111         ....
     10  787          ....
 \end{verbatim}
+
+
+\section{Remaining data}
+
+The remaining data contains only data for which the offline calibration was successful, and only data from days on which the station was not reconfigured. As mentioned the largest fraction of 2-station coincidences are those of station 501 and 510. The coincidences, and also anti-coincidences of the events detected by these stations will be explored in [ref chapter 7].
+
+The single station events in the dataset may still be unreconstructable, or appear to be accidental triggers. However, in some cases they are part of the outer regions of large showers, where the shower core is closer to other stations. In such cases the events should be accounted for when reconstructing the shower using data from the multiple stations. That means that for events in coincidences the events themselves may not be reconstructable, but when taken together they can be. The larger coincidences in the Science Park cluster will be reconstructed analysed in [ref chapter 8].
