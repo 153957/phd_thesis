@@ -172,7 +172,11 @@ and
 In the situation in which all three detection points are at the same altitude, the case for most individual stations, the altitude can be ignored. The shower front will be considered to be a flat plane, which is a reasonable assumption for a shower detection within a single station, and with only three detection points in which case the core position is difficult to determine. And $c$, the speed of light, will be taken as the propagation speed of the shower front. This common case is first considered. The plane of the shower at a specific moment is to be reconstructed. If the direction of the shower is retraced from each detection point to the point where the shower would be at the reference moment the three points would lie on the shower plane
 %
 \begin{equation}
-    p_i = (x_i + c t_i n_x) (y_i + c t_i n_y) (c t_i n_z) \ .
+    p_i = \begin{pmatrix}
+              x_i + c t_i n_x \\
+              y_i + c t_i n_y \\
+              c t_i n_z
+          \end{pmatrix} \ .
 \end{equation}
 %
 The plane would be given by
@@ -253,27 +257,27 @@ This can be solved for $n_x$ and $n_y$ as
 %
 \begin{equation}
 n_x = c \frac{\mean{t x} \left( \mean{y^2} - \mean{y}^2 \right) +
-              \mean{x y} \left( \mean{t} \mean{y} - \mean{t y} \right) +
-              \mean{x} \mean{y} \mean{t y} - \mean{t} \mean{x} \mean{y^2}}
-             {\mean{x y}^2 + \mean{x}^2 \mean{y^2} + \mean{y}^2 \mean{x^2} -
-              \mean{x^2} \mean{y^2} - 2 \mean{x} \mean{y} \mean{x y}}
+              \mean{x y} \left( \mean{t} \, \mean{y} - \mean{t y} \right) +
+              \mean{x} \, \mean{y} \, \mean{t y} -
+              \mean{t} \, \mean{x} \, \mean{y^2}}
+             {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
+              \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
+              2 \mean{x} \, \mean{y} \, \mean{x y}}
 \end{equation}
 %
 and
 %
 \begin{equation}
 n_y = c \frac{\mean{t y} \left( \mean{x^2} - \mean{x}^2 \right) +
-              \mean{x y} \left( \mean{t} \mean{x} - \mean{t x} \right) +
-              \mean{x} \mean{y} \mean{t x} - \mean{t} \mean{y} \mean{x^2}}
-             {\mean{x y}^2 + \mean{x}^2 \mean{y^2} + \mean{y}^2 \mean{x^2} -
-              \mean{x^2} \mean{y^2} - 2 \mean{x} \mean{y} \mean{x y}} \ ,
+              \mean{x y} \left( \mean{t} \, \mean{x} - \mean{t x} \, \right) +
+              \mean{x} \, \mean{y} \, \mean{t x} -
+              \mean{t} \, \mean{y} \, \mean{x^2}}
+             {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
+              \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
+              2 \mean{x} \, \mean{y} \, \mean{x y}} \ ,
 \end{equation}
 %
 where the
-
-
-
-
 
 
 \subsection{Accounting for detector altitudes}
@@ -281,16 +285,16 @@ where the
 The above regression result can not easily be achieved when adding the detector $z$ coordinates. Instead the detector $x_i$ and $y_i$ position and arrival time $t_i$ will be projected onto the $z_0$ plane along the shower direction. This is illustrated in [ref figure showing projection]. In order to get an initial shower direction the altitudes are first ignored, using the above equations. Then using the found direction the projections are performed, after which the altitude can again be ignored, allowing the above regression to be used again. With the new result a new projection will be made, and another reconstruction. This will be repeated until the result stabilises. The projections are as follows
 %
 \begin{equation}
-    x_i' = x_i - z_i \frac{n_x}{n_z}
-    y_i' = y_i - z_i \frac{n_y}{n_z}
-    t_i' = t_i + z_i \frac{1}{c n_z}
+    x_i' = x_i - z_i \frac{n_x}{n_z} \ ,
+    y_i' = y_i - z_i \frac{n_y}{n_z} \ ,
+    t_i' = t_i + z_i \frac{1}{c n_z} \ ,
 \end{equation}
 %
 where
 %
 \begin{equation}
-    \frac{n_x}{n_z} = \tan \theta \cos \phi
-    \frac{n_y}{n_z} = \tan \theta \sin \phi
+    n_x = \sin \theta \cos \phi \ ,
+    n_y = \sin \theta \sin \phi \ ,
     n_z = \cos \theta
 \end{equation}
 %
@@ -303,10 +307,11 @@ Similar to the correction for the detector altitudes the additional time offset 
 For now the shower core position and size are assumed to be known. Using the core position and an initial shower direction the radial core distance of a station can be determined.
 %
 \begin{equation}
-    \Delta x_i = x_{core} - x_i
+    \Delta x_i = x_{core} - x_i \ ,
     \Delta y_i = y_{core} - y_i
-    n_x = \sin \theta \cos \phi
-    n_y = \sin \theta \sin \phi
+\end{equation}
+%
+\begin{equation}
     r_i = \sqrt{\Delta x_i^2 (1 - n_x^2) + \Delta y_i^2 (1 - n_y^2) -
                 2 \Delta x_i \Delta y_i n_x n_y}
 \end{equation}
@@ -316,7 +321,7 @@ In case the detectors altitude is also taken into account the $x_i$ and $y_i$ in
 The core distance is then used to get the expected shower deviation from the plane.
 %
 \begin{equation}
-    f(r_i, E) = a r_i^b
+    f(r_i, E) = a r_i^b \ ,
 \end{equation}
 %
 where for protons these values are used
@@ -333,7 +338,8 @@ Finally this delay is subtracted from the measured arrival time.
     t_i' = t_i - f(r_i, E)
 \end{equation}
 %
-The $ new T_i$
+The new $t_i'$ is then
+
 
 \subsection{Reconstruction steps}
 
