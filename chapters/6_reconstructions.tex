@@ -175,7 +175,7 @@ In the situation in which all three detection points are at the same altitude, t
     p_i = \begin{pmatrix}
               x_i + c t_i n_x \\
               y_i + c t_i n_y \\
-              c t_i n_z
+                    c t_i n_z
           \end{pmatrix} \ .
 \end{equation}
 %
@@ -185,7 +185,7 @@ The plane would be given by
     x n_x + y n_y + z n_z + m = 0 \ ,
 \end{equation}
 %
-where $m$ is a constant. Since all retraced points from the detection points should be on this plane the equation for each detection point, defined by $x_i$, $y_i$, and $t_i$, becomes
+where $m$ is a constant. All retraced points from the detection points should be on this plane. The equation for each detection point $i$, which are defined by $x_i$, $y_i$, and $t_i$, becomes
 %
 \begin{equation}
     (x_i + c t_i n_x) n_x + (y_i + c t_i n_y) n_y + (c t_i n_z) n_z + m = 0 \ ,
@@ -197,7 +197,7 @@ or more succinctly
     x_i n_x + y_i n_y + c t_i + m = 0 \ .
 \end{equation}
 %
-Usually the first detection is taken as the reference moment ($t_0$). This defines $m$ as
+Here $m$ is a constant. Usually the first detection is taken as the reference moment, so the reference time is $t_0$. This defines $m$ as
 %
 \begin{equation}
     m = - x_0 n_x - y_0 n_y \ .
@@ -214,10 +214,12 @@ where $\Delta x_i = x_i - x_0$, $\Delta y_i = y_i - y_0$, and $\Delta t_i = t_i 
 These equations for $n_x$ and $n_y$ can be solved with
 %
 \begin{equation}
-    n_x = \frac{c (\Delta t_2 \Delta y_1 - \Delta t_1 \Delta y_2)}
-     		   {\Delta y_2 \Delta x_1 - \Delta y_1 \Delta x_2)} \ ,
-    n_y = \frac{c (\Delta t_1 \Delta x_2 - \Delta t_2 \Delta x_1)}
-     		   {\Delta x_1 \Delta y_2 - \Delta x_2 \Delta y_1)} \ .
+    \begin{align}
+        n_x &= \frac{c (\Delta t_2 \Delta y_1 - \Delta t_1 \Delta y_2)}
+                    {\Delta y_2 \Delta x_1 - \Delta y_1 \Delta x_2)} \ , \\
+        n_y &= \frac{c (\Delta t_1 \Delta x_2 - \Delta t_2 \Delta x_1)}
+                    {\Delta x_1 \Delta y_2 - \Delta x_2 \Delta y_1)} \ .
+    \end{align}
 \end{equation}
 %
 These equations use the same data as those used in [ref fokkema] and have the same limitations.
@@ -242,73 +244,90 @@ Also the first detection point may be slightly offset from the shower plane, so 
 where $k$ is the number of detection points, and $\sigma_i$ is the error on each detection. Generally this error greatly depends on the core distance of the detection on top of the timing error due to the signal transit time in the detector. For now this error will be considered to be equal for all detections, i.e. each detection has equal weight. This turns the equation to minimised to
 %
 \begin{equation}
-    R^2 = \sum_{i=0}^{k-1} \left(x_i n_x + y_i n_y + c t_i + m \right)^2 \ .
+    R^2 = \sum_{i = 0}^{k - 1} \left(x_i n_x + y_i n_y + c t_i + m \right)^2 \ .
 \end{equation}
 %
 The minimum can be found by finding where the derivatives to the variables are zero.
 %
 \begin{equation}
-    \frac{\ud R^2}{\ud n_x} = 0 \ ,
-    \frac{\ud R^2}{\ud n_y} = 0 \ ,
-    \frac{\ud R^2}{\ud m} = 0 \ .
+    \begin{align}
+        \frac{\ud R^2}{\ud n_x} &= 0 \ , \\
+        \frac{\ud R^2}{\ud n_y} &= 0 \ , \\
+        \frac{\ud R^2}{\ud m} &= 0 \ .
+    \end{align}
 \end{equation}
 %
 This can be solved for $n_x$ and $n_y$ as
 %
-\begin{equation}
-n_x = c \frac{\mean{t x} \left( \mean{y^2} - \mean{y}^2 \right) +
-              \mean{x y} \left( \mean{t} \, \mean{y} - \mean{t y} \right) +
-              \mean{x} \, \mean{y} \, \mean{t y} -
-              \mean{t} \, \mean{x} \, \mean{y^2}}
-             {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
-              \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
-              2 \mean{x} \, \mean{y} \, \mean{x y}}
+\begin{equation}\label{eq:regression_nx}
+    n_x = c \frac{\mean{t x} \left( \mean{y^2} - \mean{y}^2 \right) +
+                  \mean{x y} \left( \mean{t} \, \mean{y} - \mean{t y} \right) +
+                  \mean{x} \, \mean{y} \, \mean{t y} -
+                  \mean{t} \, \mean{x} \, \mean{y^2}}
+                 {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
+                  \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
+                  2 \mean{x} \, \mean{y} \, \mean{x y}}
 \end{equation}
 %
 and
 %
-\begin{equation}
-n_y = c \frac{\mean{t y} \left( \mean{x^2} - \mean{x}^2 \right) +
-              \mean{x y} \left( \mean{t} \, \mean{x} - \mean{t x} \, \right) +
-              \mean{x} \, \mean{y} \, \mean{t x} -
-              \mean{t} \, \mean{y} \, \mean{x^2}}
-             {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
-              \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
-              2 \mean{x} \, \mean{y} \, \mean{x y}} \ ,
+\begin{equation}\label{eq:regression_ny}
+    n_y = c \frac{\mean{t y} \left( \mean{x^2} - \mean{x}^2 \right) +
+                  \mean{x y} \left( \mean{t} \, \mean{x} - \mean{t x} \, \right) +
+                  \mean{x} \, \mean{y} \, \mean{t x} -
+                  \mean{t} \, \mean{y} \, \mean{x^2}}
+                 {\mean{x y}^2 + \mean{x}^2 \, \mean{y^2} +
+                  \mean{y}^2 \, \mean{x^2} - \mean{x^2} \, \mean{y^2} -
+                  2 \mean{x} \, \mean{y} \, \mean{x y}} \ ,
 \end{equation}
 %
-where the
+where the bar indicates the mean of that value over all detection points. For example $\mean{x^2} = k^{-1} \sum_{i = 0}^{k - 1} x_i^2$.
 
 
 \subsection{Accounting for detector altitudes}
 
-The above regression result can not easily be achieved when adding the detector $z$ coordinates. Instead the detector $x_i$ and $y_i$ position and arrival time $t_i$ will be projected onto the $z_0$ plane along the shower direction. This is illustrated in [ref figure showing projection]. In order to get an initial shower direction the altitudes are first ignored, using the above equations. Then using the found direction the projections are performed, after which the altitude can again be ignored, allowing the above regression to be used again. With the new result a new projection will be made, and another reconstruction. This will be repeated until the result stabilises. The projections are as follows
+The above regression result can not easily be achieved when adding the detector $z$ coordinates. Instead the detector $x_i$ and $y_i$ position and arrival time $t_i$ will be projected onto the $z_0$ plane along the shower direction. This is illustrated in \cref{fig:altitude_projection}. In order to get an initial shower direction the altitudes are first ignored, using the above equations. Then using the found direction the projections are performed, after which the altitude can again be ignored, allowing the above regressions, \cref{eq:regression_nx,eq:regression_ny}, to be used again. With the new result a new projection will be made, and another reconstruction. This will be repeated until the result stabilises. The projections are as follows
 %
 \begin{equation}
-    x_i' = x_i - z_i \frac{n_x}{n_z} \ ,
-    y_i' = y_i - z_i \frac{n_y}{n_z} \ ,
-    t_i' = t_i + z_i \frac{1}{c n_z} \ ,
+    \begin{align}
+        x_i' &= x_i - z_i \frac{n_x}{n_z} \ , \\
+        y_i' &= y_i - z_i \frac{n_y}{n_z} \ , \\
+        t_i' &= t_i + z_i \frac{1}{c n_z} \ ,
+    \end{align}
 \end{equation}
 %
 where
 %
 \begin{equation}
-    n_x = \sin \theta \cos \phi \ ,
-    n_y = \sin \theta \sin \phi \ ,
-    n_z = \cos \theta
+    \begin{align}
+        n_x &= \sin \theta \cos \phi \ , \\
+        n_y &= \sin \theta \sin \phi \ , \\
+        n_z &= \cos \theta
+    \end{align}
 \end{equation}
 %
-Tada
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/reconstructions/approxfront.pdf}
+    \caption{For a plane shower front (dashed) the projected locations (gray rectangles) of the stations (black rectangles) with altitudes different from the first station are shown. The projections are along the shower direction. [to be replaced]}
+    \label{fig:altitude_projection}
+\end{figure}
+
 
 \subsection{Accounting for shower front shape}
 
-Similar to the correction for the detector altitudes the additional time offset from the expected plane shower front is subtracted from the detection time. As shown in [ref simulations/shower front shape] the expected detected delay due to the shape of the shower front depends on the radial core distance and the size of the shower. Determining the size and core location of the shower requires the direction of the shower, in order to correct the signal strength for the signal path length in the detectors. An iterative reconstruction can be used, going back and forth between core and size, and direction reconstruction, using the results from one for the other.
+Similar to the correction for the detector altitudes the additional time offset ($\delta_t$) from the expected plane shower front is subtracted from the detection time.  As shown in [ref simulations/shower front shape] the expected detected delay due to the shape of the shower front depends on the radial core distance and the size of the shower.
 
-For now the shower core position and size are assumed to be known. Using the core position and an initial shower direction the radial core distance of a station can be determined.
+Determining the size and core location of the shower requires the direction of the shower, in order to correct the signal strength for the signal path length in the detectors. An iterative reconstruction can be used, going back and forth between core and size reconstruction, and direction reconstruction, using the results from one as input for the other.
+
+For now the shower core position ($x_{core}$, $y_{core}$) and size are assumed to be known. Using the core position and an initial shower direction the radial core distance of a station can be determined.
 %
 \begin{equation}
-    \Delta x_i = x_{core} - x_i \ ,
-    \Delta y_i = y_{core} - y_i
+    \begin{align}
+        \Delta x_i &= x_{core} - x_i \ , \\
+        \Delta y_i &= y_{core} - y_i
+    \end{align}
 \end{equation}
 %
 \begin{equation}
@@ -320,31 +339,44 @@ In case the detectors altitude is also taken into account the $x_i$ and $y_i$ in
 
 The core distance is then used to get the expected shower deviation from the plane.
 %
-\begin{equation}
-    f(r_i, E) = a r_i^b \ ,
+\begin{equation}\label{eq:shower_curvature}
+    \delta_t(r_i, E) = a r_i^b \ ,
 \end{equation}
 %
-where for protons these values are used
-%
-\begin{verbatim}
-    Energy   15     15.5   16     16.5   17
-    Param a  0.0995 0.0190 0.0065 0.0032 0.00044
-    Param b  1.05   1.38   1.58   1.69   2.01
-\end{verbatim}
-%
-Finally this delay is subtracted from the measured arrival time.
+where for protons the values in \cref{tab:curvature_parameters} are used. Finally this delay is subtracted from the measured arrival time.
 %
 \begin{equation}
-    t_i' = t_i - f(r_i, E)
+    t_i' = t_i - \delta_t(r_i, E)
 \end{equation}
 %
 The new $t_i'$ is then
+
+\begin{table}
+    \centering
+    \begin{tabular}{@{}lrrrrr@{}}
+        \toprule
+        Energy ($\log E$) & 15     & 15.5   & 16     & 16.5   & 17      \\
+        \midrule
+        Parameter $a$     & 0.0995 & 0.0190 & 0.0065 & 0.0032 & 0.00044 \\
+        Parameter $b$     & 1.05   & 1.38   & 1.58   & 1.69   & 2.01    \\
+        \bottomrule
+    \end{tabular}
+    \caption{The parameters for \cref{eq:shower_curvature} for proton initiated showers.}
+    \label{tab:curvature_parameters}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/reconstructions/curvedfront.pdf}
+    \caption{This illustrates the curvature of the real shower front (dots) compared to the plane front. For a station at a radial distance of $r_i$ the shower has a delay of $\delta_t(r_i)$. [to be replaced]}
+    \label{fig:curved_front}
+\end{figure}
 
 
 \subsection{Reconstruction steps}
 
 Raw data is first processed as described in \cref{ch:data_processing}. Because the core position is not yet known a simple direction reconstruction is performed which assumes a flat shower front. After this initial direction is determined the core position is estimated.
 
-The shower direction can be used to improve the estimated particle density in a station by correcting for the longer path of the shower particles in the detectors, which are a factor $\cos^{-1} \theta$ higher than they would be if going vertically through the detectors. Simultaneously the effective surface of the detector is reduced by a factor $\cos \theta$. Both these effects need to be corrected for. The uncertainty in the detected density is at low particle densities dominated by Poisson statistics. The value to be considered is not the particle density but the number of detected particles. Therefore the number should be corrected for the longer path, but not the different effective area.
+The shower direction can be used to improve the estimated particle density in a station by correcting for the longer path of the shower particles in the detectors, which are a factor $\cos^{-1} \theta$ higher than they would be if going vertically through the detectors. Simultaneously the effective surface of the detector is reduced by a factor $\cos \theta$. Both these effects need to be corrected for. The uncertainty in the detected density is at low particle densities dominated by Poisson statistics. The value to be considered is not the particle density but the number of detected particles. % Therefore when the signal strength is close to one \mip it should be corrected for the longer path, but not the different effective area. ??
 
-Using the estimated core position the direction reconstruction can use the core position to determine the radial core distance of each detector to the shower core. The reconstruction can then use non-flat shower fronts to reconstruct the core. The shape of a shower front
+Using the estimated core position the direction reconstruction can use the core position to determine the radial core distance of each detector to the shower core. The reconstruction can then use curved shower fronts to reconstruct the direction more accurately. This can be used to improve the core reconstruction accuracy. After a few iterations the results should stabilise around the 'best values'.

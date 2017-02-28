@@ -74,11 +74,11 @@ The Public Database also provides access to the data in the ESD. This can be dow
 \subsection{\pypi}
 
 \sapphire is available via the Python Package Index (\pypi). This allows
-package managers such as pip to easily find it. Ideally this means that installing \sapphire is as simple as running the following command:
-
-\begin{verbatim}
-$ pip install hisparc-sapphire
-\end{verbatim}
+package managers such as pip to easily find it. Ideally this means that installing \sapphire is as simple as running the following command in the command line:
+%
+\begin{minted}{bash}
+   pip install hisparc-sapphire
+\end{minted}
 
 During the installation pip will also try to install other packages which are required for \sapphire. However, some of these packages require non-\python libraries, such as \hdf which is required for PyTables, pip can not install this because it is not a Python package. It might be easier to install the requirements before installing \sapphire itself.
 

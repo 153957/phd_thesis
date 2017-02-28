@@ -22,7 +22,7 @@ At least three detection points are required for the reconstruction of the showe
 
 The detection points can either be individual \hisparc detectors or \hisparc stations. In order to suitable for accurate reconstructions the detection points must meet some criteria. They must be close enough to simultaneously detect air showers of the desired cosmic-ray energy. They should not all be on a single line, because that negatively affects the reconstruction accuracy.
 
-The detection stations need to have been online simultaneously for extended periods of time. Simultaneous uptime increases the exposure time, which is needed for rarer very-high-energy cosmic rays. Moreover, coincidences between stations are required to calibrate the timing offsets.
+The detection stations need to have been online simultaneously for extended periods of time. Simultaneous uptime increases the exposure time, which is needed to increase the chance of detecting the rarer very-high-energy cosmic rays. Moreover, many other coincidences between stations are required to calibrate the timing offsets.
 
 Finally the stations must have been configured properly, moreover the locations of the detectors must be known. If the detector locations are unknown they could theoretically be as far as \SI{60}{\meter} from the \gps antenna location, though in practice this has never been the case. With the known location of the individual detectors each detector can be used separately in the reconstruction, or at least the center of mass location of the station detectors is known.
 
@@ -59,23 +59,31 @@ So four possible candiate clusters remain, their layouts are shown in \ref{fig:c
 \section{Raw data}
 
 % Start date for each station and number of raw triggered events
-Not all Science Park stations were deployed at the same time, several were installed during my research period. The first station at Science Park was station 501 which started data taking in March 2004. A year later a second station was installed at the University of Amsterdam. In August 2008 an additional five stations were added. Finally three more stations were added in 2013, 2014, and 2015. In table [ref table with start date/number of events] the dates on which the stations started data taking is listed, also the total number of events recorded up to February 2016 [check] is shown. Station 507 is excluded for reasons stated above.
+Not all Science Park stations were deployed at the same time, several were installed during my research period. The first station at Science Park was station 501 which started data taking in March 2004. A year later a second station was installed at the University of Amsterdam. In August 2008 an additional five stations were added. Finally three more stations were added in 2013, 2014, and 2015. In \cref{tab:detected_events} the dates on which the stations started data taking is listed, also the total number of events recorded up to February 2016 [check] is shown. Station 507 is excluded for reasons stated above.
 
-\begin{verbatim}
-    Start        Station  N
-    2004-03-26   501      220e6
-    2005-01-31   509      120e6
-    2008-08-02   502      120e6
-    2008-08-02   503      130e6
-    2008-08-02   504      150e6
-    2008-08-03   506       80e6
-    2008-08-07   505      120e6
-    2013-06-17   508       30e6
-    2014-09-29   510       30e6
-    2015-06-16   511       10e6
-\end{verbatim}
+\begin{table}
+    \centering
+    \begin{tabular}{@{}llr@{}}
+        \toprule
+        Start date & Station & Number of events ($10^6$) \\
+        \midrule
+        2004-03-26 & 501     &                       220 \\
+        2005-01-31 & 509     &                       120 \\
+        2008-08-02 & 502     &                       120 \\
+        2008-08-02 & 503     &                       130 \\
+        2008-08-02 & 504     &                       150 \\
+        2008-08-03 & 506     &                        80 \\
+        2008-08-07 & 505     &                       120 \\
+        2013-06-17 & 508     &                        30 \\
+        2014-09-29 & 510     &                        30 \\
+        2015-06-16 & 511     &                        10 \\
+        \bottomrule
+    \end{tabular}
+    \caption{The number of detected events in the Science Park stations between their start date and 2017-02-01.}
+    \label{tab:detected_events}
+\end{table}
 
-The total number of events does not scale linearly with time since first data taking. This is caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences. The raw data also includes triggered events due to background radiation. Background radiatio includes EAS with only very few or single particles at ground level.
+The total number of events does not scale linearly with time since first data taking. This is caused by station and detector downtime, and slightly differing trigger rates due to calibration and construction differences. The raw data also includes triggered events due to background radiation. Background radiation includes EAS with only very few or single particles at ground level.
 
 
 \section{Data quality cuts}
@@ -97,13 +105,23 @@ Originally the \gps module in the \hisparc electronics was configured to use \ut
 
 Days on which the configuration of a station is changed will also be ignored. On such days the station will be operating under different configurations for various parts of the day. For example, if at noon the \pmt voltages were changed the \mpv value for the affected detectors may have changed. The \mpv is determined daily using all data of that day, but that data will contain mixed datasets in the fit, resulting in a bad calibration. The total number of days skipped because of this is relatively small. Some of the days with a new configuration have only partial data because the station may have been restarted and reconfigured after a longer downtime. In table [ref following table] the number of days on which a setting was changed for a station is shown. Also the total number of days of data to be excluded per station is shown. Station 501 has most days with changes because it was often used to test new software, or at times its \gps was borrowed by another station.
 
-\begin{verbatim}
-    changed param   501 502 503 504 505 506 508 509 510 511
-    GPS             23  8   7   4   11  3   1   4   10  1
-    electronics     3   3   1   1   2   3   2   1   0   0
-    PMT voltages    21  16  23  17  23  12  6   6   8   2
-    Total days      [number of unique days to be excluded]
-\end{verbatim}
+\begin{table}
+    \centering
+    \begin{tabular}{@{}lrrrrrrrrrr@{}}
+        \toprule
+        Parameter     & 501 & 502 & 503 & 504 & 505 & 506 & 508 & 509 & 510 & 511 \\
+        \midrule
+        \gps position &  23 &   8 &   7 &   4 &  11 &   3 &   1 &   4 &  10 &   1 \\
+        Electronics   &   3 &   3 &   1 &   1 &   2 &   3 &   2 &   1 &   0 &   0 \\
+        \pmt voltages &  21 &  16 &  23 &  17 &  23 &  12 &   6 &   6 &   8 &   2 \\
+        \midrule
+        Total days    &   ? &   ? &   ? &   ? &   ? &   ? &   ? &   ? &   ? &   ? \\
+        %[number of unique days to be excluded]
+        \bottomrule
+    \end{tabular}
+    \caption{The number of days on which configuration or hardware changes were made to the Science Park stations. The last row lists the total days excluded, since on some days multiple changes were made to the same stations.}
+    \label{tab:changed_parameters}
+\end{table}
 
 
 \subsection{Drastic unexpected calibration value changes}
@@ -156,38 +174,54 @@ Additionally if the number of events on a day in which a specific detector would
 
 % Graph uptime of remaining events
 % time with n simultaneaous active stations
-The cuts discussed above are applied to the data of the individual stations. In table [ref following table] the remaining number of days with data and number of events are shown. These events have not been filtered based on being able to successfully reconstruct the shower.
+The cuts discussed above are applied to the data of the individual stations. In \cref{tab:remaining_events} the remaining number of days with data and number of events are shown. These events have not been filtered based on being able to successfully reconstruct the shower.
 
-\begin{verbatim}
-    Station  days with data  N after cut
-    501      ?               97e6
-    502      ?               66e6
-    503      ?               71e6
-    504      ?               86e6
-    505      ?               70e6
-    506      ?               76e6
-    508      ?               32e6
-    509      ?               82e6
-    510      ?               24e6
-    511      ?                8e6
-\end{verbatim}
+\begin{table}
+    \centering
+    \begin{tabular}{@{}llr@{}}
+        \toprule
+        Station & Days with data & Number of events ($10^6$) \\
+        \midrule
+        501     & ?              &                        97 \\
+        502     & ?              &                        66 \\
+        503     & ?              &                        71 \\
+        504     & ?              &                        86 \\
+        505     & ?              &                        70 \\
+        506     & ?              &                        76 \\
+        508     & ?              &                        32 \\
+        509     & ?              &                        82 \\
+        510     & ?              &                        24 \\
+        511     & ?              &                         8 \\
+        \bottomrule
+    \end{tabular}
+    \caption{The number of remaining days with events and the total number of remaining events for the Science Park stations.}
+    \label{tab:remaining_events}
+\end{table}
 
 
 \section{Effect on coincidences}
 
-Removing bad events also affects the number of coincidences. Interesting for the purpose of calibrations, mainly station timing offsets, is the number of coincidences in which at least 2 stations are in coincidence. In the remaining dataset there are \num{13391318} coincidences with at least 2 stations in coincidence. The largest potion of this is dominated by the stations which are close together, i.e 501 and 510. When more stations in coincidence are required, for more accurate reconstruction, the number of coincidences sharply drops. This is because the distances to the other stations are much larger and much larger air showers are required to create the coincidences, and because more stations are required to have been active simultaneously. In table [ref following table] the number of coincidences before and after the cuts with at least N stations are listed.
+Removing bad events also affects the number of coincidences. Interesting for the purpose of calibrations, mainly station timing offsets, is the number of coincidences in which at least 2 stations are in coincidence. In the remaining dataset there are \num{13391318} coincidences with at least 2 stations in coincidence. The largest potion of this is dominated by the stations which are close together, i.e 501 and 510. When more stations in coincidence are required, for more accurate reconstruction, the number of coincidences sharply drops. This is because the distances to the other stations are much larger and much larger air showers are required to create the coincidences, and because more stations are required to have been active simultaneously. In \cref{tab:remaining_coincidences} the number of coincidences before and after the cuts with at least N stations are listed.
 
-\begin{verbatim}
-    N   Before cut   After cut
-    3   1975275      ....
-    4   544342       ....
-    5   187480       ....
-    6   71286        ....
-    7   27552        ....
-    8   9714         ....
-    9   3111         ....
-    10  787          ....
-\end{verbatim}
+\begin{table}
+    \centering
+    \begin{tabular}{@{}lrr@{}}
+        \toprule
+        N  & Before cut & After cut \\
+        \midrule
+         3 &    1975275 &         ? \\
+         4 &     544342 &         ? \\
+         5 &     187480 &         ? \\
+         6 &      71286 &         ? \\
+         7 &      27552 &         ? \\
+         8 &       9714 &         ? \\
+         9 &       3111 &         ? \\
+        10 &        787 &         ? \\
+        \bottomrule
+    \end{tabular}
+    \caption{The number of coincidences before and after the quality cuts between the Science Park stations.}
+    \label{tab:remaining_coincidences}
+\end{table}
 
 
 \section{Remaining data}
