@@ -1,45 +1,25 @@
 \title{HiSPARC}
 \author{A.~P.~L.~S.~de Laat}
 
-
 \begin{document}
 
-%\makeatletter
-%\includepdf{cover/crop-cover}
-%\makeatother
+    \makeatletter
+    \includepdf{cover/crop-cover}
+    \makeatother
 
-%\thispagestyle{empty}
-%\cleardoublepage
+    \thispagestyle{empty}
+    \cleardoublepage
 
-\frontmatter
+    \frontmatter
 
-%\include{titlepage}
+    \tableofcontents
 
-%\cleardoublepage
+    \mainmatter
+    \renewcommand{\epigraphflush}{flushleft}
+    \input{chapters}
 
-%\vspace*{1in}
-%\hfill
-%\parbox{5cm}{
-%\textlarger{\textit{Voor }}\\
-%\textsmaller{...}
-%\\[10pt]
-%\textlarger{\textit{Voor }}\\
-%\textsmaller{...}
-%\\[10pt]
-%\textlarger{\textit{Voor }}\\
-%\textsmaller{...}
-%}
+    \backmatter
 
-\tableofcontents
-
-\mainmatter
-\renewcommand{\epigraphflush}{flushleft}
-\input{chapters}
-
-\backmatter
-
-%\include{samenvatting}
-\printbibliography
-%\include{dankwoord}
+    \printbibliography
 
 \end{document}
