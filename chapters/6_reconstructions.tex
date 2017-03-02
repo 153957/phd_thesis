@@ -214,12 +214,12 @@ where $\Delta x_i = x_i - x_0$, $\Delta y_i = y_i - y_0$, and $\Delta t_i = t_i 
 These equations for $n_x$ and $n_y$ can be solved with
 %
 \begin{equation}
-    \begin{align}
+    \begin{aligned}
         n_x &= \frac{c (\Delta t_2 \Delta y_1 - \Delta t_1 \Delta y_2)}
-                    {\Delta y_2 \Delta x_1 - \Delta y_1 \Delta x_2)} \ , \\
+                     {\Delta y_2 \Delta x_1 - \Delta y_1 \Delta x_2} \ , \\
         n_y &= \frac{c (\Delta t_1 \Delta x_2 - \Delta t_2 \Delta x_1)}
-                    {\Delta x_1 \Delta y_2 - \Delta x_2 \Delta y_1)} \ .
-    \end{align}
+                     {\Delta x_1 \Delta y_2 - \Delta x_2 \Delta y_1} \ .
+    \end{aligned}
 \end{equation}
 %
 These equations use the same data as those used in [ref fokkema] and have the same limitations.
@@ -250,11 +250,11 @@ where $k$ is the number of detection points, and $\sigma_i$ is the error on each
 The minimum can be found by finding where the derivatives to the variables are zero.
 %
 \begin{equation}
-    \begin{align}
+    \begin{aligned}
         \frac{\ud R^2}{\ud n_x} &= 0 \ , \\
         \frac{\ud R^2}{\ud n_y} &= 0 \ , \\
         \frac{\ud R^2}{\ud m} &= 0 \ .
-    \end{align}
+    \end{aligned}
 \end{equation}
 %
 This can be solved for $n_x$ and $n_y$ as
@@ -289,21 +289,21 @@ where the bar indicates the mean of that value over all detection points. For ex
 The above regression result can not easily be achieved when adding the detector $z$ coordinates. Instead the detector $x_i$ and $y_i$ position and arrival time $t_i$ will be projected onto the $z_0$ plane along the shower direction. This is illustrated in \cref{fig:altitude_projection}. In order to get an initial shower direction the altitudes are first ignored, using the above equations. Then using the found direction the projections are performed, after which the altitude can again be ignored, allowing the above regressions, \cref{eq:regression_nx,eq:regression_ny}, to be used again. With the new result a new projection will be made, and another reconstruction. This will be repeated until the result stabilises. The projections are as follows
 %
 \begin{equation}
-    \begin{align}
+    \begin{aligned}
         x_i' &= x_i - z_i \frac{n_x}{n_z} \ , \\
         y_i' &= y_i - z_i \frac{n_y}{n_z} \ , \\
         t_i' &= t_i + z_i \frac{1}{c n_z} \ ,
-    \end{align}
+    \end{aligned}
 \end{equation}
 %
 where
 %
 \begin{equation}
-    \begin{align}
+    \begin{aligned}
         n_x &= \sin \theta \cos \phi \ , \\
         n_y &= \sin \theta \sin \phi \ , \\
         n_z &= \cos \theta
-    \end{align}
+    \end{aligned}
 \end{equation}
 %
 
@@ -324,10 +324,10 @@ Determining the size and core location of the shower requires the direction of t
 For now the shower core position ($x_{core}$, $y_{core}$) and size are assumed to be known. Using the core position and an initial shower direction the radial core distance of a station can be determined.
 %
 \begin{equation}
-    \begin{align}
+    \begin{aligned}
         \Delta x_i &= x_{core} - x_i \ , \\
         \Delta y_i &= y_{core} - y_i
-    \end{align}
+    \end{aligned}
 \end{equation}
 %
 \begin{equation}
