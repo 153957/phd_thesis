@@ -93,7 +93,7 @@ The total number of events does not scale linearly with time since first data ta
 % Cut station or detector for entire day or single event, show examples of cuts for various parameters.
 % If detector is working badly, better to exclude for entire day, and ignore it for particle density.
 % Check that bad data does not introduce unwanted bias.
-Not all of the events which were counted in [ref previous table] will be taken into account for the analysis. Data quality cuts will be performed prior to the further analysis. Some quality criteria were discussed in \cref{sec:data_quality_criteria}.
+Not all of the events which were counted in \cref{tab:detected_events} will be taken into account for the analysis. Data quality cuts will be performed prior to the further analysis. Some quality criteria were discussed in \cref{sec:data_quality_criteria}.
 
 
 \subsection{Mixed \utc and \gps timestamps}
@@ -103,7 +103,7 @@ Originally the \gps module in the \hisparc electronics was configured to use \ut
 
 \subsection{Configuration changes}
 
-Days on which the configuration of a station is changed will also be ignored. On such days the station will be operating under different configurations for various parts of the day. For example, if at noon the \pmt voltages were changed the \mpv value for the affected detectors may have changed. The \mpv is determined daily using all data of that day, but that data will contain mixed datasets in the fit, resulting in a bad calibration. The total number of days skipped because of this is relatively small. Some of the days with a new configuration have only partial data because the station may have been restarted and reconfigured after a longer downtime. In table [ref following table] the number of days on which a setting was changed for a station is shown. Also the total number of days of data to be excluded per station is shown. Station 501 has most days with changes because it was often used to test new software, or at times its \gps was borrowed by another station.
+Days on which the configuration of a station is changed will also be ignored. On such days the station will be operating under different configurations for various parts of the day. For example, if at noon the \pmt voltages were changed the \mpv value for the affected detectors may have changed. The \mpv is determined daily using all data of that day, but that data will contain mixed datasets in the fit, resulting in a bad calibration. The total number of days skipped because of this is relatively small. Some of the days with a new configuration have only partial data because the station may have been restarted and reconfigured after a longer downtime. In table \cref{tab:changed_parameters} the number of days on which a setting was changed for a station is shown. Also the total number of days of data to be excluded per station is shown. Station 501 has most days with changes because it was often used to test new software, or at times its \gps was borrowed by another station.
 
 \begin{table}
     \centering
@@ -151,7 +151,7 @@ Most calibration values are determined daily, for the station offset data from d
 
 If a detector part of an event has a bad baseline the detector will be excluded for that event, if the trigger reconstruction failed the entire event is excluded, if the \mpv fit or timing offset of a detector fails for a day that detector is excluded for the entire day, and if the station timing offset fails the station is excluded for the entire day.
 
-Additionally if the number of events on a day in which a specific detector would be excluded exceeds a nominal fraction it will be considered malfunctioning and excluded for the entire day. Similarly for a station, if too many events of a station are excluded on a day the station will be excluded for the entire day. If the noise filter [ref to processing section] is enabled on a station then a failed trigger time reconstruction is expected for approximately \SI{0.1}{\percent}. With the noise filter disabled over a magnitude less failed reconstructions are expected. Failed reconstructions can still occur due to back to back triggers, which can interfere with the trigger reconstruction algorithm.
+Additionally if the number of events on a day in which a specific detector would be excluded exceeds a nominal fraction it will be considered malfunctioning and excluded for the entire day. Similarly for a station, if too many events of a station are excluded on a day the station will be excluded for the entire day. If the mean filter \cref{ssec:mean_filter} is enabled on a station then a failed trigger time reconstruction is expected for approximately \SI{0.1}{\percent}. With the mean filter disabled over a magnitude less failed reconstructions are expected. Failed reconstructions can still occur due to back to back triggers, which can interfere with the trigger reconstruction algorithm.
 
 \begin{figure}
     \centering
@@ -226,6 +226,6 @@ Removing bad events also affects the number of coincidences. Interesting for the
 
 \section{Remaining data}
 
-The remaining data contains only data for which the offline calibration was successful, and only data from days on which the station was not reconfigured. As mentioned the largest fraction of 2-station coincidences are those of station 501 and 510. The coincidences, and also anti-coincidences of the events detected by these stations will be explored in [ref chapter 7].
+The remaining data contains only data for which the offline calibration was successful, and only data from days on which the station was not reconfigured. As mentioned the largest fraction of 2-station coincidences are those of station 501 and 510.
 
-The single station events in the dataset may still be unreconstructable, or appear to be accidental triggers. However, in some cases they are part of the outer regions of large showers, where the shower core is closer to other stations. In such cases the events should be accounted for when reconstructing the shower using data from the multiple stations. That means that for events in coincidences the events themselves may not be reconstructable, but when taken together they can be. The larger coincidences in the Science Park cluster will be reconstructed analysed in [ref chapter 8].
+The single station events in the dataset may still be unreconstructable, or appear to be accidental triggers. However, in some cases they are part of the outer regions of large showers, where the shower core is closer to other stations. In such cases the events should be accounted for when reconstructing the shower using data from the multiple stations. That means that for events in coincidences the events themselves may not be reconstructable, but when taken together they can be.

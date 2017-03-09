@@ -323,12 +323,12 @@ The \hisparc electronics has two \adcs per channel, each \adc reads the \pmt sig
 
 \subsection{Comparators}
 
-The non-linearity of the \pmt response described in [ref pmt lin section] means that many \pmts will never or hardly ever saturate the \adcs. The \hisparc electronics also includes two comparators per channel which determine if a signal reaches two higher thresholds (\SIrange{2}{10}{\volt}). These will remain unused with most stations, as they use the non-linear \pmts. For the new \pmts the comparators will be essential in signal reconstruction of high particle densities. However, the readout of the comparators was not implemented in the software until the end of 2015. So these will not be taken into further account in this thesis. Saturated pulses may still be reconstructed by fitting the non-saturated flanks of the pulses \cite[Section 3.5]{lio2011}. Double checking these fits with comparator data needs to be done first.
+The non-linearity of the \pmt response described in \cref{sub:pmt_linearity} means that many \pmts will never or hardly ever saturate the \adcs. The \hisparc electronics also includes two comparators per channel which determine if a signal reaches two higher thresholds (\SIrange{2}{10}{\volt}). These will remain unused with most stations, as they use the non-linear \pmts. For the new \pmts the comparators will be essential in signal reconstruction of high particle densities. However, the readout of the comparators was not implemented in the software until the end of 2015. So these will not be taken into further account in this thesis. Saturated pulses may still be reconstructed by fitting the non-saturated flanks of the pulses \cite[Section 3.5]{lio2011}. Double checking these fits with comparator data needs to be done first.
 
 
 \subsection{\adc alignment}
 
-In order to get consistent data both \adcs for each channel are aligned to have the same baseline and gain. \adcs remain accurate when they have a constant temperature. When \hisparc electronics are first connected the temperature will likely be below operating temperature. When calibration is performed immediately after powering the electronics it may drift from proper calibration as it continues to operate [how much drift?]. An offline/software based Mean Filter [ref to later section] in the software is capable of smoothing any remaining offsets in the combined signal. Note that this filter occurs after the trigger, so the trigger sees the unfiltered values. An example of misaligned traces is shown in \cref{fig:adc_alignment}.
+In order to get consistent data both \adcs for each channel are aligned to have the same baseline and gain. \adcs remain accurate when they have a constant temperature. When \hisparc electronics are first connected the temperature will likely be below operating temperature. When calibration is performed immediately after powering the electronics it may drift from proper calibration as it continues to operate [how much drift?]. An offline/software based Mean Filter, see \cref{ssec:mean_filter}, in the software is capable of smoothing any remaining offsets in the combined signal. Note that this filter occurs after the trigger, so the trigger sees the unfiltered values. An example of misaligned traces is shown in \cref{fig:adc_alignment}.
 
 \begin{figure}
     \centering
@@ -555,6 +555,7 @@ Here $u_x = \Delta t_2 x_1 - \Delta t_1 x_2$, $u_y = \Delta t_2 y_1 - \Delta t_1
 
 
 \subsection{Performance of a station}
+\label{ssec:station_performance}
 
 The reconstruction accuracy of a single \hisparc station was tested at the \kascade experiment. A 4-detector \hisparc station was placed between the \kascade detectors and triggered, using an external trigger, when the surrounding \kascade detectors detected an event. The \kascade reconstruction of the shower which triggered the \hisparc station were made available. By reconstructing the \hisparc data and comparing this to the \kascade reconstruction the performance of a single station is tested.
 

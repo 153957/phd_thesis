@@ -96,7 +96,7 @@ Whenever new simulations are performed they are automatically converted to \hdf 
 
 \section{Detector simulation}
 
-The detector and station responses and accuracies reported in [chaptersdetector/station] are implemented in the detector simulations. These routines provide the station response to air showers.
+The detector and station responses and accuracies reported in \cref{ch:station} are implemented in the detector simulations. These routines provide the station response to air showers.
 
 As input the \corsika showers or parameterized descriptions of the shower front can be used. The same cluster objects, containing the station and detector positions, which are used in reconstructions are used for simulations. These objects can contain stations and detectors based on real configurations or a fictional station arangement.
 
@@ -152,7 +152,7 @@ After combining the detected profiles from multiple showers a relation can be de
 
 \section{Analysis}
 
-The direction reconstruction algorithm presented in [fokkema2012] can be improved to use more data and improved accuracy. Several improvements can be made; using more than 3 detection points, accounting for the different altitudes of the detectors, and taking the shape of the shower front into account. In the following sections each of these improvements is separately introduced. In order to simplify some of the math the equations are first converted to cartesian coordinates.
+The direction reconstruction algorithm presented in \cite{fokkema2012hisparc} can be improved to use more data and improved accuracy. Several improvements can be made; using more than 3 detection points, accounting for the different altitudes of the detectors, and taking the shape of the shower front into account. In the following sections each of these improvements is separately introduced. In order to simplify some of the math the equations are first converted to cartesian coordinates.
 
 
 \subsection{Reconstruction in cartesian coordinates}
@@ -222,7 +222,7 @@ These equations for $n_x$ and $n_y$ can be solved with
     \end{aligned}
 \end{equation}
 %
-These equations use the same data as those used in [ref fokkema] and have the same limitations.
+These equations use the same data as those used in \cite{fokkema2012hisparc} and have the same limitations.
 
 
 \subsection{Utilizing more detection points}

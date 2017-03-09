@@ -179,7 +179,7 @@ The arrival time of particles in each individual detector ($t_i$) is used for di
 % Offsets between detectors in same station
 Time offsets are observed between detectors in the same station, as reported in \cref{sec:detector-offsets}. These need to be corrected for to be able to relate the detector arrival times within a station. A single day of data is enough to accurately determine these offsets for the detectors within a station. A four-detector station in the star-layout has approximately \num{60000} triggers per day. A pair of detectors in the outer triangle have approximately \num{12000} triggers in common while a pair which includes the center detector is in approximately \num{14000} triggers. Following from \cref{ssec:efficiency_triggering}, approximately \num{3000} of these triggers per pair are background. Most of the background is easily removed by constraining the maximum allowed time difference between the detectors. Limitting the maximum time difference to the time it would take light to go from one detector to the other, typically \SI{33}{\ns}, removes most background events, leaving only approximately \num{250} background triggers. A small percentage real showers will also be removed, but in those cases the time difference is larger than expected due to shower front thickness and detector transport time effects. Those events do not contribute much to an accurate offset. The timing offset represents what the arrival time difference would be if the detectors were simultaneously hit. This means that the determined offset must also be corrected for the altitude difference between the detectors. The altitude difference causes the detector positioned lower to have later arrival times. For most stations this is irrelevant as the detectors are at the same altitude, but there are some exceptions.
 
-[illustration, show mirror symmetry and altitude effect, offset should correct for difference in case of ` hit]
+[illustration, show mirror symmetry and altitude effect, offset should correct for difference in case of hit]
 
 % Determining the offset, the procedure
 First the best detector reference is determined by determining which detector participated in most events with any of the other detectors. In case of 4-detector stations detector 2 will often be this station since it is closest to all other detectors. In case of a 2-detector station detector 2 is always used. After offsets have been determined detector 2 is made the reference by setting its offset to \SI{0}{\ns}. Ideally all offsets are \SI{0}{\ns}, but this is not the case. The distribution off detector timing offsets for all \hisparc stations was shown in \cref{sec:detector-offsets}. The determined offsets must be subtracted from arrival times to get the corrected arrival times.
@@ -208,7 +208,7 @@ At some point in a reconstruction one station has to be appointed the reference 
 \begin{figure}
     \centering
     \input{plots/processing/shortest_path}
-    \caption{Example of determination of best reference and shortest path. [todo highlight shortest paths and reference station]}
+    \caption{Example of determination of best reference and shortest path. The red highlighted station is determined to be the best reference, and the red paths the shortest paths.}
     \label{fig:shortest_path}
 \end{figure}
 
